@@ -1,0 +1,118 @@
+name: Neynar API Plans
+description: Neynar offers subscription plans with a credit-based pricing model. All plans provide access to the full Farcaster REST API. Credits are consumed per API call at varying rates depending on the endpoint and data size requested.
+url: https://dev.neynar.com/pricing
+plans:
+  - name: Free
+    description: Free tier for developers to get started with the Neynar Farcaster API with limited credits.
+    url: https://dev.neynar.com/pricing
+    price: 0
+    currency: USD
+    billingCycle: monthly
+    features:
+      - Access to all read Farcaster APIs
+      - Limited monthly credits
+      - Developer Portal access
+      - API key provided
+  - name: Starter
+    description: Entry-level paid plan for developers building on Farcaster with production-ready rate limits.
+    url: https://dev.neynar.com/pricing
+    currency: USD
+    billingCycle: monthly
+    rateLimits:
+      - type: per-endpoint
+        requests: 300
+        period: minute
+        unit: RPM
+      - type: per-endpoint
+        requests: 5
+        period: second
+        unit: RPS
+      - type: global
+        requests: 500
+        period: minute
+        unit: RPM
+    features:
+      - All Farcaster Read and Write APIs
+      - 300 RPM per endpoint
+      - 500 RPM global (excluding validation and signer endpoints)
+      - Frame validation up to 5,000 RPM
+      - Signer endpoints up to 3,000 RPM
+      - Cast search up to 60 RPM
+      - Webhooks
+      - Hub endpoint access
+      - Developer Portal access
+  - name: Growth
+    description: Mid-tier plan for growing applications requiring higher throughput on the Farcaster protocol.
+    url: https://dev.neynar.com/pricing
+    currency: USD
+    billingCycle: monthly
+    rateLimits:
+      - type: per-endpoint
+        requests: 600
+        period: minute
+        unit: RPM
+      - type: per-endpoint
+        requests: 10
+        period: second
+        unit: RPS
+      - type: global
+        requests: 1000
+        period: minute
+        unit: RPM
+    features:
+      - All Farcaster Read and Write APIs
+      - 600 RPM per endpoint
+      - 1,000 RPM global (excluding validation and signer endpoints)
+      - Frame validation up to 10,000 RPM
+      - Signer endpoints up to 6,000 RPM
+      - Cast search up to 120 RPM
+      - Webhooks
+      - Hub endpoint access
+      - Indexer-as-a-service
+      - Data analysis tools
+      - Developer Portal access
+  - name: Scale
+    description: High-volume plan for production applications requiring maximum throughput and advanced data capabilities on Farcaster.
+    url: https://dev.neynar.com/pricing
+    currency: USD
+    billingCycle: monthly
+    rateLimits:
+      - type: per-endpoint
+        requests: 1200
+        period: minute
+        unit: RPM
+      - type: per-endpoint
+        requests: 20
+        period: second
+        unit: RPS
+      - type: global
+        requests: 2000
+        period: minute
+        unit: RPM
+    features:
+      - All Farcaster Read and Write APIs
+      - 1,200 RPM per endpoint
+      - 2,000 RPM global (excluding validation and signer endpoints)
+      - Frame validation up to 20,000 RPM
+      - Signer endpoints up to 12,000 RPM
+      - Cast search up to 240 RPM
+      - Webhooks
+      - Hub endpoint access
+      - Indexer-as-a-service
+      - Hosted SQL playground
+      - Custom tables and data pipelines
+      - Kafka streaming data
+      - New user registration
+      - Developer Portal access
+  - name: Enterprise
+    description: Custom enterprise plan for organizations requiring custom rate limits, SLAs, and dedicated support for high-volume Farcaster applications.
+    url: https://neynar.com/contact
+    currency: USD
+    billingCycle: custom
+    features:
+      - Custom rate limits
+      - Dedicated support
+      - SLA guarantees
+      - All Scale plan features
+      - Custom data pipelines
+      - Priority infrastructure

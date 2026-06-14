@@ -1,0 +1,87 @@
+name: Neynar
+description: Neynar is the complete Farcaster developer platform providing infrastructure REST APIs for querying casts, channels, user profiles, feeds, reactions, and building applications on the Farcaster decentralized social protocol. As of January 2026, Neynar acquired Farcaster from Merkle Manufactures, taking operational responsibility for the protocol, client, and related infrastructure.
+image: https://neynar.com/favicon.ico
+tags:
+  - Farcaster
+  - Social
+  - Decentralized
+  - Web3
+  - Blockchain
+  - Social Graph
+  - Casts
+  - Channels
+  - Feeds
+  - Reactions
+  - Notifications
+  - Webhooks
+  - Onchain
+url: https://neynar.com
+apis:
+  - name: Neynar Farcaster API
+    description: REST API for interacting with the Farcaster protocol, providing access to users, casts, channels, feeds, reactions, notifications, signers, frames, webhooks, onchain data, and AI agents on the Farcaster decentralized social network.
+    humanURL: https://docs.neynar.com
+    baseURL: https://api.neynar.com
+    tags:
+      - Farcaster
+      - Social
+      - REST
+      - Web3
+    properties:
+      - type: Documentation
+        url: https://docs.neynar.com
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/neynarxyz/OAS/main/src/api/spec.yaml
+      - type: Quickstart
+        url: https://docs.neynar.com/reference/quickstart
+      - type: RateLimits
+        url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
+      - type: ComputeUnits
+        url: https://docs.neynar.com/reference/compute-units
+      - type: Plans
+        url: https://dev.neynar.com/pricing
+      - type: Webhooks
+        url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
+      - type: x-plans
+        url: plans/plans.yml
+      - type: x-rate-limits
+        url: rate-limits/rate-limits.yml
+      - type: x-finops
+        url: finops/finops.yml
+    contact:
+      - FN: Neynar
+        email: support@neynar.com
+        url: https://neynar.com/contact
+  - name: Neynar Hub HTTP API
+    description: Hub HTTP API providing direct access to Farcaster hub data including casts by FID, user data, fname availability, and low-level protocol messages.
+    humanURL: https://docs.neynar.com/reference/hub-api-overview
+    baseURL: https://hub-api.neynar.com
+    tags:
+      - Farcaster
+      - Hub
+      - Protocol
+      - REST
+    properties:
+      - type: Documentation
+        url: https://docs.neynar.com/reference/hub-api-overview
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/neynarxyz/OAS/main/src/hub-api/spec.yaml
+    contact:
+      - FN: Neynar
+        email: support@neynar.com
+        url: https://neynar.com/contact
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+sdks:
+  - type: Node.js SDK
+    url: https://github.com/neynarxyz/nodejs-sdk
+  - type: React SDK
+    url: https://github.com/neynarxyz/react
+  - type: Go SDK
+    url: https://github.com/neynarxyz/go-sdk
+  - type: Rust SDK
+    url: https://github.com/neynarxyz/rust-sdk
+aid: api-evangelist-neynar
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"

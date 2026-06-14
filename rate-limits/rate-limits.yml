@@ -1,0 +1,90 @@
+name: Neynar API Rate Limits
+description: Neynar API rate limits are set per subscription plan and are independent of overall credits usage. Limits are applied per API endpoint and globally across the API. Rate limits reset on a per-minute and per-second basis.
+url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
+rateLimits:
+  - plan: Starter
+    limits:
+      - type: per-endpoint
+        value: 300
+        unit: RPM
+        description: Maximum 300 requests per minute per individual API endpoint
+      - type: per-endpoint
+        value: 5
+        unit: RPS
+        description: Maximum 5 requests per second per individual API endpoint
+      - type: global
+        value: 500
+        unit: RPM
+        description: Maximum 500 requests per minute across all APIs (excludes validation and signer endpoints)
+      - type: frame-validation
+        value: 5000
+        unit: RPM
+        description: Frame validation endpoints allow up to 5,000 RPM
+      - type: signer-endpoints
+        value: 3000
+        unit: RPM
+        description: Signer management endpoints allow up to 3,000 RPM
+      - type: cast-search
+        value: 60
+        unit: RPM
+        description: Cast search endpoint limited to 60 RPM
+  - plan: Growth
+    limits:
+      - type: per-endpoint
+        value: 600
+        unit: RPM
+        description: Maximum 600 requests per minute per individual API endpoint
+      - type: per-endpoint
+        value: 10
+        unit: RPS
+        description: Maximum 10 requests per second per individual API endpoint
+      - type: global
+        value: 1000
+        unit: RPM
+        description: Maximum 1,000 requests per minute across all APIs (excludes validation and signer endpoints)
+      - type: frame-validation
+        value: 10000
+        unit: RPM
+        description: Frame validation endpoints allow up to 10,000 RPM
+      - type: signer-endpoints
+        value: 6000
+        unit: RPM
+        description: Signer management endpoints allow up to 6,000 RPM
+      - type: cast-search
+        value: 120
+        unit: RPM
+        description: Cast search endpoint limited to 120 RPM
+  - plan: Scale
+    limits:
+      - type: per-endpoint
+        value: 1200
+        unit: RPM
+        description: Maximum 1,200 requests per minute per individual API endpoint
+      - type: per-endpoint
+        value: 20
+        unit: RPS
+        description: Maximum 20 requests per second per individual API endpoint
+      - type: global
+        value: 2000
+        unit: RPM
+        description: Maximum 2,000 requests per minute across all APIs (excludes validation and signer endpoints)
+      - type: frame-validation
+        value: 20000
+        unit: RPM
+        description: Frame validation endpoints allow up to 20,000 RPM
+      - type: signer-endpoints
+        value: 12000
+        unit: RPM
+        description: Signer management endpoints allow up to 12,000 RPM
+      - type: cast-search
+        value: 240
+        unit: RPM
+        description: Cast search endpoint limited to 240 RPM
+  - plan: Enterprise
+    limits:
+      - type: custom
+        description: Custom rate limits negotiated based on usage requirements
+notes:
+  - Rate limits are fully independent of overall credits usage
+  - Accounts making 1,000 or more casts in 24 hours must maintain at least 20% of that volume in available storage
+  - Enterprise plans offer custom limits upon direct request

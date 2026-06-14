@@ -1,0 +1,80 @@
+name: Neynar API FinOps
+description: Neynar uses a credit-based pricing model where different API endpoints consume varying amounts of credits per request. Credits are separate from rate limits; rate limits control request throughput while credits control total API consumption volume. Costs scale with data size using multipliers based on number of records and page limits requested.
+url: https://docs.neynar.com/reference/compute-units
+creditModel:
+  description: Each API call consumes a defined number of credits. The number of credits consumed per call varies by endpoint and may be multiplied based on parameters such as bulk record counts or page size limits.
+  currency: credits
+  activeSigner:
+    cost: 20000
+    unit: credits
+    period: per monthly active signer per month
+    description: Developers writing to the Farcaster protocol pay 20,000 credits per monthly active signer managed through Neynar
+endpointCosts:
+  hubApiCosts:
+    description: Hub HTTP API endpoints for direct protocol data access
+    endpoints:
+      - path: /v1/castById
+        credits: 1
+        description: Fetch a single cast by hash
+      - path: /v1/userDataByFid
+        credits: 1
+        description: Fetch user data by FID
+      - path: /v1/fname/availability
+        credits: 1
+        description: Check fname availability
+      - path: /v1/castsByFid
+        credits: 200
+        description: Bulk fetch casts by FID
+      - path: /v1/fids
+        credits: 2000
+        description: Fetch all FIDs
+      - path: /v1/submitMessage
+        credits: 150
+        description: Submit a protocol message to hubs
+  neynarApiCosts:
+    description: Neynar v2 Farcaster API endpoints
+    endpoints:
+      - path: /v2/farcaster/user/search
+        credits: 10
+        description: Search for users by username or display name
+      - path: /v2/farcaster/cast
+        credits: 2
+        description: Fetch a single cast
+      - path: /v2/farcaster/feed
+        credits: 4
+        description: Fetch a feed (multiplied by page limit)
+        multiplier:
+          type: page-limit
+          description: Cost multiplied by the number of pages requested
+      - path: /v2/farcaster/user/bulk
+        credits: 2
+        description: Bulk lookup users by FID (multiplied by number of FIDs)
+        multiplier:
+          type: record-count
+          description: Cost multiplied by number of FIDs requested
+  webhookCosts:
+    description: Webhook event subscription costs
+    events:
+      - type: cast.created
+        credits: 5
+        description: New cast events
+      - type: reaction.created
+        credits: 5
+        description: New reaction events
+      - type: follow.created
+        credits: 5
+        description: New follow events
+      - type: cast.created with filters
+        credits: 15
+        description: Filtered cast events with additional criteria
+      - type: mention
+        credits: 10
+        description: Mention notification events
+optimization:
+  recommendations:
+    - Use specific FID lookups instead of bulk endpoints when possible to minimize credit consumption
+    - Set appropriate page limits on feed endpoints to avoid unnecessary credit usage
+    - Cache frequently accessed user profiles and cast data to reduce repeated API calls
+    - Monitor active signer counts monthly as each active signer adds 20,000 credits to monthly usage
+    - Use webhooks for real-time data rather than polling endpoints repeatedly
+    - Batch FID lookups in the bulk endpoint to reduce per-request overhead versus individual lookups
