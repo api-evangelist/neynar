@@ -1,0 +1,1130 @@
+# Neynar GraphQL Schema
+# Conceptual GraphQL data model derived from the Neynar REST API (OpenAPI spec v3.176.0)
+# https://raw.githubusercontent.com/neynarxyz/OAS/main/src/api/spec.yaml
+#
+# Neynar does not expose a public GraphQL endpoint as of June 2026.
+# This schema represents the canonical Farcaster data model surfaced by the REST API,
+# expressed as GraphQL SDL to enable tooling, federation planning, and documentation.
+
+scalar DateTime
+scalar EthAddress
+scalar SolAddress
+scalar HexString
+scalar JSON
+
+# ─────────────────────────────────────────
+# Enumerations
+# ─────────────────────────────────────────
+
+enum ReactionType {
+  like
+  recast
+}
+
+enum NotificationType {
+  follows
+  recasts
+  likes
+  mentions
+  replies
+  quotes
+}
+
+enum CastNotificationType {
+  cast
+  reply
+  quote
+}
+
+enum ChannelMemberRole {
+  member
+  moderator
+  host
+}
+
+enum FrameButtonActionType {
+  post
+  post_redirect
+  tx
+  link
+  mint
+}
+
+enum TransactionFrameStatus {
+  pending
+  approved
+  rejected
+}
+
+enum TransactionFrameType {
+  send_fungibles
+  pay
+}
+
+enum NotificationCampaignStatus {
+  pending
+  sent
+  failed
+}
+
+enum Network {
+  ETHEREUM
+  OPTIMISM
+  BASE
+  ZORA
+  SOLANA
+}
+
+enum Protocol {
+  farcaster
+  lens
+}
+
+enum TopLevelTopic {
+  crypto
+  technology
+  culture
+  politics
+  sports
+  science
+  entertainment
+  other
+}
+
+enum SharedSignerPermission {
+  message
+  cast
+  reaction
+  follow
+  profile
+  username
+}
+
+# ─────────────────────────────────────────
+# Core Identity Types
+# ─────────────────────────────────────────
+
+"""
+A Farcaster user with full profile data.
+"""
+type User {
+  fid: Int!
+  username: String!
+  display_name: String
+  pfp_url: String
+  custody_address: EthAddress!
+  auth_addresses: [EthAddress!]!
+  verifications: [EthAddress!]!
+  verified_addresses: VerifiedAddresses!
+  verified_accounts: [VerifiedAccount!]!
+  follower_count: Int!
+  following_count: Int!
+  registered_at: DateTime!
+  score: Float
+  profile: UserProfile!
+  experimental: UserExperimental
+  pro: UserPro
+  viewer_context: UserViewerContext
+  object: String!
+}
+
+"""
+Lightweight user reference used in nested contexts.
+"""
+type UserDehydrated {
+  fid: Int!
+  username: String
+  display_name: String
+  pfp_url: String
+  custody_address: EthAddress
+  score: Float
+  object: String!
+}
+
+type UserProfile {
+  bio: UserBio
+  location: Location
+}
+
+type UserBio {
+  text: String
+  mentioned_profiles: [UserDehydrated!]
+}
+
+type UserExperimental {
+  neynar_user_score: Float
+}
+
+type UserPro {
+  expires_at: DateTime
+}
+
+type UserViewerContext {
+  following: Boolean!
+  followed_by: Boolean!
+  blocking: Boolean!
+  blocked_by: Boolean!
+  muted: Boolean!
+}
+
+type VerifiedAddresses {
+  eth_addresses: [EthAddress!]!
+  sol_addresses: [SolAddress!]!
+}
+
+type VerifiedAccount {
+  platform: String!
+  username: String!
+}
+
+# ─────────────────────────────────────────
+# Cast (Post) Types
+# ─────────────────────────────────────────
+
+"""
+A Farcaster cast (post), including reactions, embeds, and threading info.
+"""
+type Cast {
+  hash: String!
+  thread_hash: String
+  parent_hash: String
+  parent_url: String
+  root_parent_url: String
+  parent_author: CastParentAuthor
+  author: User!
+  text: String!
+  timestamp: DateTime!
+  embeds: [Embed!]!
+  reactions: CastReactions!
+  replies: CastReplies!
+  channel: ChannelDehydrated
+  mentioned_profiles: [User!]!
+  mentioned_profiles_ranges: [TextRange!]!
+  mentioned_channels: [ChannelDehydrated!]!
+  mentioned_channels_ranges: [TextRange!]!
+  author_channel_context: ChannelUserContext
+  type: CastNotificationType
+  viewer_context: CastViewerContext
+  app: CastApp
+  object: String!
+}
+
+"""
+Minimal cast reference used in embedded and nested contexts.
+"""
+type CastDehydrated {
+  hash: String!
+  author: UserDehydrated
+  app: CastApp
+  object: String!
+}
+
+type CastParentAuthor {
+  fid: Int
+}
+
+type CastApp {
+  fid: Int
+  username: String
+}
+
+type CastReactions {
+  likes_count: Int!
+  recasts_count: Int!
+  likes: [ReactionLike!]!
+  recasts: [ReactionRecast!]!
+}
+
+type CastReplies {
+  count: Int!
+}
+
+type CastId {
+  fid: Int!
+  hash: String!
+}
+
+type CastViewerContext {
+  liked: Boolean
+  recasted: Boolean
+}
+
+# ─────────────────────────────────────────
+# Embeds
+# ─────────────────────────────────────────
+
+"""
+A cast embed — either a URL or a referenced cast.
+"""
+type Embed {
+  url: String
+  cast_id: CastId
+  cast: CastDehydrated
+  metadata: EmbedUrlMetadata
+}
+
+type EmbedUrl {
+  url: String!
+  metadata: EmbedUrlMetadata
+}
+
+type EmbedCast {
+  cast_id: CastId
+  cast: Cast!
+}
+
+type EmbedUrlMetadata {
+  _status: String!
+  content_type: String
+  content_length: Int
+  html: HtmlMetadata
+  image: ImageObject
+  video: VideoObject
+  frame: Frame
+}
+
+type HtmlMetadata {
+  title: String
+  description: String
+  og_title: String
+  og_description: String
+  og_image: String
+  favicon: String
+  oembed: OembedData
+}
+
+type ImageObject {
+  width: Int
+  height: Int
+  url: String
+}
+
+type VideoObject {
+  url: String
+  width: Int
+  height: Int
+  duration: Float
+}
+
+union OembedData = OembedLinkData | OembedPhotoData | OembedRichData | OembedVideoData
+
+type OembedLinkData {
+  type: String!
+  title: String
+  url: String
+  provider_name: String
+}
+
+type OembedPhotoData {
+  type: String!
+  url: String!
+  width: Int!
+  height: Int!
+  title: String
+  provider_name: String
+}
+
+type OembedRichData {
+  type: String!
+  html: String!
+  width: Int
+  height: Int
+  title: String
+  provider_name: String
+}
+
+type OembedVideoData {
+  type: String!
+  html: String!
+  width: Int
+  height: Int
+  title: String
+  provider_name: String
+}
+
+# ─────────────────────────────────────────
+# Reactions
+# ─────────────────────────────────────────
+
+type ReactionLike {
+  fid: Int!
+  fname: String!
+}
+
+type ReactionRecast {
+  fid: Int!
+  fname: String!
+}
+
+type ReactionWithUserInfo {
+  object: String!
+  cast: CastDehydrated!
+  user: User!
+}
+
+type ReactionWithCastInfo {
+  object: String!
+  reaction_type: ReactionType!
+  reaction_timestamp: DateTime!
+  cast: Cast!
+  user: UserDehydrated!
+  app: UserDehydrated
+}
+
+# ─────────────────────────────────────────
+# Channels
+# ─────────────────────────────────────────
+
+"""
+A Farcaster channel (topic-based community feed).
+"""
+type Channel {
+  id: String!
+  url: String!
+  name: String
+  description: String
+  object: String!
+  created_at: DateTime!
+  follower_count: Float
+  member_count: Int
+  image_url: String
+  parent_url: String
+  pinned_cast_hash: String
+  external_link: ChannelExternalLink
+  lead: User
+  hosts: [User!]
+  moderator_fids: [Int!]
+  description_mentioned_profiles: [UserDehydrated!]
+  description_mentioned_profiles_ranges: [TextRange!]
+  viewer_context: ChannelUserContext
+}
+
+type ChannelDehydrated {
+  id: String!
+  name: String!
+  image_url: String
+  object: String!
+  viewer_context: ChannelUserContext
+}
+
+type ChannelExternalLink {
+  title: String
+  url: String
+}
+
+type ChannelUserContext {
+  following: Boolean
+  role: ChannelMemberRole
+}
+
+type ChannelMember {
+  object: String!
+  role: ChannelMemberRole!
+  user: User!
+  channel: ChannelDehydrated!
+}
+
+type ChannelMemberInvite {
+  object: String!
+  channel: Channel!
+  invited_by: User!
+  user: User!
+  role: ChannelMemberRole!
+  created_at: DateTime!
+}
+
+# ─────────────────────────────────────────
+# Notifications
+# ─────────────────────────────────────────
+
+"""
+An aggregated notification event for a user.
+"""
+type Notification {
+  object: String!
+  type: NotificationType!
+  most_recent_timestamp: DateTime!
+  seen: Boolean!
+  count: Int
+  cast: Cast
+  follows: [Follower!]
+  reactions: [ReactionWithUserInfo!]
+}
+
+type NotificationCampaign {
+  object: String!
+  campaign_id: String!
+  status: NotificationCampaignStatus!
+  title: String!
+  body: String!
+  target_url: String
+  created_at: DateTime!
+  stats: NotificationCampaignStats
+}
+
+type NotificationCampaignStats {
+  sent_count: Int
+  click_count: Int
+  failed_count: Int
+}
+
+# ─────────────────────────────────────────
+# Follow / Social Graph
+# ─────────────────────────────────────────
+
+"""
+A follow relationship between two Farcaster users.
+"""
+type Follower {
+  object: String!
+  user: User!
+  app: UserDehydrated
+}
+
+type FollowerDehydrated {
+  fid: Int!
+  fname: String
+}
+
+type ReciprocalFollower {
+  object: String!
+  user: User!
+}
+
+# ─────────────────────────────────────────
+# Frames (Mini Apps)
+# ─────────────────────────────────────────
+
+"""
+A Farcaster Frame (interactive mini-app embedded in casts).
+"""
+type Frame {
+  version: String!
+  frames_url: String!
+  image: String!
+  title: String
+  buttons: [FrameActionButton!]
+  post_url: String
+  image_aspect_ratio: String
+  state: JSON
+  input: FrameInput
+}
+
+type FrameV1 {
+  version: String!
+  frames_url: String!
+  image: String!
+  image_aspect_ratio: String
+  title: String
+  buttons: [FrameActionButton!]
+  post_url: String
+  state: JSON
+  input: FrameInput
+}
+
+type FrameV2 {
+  version: String!
+  frames_url: String!
+  image: String!
+  title: String
+  manifest: FarcasterManifest
+  metadata: JSON
+  author: UserDehydrated
+}
+
+type FrameV2WithFullAuthor {
+  version: String!
+  frames_url: String!
+  image: String!
+  title: String
+  manifest: FarcasterManifest
+  author: User
+}
+
+type FrameActionButton {
+  index: Int!
+  title: String
+  action_type: FrameButtonActionType!
+  target: String
+  post_url: String
+}
+
+type FrameInput {
+  text: String
+}
+
+type FarcasterManifest {
+  accountAssociation: JSON
+  frame: JSON
+}
+
+# ─────────────────────────────────────────
+# Signers & Auth
+# ─────────────────────────────────────────
+
+"""
+A Farcaster signer key, authorizing an app to act on behalf of a user.
+"""
+type Signer {
+  signer_uuid: String!
+  public_key: String!
+  status: String!
+  fid: Int
+  signer_approval_url: String
+  permissions: [SharedSignerPermission!]
+  object: String
+}
+
+type DeveloperManagedSigner {
+  public_key: String!
+  status: String!
+  fid: Int
+  signer_approval_url: String
+}
+
+type AuthorizationUrlResponse {
+  authorization_url: String
+  authorization_deeplink: String
+  nonce: String
+}
+
+# ─────────────────────────────────────────
+# Webhooks
+# ─────────────────────────────────────────
+
+"""
+A configured webhook that receives real-time Farcaster events.
+"""
+type Webhook {
+  webhook_id: String!
+  title: String!
+  description: String!
+  target_url: String!
+  active: Boolean!
+  developer_uuid: String!
+  object: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  rate_limit: Int!
+  rate_limit_duration: String!
+  http_timeout: String!
+  subscription: WebhookSubscription
+  secrets: [WebhookSecret!]!
+}
+
+type WebhookSubscription {
+  subscription_id: String!
+  object: String!
+  filters: WebhookSubscriptionFilters!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type WebhookSubscriptionFilters {
+  cast: JSON
+  reaction: JSON
+  follow: JSON
+  user: JSON
+}
+
+type WebhookSecret {
+  secret_id: String
+  value: String
+  created_at: DateTime
+}
+
+# ─────────────────────────────────────────
+# Fungibles / Onchain Assets
+# ─────────────────────────────────────────
+
+"""
+An ERC-20 or onchain fungible token.
+"""
+type Fungible {
+  object: String!
+  name: String!
+  symbol: String!
+  address: String!
+  decimals: Int!
+  logo: String!
+  network: Network!
+  total_supply: String!
+}
+
+type FarcasterFungible {
+  object: String!
+  fungible: Fungible!
+  cast_count: Int!
+}
+
+type FungibleBalance {
+  fungible: Fungible
+  balance: String
+  value_usd: Float
+}
+
+type AddressBalance {
+  address: String
+  fungible_balances: [FungibleBalance!]
+}
+
+type TokenBalance {
+  token_id: String
+  balance: String
+  symbol: String
+  name: String
+  decimals: Int
+  chain_id: Int
+}
+
+# ─────────────────────────────────────────
+# Storage
+# ─────────────────────────────────────────
+
+"""
+Farcaster hub storage allocation for a user.
+"""
+type StorageAllocation {
+  object: String
+  units: Int
+  expiry: DateTime
+  timestamp: DateTime
+  user: UserDehydrated
+}
+
+type StorageObject {
+  object: String
+  used: Int
+  capacity: Int
+}
+
+# ─────────────────────────────────────────
+# Subscriptions (Hypersub / Protocol)
+# ─────────────────────────────────────────
+
+"""
+An onchain subscription contract (e.g. Hypersub).
+"""
+type Subscription {
+  object: String!
+  contract_address: String!
+  chain: Int!
+  protocol_version: Int!
+  owner_address: String!
+  provider_name: String
+  tiers: [SubscriptionTier!]
+  metadata: JSON!
+  price: JSON!
+  token: JSON!
+}
+
+type SubscriptionTier {
+  tier_id: Int
+  name: String
+  price: JSON
+  duration_seconds: Int
+}
+
+type Subscriber {
+  address: String
+  subscribed_at: DateTime
+  expires_at: DateTime
+}
+
+type SubscribedTo {
+  object: String
+  contract_address: String
+  chain: Int
+  subscribed_at: DateTime
+  expires_at: DateTime
+}
+
+# ─────────────────────────────────────────
+# Feed & Trending
+# ─────────────────────────────────────────
+
+type FeedResponse {
+  casts: [Cast!]!
+  next: PageCursor
+}
+
+type TrendingTopic {
+  name: String!
+  slug: String!
+  summary: String!
+  top_level_topic: TopLevelTopic!
+  authors: [UserDehydrated!]!
+}
+
+type TrendingChannel {
+  channel: Channel!
+  cast_count: Int
+  follower_count: Int
+}
+
+# ─────────────────────────────────────────
+# Conversations & Threads
+# ─────────────────────────────────────────
+
+type ConversationSummary {
+  summary: String
+  participants: [UserDehydrated!]
+}
+
+# ─────────────────────────────────────────
+# Transaction Frames
+# ─────────────────────────────────────────
+
+type TransactionFrame {
+  frame_id: String
+  type: TransactionFrameType
+  status: TransactionFrameStatus
+  config: TransactionFrameConfig
+  created_at: DateTime
+}
+
+type TransactionFrameConfig {
+  destination: TransactionFrameDestination
+  line_items: [TransactionFrameLineItem!]
+}
+
+type TransactionFrameDestination {
+  address: String
+  chain: Int
+}
+
+type TransactionFrameLineItem {
+  name: String
+  amount: String
+  image_url: String
+}
+
+# ─────────────────────────────────────────
+# Moderation (Mutes / Blocks / Bans)
+# ─────────────────────────────────────────
+
+type MuteRecord {
+  object: String
+  muted_at: DateTime
+  muted_by: UserDehydrated
+  muted_cast: CastDehydrated
+}
+
+type BlockRecord {
+  object: String
+  blocked_at: DateTime
+  blocked_by: UserDehydrated
+  blocked_user: UserDehydrated
+}
+
+type BanRecord {
+  object: String
+  banned_at: DateTime
+  banned_by: UserDehydrated
+  banned_user: UserDehydrated
+}
+
+# ─────────────────────────────────────────
+# Utility / Shared Types
+# ─────────────────────────────────────────
+
+type Location {
+  latitude: Float
+  longitude: Float
+  address: LocationAddress
+}
+
+type LocationAddress {
+  city: String
+  state: String
+  country: String
+  country_code: String
+}
+
+type TextRange {
+  start: Int!
+  length: Int!
+}
+
+type PageCursor {
+  cursor: String
+}
+
+# ─────────────────────────────────────────
+# Root Query Type
+# ─────────────────────────────────────────
+
+type Query {
+  # Users
+  user(fid: Int!): User
+  userByUsername(username: String!): User
+  usersByFid(fids: [Int!]!): [User!]!
+  usersByAddress(addresses: [EthAddress!]!): [User!]!
+  searchUsers(query: String!, limit: Int, cursor: String): UserSearchResult!
+  relevantFollowers(target_fid: Int!, viewer_fid: Int!): [User!]!
+  bestFriends(fid: Int!): [User!]!
+
+  # Casts
+  cast(hash: String!): Cast
+  casts(hashes: [String!]!): [Cast!]!
+  castsByFid(fid: Int!, limit: Int, cursor: String): CastListResult!
+  castsByChannel(channel_id: String!, limit: Int, cursor: String): CastListResult!
+  searchCasts(query: String!, limit: Int, cursor: String): CastSearchResult!
+  conversation(hash: String!): ConversationResult!
+  trendingCasts(channel_id: String, time_window: String, limit: Int): [Cast!]!
+
+  # Channels
+  channel(id: String!): Channel
+  channels(ids: [String!]!): [Channel!]!
+  channelsByFid(fid: Int!): [Channel!]!
+  searchChannels(query: String!, limit: Int, cursor: String): ChannelSearchResult!
+  trendingChannels(time_window: String, limit: Int): [TrendingChannel!]!
+  channelMembers(channel_id: String!, limit: Int, cursor: String): ChannelMemberListResult!
+  channelMemberInvites(channel_id: String!): [ChannelMemberInvite!]!
+
+  # Feeds
+  feedForYou(fid: Int!, limit: Int, cursor: String): FeedResponse!
+  feedFollowing(fid: Int!, limit: Int, cursor: String): FeedResponse!
+  feedByChannel(channel_id: String!, limit: Int, cursor: String): FeedResponse!
+
+  # Reactions
+  reactionsForCast(hash: String!, type: ReactionType!, limit: Int, cursor: String): ReactionListResult!
+  reactionsByFid(fid: Int!, type: ReactionType!, limit: Int, cursor: String): ReactionListResult!
+
+  # Follows / Social Graph
+  followers(fid: Int!, limit: Int, cursor: String): FollowerListResult!
+  following(fid: Int!, limit: Int, cursor: String): FollowerListResult!
+  followersInCommon(fid: Int!, target_fid: Int!): [User!]!
+
+  # Notifications
+  notifications(fid: Int!, type: [NotificationType!], limit: Int, cursor: String): NotificationListResult!
+
+  # Frames
+  frames(limit: Int, cursor: String): FrameListResult!
+  frame(url: String!): Frame
+  frameNotificationTokens(fid: Int!, domain: String!): FrameNotificationTokenResult!
+
+  # Signers
+  signer(signer_uuid: String!): Signer
+  signersByFid(fid: Int!): [Signer!]!
+
+  # Webhooks
+  webhooks: [Webhook!]!
+  webhook(webhook_id: String!): Webhook
+
+  # Storage
+  storageAllocations(fid: Int!): [StorageAllocation!]!
+  storageUsage(fid: Int!): StorageObject
+
+  # Fungibles / Onchain
+  fungible(address: String!, network: Network!): Fungible
+  userFungibleBalance(fid: Int!, networks: [Network!]): [FungibleBalance!]!
+
+  # Subscriptions
+  subscriptions(fid: Int!): [Subscription!]!
+  subscribers(contract_address: String!, chain: Int!): [Subscriber!]!
+
+  # Moderation
+  mutes(fid: Int!): [MuteRecord!]!
+  blocks(fid: Int!): [BlockRecord!]!
+  bans(fid: Int!): [BanRecord!]!
+
+  # Trending
+  trendingTopics(limit: Int): [TrendingTopic!]!
+
+  # Fname
+  fnameAvailability(fname: String!): FnameAvailabilityResult!
+}
+
+# ─────────────────────────────────────────
+# Mutations
+# ─────────────────────────────────────────
+
+type Mutation {
+  # Casts
+  publishCast(signer_uuid: String!, text: String!, parent_hash: String, parent_url: String, embeds: [EmbedInput!], channel_id: String, idem: String): Cast!
+  deleteCast(signer_uuid: String!, target_hash: String!): OperationResult!
+
+  # Reactions
+  addReaction(signer_uuid: String!, target_hash: String!, reaction_type: ReactionType!): OperationResult!
+  removeReaction(signer_uuid: String!, target_hash: String!, reaction_type: ReactionType!): OperationResult!
+
+  # Follows
+  followUser(signer_uuid: String!, target_fids: [Int!]!): OperationResult!
+  unfollowUser(signer_uuid: String!, target_fids: [Int!]!): OperationResult!
+
+  # User profile
+  updateUser(signer_uuid: String!, display_name: String, bio: String, pfp_url: String, username: String): OperationResult!
+  registerUser(fid: Int!, username: String!, display_name: String, pfp_url: String): RegisterUserResult!
+
+  # Channels
+  followChannel(signer_uuid: String!, channel_id: String!): OperationResult!
+  unfollowChannel(signer_uuid: String!, channel_id: String!): OperationResult!
+  inviteChannelMember(signer_uuid: String!, channel_id: String!, fid: Int!, role: ChannelMemberRole!): OperationResult!
+  removeChannelMember(signer_uuid: String!, channel_id: String!, fid: Int!): OperationResult!
+  respondChannelInvite(signer_uuid: String!, channel_id: String!, accept: Boolean!): OperationResult!
+
+  # Frames (mini apps)
+  postFrameAction(signer_uuid: String!, cast_hash: String!, button_index: Int!, url: String!, input_text: String): JSON
+  sendFrameNotifications(target_fids: [Int!]!, notification: FrameNotificationInput!): SendNotificationsResult!
+
+  # Signers
+  createSigner: Signer!
+  registerSignerKey(signer_uuid: String!, signature: String!, app_fid: Int!, deadline: Int!): Signer!
+
+  # Webhooks
+  createWebhook(title: String!, target_url: String!, description: String, subscription: WebhookSubscriptionInput): Webhook!
+  updateWebhook(webhook_id: String!, title: String, target_url: String, active: Boolean, subscription: WebhookSubscriptionInput): Webhook!
+  deleteWebhook(webhook_id: String!): OperationResult!
+
+  # Mutes / Blocks / Bans
+  muteUser(signer_uuid: String!, muted_fid: Int!): OperationResult!
+  unmuteUser(signer_uuid: String!, muted_fid: Int!): OperationResult!
+  blockUser(signer_uuid: String!, blocked_fid: Int!): OperationResult!
+  unblockUser(signer_uuid: String!, blocked_fid: Int!): OperationResult!
+
+  # Verifications
+  addVerification(signer_uuid: String!, address: EthAddress!, block_hash: String!, eth_signature: String!): OperationResult!
+  removeVerification(signer_uuid: String!, address: EthAddress!): OperationResult!
+
+  # Notifications
+  markNotificationsAsSeen(signer_uuid: String!): OperationResult!
+
+  # Storage
+  buyStorage(fid: Int!, units: Int!): OperationResult!
+
+  # Fungibles (onchain)
+  sendFungibles(signer_uuid: String!, recipients: [SendFungiblesRecipientInput!]!, token_address: String!, network: Network!): TransactionSendFungiblesResult!
+}
+
+# ─────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────
+
+input EmbedInput {
+  url: String
+  cast_id: CastIdInput
+}
+
+input CastIdInput {
+  fid: Int!
+  hash: String!
+}
+
+input WebhookSubscriptionInput {
+  cast: JSON
+  reaction: JSON
+  follow: JSON
+  user: JSON
+}
+
+input FrameNotificationInput {
+  title: String!
+  body: String!
+  target_url: String
+  uuid: String
+}
+
+input SendFungiblesRecipientInput {
+  fid: Int
+  address: String
+  amount: String!
+}
+
+# ─────────────────────────────────────────
+# Result / Paginated Response Types
+# ─────────────────────────────────────────
+
+type UserSearchResult {
+  users: [User!]!
+  next: PageCursor
+}
+
+type CastListResult {
+  casts: [Cast!]!
+  next: PageCursor
+}
+
+type CastSearchResult {
+  casts: [Cast!]!
+  next: PageCursor
+}
+
+type ConversationResult {
+  cast: Cast!
+  direct_replies: [Cast!]!
+  summary: ConversationSummary
+  next: PageCursor
+}
+
+type ChannelSearchResult {
+  channels: [Channel!]!
+  next: PageCursor
+}
+
+type ChannelMemberListResult {
+  members: [ChannelMember!]!
+  next: PageCursor
+}
+
+type ReactionListResult {
+  reactions: [ReactionWithCastInfo!]!
+  next: PageCursor
+}
+
+type FollowerListResult {
+  users: [Follower!]!
+  next: PageCursor
+}
+
+type NotificationListResult {
+  notifications: [Notification!]!
+  next: PageCursor
+}
+
+type FrameListResult {
+  frames: [FrameV2WithFullAuthor!]!
+  next: PageCursor
+}
+
+type FrameNotificationTokenResult {
+  token: String
+  app_fid: Int
+}
+
+type FnameAvailabilityResult {
+  available: Boolean!
+  valid: Boolean!
+  fname: String!
+}
+
+type RegisterUserResult {
+  success: Boolean!
+  idem: String
+}
+
+type OperationResult {
+  success: Boolean!
+}
+
+type SendNotificationsResult {
+  notification_deliveries: [NotificationDelivery!]
+}
+
+type NotificationDelivery {
+  fid: Int!
+  status: String!
+}
+
+type TransactionSendFungiblesResult {
+  object: String
+  recipients: [TransactionSendFungiblesRecipient!]
+}
+
+type TransactionSendFungiblesRecipient {
+  address: String
+  fid: Int
+  amount: String
+  tx_hash: String
+}
