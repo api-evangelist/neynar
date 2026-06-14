@@ -1,0 +1,11 @@
+{
+  "term": "banned_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BanRecord"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

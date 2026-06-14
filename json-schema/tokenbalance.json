@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TokenBalance",
+  "title": "TokenBalance",
+  "description": "The token balance associated with a wallet address and a network",
+  "properties": {
+    "balance": {
+      "properties": {
+        "in_token": {
+          "description": "The balance in the token",
+          "type": "string"
+        },
+        "in_usdc": {
+          "description": "The balance in USDC",
+          "type": "string"
+        }
+      },
+      "required": [
+        "in_token",
+        "in_usdc"
+      ],
+      "type": "object"
+    },
+    "object": {
+      "enum": [
+        "token_balance"
+      ],
+      "type": "string"
+    },
+    "token": {
+      "properties": {
+        "address": {
+          "description": "The contract address of the token (omitted for native token)",
+          "type": "string"
+        },
+        "decimals": {
+          "description": "The number of decimals the token uses",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The token name e.g. \"Ethereum\"",
+          "type": "string"
+        },
+        "object": {
+          "enum": [
+            "token"
+          ],
+          "type": "string"
+        },
+        "symbol": {
+          "description": "The token symbol e.g. \"ETH\"",
+          "type": "string"
+        }
+      },
+      "required": [
+        "object",
+        "name",
+        "symbol"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "object",
+    "token",
+    "balance"
+  ],
+  "type": "object"
+}

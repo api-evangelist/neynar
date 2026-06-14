@@ -1,0 +1,20 @@
+{
+  "term": "address",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddVerificationReqBody",
+    "Fungible",
+    "Location",
+    "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+    "RemoveVerificationReqBody",
+    "TransactionFrameDestination",
+    "Verification",
+    "VerificationAddEthAddressBody",
+    "VerificationRemoveBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

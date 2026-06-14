@@ -1,0 +1,11 @@
+{
+  "term": "chain_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddVerificationReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

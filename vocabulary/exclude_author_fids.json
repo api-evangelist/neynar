@@ -1,0 +1,11 @@
+{
+  "term": "exclude_author_fids",
+  "type": "property",
+  "description": "Exclude casts that matches these authors.\n**Note:**\nThis is applied as an AND operation against rest of the filters.\nRest of the filters are bundled as an OR operation.",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

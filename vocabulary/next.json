@@ -1,0 +1,30 @@
+{
+  "term": "next",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BanListResponse",
+    "BestFriendsResponse",
+    "BlockListResponse",
+    "ChannelListResponse",
+    "ChannelMemberInviteListResponse",
+    "ChannelMemberListResponse",
+    "ChannelSearchResponse",
+    "Conversation",
+    "FeedResponse",
+    "FollowersResponse",
+    "FrameCatalogResponse",
+    "FrameNotificationTokens",
+    "MuteListResponse",
+    "NotificationsResponse",
+    "ReactionsCastResponse",
+    "ReactionsResponse",
+    "TrendingChannelResponse",
+    "TrendingTopicsResponse",
+    "UsersActiveChannelsResponse",
+    "UsersResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

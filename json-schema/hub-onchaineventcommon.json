@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/OnChainEventCommon",
+  "title": "Hub OnChainEventCommon",
+  "description": "Neynar Hub API schema for OnChainEventCommon",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "example": "EVENT_TYPE_SIGNER"
+    },
+    "chainId": {
+      "type": "integer"
+    },
+    "blockNumber": {
+      "type": "integer"
+    },
+    "blockHash": {
+      "type": "string",
+      "example": "0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28"
+    },
+    "blockTimestamp": {
+      "type": "integer"
+    },
+    "transactionHash": {
+      "type": "string",
+      "example": "0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952"
+    },
+    "logIndex": {
+      "type": "integer"
+    },
+    "txIndex": {
+      "type": "integer"
+    },
+    "fid": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "chainId",
+    "blockNumber",
+    "blockHash",
+    "blockTimestamp",
+    "transactionHash",
+    "logIndex",
+    "txIndex",
+    "fid"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SendFrameNotificationsResponse",
+  "title": "SendFrameNotificationsResponse",
+  "description": "Neynar Farcaster API schema for SendFrameNotificationsResponse",
+  "properties": {
+    "campaign_id": {
+      "description": "The unique identifier for the notification campaign.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "failure_count": {
+      "description": "The number of notifications that failed to deliver.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "not_attempted_count": {
+      "description": "The number of notifications not attempted (e.g., disabled tokens, invalid tokens).",
+      "format": "int32",
+      "type": "integer"
+    },
+    "retryable_fids": {
+      "description": "List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.",
+      "items": {
+        "$ref": "#/components/schemas/Fid"
+      },
+      "type": "array"
+    },
+    "success_count": {
+      "description": "The number of notifications successfully delivered.",
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "campaign_id",
+    "success_count",
+    "failure_count",
+    "not_attempted_count"
+  ],
+  "type": "object"
+}

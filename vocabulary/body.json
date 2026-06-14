@@ -1,0 +1,11 @@
+{
+  "term": "body",
+  "type": "property",
+  "description": "The body text of the notification.",
+  "usedIn": [
+    "NotificationCampaign"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

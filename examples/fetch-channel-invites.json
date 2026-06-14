@@ -1,0 +1,79 @@
+{
+  "operationId": "fetch-channel-invites",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/member/invite/list/",
+  "summary": "Open invites",
+  "description": "Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "channel_id",
+      "in": "query",
+      "required": false,
+      "description": "Channel ID for the channel being queried",
+      "schema": {
+        "example": "neynar",
+        "type": "string"
+      }
+    },
+    {
+      "name": "invited_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the user being invited",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 30,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelMemberInviteListResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

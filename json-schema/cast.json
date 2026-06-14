@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Cast",
+  "title": "Cast",
+  "description": "Neynar Farcaster API schema for Cast",
+  "properties": {
+    "app": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/UserDehydrated"
+        }
+      ],
+      "nullable": true
+    },
+    "author": {
+      "$ref": "#/components/schemas/User"
+    },
+    "author_channel_context": {
+      "$ref": "#/components/schemas/ChannelUserContext"
+    },
+    "channel": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ChannelOrChannelDehydrated"
+        }
+      ],
+      "nullable": true
+    },
+    "embeds": {
+      "items": {
+        "$ref": "#/components/schemas/Embed"
+      },
+      "type": "array"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "mentioned_channels": {
+      "items": {
+        "$ref": "#/components/schemas/ChannelDehydrated"
+      },
+      "type": "array"
+    },
+    "mentioned_channels_ranges": {
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.\nEach index within this list corresponds to the same-numbered index in the mentioned_channels list.",
+      "items": {
+        "$ref": "#/components/schemas/TextRange"
+      },
+      "type": "array"
+    },
+    "mentioned_profiles": {
+      "items": {
+        "$ref": "#/components/schemas/User"
+      },
+      "type": "array"
+    },
+    "mentioned_profiles_ranges": {
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.\nEach index within this list corresponds to the same-numbered index in the mentioned_profiles list.",
+      "items": {
+        "$ref": "#/components/schemas/TextRange"
+      },
+      "type": "array"
+    },
+    "object": {
+      "enum": [
+        "cast"
+      ],
+      "type": "string"
+    },
+    "parent_author": {
+      "properties": {
+        "fid": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Fid"
+            }
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "fid"
+      ],
+      "type": "object"
+    },
+    "parent_hash": {
+      "nullable": true,
+      "type": "string"
+    },
+    "parent_url": {
+      "nullable": true,
+      "type": "string"
+    },
+    "reactions": {
+      "$ref": "#/components/schemas/CastReactions"
+    },
+    "replies": {
+      "$ref": "#/components/schemas/CastReplies"
+    },
+    "root_parent_url": {
+      "nullable": true,
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "thread_hash": {
+      "nullable": true,
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/CastNotificationType"
+    },
+    "viewer_context": {
+      "$ref": "#/components/schemas/CastViewerContext"
+    }
+  },
+  "required": [
+    "object",
+    "hash",
+    "parent_hash",
+    "parent_url",
+    "root_parent_url",
+    "parent_author",
+    "author",
+    "text",
+    "timestamp",
+    "embeds",
+    "reactions",
+    "replies",
+    "thread_hash",
+    "mentioned_profiles",
+    "mentioned_profiles_ranges",
+    "mentioned_channels",
+    "mentioned_channels_ranges",
+    "channel"
+  ],
+  "type": "object"
+}

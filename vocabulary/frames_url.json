@@ -1,0 +1,13 @@
+{
+  "term": "frames_url",
+  "type": "property",
+  "description": "Launch URL of the mini app",
+  "usedIn": [
+    "FrameV1",
+    "FrameV2",
+    "FrameV2WithFullAuthor"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "operationId": "lookup-developer-managed-auth-address",
+  "method": "GET",
+  "path": "/v2/farcaster/auth_address/developer_managed/",
+  "summary": "Status by auth address",
+  "description": "Fetches the status of a developer managed auth address by auth address",
+  "tags": [
+    "AuthAddress"
+  ],
+  "parameters": [
+    {
+      "name": "address",
+      "in": "query",
+      "required": true,
+      "description": "Ethereum address",
+      "schema": {
+        "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+        "pattern": "^0x[a-fA-F0-9]{40}$",
+        "title": "EthAddress",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/EthAddress"
+          },
+          "auth_address_approval_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "status": {
+            "enum": [
+              "pending_approval",
+              "approved",
+              "revoked"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "status"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

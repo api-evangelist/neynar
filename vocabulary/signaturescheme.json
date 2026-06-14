@@ -1,0 +1,11 @@
+{
+  "term": "signatureScheme",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MessageCommon"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

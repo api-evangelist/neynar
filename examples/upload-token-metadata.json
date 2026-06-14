@@ -1,0 +1,211 @@
+{
+  "operationId": "upload-token-metadata",
+  "method": "POST",
+  "path": "/v2/farcaster/nft/metadata/token",
+  "summary": "Upload NFT token metadata",
+  "description": "Uploads metadata JSON to S3 for one or more tokens on a deployed contract. Requires contract ownership via the wallet header.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "contract_address": {
+          "description": "Ethereum address",
+          "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "title": "EthAddress",
+          "type": "string"
+        },
+        "network": {
+          "enum": [
+            "base",
+            "optimism",
+            "base-sepolia"
+          ],
+          "type": "string"
+        },
+        "tokens": {
+          "items": {
+            "properties": {
+              "metadata": {
+                "properties": {
+                  "animation_url": {
+                    "type": "string"
+                  },
+                  "attributes": {
+                    "items": {
+                      "properties": {
+                        "display_type": {
+                          "enum": [
+                            "number",
+                            "boost_number",
+                            "boost_percentage",
+                            "date"
+                          ],
+                          "type": "string"
+                        },
+                        "max_value": {
+                          "type": "number"
+                        },
+                        "trait_type": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "trait_type",
+                        "value"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "background_color": {
+                    "pattern": "^[0-9a-fA-F]{6}$",
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "external_url": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "youtube_url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "image"
+                ],
+                "type": "object"
+              },
+              "token_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "token_id",
+              "metadata"
+            ],
+            "type": "object"
+          },
+          "maxItems": 200,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "network",
+        "contract_address",
+        "tokens"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "tokens": {
+            "items": {
+              "oneOf": [
+                {
+                  "properties": {
+                    "token_id": {
+                      "type": "string"
+                    },
+                    "uri": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token_id",
+                    "uri"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "token_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token_id",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "tokens"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ZodError"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

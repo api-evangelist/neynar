@@ -1,0 +1,11 @@
+{
+  "term": "total_supply",
+  "type": "property",
+  "description": "The total supply of the token",
+  "usedIn": [
+    "Fungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

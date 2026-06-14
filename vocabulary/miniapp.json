@@ -1,0 +1,11 @@
+{
+  "term": "miniapp",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FarcasterManifest"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

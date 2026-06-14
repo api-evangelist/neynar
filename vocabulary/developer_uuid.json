@@ -1,0 +1,11 @@
+{
+  "term": "developer_uuid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

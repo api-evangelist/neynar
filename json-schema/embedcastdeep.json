@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/EmbedCastDeep",
+  "title": "EmbedCastDeep",
+  "description": "Neynar Farcaster API schema for EmbedCastDeep",
+  "properties": {
+    "cast": {
+      "$ref": "#/components/schemas/CastDehydrated"
+    },
+    "cast_id": {
+      "$ref": "#/components/schemas/CastId"
+    }
+  },
+  "required": [
+    "cast"
+  ],
+  "type": "object"
+}

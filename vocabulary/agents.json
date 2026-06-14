@@ -1,0 +1,8 @@
+{
+  "term": "Agents",
+  "type": "tag",
+  "description": "Operations for building AI agents",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

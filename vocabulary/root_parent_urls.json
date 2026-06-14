@@ -1,0 +1,11 @@
+{
+  "term": "root_parent_urls",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

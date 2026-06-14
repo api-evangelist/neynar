@@ -1,0 +1,11 @@
+{
+  "term": "total_opens",
+  "type": "property",
+  "description": "The total number of times notifications from this campaign have been opened.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

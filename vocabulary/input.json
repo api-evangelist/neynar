@@ -1,0 +1,11 @@
+{
+  "term": "input",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameV1"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

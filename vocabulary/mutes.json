@@ -1,0 +1,11 @@
+{
+  "term": "mutes",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MuteListResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

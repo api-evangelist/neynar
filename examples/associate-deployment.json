@@ -1,0 +1,133 @@
+{
+  "operationId": "associate-deployment",
+  "method": "POST",
+  "path": "/v2/studio/deployment/account-association",
+  "summary": "Set account association",
+  "description": "Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "account_association": {
+          "description": "Signed domain association linking this deployment to a Farcaster account",
+          "properties": {
+            "header": {
+              "description": "Base64URL encoded JFS header",
+              "type": "string"
+            },
+            "payload": {
+              "description": "Base64URL encoded JFS payload",
+              "type": "string"
+            },
+            "signature": {
+              "description": "Base64URL encoded JFS signature",
+              "type": "string"
+            }
+          },
+          "required": [
+            "header",
+            "payload",
+            "signature"
+          ],
+          "type": "object"
+        },
+        "deployment_id": {
+          "description": "Deployment ID (UUID). Required if name not provided.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "account_association"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "message": {
+            "description": "Status message from the miniapp generator",
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

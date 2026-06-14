@@ -1,0 +1,11 @@
+{
+  "term": "fungibles",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FungiblesResponseSchema"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

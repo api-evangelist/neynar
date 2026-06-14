@@ -1,0 +1,8 @@
+{
+  "term": "HubEvents",
+  "type": "tag",
+  "description": "Operations related to hub events.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "metadata[discord]",
+  "type": "property",
+  "description": "Discord server link",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

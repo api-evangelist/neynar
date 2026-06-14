@@ -1,0 +1,11 @@
+{
+  "term": "error_message",
+  "type": "property",
+  "description": "High-level error message if processing failed",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

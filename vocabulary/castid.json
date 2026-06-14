@@ -1,0 +1,12 @@
+{
+  "term": "castId",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastEmbed",
+    "FrameActionBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

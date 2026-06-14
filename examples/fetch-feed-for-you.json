@@ -1,0 +1,99 @@
+{
+  "operationId": "fetch-feed-for-you",
+  "method": "GET",
+  "path": "/v2/farcaster/feed/for_you/",
+  "summary": "For you",
+  "description": "Fetch a personalized For You feed for a user",
+  "tags": [
+    "Feed"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of user whose feed you want to create",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "example": 3,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "provider",
+      "in": "query",
+      "required": false,
+      "description": "The provider of the For You feed.",
+      "schema": {
+        "default": "neynar",
+        "enum": [
+          "neynar"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "example": 30,
+        "format": "int32",
+        "maximum": 50,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FeedResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ZodError"
+          },
+          {
+            "$ref": "#/components/schemas/ErrorRes"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

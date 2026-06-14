@@ -1,0 +1,27 @@
+{
+  "operationId": "delete-verification",
+  "method": "DELETE",
+  "path": "/v2/farcaster/user/verification/",
+  "summary": "Delete verification",
+  "description": "Removes verification for an eth address for the user \n(In order to delete verification `signer_uuid` must be approved)",
+  "tags": [
+    "User"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/RemoveVerificationReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/OperationResponse"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "term": "idem",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BuyStorageReqBody",
+    "FramePayTransactionReqBody",
+    "PostCastReqBody",
+    "ReactionReqBody",
+    "RegisterUserOnChainReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

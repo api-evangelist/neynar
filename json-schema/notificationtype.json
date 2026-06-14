@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NotificationType",
+  "title": "NotificationType",
+  "description": "The type of notification to mark as seen. If not provided, all notifications will be marked as seen.",
+  "enum": [
+    "follows",
+    "recasts",
+    "likes",
+    "mentions",
+    "replies",
+    "quotes"
+  ],
+  "type": "string"
+}

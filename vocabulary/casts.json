@@ -1,0 +1,8 @@
+{
+  "term": "Casts",
+  "type": "tag",
+  "description": "Operations related to casts.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

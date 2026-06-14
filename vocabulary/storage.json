@@ -1,0 +1,9 @@
+{
+  "term": "Storage",
+  "type": "tag",
+  "description": "Operations related to storage",
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

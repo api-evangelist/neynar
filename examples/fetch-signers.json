@@ -1,0 +1,63 @@
+{
+  "operationId": "fetch-signers",
+  "method": "GET",
+  "path": "/v2/farcaster/signer/list/",
+  "summary": "List signers",
+  "description": "Fetches a list of signers for a custody address",
+  "tags": [
+    "Signer"
+  ],
+  "parameters": [
+    {
+      "name": "message",
+      "in": "query",
+      "required": true,
+      "description": "A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.",
+      "schema": {
+        "example": "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z",
+        "type": "string"
+      }
+    },
+    {
+      "name": "signature",
+      "in": "query",
+      "required": true,
+      "description": "The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer.",
+      "schema": {
+        "example": "0x25f8...1cf",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/SignerListResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

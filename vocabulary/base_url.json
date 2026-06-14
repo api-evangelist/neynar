@@ -1,0 +1,11 @@
+{
+  "term": "base_url",
+  "type": "property",
+  "description": "The base URL of the app on which the action is being performed.",
+  "usedIn": [
+    "FarcasterActionReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

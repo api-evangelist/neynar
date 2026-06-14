@@ -1,0 +1,11 @@
+{
+  "term": "limit",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageLimit"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

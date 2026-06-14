@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/DeployFungibleReqBody",
+  "title": "DeployFungibleReqBody",
+  "description": "Neynar Farcaster API schema for DeployFungibleReqBody",
+  "properties": {
+    "factory": {
+      "default": "wow",
+      "description": "Factory name\n- wow -> [wow.xyz](https://wow.xyz)\n- clanker -> [clanker.world](https://www.clanker.world)",
+      "enum": [
+        "wow",
+        "clanker"
+      ],
+      "type": "string"
+    },
+    "metadata[description]": {
+      "description": "Description of the token",
+      "type": "string"
+    },
+    "metadata[discord]": {
+      "description": "Discord server link",
+      "type": "string"
+    },
+    "metadata[media]": {
+      "description": "Media file associated with the token. \nSupported formats are image/jpeg, image/gif and image/png",
+      "format": "binary",
+      "nullable": true,
+      "type": "string"
+    },
+    "metadata[nsfw]": {
+      "description": "Indicates if the token is NSFW (Not Safe For Work).",
+      "enum": [
+        "true",
+        "false"
+      ],
+      "type": "string"
+    },
+    "metadata[telegram]": {
+      "description": "Telegram link",
+      "type": "string"
+    },
+    "metadata[twitter]": {
+      "description": "Twitter profile link",
+      "type": "string"
+    },
+    "metadata[website_link]": {
+      "description": "Website link related to the token",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the token",
+      "type": "string"
+    },
+    "network": {
+      "default": "base",
+      "description": "Network/Chain name",
+      "enum": [
+        "base"
+      ],
+      "type": "string"
+    },
+    "owner": {
+      "description": "Ethereum address of the one who is creating the token",
+      "type": "string"
+    },
+    "symbol": {
+      "description": "Symbol/Ticker for the token",
+      "type": "string"
+    }
+  },
+  "required": [
+    "owner",
+    "symbol",
+    "name"
+  ],
+  "type": "object"
+}

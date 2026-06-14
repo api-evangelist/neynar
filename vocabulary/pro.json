@@ -1,0 +1,11 @@
+{
+  "term": "pro",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

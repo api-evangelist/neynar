@@ -1,0 +1,14 @@
+{
+  "term": "thumbnail_url",
+  "type": "property",
+  "description": "A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

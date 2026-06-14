@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FollowersResponse",
+  "title": "FollowersResponse",
+  "description": "Neynar Farcaster API schema for FollowersResponse",
+  "properties": {
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    },
+    "users": {
+      "items": {
+        "$ref": "#/components/schemas/Follower"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "users",
+    "next"
+  ],
+  "type": "object"
+}

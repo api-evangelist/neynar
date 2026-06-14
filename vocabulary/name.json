@@ -1,0 +1,21 @@
+{
+  "term": "name",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "ChannelDehydrated",
+    "DeployFungibleReqBody",
+    "Fungible",
+    "TransactionFrameLineItem",
+    "TrendingTopic",
+    "WebhookPostReqBody",
+    "WebhookPutReqBody",
+    "ErrorResponse",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ReciprocalFollower",
+  "title": "ReciprocalFollower",
+  "description": "Neynar Farcaster API schema for ReciprocalFollower",
+  "properties": {
+    "object": {
+      "enum": [
+        "reciprocal_follower"
+      ],
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "object",
+    "user",
+    "timestamp"
+  ],
+  "type": "object"
+}

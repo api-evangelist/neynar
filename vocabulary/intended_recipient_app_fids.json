@@ -1,0 +1,11 @@
+{
+  "term": "intended_recipient_app_fids",
+  "type": "property",
+  "description": "An array of Farcaster FIDs of intended recipient applications.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

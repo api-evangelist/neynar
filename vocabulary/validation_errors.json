@@ -1,0 +1,11 @@
+{
+  "term": "validation_errors",
+  "type": "property",
+  "description": "Validation errors from processing, if any",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

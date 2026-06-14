@@ -1,0 +1,55 @@
+{
+  "operationId": "register-signed-key",
+  "method": "POST",
+  "path": "/v2/farcaster/signer/signed_key/",
+  "summary": "Register Signed Key",
+  "description": "Registers an app FID, deadline and a signature. Returns the signer status with an approval url.",
+  "tags": [
+    "Signer"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/RegisterSignerKeyReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/Signer"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

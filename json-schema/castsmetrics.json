@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastsMetrics",
+  "title": "CastsMetrics",
+  "description": "Neynar Farcaster API schema for CastsMetrics",
+  "properties": {
+    "cast_count": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "resolution_in_seconds": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "start": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start",
+    "resolution_in_seconds",
+    "cast_count"
+  ],
+  "type": "object"
+}

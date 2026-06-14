@@ -1,0 +1,11 @@
+{
+  "term": "recasted",
+  "type": "property",
+  "description": "Indicates if the viewer recasted the cast.",
+  "usedIn": [
+    "CastViewerContext"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "allocations",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageAllocationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

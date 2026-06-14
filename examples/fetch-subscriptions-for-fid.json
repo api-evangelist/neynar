@@ -1,0 +1,55 @@
+{
+  "operationId": "fetch-subscriptions-for-fid",
+  "method": "GET",
+  "path": "/v2/farcaster/user/subscriptions_created/",
+  "summary": "Subscriptions created by FID",
+  "description": "Fetch created subscriptions for a given FID's.",
+  "tags": [
+    "Subscribers"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "title": "Fid",
+        "type": "integer"
+      }
+    },
+    {
+      "name": "subscription_provider",
+      "in": "query",
+      "required": true,
+      "description": "The provider of the subscription.",
+      "schema": {
+        "enum": [
+          "fabric_stp"
+        ],
+        "title": "SubscriptionProvider",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/SubscriptionsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

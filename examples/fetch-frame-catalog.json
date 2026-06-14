@@ -1,0 +1,134 @@
+{
+  "operationId": "fetch-frame-catalog",
+  "method": "GET",
+  "path": "/v2/farcaster/frame/catalog/",
+  "summary": "Mini apps catalog",
+  "description": "A curated list of featured mini apps",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 100,
+        "example": 100,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "time_window",
+      "in": "query",
+      "required": false,
+      "description": "Time window used to calculate the change in trending score for each mini app, used to sort mini app results",
+      "schema": {
+        "default": "7d",
+        "enum": [
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "7d"
+        ],
+        "example": "7d",
+        "title": "MiniAppTimeWindow",
+        "type": "string"
+      }
+    },
+    {
+      "name": "categories",
+      "in": "query",
+      "required": false,
+      "description": "Comma separated list of categories to include in the results. Includes all if left blank. Example: categories=games,social OR categories=games&categories=social",
+      "schema": {
+        "example": [
+          "games",
+          "social"
+        ],
+        "items": {
+          "enum": [
+            "games",
+            "social",
+            "finance",
+            "utility",
+            "productivity",
+            "health-fitness",
+            "news-media",
+            "music",
+            "shopping",
+            "education",
+            "developer-tools",
+            "entertainment",
+            "art-creativity"
+          ],
+          "title": "FrameCategory",
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "name": "networks",
+      "in": "query",
+      "required": false,
+      "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array.",
+      "schema": {
+        "example": [
+          "ethereum",
+          "base",
+          "solana"
+        ],
+        "items": {
+          "description": "Networks supported by mini apps",
+          "enum": [
+            "ethereum",
+            "base",
+            "arbitrum",
+            "arbitrum-sepolia",
+            "base-sepolia",
+            "degen",
+            "gnosis",
+            "optimism",
+            "optimism-sepolia",
+            "polygon",
+            "ethereum-sepolia",
+            "zora",
+            "unichain",
+            "monad-testnet",
+            "celo",
+            "solana"
+          ],
+          "example": "base",
+          "type": "string"
+        },
+        "title": "MiniappNetworksSchema",
+        "type": "array"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FrameCatalogResponse"
+      },
+      "example": null
+    }
+  }
+}

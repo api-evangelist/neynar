@@ -1,0 +1,11 @@
+{
+  "term": "frames",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameCatalogResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

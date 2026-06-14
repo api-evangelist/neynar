@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelOrChannelDehydrated",
+  "title": "ChannelOrChannelDehydrated",
+  "description": "Neynar Farcaster API schema for ChannelOrChannelDehydrated",
+  "discriminator": {
+    "mapping": {
+      "channel": "#/components/schemas/Channel",
+      "channel_dehydrated": "#/components/schemas/ChannelDehydrated"
+    },
+    "propertyName": "object"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/Channel"
+    },
+    {
+      "$ref": "#/components/schemas/ChannelDehydrated"
+    }
+  ],
+  "type": "object"
+}

@@ -1,0 +1,16 @@
+{
+  "term": "channel_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelFollowReqBody",
+    "ChannelMemberInvite",
+    "InviteChannelMemberReqBody",
+    "PostCastReqBody",
+    "RemoveChannelMemberReqBody",
+    "RespondChannelInviteReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

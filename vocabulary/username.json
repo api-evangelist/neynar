@@ -1,0 +1,13 @@
+{
+  "term": "username",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UpdateUserReqBody",
+    "User",
+    "UserDehydrated"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

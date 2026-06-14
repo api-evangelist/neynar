@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelUserContext",
+  "title": "ChannelUserContext",
+  "description": "Adds context on the viewer's or author's role in the channel.",
+  "properties": {
+    "following": {
+      "description": "Indicates if the user is following the channel.",
+      "type": "boolean"
+    },
+    "role": {
+      "$ref": "#/components/schemas/ChannelMemberRole"
+    }
+  },
+  "required": [
+    "following"
+  ],
+  "type": "object"
+}

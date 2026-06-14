@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Verification",
+  "title": "Verification",
+  "description": "Verification details of an address",
+  "properties": {
+    "address": {
+      "description": "Address string (hex for ethereum, base58 for solana)",
+      "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+      "type": "string"
+    },
+    "app": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "object": {
+      "enum": [
+        "verification"
+      ],
+      "type": "string"
+    },
+    "protocol": {
+      "$ref": "#/components/schemas/Protocol"
+    },
+    "verified_at": {
+      "description": "ISO timestamp when the verification was created",
+      "example": "2024-01-01T00:00:00.000Z",
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "address",
+    "protocol",
+    "verified_at"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,93 @@
+{
+  "operationId": "hub-fetch-casts-by-parent",
+  "method": "GET",
+  "path": "/v1/castsByParent",
+  "summary": "By parent cast",
+  "description": "Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast.",
+  "tags": [
+    "Casts"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "The Farcaster ID (FID) of the parent cast's creator. This parameter must be used together with the 'hash' parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user.",
+      "schema": {
+        "type": "integer",
+        "format": "uint64",
+        "minimum": 1,
+        "example": 194
+      }
+    },
+    {
+      "name": "hash",
+      "in": "query",
+      "required": false,
+      "description": "The unique hash identifier of the parent cast. Must be used together with the 'fid' parameter when doing hash-based lookup. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Not required if using URL-based lookup.",
+      "schema": {
+        "type": "string",
+        "pattern": "^0x[0-9a-fA-F]{40}$",
+        "example": "0x776593353e47dc4e7f4df3199a9b04cc8efa30d9"
+      }
+    },
+    {
+      "name": "url",
+      "in": "query",
+      "required": false,
+      "description": "Cast URL starting with 'chain://'",
+      "schema": {
+        "type": "string",
+        "format": "uri",
+        "example": "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response containing all reply casts to the specified parent cast, along with pagination information for traversing large result sets.",
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "messages"
+            ],
+            "properties": {
+              "messages": {
+                "description": "An array of reply casts to the specified parent cast, ordered by oldest first. Each cast includes its content, timestamp, and other metadata.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CastAdd"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

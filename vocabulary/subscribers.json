@@ -1,0 +1,11 @@
+{
+  "term": "subscribers",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribersResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

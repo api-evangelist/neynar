@@ -1,0 +1,12 @@
+{
+  "term": "eth_signature",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddVerificationReqBody",
+    "RemoveVerificationReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "signed_message",
+  "type": "property",
+  "description": "JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.",
+  "usedIn": [
+    "SignedMessageBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

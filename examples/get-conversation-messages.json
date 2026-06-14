@@ -1,0 +1,224 @@
+{
+  "operationId": "get-conversation-messages",
+  "method": "GET",
+  "path": "/v2/studio/deployment/conversations/messages",
+  "summary": "Get messages in a conversation",
+  "description": "Retrieves messages in a specific conversation with cursor-based pagination (newest first). Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": false,
+      "description": "Deployment ID (UUID). Required if name not provided.",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "required": false,
+      "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "namespace",
+      "in": "query",
+      "required": false,
+      "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "conversation_id",
+      "in": "query",
+      "required": true,
+      "description": "Conversation ID",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "description": "Include deleted messages in the response. Defaults to false.",
+      "schema": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Maximum number of messages to return per page. Defaults to 50, max 100.",
+      "schema": {
+        "default": 50,
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor for fetching older messages. Omit to start from most recent.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "messages": {
+            "description": "List of messages",
+            "items": {
+              "properties": {
+                "conversation_id": {
+                  "description": "Conversation ID",
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "created_at": {
+                  "description": "Creation timestamp",
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "Message ID",
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "message": {
+                  "description": "Message content",
+                  "type": "string"
+                },
+                "origin": {
+                  "description": "Message origin",
+                  "enum": [
+                    "user",
+                    "system",
+                    "admin"
+                  ],
+                  "type": "string"
+                },
+                "subtype": {
+                  "description": "Message subtype",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Message type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "created_at",
+                "conversation_id",
+                "message",
+                "origin"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          }
+        },
+        "required": [
+          "messages",
+          "next"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

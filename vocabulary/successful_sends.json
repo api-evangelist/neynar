@@ -1,0 +1,11 @@
+{
+  "term": "successful_sends",
+  "type": "property",
+  "description": "The number of notifications successfully sent.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

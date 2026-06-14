@@ -1,0 +1,55 @@
+{
+  "operationId": "app-host-post-event",
+  "method": "POST",
+  "path": "/v2/farcaster/app_host/user/event/",
+  "summary": "Send event",
+  "description": "Post an app_host event to the domain's webhook. Events such as enabling or disabling notifications for a user. Provide either a signed message or the signer UUID of an authorized neynar-hosted signers.",
+  "tags": [
+    "App Host"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/AppHostPostEventReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/AppHostPostEventResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "502": {
+      "description": "Bad Gateway",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

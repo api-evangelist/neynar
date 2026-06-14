@@ -1,0 +1,11 @@
+{
+  "term": "deletedUsernameProof",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MergeUserNameProofBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

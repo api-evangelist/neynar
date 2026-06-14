@@ -1,0 +1,48 @@
+{
+  "operationId": "publish-block",
+  "method": "POST",
+  "path": "/v2/farcaster/block/",
+  "summary": "Block FID",
+  "description": "Adds a block for a given FID.",
+  "tags": [
+    "Block"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/BlockReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/OperationResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

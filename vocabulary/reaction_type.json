@@ -1,0 +1,13 @@
+{
+  "term": "reaction_type",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ReactionForCast",
+    "ReactionReqBody",
+    "ReactionWithCastInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

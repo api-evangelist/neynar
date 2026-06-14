@@ -1,0 +1,55 @@
+{
+  "operationId": "buy-storage",
+  "method": "POST",
+  "path": "/v2/farcaster/storage/buy/",
+  "summary": "Buy storage",
+  "description": "This api will help you rent units of storage for an year for a specific FID.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links. Requires x-wallet-id header.",
+  "tags": [
+    "Storage"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/BuyStorageReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/StorageAllocationsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ZodError"
+      },
+      "example": null
+    },
+    "409": {
+      "description": "Conflict",
+      "schema": {
+        "$ref": "#/components/schemas/ConflictErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

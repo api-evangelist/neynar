@@ -1,0 +1,11 @@
+{
+  "term": "top_level_topic",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TrendingTopic"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

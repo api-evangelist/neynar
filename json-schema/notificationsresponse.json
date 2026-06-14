@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NotificationsResponse",
+  "title": "NotificationsResponse",
+  "description": "Neynar Farcaster API schema for NotificationsResponse",
+  "properties": {
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    },
+    "notifications": {
+      "items": {
+        "$ref": "#/components/schemas/Notification"
+      },
+      "type": "array"
+    },
+    "unseen_notifications_count": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "unseen_notifications_count",
+    "notifications",
+    "next"
+  ],
+  "type": "object"
+}

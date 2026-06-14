@@ -1,0 +1,11 @@
+{
+  "term": "approval_hash",
+  "type": "property",
+  "description": "Hash of the transaction that approved the transfer. This is only present if the fungible token is not native token of the network.",
+  "usedIn": [
+    "TransactionSendTxInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

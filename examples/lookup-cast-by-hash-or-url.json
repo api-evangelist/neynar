@@ -1,0 +1,69 @@
+{
+  "operationId": "lookup-cast-by-hash-or-url",
+  "method": "GET",
+  "path": "/v2/farcaster/cast/",
+  "summary": "By hash or URL",
+  "description": "Gets information about an individual cast by passing in a Farcaster web URL or cast hash",
+  "tags": [
+    "Cast"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "identifier",
+      "in": "query",
+      "required": true,
+      "description": "Cast identifier (It's either a URL or a hash)",
+      "schema": {
+        "example": "https://farcaster.xyz/rish/0xafa59bb7",
+        "type": "string"
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": true,
+      "description": "The query param accepted by the API. Sent along with identifier param.\nurl - Cast identifier is a url\nhash - Cast identifier is a hash",
+      "schema": {
+        "enum": [
+          "url",
+          "hash"
+        ],
+        "example": "url",
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "adds viewer_context to cast object to show whether viewer has liked or recasted the cast.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/CastResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

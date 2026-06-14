@@ -1,0 +1,20 @@
+{
+  "term": "title",
+  "type": "property",
+  "description": "Title of the button",
+  "usedIn": [
+    "FrameActionButton",
+    "FrameV1",
+    "FrameV2",
+    "FrameV2WithFullAuthor",
+    "NotificationCampaign",
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData",
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

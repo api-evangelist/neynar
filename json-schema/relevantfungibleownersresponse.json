@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RelevantFungibleOwnersResponse",
+  "title": "RelevantFungibleOwnersResponse",
+  "description": "Neynar Farcaster API schema for RelevantFungibleOwnersResponse",
+  "properties": {
+    "all_relevant_fungible_owners_dehydrated": {
+      "items": {
+        "$ref": "#/components/schemas/UserDehydrated"
+      },
+      "type": "array"
+    },
+    "top_relevant_fungible_owners_hydrated": {
+      "items": {
+        "$ref": "#/components/schemas/User"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "top_relevant_fungible_owners_hydrated",
+    "all_relevant_fungible_owners_dehydrated"
+  ],
+  "type": "object"
+}

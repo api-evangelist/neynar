@@ -1,0 +1,14 @@
+{
+  "term": "root_parent_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

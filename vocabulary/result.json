@@ -1,0 +1,14 @@
+{
+  "term": "result",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastsResponse",
+    "CastsSearchResponse",
+    "UserPowerLiteResponse",
+    "UserSearchResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

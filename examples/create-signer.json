@@ -1,0 +1,28 @@
+{
+  "operationId": "create-signer",
+  "method": "POST",
+  "path": "/v2/farcaster/signer/",
+  "summary": "Create signer",
+  "description": "Creates a signer and returns the signer status. \n\n**Note**: While tesing please reuse the signer, it costs money to approve a signer.",
+  "tags": [
+    "Signer"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/Signer"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

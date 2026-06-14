@@ -1,0 +1,11 @@
+{
+  "term": "errors",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ZodError"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

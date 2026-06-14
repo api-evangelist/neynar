@@ -1,0 +1,82 @@
+{
+  "operationId": "fetch-mute-list",
+  "method": "GET",
+  "path": "/v2/farcaster/mute/list/",
+  "summary": "Muted FIDs of user",
+  "description": "Fetches all FIDs that a user has muted.",
+  "tags": [
+    "Mute"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The user's FID (identifier)",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 20,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/MuteListResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "term": "image",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EmbedUrlMetadata",
+    "FrameV1",
+    "FrameV2",
+    "FrameV2WithFullAuthor",
+    "TransactionFrameLineItem"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

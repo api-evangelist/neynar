@@ -1,0 +1,157 @@
+{
+  "operationId": "list-tables",
+  "method": "GET",
+  "path": "/v2/studio/deployment/database/tables",
+  "summary": "List all tables in deployment database",
+  "description": "Lists all tables and views in the deployment database, excluding system tables.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": true,
+      "description": "Deployment ID (UUID)",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "Farcaster ID of the user. Required for non-admin users.",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "tables": {
+            "description": "List of tables",
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "Table name",
+                  "type": "string"
+                },
+                "rowCountEstimate": {
+                  "description": "Estimated row count from statistics",
+                  "nullable": true,
+                  "type": "number"
+                },
+                "schema": {
+                  "description": "Schema name",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Table type",
+                  "enum": [
+                    "BASE TABLE",
+                    "VIEW"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "schema",
+                "type",
+                "rowCountEstimate"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "tables"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

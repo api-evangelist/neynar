@@ -1,0 +1,13 @@
+{
+  "term": "subscription",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook",
+    "WebhookPostReqBody",
+    "WebhookPutReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

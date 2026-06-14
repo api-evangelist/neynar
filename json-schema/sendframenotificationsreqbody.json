@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SendFrameNotificationsReqBody",
+  "title": "SendFrameNotificationsReqBody",
+  "description": "Neynar Farcaster API schema for SendFrameNotificationsReqBody",
+  "properties": {
+    "filters": {
+      "description": "Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.",
+      "example": {
+        "exclude_fids": [
+          2,
+          8988
+        ],
+        "following_fid": 3,
+        "minimum_user_score": 0.5,
+        "near_location": {
+          "latitude": 37.774929,
+          "longitude": -122.419418,
+          "radius": 1000
+        }
+      },
+      "properties": {
+        "exclude_fids": {
+          "description": "Only send notifications to users who are not in the given FIDs.",
+          "items": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "type": "array"
+        },
+        "following_fid": {
+          "description": "Only send notifications to users who follow the given FID.",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "minimum_user_score": {
+          "description": "Only send notifications to users with a score greater than or equal to this value.",
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "near_location": {
+          "description": "Only send notifications to users near a given location.",
+          "properties": {
+            "address": {
+              "$ref": "#/components/schemas/LocationAddress"
+            },
+            "latitude": {
+              "format": "double",
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            "longitude": {
+              "format": "double",
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            "radius": {
+              "description": "The radius in meters for the location search. Any location within this radius will be returned.",
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "notification": {
+      "properties": {
+        "body": {
+          "description": "The body of the notification. Must be between 1 and 128 characters.",
+          "example": "You have received a new message in your inbox.",
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "target_url": {
+          "description": "The target URL to open when the user clicks the notification. Must be a valid URL.",
+          "example": "https://example.com/notifications",
+          "format": "uri",
+          "maxLength": 256,
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the notification. Must be between 1 and 32 characters.",
+          "example": "New Message",
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        "uuid": {
+          "description": "An optional UUID for the notification, used as an idempotency key.",
+          "example": "123e4567-e89b-12d3-a456-426614174000",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "body",
+        "target_url"
+      ],
+      "type": "object"
+    },
+    "target_fids": {
+      "description": "An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.",
+      "example": [
+        1,
+        2,
+        3
+      ],
+      "items": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "type": "array"
+    }
+  },
+  "required": [
+    "notification"
+  ],
+  "type": "object"
+}

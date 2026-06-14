@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/StorageUsageResponse",
+  "title": "StorageUsageResponse",
+  "description": "Neynar Farcaster API schema for StorageUsageResponse",
+  "properties": {
+    "casts": {
+      "$ref": "#/components/schemas/StorageObject"
+    },
+    "links": {
+      "$ref": "#/components/schemas/StorageObject"
+    },
+    "object": {
+      "example": "storage_usage",
+      "type": "string"
+    },
+    "reactions": {
+      "$ref": "#/components/schemas/StorageObject"
+    },
+    "signers": {
+      "$ref": "#/components/schemas/StorageObject"
+    },
+    "total_active_units": {
+      "example": 2,
+      "type": "integer"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "username_proofs": {
+      "$ref": "#/components/schemas/StorageObject"
+    },
+    "verified_addresses": {
+      "$ref": "#/components/schemas/StorageObject"
+    }
+  },
+  "type": "object"
+}

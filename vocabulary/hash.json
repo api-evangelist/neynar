@@ -1,0 +1,20 @@
+{
+  "term": "hash",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastDehydrated",
+    "CastEmbedded",
+    "CastId",
+    "FollowResponse",
+    "PostCastReqBodyEmbedsCastIdProperties",
+    "MessageCommon"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

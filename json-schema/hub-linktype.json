@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/LinkType",
+  "title": "Hub LinkType",
+  "description": "Defines the type of social connection between users.\n- follow: Establishes a following relationship where the user will receive updates from the target user in their feed",
+  "type": "string",
+  "default": "follow",
+  "enum": [
+    "follow"
+  ],
+  "example": "follow"
+}

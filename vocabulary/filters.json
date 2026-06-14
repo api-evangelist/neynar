@@ -1,0 +1,12 @@
+{
+  "term": "filters",
+  "type": "property",
+  "description": "Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.",
+  "usedIn": [
+    "SendFrameNotificationsReqBody",
+    "WebhookSubscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

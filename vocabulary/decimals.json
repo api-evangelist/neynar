@@ -1,0 +1,11 @@
+{
+  "term": "decimals",
+  "type": "property",
+  "description": "The number of decimals the token uses",
+  "usedIn": [
+    "Fungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

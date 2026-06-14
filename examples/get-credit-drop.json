@@ -1,0 +1,127 @@
+{
+  "operationId": "get-credit-drop",
+  "method": "GET",
+  "path": "/v2/studio/credit-drops/",
+  "summary": "Get most recent credit drop",
+  "description": "Returns the most recent credit drop for the authenticated user. Returns the drop regardless of claimed/expired status.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "Farcaster ID of the user",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "allowance_expires_at": {
+            "description": "Timestamp at which the drop stops contributing to the effective CU limit. Stamped by the credit-drop job at insert time (default: created_at + 24h).",
+            "format": "date-time",
+            "type": "string"
+          },
+          "claimed": {
+            "description": "Whether the credit drop has been claimed",
+            "type": "boolean"
+          },
+          "created_at": {
+            "description": "When the credit drop was generated",
+            "format": "date-time",
+            "type": "string"
+          },
+          "credits_remaining": {
+            "description": "reward_amount - credits_used, clamped at 0. Spendable only until allowance_expires_at.",
+            "nullable": true,
+            "type": "number"
+          },
+          "credits_used": {
+            "description": "Portion of this drop already consumed against STUDIO CU usage (incremented by the CU sync). Forfeited at allowance_expires_at if unused.",
+            "type": "number"
+          },
+          "expired": {
+            "description": "Whether the credit drop's allowance window has closed (NOW() >= allowance_expires_at). Once true, the drop no longer contributes to the effective CU limit; any unused portion is forfeited.",
+            "type": "boolean"
+          },
+          "percentile_score": {
+            "description": "Percentile rank within 7-day global distribution",
+            "maximum": 1,
+            "minimum": 0,
+            "nullable": true,
+            "type": "number"
+          },
+          "raw_score": {
+            "description": "Raw quality score from 0 to 1",
+            "maximum": 1,
+            "minimum": 0,
+            "nullable": true,
+            "type": "number"
+          },
+          "reward_amount": {
+            "description": "Credit reward amount",
+            "nullable": true,
+            "type": "number"
+          }
+        },
+        "required": [
+          "created_at",
+          "raw_score",
+          "percentile_score",
+          "reward_amount",
+          "claimed",
+          "credits_used",
+          "credits_remaining",
+          "allowance_expires_at",
+          "expired"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "402": {
+      "description": "Payment Required",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

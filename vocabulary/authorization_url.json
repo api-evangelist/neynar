@@ -1,0 +1,11 @@
+{
+  "term": "authorization_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AuthorizationUrlResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

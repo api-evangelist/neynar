@@ -1,0 +1,11 @@
+{
+  "term": "unseen_notifications_count",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "NotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

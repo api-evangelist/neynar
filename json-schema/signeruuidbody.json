@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SignerUuidBody",
+  "title": "SignerUuidBody",
+  "description": "Neynar Farcaster API schema for SignerUuidBody",
+  "properties": {
+    "app_domain": {
+      "description": "Domain of the mini app",
+      "type": "string"
+    },
+    "event": {
+      "description": "Types of events that can occur between a user and an app host:\n- frame_added: User adds a mini app to their account\n- frame_removed: User removes a mini app from their account\n- notifications_enabled: User enables notifications for a mini app\n- notifications_disabled: User disables notifications for a mini app",
+      "enum": [
+        "frame_added",
+        "frame_removed",
+        "notifications_enabled",
+        "notifications_disabled"
+      ],
+      "type": "string"
+    },
+    "fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "app_domain",
+    "fid",
+    "event"
+  ],
+  "type": "object"
+}

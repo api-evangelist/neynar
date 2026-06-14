@@ -1,0 +1,46 @@
+{
+  "operationId": "lookup-user-by-custody-address",
+  "method": "GET",
+  "path": "/v2/farcaster/user/custody-address/",
+  "summary": "By custody-address",
+  "description": "Lookup a user by custody-address",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "custody_address",
+      "in": "query",
+      "required": true,
+      "description": "Custody Address associated with mnemonic",
+      "schema": {
+        "example": "0xd1b702203b1b3b641a699997746bd4a12d157909",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/UserResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

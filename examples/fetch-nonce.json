@@ -1,0 +1,35 @@
+{
+  "operationId": "fetch-nonce",
+  "method": "GET",
+  "path": "/v2/farcaster/login/nonce/",
+  "summary": "Fetch nonce",
+  "description": "Nonce to sign a message",
+  "tags": [
+    "Login"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/NonceResponse"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

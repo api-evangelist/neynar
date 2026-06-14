@@ -1,0 +1,11 @@
+{
+  "term": "verified_address",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddressBalance"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

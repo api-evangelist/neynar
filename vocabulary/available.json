@@ -1,0 +1,11 @@
+{
+  "term": "available",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FnameAvailabilityResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

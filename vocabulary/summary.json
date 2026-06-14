@@ -1,0 +1,12 @@
+{
+  "term": "summary",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ConversationSummary",
+    "TrendingTopic"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

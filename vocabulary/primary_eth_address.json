@@ -1,0 +1,11 @@
+{
+  "term": "primary_eth_address",
+  "type": "property",
+  "description": "Must be one of the verified addresses.",
+  "usedIn": [
+    "UpdateUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

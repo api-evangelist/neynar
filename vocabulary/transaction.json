@@ -1,0 +1,12 @@
+{
+  "term": "transaction",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FramePayTransactionReqBody",
+    "TransactionFramePay"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

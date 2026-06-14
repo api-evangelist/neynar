@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "@vocab": "https://neynar.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "farcaster": "https://farcaster.xyz/vocab/",
+    "neynar": "https://neynar.com/vocab/",
+    "fid": {
+      "@id": "farcaster:fid",
+      "@type": "xsd:integer"
+    },
+    "fname": {
+      "@id": "farcaster:fname"
+    },
+    "cast": {
+      "@id": "farcaster:cast"
+    },
+    "channel": {
+      "@id": "farcaster:channel"
+    },
+    "reaction": {
+      "@id": "farcaster:reaction"
+    },
+    "feed": {
+      "@id": "farcaster:feed"
+    },
+    "signer": {
+      "@id": "farcaster:signer"
+    },
+    "webhook": {
+      "@id": "neynar:webhook"
+    },
+    "hash": {
+      "@id": "neynar:hash"
+    },
+    "timestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "username": {
+      "@id": "schema:name"
+    },
+    "displayName": {
+      "@id": "schema:alternateName"
+    },
+    "bio": {
+      "@id": "schema:description"
+    },
+    "pfp": {
+      "@id": "schema:image"
+    },
+    "url": {
+      "@id": "schema:url"
+    },
+    "text": {
+      "@id": "schema:text"
+    },
+    "embeds": {
+      "@id": "neynar:embeds",
+      "@container": "@list"
+    },
+    "mentions": {
+      "@id": "neynar:mentions",
+      "@container": "@list"
+    },
+    "replies": {
+      "@id": "neynar:replies"
+    },
+    "reactions": {
+      "@id": "farcaster:reactions"
+    },
+    "likes": {
+      "@id": "schema:likeCount"
+    },
+    "recasts": {
+      "@id": "farcaster:recasts"
+    },
+    "viewerContext": {
+      "@id": "neynar:viewerContext"
+    },
+    "activeStatus": {
+      "@id": "neynar:activeStatus"
+    },
+    "powerBadge": {
+      "@id": "neynar:powerBadge"
+    },
+    "followerCount": {
+      "@id": "schema:followeeCount"
+    },
+    "followingCount": {
+      "@id": "schema:numberOfFollowing"
+    },
+    "verifications": {
+      "@id": "neynar:verifications",
+      "@container": "@list"
+    },
+    "custody": {
+      "@id": "neynar:custody"
+    }
+  },
+  "@type": "neynar:APIContext",
+  "schema:name": "Neynar Farcaster API Context",
+  "schema:description": "JSON-LD context for Neynar Farcaster API resources",
+  "schema:version": "3.176.0",
+  "schema:url": "https://neynar.com"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FarcasterActionReqBody",
+  "title": "FarcasterActionReqBody",
+  "description": "Neynar Farcaster API schema for FarcasterActionReqBody",
+  "properties": {
+    "action": {
+      "properties": {
+        "payload": {
+          "description": "The payload of the action being performed.",
+          "properties": {},
+          "type": "object"
+        },
+        "type": {
+          "description": "The type of action being performed.",
+          "example": "create.user",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "base_url": {
+      "description": "The base URL of the app on which the action is being performed.",
+      "example": "https://example.com",
+      "format": "uri",
+      "type": "string"
+    },
+    "signer_uuid": {
+      "description": "The signer_uuid of the user on behalf of whom the action is being performed.",
+      "example": "123e4567-e89b-12d3-a456-426614174000",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "base_url",
+    "action"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "term": "accept",
+  "type": "property",
+  "description": "Accept or reject the invite",
+  "usedIn": [
+    "RespondChannelInviteReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

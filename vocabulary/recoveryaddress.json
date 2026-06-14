@@ -1,0 +1,11 @@
+{
+  "term": "recoveryAddress",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "IdRegisterEventBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

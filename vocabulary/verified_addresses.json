@@ -1,0 +1,12 @@
+{
+  "term": "verified_addresses",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageUsageResponse",
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

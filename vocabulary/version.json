@@ -1,0 +1,19 @@
+{
+  "term": "version",
+  "type": "property",
+  "description": "Version of the mini app, 'next' for v2, 'vNext' for v1",
+  "usedIn": [
+    "FrameV1",
+    "FrameV2",
+    "FrameV2WithFullAuthor",
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData",
+    "HubInfoResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

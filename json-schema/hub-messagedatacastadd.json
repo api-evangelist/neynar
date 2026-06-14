@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataCastAdd",
+  "title": "Hub MessageDataCastAdd",
+  "description": "Represents a new cast (post) being created in the Farcaster network. A cast can include text content, mentions of other users, embedded URLs, and references to parent posts for replies.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "castAddBody"
+      ],
+      "properties": {
+        "castAddBody": {
+          "description": "The content and metadata of the new cast, including the text, mentions, embeds, and any parent references for replies.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/CastAddBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

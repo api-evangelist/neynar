@@ -1,0 +1,11 @@
+{
+  "term": "top_relevant_followers_hydrated",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RelevantFollowersResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataUserDataAdd",
+  "title": "Hub MessageDataUserDataAdd",
+  "description": "Represents a message that updates a user's profile metadata. This can include changes to profile picture, display name, bio, URL, or preferred username. Each update modifies a single profile field.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "userDataBody"
+      ],
+      "properties": {
+        "userDataBody": {
+          "description": "Contains the type of profile metadata being updated and its new value.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/UserDataBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

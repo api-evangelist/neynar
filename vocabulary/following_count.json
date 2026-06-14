@@ -1,0 +1,11 @@
+{
+  "term": "following_count",
+  "type": "property",
+  "description": "The number of users the user is following.",
+  "usedIn": [
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

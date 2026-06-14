@@ -1,0 +1,11 @@
+{
+  "term": "blocked_fid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BlockReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

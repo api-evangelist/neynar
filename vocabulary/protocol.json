@@ -1,0 +1,11 @@
+{
+  "term": "protocol",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Verification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

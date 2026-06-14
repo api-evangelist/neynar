@@ -1,0 +1,12 @@
+{
+  "term": "app_domain",
+  "type": "property",
+  "description": "Domain of the mini app",
+  "usedIn": [
+    "SignedMessageBody",
+    "SignerUuidBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

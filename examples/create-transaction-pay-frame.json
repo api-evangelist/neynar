@@ -1,0 +1,48 @@
+{
+  "operationId": "create-transaction-pay-frame",
+  "method": "POST",
+  "path": "/v2/farcaster/frame/transaction/pay/",
+  "summary": "Create transaction pay mini app",
+  "description": "Creates a new transaction pay mini app that can be used to collect payments through a mini app",
+  "tags": [
+    "Agents"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/FramePayTransactionReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/TransactionFrameResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "operationId": "app-host-get-user-state",
+  "method": "GET",
+  "path": "/v2/farcaster/app_host/user/state/",
+  "summary": "Enabled notifications",
+  "description": "Returns the current notification state for a specific user across all mini app domains in this app host. Shows which domains have notifications enabled.",
+  "tags": [
+    "App Host"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the user",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/AppHostUserStateResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

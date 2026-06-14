@@ -1,0 +1,11 @@
+{
+  "term": "factory",
+  "type": "property",
+  "description": "Factory name\n- wow -> [wow.xyz](https://wow.xyz)\n- clanker -> [clanker.world](https://www.clanker.world)",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

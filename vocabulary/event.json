@@ -1,0 +1,12 @@
+{
+  "term": "event",
+  "type": "property",
+  "description": "Legacy event type corresponding to the requested event type:\n- frame_added: User adds a mini app to their account\n- frame_removed: User removes a mini app from their account\n- notifications_enabled: User enables notifications for a mini app\n- notifications_disabled: User disables notifications for a mini app",
+  "usedIn": [
+    "AppHostGetEventResponse",
+    "SignerUuidBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

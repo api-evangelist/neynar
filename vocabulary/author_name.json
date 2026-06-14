@@ -1,0 +1,14 @@
+{
+  "term": "author_name",
+  "type": "property",
+  "description": "The name of the author/owner of the resource.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "term": "reaction_timestamp",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ReactionForCast",
+    "ReactionWithCastInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

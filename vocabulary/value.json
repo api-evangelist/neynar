@@ -1,0 +1,13 @@
+{
+  "term": "value",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSecret",
+    "UserDataBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

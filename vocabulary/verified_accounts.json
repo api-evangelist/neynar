@@ -1,0 +1,12 @@
+{
+  "term": "verified_accounts",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UpdateUserReqBody",
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

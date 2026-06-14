@@ -1,0 +1,83 @@
+{
+  "operationId": "hub-fetch-user-data",
+  "method": "GET",
+  "path": "/v1/userDataByFid",
+  "summary": "Fetch UserData for a FID",
+  "description": "**Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead.",
+  "tags": [
+    "UserData"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID that's being requested",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "user_data_type",
+      "in": "query",
+      "required": false,
+      "description": "The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned",
+      "schema": {
+        "$ref": "#/components/schemas/UserDataType"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested UserData.",
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/UserDataAdd"
+          },
+          {
+            "allOf": [
+              {
+                "type": "object",
+                "required": [
+                  "messages"
+                ],
+                "properties": {
+                  "messages": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserDataAdd"
+                    }
+                  }
+                }
+              },
+              {
+                "$ref": "#/components/schemas/PaginationResponse"
+              }
+            ]
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

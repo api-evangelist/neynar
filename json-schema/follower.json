@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Follower",
+  "title": "Follower",
+  "description": "Neynar Farcaster API schema for Follower",
+  "properties": {
+    "app": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "object": {
+      "enum": [
+        "follower"
+      ],
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "object",
+    "user"
+  ],
+  "type": "object"
+}

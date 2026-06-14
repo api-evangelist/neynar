@@ -1,0 +1,79 @@
+{
+  "operationId": "app-host-get-event",
+  "method": "GET",
+  "path": "/v2/farcaster/app_host/user/event/",
+  "summary": "Generate event",
+  "description": "Returns event object for app host events. Used if the app host intends to sign the event message instead of using Neynar-hosted signers.",
+  "tags": [
+    "App Host"
+  ],
+  "parameters": [
+    {
+      "name": "app_domain",
+      "in": "query",
+      "required": true,
+      "description": "The domain of the mini app",
+      "schema": {
+        "example": "demo.neynar.com",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the user who initiated the event",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "event",
+      "in": "query",
+      "required": true,
+      "description": "The type of event",
+      "schema": {
+        "enum": [
+          "frame_added",
+          "frame_removed",
+          "notifications_enabled",
+          "notifications_disabled"
+        ],
+        "title": "AppHostEventType",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/AppHostGetEventResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

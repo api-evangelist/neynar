@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/UserDataType",
+  "title": "Hub UserDataType",
+  "description": "Specifies which field of a user's profile is being updated.\n- USER_DATA_TYPE_PFP: Profile Picture URL for the user's avatar\n- USER_DATA_TYPE_DISPLAY: Display Name shown on the user's profile\n- USER_DATA_TYPE_BIO: Biography or description of the user\n- USER_DATA_TYPE_URL: Website or social media link for the user\n- USER_DATA_TYPE_USERNAME: Preferred username for the user",
+  "type": "string",
+  "default": "USER_DATA_TYPE_PFP",
+  "enum": [
+    "USER_DATA_TYPE_PFP",
+    "USER_DATA_TYPE_DISPLAY",
+    "USER_DATA_TYPE_BIO",
+    "USER_DATA_TYPE_URL",
+    "USER_DATA_TYPE_USERNAME"
+  ]
+}

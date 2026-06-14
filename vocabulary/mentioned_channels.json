@@ -1,0 +1,13 @@
+{
+  "term": "mentioned_channels",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

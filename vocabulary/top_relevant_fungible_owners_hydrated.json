@@ -1,0 +1,11 @@
+{
+  "term": "top_relevant_fungible_owners_hydrated",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RelevantFungibleOwnersResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

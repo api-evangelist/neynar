@@ -1,0 +1,11 @@
+{
+  "term": "registered_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RespondChannelInviteReqBody",
+  "title": "RespondChannelInviteReqBody",
+  "description": "Neynar Farcaster API schema for RespondChannelInviteReqBody",
+  "properties": {
+    "accept": {
+      "description": "Accept or reject the invite",
+      "type": "boolean"
+    },
+    "channel_id": {
+      "$ref": "#/components/schemas/ChannelId"
+    },
+    "role": {
+      "$ref": "#/components/schemas/ChannelMemberRole"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "channel_id",
+    "role",
+    "accept"
+  ],
+  "type": "object"
+}

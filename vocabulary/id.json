@@ -1,0 +1,21 @@
+{
+  "term": "id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "ChannelDehydrated",
+    "NotificationCampaign",
+    "SubscriptionTier",
+    "TransactionFramePay",
+    "HubEventMergeMessage",
+    "HubEventMergeOnChainEvent",
+    "HubEventMergeUsernameProof",
+    "HubEventPruneMessage",
+    "HubEventRevokeMessage"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

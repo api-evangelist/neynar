@@ -1,0 +1,13 @@
+{
+  "term": "manifest",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameV2",
+    "FrameV2WithFullAuthor",
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

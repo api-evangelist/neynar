@@ -1,0 +1,49 @@
+{
+  "operationId": "hub-fetch-fids",
+  "method": "GET",
+  "path": "/v1/fids",
+  "summary": "Fetch a list of all the FIDs",
+  "description": "Fetch a list of all the FIDs.",
+  "tags": [
+    "Fids"
+  ],
+  "parameters": [
+    {
+      "name": "shard_id",
+      "in": "query",
+      "required": true,
+      "description": "The shard ID to filter by",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/FidsResponse"
+      },
+      "example": null
+    }
+  }
+}

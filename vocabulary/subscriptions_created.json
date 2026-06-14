@@ -1,0 +1,12 @@
+{
+  "term": "subscriptions_created",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Subscriptions",
+    "SubscriptionsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

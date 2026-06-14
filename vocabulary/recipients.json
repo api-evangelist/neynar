@@ -1,0 +1,11 @@
+{
+  "term": "recipients",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TransactionSendFungiblesReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

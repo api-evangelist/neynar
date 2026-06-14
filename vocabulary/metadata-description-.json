@@ -1,0 +1,11 @@
+{
+  "term": "metadata[description]",
+  "type": "property",
+  "description": "Description of the token",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

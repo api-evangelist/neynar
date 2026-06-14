@@ -1,0 +1,66 @@
+{
+  "operationId": "fetch-bulk-relevant-fungible-owners",
+  "method": "GET",
+  "path": "/v2/farcaster/fungible/owner/relevant/bulk",
+  "summary": "Bulk relevant owners",
+  "description": "Fetch relevant owners for multiple on chain assets in a single request, up to 10 contract addresses at a time.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "contract_addresses",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of contract addresses, up to 10 at a time",
+      "schema": {
+        "example": "0x0db510e79909666d6dec7f5e49370838c16d950f,0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "network",
+      "in": "query",
+      "required": true,
+      "description": "Network of the fungible assets.",
+      "schema": {
+        "enum": [
+          "ethereum",
+          "optimism",
+          "base",
+          "arbitrum",
+          "solana"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BulkRelevantFungibleOwnersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

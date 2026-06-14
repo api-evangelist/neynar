@@ -1,0 +1,11 @@
+{
+  "term": "member_count",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

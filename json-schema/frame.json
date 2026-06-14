@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Frame",
+  "title": "Frame",
+  "description": "Neynar Farcaster API schema for Frame",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/FrameV1"
+    },
+    {
+      "$ref": "#/components/schemas/FrameV2"
+    }
+  ],
+  "discriminator": {
+    "mapping": {
+      "1": "#/components/schemas/FrameV2",
+      "0.0.0": "#/components/schemas/FrameV2",
+      "0.0.1": "#/components/schemas/FrameV2",
+      "next": "#/components/schemas/FrameV2",
+      "vNext": "#/components/schemas/FrameV1"
+    },
+    "propertyName": "version"
+  }
+}

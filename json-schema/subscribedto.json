@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SubscribedTo",
+  "title": "SubscribedTo",
+  "description": "Neynar Farcaster API schema for SubscribedTo",
+  "properties": {
+    "chain": {
+      "example": 8453,
+      "type": "integer"
+    },
+    "contract_address": {
+      "example": "0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58",
+      "type": "string"
+    },
+    "creator": {
+      "$ref": "#/components/schemas/User"
+    },
+    "expires_at": {
+      "example": "2023-09-13T22:10:22.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "art_url": {
+          "example": "https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg",
+          "type": "string"
+        },
+        "symbol": {
+          "example": "MMS",
+          "type": "string"
+        },
+        "title": {
+          "example": "/memes channel sub",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "symbol",
+        "art_url"
+      ],
+      "type": "object"
+    },
+    "object": {
+      "enum": [
+        "subscription"
+      ],
+      "type": "string"
+    },
+    "owner_address": {
+      "example": "0xb6f6dce6000ca88cc936b450cedb16a5c15f157f",
+      "type": "string"
+    },
+    "price": {
+      "properties": {
+        "initial_mint_price": {
+          "example": "0",
+          "type": "string"
+        },
+        "period_duration_seconds": {
+          "example": 2592000,
+          "type": "integer"
+        },
+        "tokens_per_period": {
+          "example": "350574998400000",
+          "type": "string"
+        }
+      },
+      "required": [
+        "period_duration_seconds",
+        "tokens_per_period",
+        "initial_mint_price"
+      ],
+      "type": "object"
+    },
+    "protocol_version": {
+      "example": 1,
+      "type": "integer"
+    },
+    "provider_name": {
+      "example": "fabric_stp",
+      "type": "string"
+    },
+    "subscribed_at": {
+      "example": "2023-09-13T22:10:22.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "tier": {
+      "$ref": "#/components/schemas/SubscriptionTier"
+    },
+    "tiers": {
+      "items": {
+        "$ref": "#/components/schemas/SubscriptionTier"
+      },
+      "type": "array"
+    },
+    "token": {
+      "properties": {
+        "address": {
+          "example": null,
+          "nullable": true,
+          "type": "string"
+        },
+        "decimals": {
+          "example": 18,
+          "type": "integer"
+        },
+        "erc20": {
+          "example": false,
+          "type": "boolean"
+        },
+        "symbol": {
+          "example": "ETH",
+          "type": "string"
+        }
+      },
+      "required": [
+        "symbol",
+        "address",
+        "decimals",
+        "erc20"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "object",
+    "contract_address",
+    "chain",
+    "metadata",
+    "owner_address",
+    "price",
+    "protocol_version",
+    "token",
+    "expires_at",
+    "subscribed_at",
+    "tier",
+    "creator"
+  ],
+  "type": "object"
+}

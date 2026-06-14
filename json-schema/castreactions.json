@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastReactions",
+  "title": "CastReactions",
+  "description": "Neynar Farcaster API schema for CastReactions",
+  "properties": {
+    "likes": {
+      "deprecated": true,
+      "description": "This has been deprecated and will always be an empty array. The property will be removed in the future",
+      "items": {
+        "$ref": "#/components/schemas/ReactionLike"
+      },
+      "type": "array"
+    },
+    "likes_count": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "recasts": {
+      "deprecated": true,
+      "description": "This has been deprecated and will always be an empty array. The property will be removed in the future",
+      "items": {
+        "$ref": "#/components/schemas/ReactionRecast"
+      },
+      "type": "array"
+    },
+    "recasts_count": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "likes",
+    "recasts",
+    "likes_count",
+    "recasts_count"
+  ],
+  "type": "object"
+}

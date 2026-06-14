@@ -1,0 +1,11 @@
+{
+  "term": "deletedMessages",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MergeMessageBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

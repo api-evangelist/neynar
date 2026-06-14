@@ -1,0 +1,65 @@
+{
+  "operationId": "fetch-bulk-channels",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/bulk/",
+  "summary": "Bulk fetch",
+  "description": "Returns details of multiple channels",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "ids",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of channel IDs or parent_urls, up to 100 at a time",
+      "schema": {
+        "example": "neynar,warpcast",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": false,
+      "description": "Type of identifier being used to query the channels. Defaults to ID.",
+      "schema": {
+        "enum": [
+          "id",
+          "parent_url"
+        ],
+        "example": "id",
+        "title": "ChannelType",
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the user viewing the channels.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelResponseBulk"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

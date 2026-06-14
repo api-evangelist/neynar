@@ -1,0 +1,11 @@
+{
+  "term": "not_attempted_count",
+  "type": "property",
+  "description": "The number of notifications not attempted (e.g., disabled tokens, invalid tokens).",
+  "usedIn": [
+    "SendFrameNotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

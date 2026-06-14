@@ -1,0 +1,11 @@
+{
+  "term": "deletedUsernameProofMessage",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MergeUserNameProofBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

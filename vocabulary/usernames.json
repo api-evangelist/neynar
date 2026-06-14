@@ -1,0 +1,8 @@
+{
+  "term": "Usernames",
+  "type": "tag",
+  "description": "Operations related to usernames.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

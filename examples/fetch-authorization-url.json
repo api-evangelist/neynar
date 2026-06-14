@@ -1,0 +1,59 @@
+{
+  "operationId": "fetch-authorization-url",
+  "method": "GET",
+  "path": "/v2/farcaster/login/authorize/",
+  "summary": "Fetch authorization url",
+  "description": "Fetch authorization url (Fetched authorized url useful for SIWN login operation)",
+  "tags": [
+    "Signer"
+  ],
+  "parameters": [
+    {
+      "name": "client_id",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "response_type",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "enum": [
+          "code"
+        ],
+        "title": "AuthorizationUrlResponseType",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/AuthorizationUrlResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

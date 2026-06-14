@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/Embed",
+  "title": "Hub Embed",
+  "description": "Neynar Hub API schema for Embed",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/CastEmbed"
+    },
+    {
+      "$ref": "#/components/schemas/UrlEmbed"
+    }
+  ]
+}

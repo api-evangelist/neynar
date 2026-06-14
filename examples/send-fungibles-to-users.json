@@ -1,0 +1,48 @@
+{
+  "operationId": "send-fungibles-to-users",
+  "method": "POST",
+  "path": "/v2/farcaster/fungible/send/",
+  "summary": "Send fungibles",
+  "description": "Send fungibles in bulk to several farcaster users. A funded wallet is to required use this API. React out to us on the Neynar channel on farcaster to get your wallet address.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/TransactionSendFungiblesReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/TransactionSendFungiblesResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "operationId": "fetch-user-balance",
+  "method": "GET",
+  "path": "/v2/farcaster/user/balance/",
+  "summary": "Token balance",
+  "description": "Fetches the token balances of a user given their FID",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of the user to fetch",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "networks",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of networks to fetch balances for",
+      "schema": {
+        "items": {
+          "description": "A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\"",
+          "enum": [
+            "ethereum",
+            "optimism",
+            "base",
+            "arbitrum"
+          ],
+          "title": "Network",
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BalanceResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

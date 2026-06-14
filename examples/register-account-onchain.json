@@ -1,0 +1,48 @@
+{
+  "operationId": "register-account-onchain",
+  "method": "POST",
+  "path": "/v2/farcaster/user/register/",
+  "summary": "Register Farcaster account onchain",
+  "description": "Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction. Requires x-wallet-id header.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/RegisterUserOnChainReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/RegisterUserOnChainResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

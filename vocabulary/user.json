@@ -1,0 +1,23 @@
+{
+  "term": "user",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelMember",
+    "Follower",
+    "FollowerDehydrated",
+    "ReactionForCast",
+    "ReactionWithCastInfo",
+    "ReactionWithUserInfo",
+    "ReciprocalFollower",
+    "RegisterUserOnChainResponse",
+    "RegisterUserResponse",
+    "StorageAllocation",
+    "StorageUsageResponse",
+    "Subscriber",
+    "UserResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

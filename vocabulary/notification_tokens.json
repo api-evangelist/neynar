@@ -1,0 +1,11 @@
+{
+  "term": "notification_tokens",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameNotificationTokens"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

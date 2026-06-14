@@ -1,0 +1,59 @@
+{
+  "operationId": "fetch-verifications",
+  "method": "GET",
+  "path": "/v2/farcaster/user/verifications/",
+  "summary": "Fetch verifications",
+  "description": "Fetch all Ethereum and Solana verified addresses for a Farcaster user. Use this endpoint to identify which wallets are associated with which Farcaster applications for the specified user.",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of the user whose verifications to fetch",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "verifications": {
+            "items": {
+              "$ref": "#/components/schemas/Verification"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "verifications"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

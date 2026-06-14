@@ -1,0 +1,12 @@
+{
+  "term": "custody_address",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "User",
+    "UserDehydrated"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

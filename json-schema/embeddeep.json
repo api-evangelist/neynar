@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/EmbedDeep",
+  "title": "EmbedDeep",
+  "description": "Neynar Farcaster API schema for EmbedDeep",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/EmbedCastDeep"
+    },
+    {
+      "$ref": "#/components/schemas/EmbedUrl"
+    }
+  ]
+}

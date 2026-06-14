@@ -1,0 +1,14 @@
+{
+  "term": "signer",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserReqBody",
+    "RegisterUserResponse",
+    "MessageCommon"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "transaction_frame",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TransactionFrameResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

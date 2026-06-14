@@ -1,0 +1,11 @@
+{
+  "term": "header",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EncodedJsonFarcasterSignature"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

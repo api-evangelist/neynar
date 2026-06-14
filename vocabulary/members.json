@@ -1,0 +1,11 @@
+{
+  "term": "members",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelMemberListResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

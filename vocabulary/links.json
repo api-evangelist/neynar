@@ -1,0 +1,8 @@
+{
+  "term": "Links",
+  "type": "tag",
+  "description": "Operations related to links.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

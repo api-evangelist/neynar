@@ -1,0 +1,12 @@
+{
+  "term": "direct_replies",
+  "type": "property",
+  "description": "note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.",
+  "usedIn": [
+    "CastAndConversations",
+    "CastAndConversationsRef"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

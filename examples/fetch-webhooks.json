@@ -1,0 +1,21 @@
+{
+  "operationId": "fetch-webhooks",
+  "method": "GET",
+  "path": "/v2/farcaster/webhook/list/",
+  "summary": "Associated webhooks of user",
+  "description": "Fetch a list of webhooks associated to a user",
+  "tags": [
+    "Webhook"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/WebhookListResponse"
+      },
+      "example": null
+    }
+  }
+}

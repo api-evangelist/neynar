@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TrendingTopic",
+  "title": "TrendingTopic",
+  "description": "Neynar Farcaster API schema for TrendingTopic",
+  "properties": {
+    "authors": {
+      "description": "Up to five recent Farcaster users who posted about the topic",
+      "items": {
+        "$ref": "#/components/schemas/UserDehydrated"
+      },
+      "maxItems": 5,
+      "type": "array"
+    },
+    "name": {
+      "description": "The display name of the topic",
+      "type": "string"
+    },
+    "slug": {
+      "description": "A URL-friendly unique identifier for the topic",
+      "type": "string"
+    },
+    "summary": {
+      "description": "Short summary of the topic if available",
+      "nullable": true,
+      "type": "string"
+    },
+    "top_level_topic": {
+      "$ref": "#/components/schemas/TopLevelTopic"
+    }
+  },
+  "required": [
+    "name",
+    "slug",
+    "top_level_topic",
+    "summary",
+    "authors"
+  ],
+  "type": "object"
+}

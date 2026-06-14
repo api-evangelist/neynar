@@ -1,0 +1,13 @@
+{
+  "term": "price",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "Subscription",
+    "SubscriptionTier"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

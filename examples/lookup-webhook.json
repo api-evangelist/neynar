@@ -1,0 +1,38 @@
+{
+  "operationId": "lookup-webhook",
+  "method": "GET",
+  "path": "/v2/farcaster/webhook/",
+  "summary": "Fetch a webhook",
+  "description": "Fetch a webhook",
+  "tags": [
+    "Webhook"
+  ],
+  "parameters": [
+    {
+      "name": "webhook_id",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/WebhookResponse"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

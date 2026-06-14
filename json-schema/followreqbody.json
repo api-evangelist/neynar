@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FollowReqBody",
+  "title": "FollowReqBody",
+  "description": "Neynar Farcaster API schema for FollowReqBody",
+  "properties": {
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "target_fids": {
+      "example": [
+        194,
+        3
+      ],
+      "items": {
+        "minimum": 1,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "type": "array"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "target_fids"
+  ],
+  "type": "object"
+}

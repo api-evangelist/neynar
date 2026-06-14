@@ -1,0 +1,11 @@
+{
+  "term": "was_found",
+  "type": "property",
+  "description": "Whether the domain was found in the table before processing",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

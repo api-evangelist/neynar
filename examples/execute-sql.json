@@ -1,0 +1,168 @@
+{
+  "operationId": "execute-sql",
+  "method": "POST",
+  "path": "/v2/studio/deployment/database/sql",
+  "summary": "Execute raw SQL query (admin only)",
+  "description": "Executes a raw SQL query against the deployment database. Only SELECT, WITH, and EXPLAIN queries are allowed. Admin access required.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID)",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID (optional for admins)",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sql": {
+          "description": "SQL query to execute",
+          "maxLength": 10000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "deployment_id",
+        "sql"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "columns": {
+            "description": "Column metadata",
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "Column name",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Column data type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "executionTimeMs": {
+            "description": "Query execution time in milliseconds",
+            "type": "number"
+          },
+          "rowCount": {
+            "description": "Number of rows returned",
+            "type": "number"
+          },
+          "rows": {
+            "description": "Query result rows",
+            "items": {
+              "additionalProperties": {},
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "columns",
+          "rows",
+          "rowCount",
+          "executionTimeMs"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

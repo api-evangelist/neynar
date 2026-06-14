@@ -1,0 +1,11 @@
+{
+  "term": "verified_at",
+  "type": "property",
+  "description": "ISO timestamp when the verification was created",
+  "usedIn": [
+    "Verification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

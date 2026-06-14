@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SignedMessageBody",
+  "title": "SignedMessageBody",
+  "description": "Neynar Farcaster API schema for SignedMessageBody",
+  "properties": {
+    "app_domain": {
+      "description": "Domain of the mini app",
+      "example": "demo.neynar.com",
+      "type": "string"
+    },
+    "signed_message": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/components/schemas/EncodedJsonFarcasterSignature"
+        }
+      ],
+      "description": "JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object."
+    }
+  },
+  "required": [
+    "signed_message",
+    "app_domain"
+  ],
+  "type": "object"
+}

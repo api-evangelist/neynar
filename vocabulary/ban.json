@@ -1,0 +1,8 @@
+{
+  "term": "Ban",
+  "type": "tag",
+  "description": "Operations related to a ban",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "operationId": "fetch-block-list",
+  "method": "GET",
+  "path": "/v2/farcaster/block/list/",
+  "summary": "Blocked / Blocked by FIDs",
+  "description": "Fetches all FIDs that a user has blocked or has been blocked by",
+  "tags": [
+    "Block"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "blocker_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return the users that this user has blocked",
+      "schema": {
+        "example": 194,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "blocked_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return the users that have blocked this user",
+      "schema": {
+        "example": 194,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 20,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BlockListResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

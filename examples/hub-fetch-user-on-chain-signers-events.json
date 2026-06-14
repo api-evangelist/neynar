@@ -1,0 +1,58 @@
+{
+  "operationId": "hub-fetch-user-on-chain-signers-events",
+  "method": "GET",
+  "path": "/v1/onChainSignersByFid",
+  "summary": "Fetch a list of signers provided by an FID",
+  "description": "**Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.",
+  "tags": [
+    "OnChainEvents"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID being requested",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "signer",
+      "in": "query",
+      "required": false,
+      "description": "The optional key of signer",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/OnChainEventSigner"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OnChainEventSigner"
+                }
+              }
+            },
+            "required": [
+              "events"
+            ]
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

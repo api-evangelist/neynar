@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/HubInfoResponse",
+  "title": "Response Types for the Sync RPC Methods",
+  "description": "Neynar Hub API schema for HubInfoResponse",
+  "required": [
+    "hubOperatorFid",
+    "isSyncing",
+    "nickname",
+    "peerId",
+    "rootHash",
+    "version"
+  ],
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "isSyncing": {
+      "type": "boolean"
+    },
+    "nickname": {
+      "type": "string"
+    },
+    "rootHash": {
+      "type": "string"
+    },
+    "dbStats": {
+      "$ref": "#/components/schemas/DbStats"
+    },
+    "peerId": {
+      "type": "string"
+    },
+    "hubOperatorFid": {
+      "type": "integer",
+      "format": "uint64"
+    }
+  }
+}

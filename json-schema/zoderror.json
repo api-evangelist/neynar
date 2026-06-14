@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ZodError",
+  "title": "ZodError",
+  "description": "Neynar Farcaster API schema for ZodError",
+  "properties": {
+    "code": {
+      "example": "InvalidField",
+      "type": "string"
+    },
+    "errors": {
+      "items": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "received": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "expected",
+          "received",
+          "path",
+          "message"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "message": {
+      "example": "Invalid query parameters",
+      "type": "string"
+    }
+  },
+  "required": [
+    "message",
+    "code",
+    "errors"
+  ],
+  "type": "object"
+}

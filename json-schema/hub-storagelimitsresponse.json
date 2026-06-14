@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/StorageLimitsResponse",
+  "title": "Hub StorageLimitsResponse",
+  "description": "Neynar Hub API schema for StorageLimitsResponse",
+  "type": "object",
+  "properties": {
+    "limits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StorageLimit"
+      }
+    },
+    "units": {
+      "type": "integer",
+      "format": "uint64",
+      "description": "Total storage units bought by the user.",
+      "example": 1
+    },
+    "unitDetails": {
+      "type": "object",
+      "properties": {
+        "unitType": {
+          "type": "string",
+          "enum": [
+            "UnitTypeLegacy",
+            "UnitType2024"
+          ]
+        },
+        "unitSize": {
+          "type": "integer",
+          "format": "uint64",
+          "example": 1
+        }
+      }
+    },
+    "tier_subscriptions": {
+      "type": "array",
+      "description": "List of subscription tiers for the user. Each entry describes a subscription tier and its expiration.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tier_type": {
+            "type": "string",
+            "description": "The name of the subscription tier",
+            "enum": [
+              "Pro"
+            ]
+          },
+          "expires_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Expiration time of the subscription tier as a Unix timestamp (seconds since epoch).",
+            "example": 1749611663
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "limits",
+    "units",
+    "unitDetails"
+  ]
+}

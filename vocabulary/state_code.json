@@ -1,0 +1,11 @@
+{
+  "term": "state_code",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "LocationAddress"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

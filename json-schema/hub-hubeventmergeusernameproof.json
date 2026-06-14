@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/HubEventMergeUsernameProof",
+  "title": "Hub HubEventMergeUsernameProof",
+  "description": "Neynar Hub API schema for HubEventMergeUsernameProof",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "example": "HUB_EVENT_TYPE_MERGE_USERNAME_PROOF"
+    },
+    "id": {
+      "type": "integer",
+      "format": "uint64"
+    },
+    "mergeUsernameProofBody": {
+      "$ref": "#/components/schemas/MergeUserNameProofBody"
+    }
+  },
+  "required": [
+    "type",
+    "id",
+    "mergeUsernameProofBody"
+  ]
+}

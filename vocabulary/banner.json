@@ -1,0 +1,11 @@
+{
+  "term": "banner",
+  "type": "property",
+  "description": "Requires pro subscription.",
+  "usedIn": [
+    "UpdateUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

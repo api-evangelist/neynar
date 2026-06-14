@@ -1,0 +1,12 @@
+{
+  "term": "active",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook",
+    "WebhookPatchReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

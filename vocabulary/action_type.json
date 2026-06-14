@@ -1,0 +1,11 @@
+{
+  "term": "action_type",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameActionButton"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

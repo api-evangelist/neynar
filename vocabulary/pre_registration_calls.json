@@ -1,0 +1,11 @@
+{
+  "term": "pre_registration_calls",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserOnChainReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

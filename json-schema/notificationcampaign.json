@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NotificationCampaign",
+  "title": "NotificationCampaign",
+  "description": "Neynar Farcaster API schema for NotificationCampaign",
+  "properties": {
+    "body": {
+      "description": "The body text of the notification.",
+      "type": "string"
+    },
+    "completed_at": {
+      "description": "When the campaign reached a terminal state (completed/failed/canceled). Null while still queued or running.",
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for the notification campaign.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "queued_at": {
+      "description": "When the campaign was enqueued for async delivery.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "stats": {
+      "$ref": "#/components/schemas/NotificationCampaignStats"
+    },
+    "status": {
+      "description": "Lifecycle status of the campaign. Absent on campaigns created before async delivery was introduced.",
+      "enum": [
+        "queued",
+        "running",
+        "completed",
+        "failed",
+        "canceled"
+      ],
+      "type": "string"
+    },
+    "title": {
+      "description": "The title of the notification campaign.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "body",
+    "created_at",
+    "stats"
+  ],
+  "type": "object"
+}

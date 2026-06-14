@@ -1,0 +1,124 @@
+{
+  "operationId": "claim-credit-drop",
+  "method": "POST",
+  "path": "/v2/studio/credit-drops/claim",
+  "summary": "Claim credit drop",
+  "description": "Claims the most recent credit drop for the authenticated user. The drop's allowance is surfaced dynamically until expires_at and does not mutate extra_credits. Only drops created within the past 24 hours can be claimed.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "fid": {
+          "description": "Farcaster ID of the user",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fid"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "claimed": {
+            "enum": [
+              true
+            ],
+            "type": "boolean"
+          },
+          "new_extra_credits": {
+            "description": "New total extra credits balance",
+            "type": "number"
+          },
+          "reward_amount": {
+            "description": "Amount of credits added",
+            "type": "number"
+          }
+        },
+        "required": [
+          "claimed",
+          "reward_amount",
+          "new_extra_credits"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "402": {
+      "description": "Payment Required",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "code"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "409": {
+      "description": "Conflict",
+      "schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "410": {
+      "description": "Gone",
+      "schema": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

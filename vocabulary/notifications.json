@@ -1,0 +1,11 @@
+{
+  "term": "notifications",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "NotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

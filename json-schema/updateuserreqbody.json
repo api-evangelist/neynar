@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/UpdateUserReqBody",
+  "title": "UpdateUserReqBody",
+  "description": "Neynar Farcaster API schema for UpdateUserReqBody",
+  "properties": {
+    "banner": {
+      "description": "Requires pro subscription.",
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "location": {
+      "properties": {
+        "latitude": {
+          "format": "double",
+          "maximum": 90,
+          "minimum": -90,
+          "type": "number"
+        },
+        "longitude": {
+          "format": "double",
+          "maximum": 180,
+          "minimum": -180,
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "type": "object"
+    },
+    "pfp_url": {
+      "type": "string"
+    },
+    "primary_eth_address": {
+      "description": "Must be one of the verified addresses.",
+      "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+      "pattern": "^0x[a-fA-F0-9]{40}$",
+      "type": "string"
+    },
+    "primary_sol_address": {
+      "description": "Must be one of the verified addresses.",
+      "pattern": "^[1-9A-HJ-NP-Za-km-z]{32,44}$",
+      "type": "string"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "url": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "verified_accounts": {
+      "properties": {
+        "github": {
+          "type": "string"
+        },
+        "x": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "signer_uuid"
+  ],
+  "type": "object"
+}

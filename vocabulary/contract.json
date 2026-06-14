@@ -1,0 +1,11 @@
+{
+  "term": "contract",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DeployFungibleResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

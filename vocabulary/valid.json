@@ -1,0 +1,11 @@
+{
+  "term": "valid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ValidateMessageResponse"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

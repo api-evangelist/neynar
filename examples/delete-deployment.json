@@ -1,0 +1,108 @@
+{
+  "operationId": "delete-deployment",
+  "method": "DELETE",
+  "path": "/v2/studio/deployment/",
+  "summary": "Delete deployment(s)",
+  "description": "Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID). If provided, deletes this specific deployment.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Kubernetes deployment name. If not provided and deployment_id not provided, all deployments for the FID will be deleted",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fid"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "deletedCount": {
+            "type": "number"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

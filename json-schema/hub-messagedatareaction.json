@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataReaction",
+  "title": "Hub MessageDataReaction",
+  "description": "Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "reactionBody"
+      ],
+      "properties": {
+        "reactionBody": {
+          "description": "Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/ReactionBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

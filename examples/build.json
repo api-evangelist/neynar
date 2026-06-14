@@ -1,0 +1,104 @@
+{
+  "operationId": "build",
+  "method": "POST",
+  "path": "/v2/studio/deployment/build",
+  "summary": "Build generated app with automatic error fixing",
+  "description": "Runs Next.js build process for the generated app. If build fails, automatically calls a build-fixer agent to resolve errors. Streams build output and agent responses via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "build_type": {
+          "default": "vercel",
+          "description": "Build tool to use. \"vercel\" runs vercel build for production deployment. \"npm\" runs npm run build for dev server recovery.",
+          "enum": [
+            "npm",
+            "vercel"
+          ],
+          "type": "string"
+        },
+        "deployment_id": {
+          "description": "Deployment ID",
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "description": "Kubernetes deployment name",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Kubernetes namespace",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "409": {
+      "description": "Conflict",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

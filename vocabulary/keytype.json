@@ -1,0 +1,11 @@
+{
+  "term": "keyType",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SignerEventBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

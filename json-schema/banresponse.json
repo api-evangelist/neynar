@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BanResponse",
+  "title": "BanResponse",
+  "description": "Neynar Farcaster API schema for BanResponse",
+  "properties": {
+    "message": {
+      "nullable": true,
+      "type": "string"
+    },
+    "success": {
+      "example": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "success"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "term": "queued_at",
+  "type": "property",
+  "description": "When the campaign was enqueued for async delivery.",
+  "usedIn": [
+    "NotificationCampaign"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

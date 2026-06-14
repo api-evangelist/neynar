@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookSubscriptionFiltersCast",
+  "title": "WebhookSubscriptionFiltersCast",
+  "description": "Neynar Farcaster API schema for WebhookSubscriptionFiltersCast",
+  "properties": {
+    "author_fids": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "embedded_cast_author_fids": {
+      "description": "Filter for casts that contain embedded casts authored by these FIDs",
+      "items": {
+        "type": "number"
+      },
+      "type": "array"
+    },
+    "embedded_cast_hashes": {
+      "description": "Filter for casts that quote/embed these specific cast hashes",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "embeds": {
+      "description": "Regex pattern to match the embeded_url (key embeds) of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b",
+      "example": "\b(farcaster|neynar)\b",
+      "type": "string"
+    },
+    "exclude_author_fids": {
+      "description": "Exclude casts that matches these authors.\n**Note:**\nThis is applied as an AND operation against rest of the filters.\nRest of the filters are bundled as an OR operation.",
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "mentioned_fids": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "minimum_author_score": {
+      "default": 0,
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    },
+    "parent_author_fids": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "parent_hashes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "parent_urls": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "root_parent_urls": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "text": {
+      "description": "Regex pattern to match the text key of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen",
+      "example": "(?i)\\$degen",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

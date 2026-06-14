@@ -1,0 +1,14 @@
+{
+  "term": "updated_at",
+  "type": "property",
+  "description": "Last update timestamp",
+  "usedIn": [
+    "MiniappDomainResponse",
+    "Webhook",
+    "WebhookSecret",
+    "WebhookSubscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

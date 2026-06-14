@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataLink",
+  "title": "Hub MessageDataLink",
+  "description": "Represents a social graph connection between users in the Farcaster network. Currently supports following relationships between users.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "linkBody"
+      ],
+      "properties": {
+        "linkBody": {
+          "description": "Contains the details of the social connection, including the type of relationship and the target user.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/LinkBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

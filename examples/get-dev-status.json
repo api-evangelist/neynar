@@ -1,0 +1,167 @@
+{
+  "operationId": "get-dev-status",
+  "method": "GET",
+  "path": "/v2/studio/deployment/dev-status",
+  "summary": "Get dev status of a miniapp",
+  "description": "Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": false,
+      "description": "Deployment ID",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "namespace",
+      "in": "query",
+      "required": false,
+      "description": "Kubernetes namespace name",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "required": false,
+      "description": "Kubernetes deployment name",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "oneOf": [
+          {
+            "properties": {
+              "ready_to_publish": {
+                "type": "boolean"
+              },
+              "schema_version": {
+                "enum": [
+                  0
+                ],
+                "type": "number"
+              }
+            },
+            "required": [
+              "schema_version",
+              "ready_to_publish"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": {},
+            "properties": {
+              "completed_at": {
+                "nullable": true,
+                "type": "string"
+              },
+              "current_phase": {
+                "type": "number"
+              },
+              "last_updated_at": {
+                "nullable": true,
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": {},
+                "type": "object"
+              },
+              "phases": {
+                "additionalProperties": {
+                  "additionalProperties": {},
+                  "properties": {},
+                  "type": "object"
+                },
+                "type": "object"
+              },
+              "ready_to_publish": {
+                "type": "boolean"
+              },
+              "schema_version": {
+                "enum": [
+                  1
+                ],
+                "type": "number"
+              },
+              "started_at": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "schema_version",
+              "ready_to_publish",
+              "current_phase",
+              "started_at",
+              "last_updated_at",
+              "completed_at",
+              "phases",
+              "metadata"
+            ],
+            "type": "object"
+          }
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

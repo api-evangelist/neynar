@@ -1,0 +1,13 @@
+{
+  "term": "redirect_url",
+  "type": "property",
+  "description": "Url to redirect to after the signer is approved.\n**Note** : This should only be used when requesting a signer from a native mobile application.",
+  "usedIn": [
+    "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+    "RegisterDeveloperManagedSignedKeyReqBody",
+    "RegisterSignerKeyReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

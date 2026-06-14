@@ -1,0 +1,11 @@
+{
+  "term": "parent_hashes",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

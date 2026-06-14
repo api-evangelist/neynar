@@ -1,0 +1,11 @@
+{
+  "term": "allowlist_fids",
+  "type": "property",
+  "description": "Optional list of FIDs that are allowed to use this transaction mini app",
+  "usedIn": [
+    "TransactionFrameConfig"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

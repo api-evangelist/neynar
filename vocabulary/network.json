@@ -1,0 +1,17 @@
+{
+  "term": "network",
+  "type": "property",
+  "description": "Network/Chain name",
+  "usedIn": [
+    "DeployFungibleReqBody",
+    "Fungible",
+    "TransactionFrameDestination",
+    "TransactionSendFungiblesReqBody",
+    "TransactionSendTxInfo",
+    "MessageDataCommon"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

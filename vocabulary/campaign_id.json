@@ -1,0 +1,12 @@
+{
+  "term": "campaign_id",
+  "type": "property",
+  "description": "The unique identifier for the notification campaign.",
+  "usedIn": [
+    "QueuedFrameNotificationsResponse",
+    "SendFrameNotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

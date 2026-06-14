@@ -1,0 +1,11 @@
+{
+  "term": "logIndex",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "OnChainEventCommon"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

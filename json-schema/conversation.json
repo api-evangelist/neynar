@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Conversation",
+  "title": "Conversation",
+  "description": "Neynar Farcaster API schema for Conversation",
+  "properties": {
+    "conversation": {
+      "properties": {
+        "cast": {
+          "$ref": "#/components/schemas/CastAndConversations"
+        },
+        "chronological_parent_casts": {
+          "items": {
+            "$ref": "#/components/schemas/Cast"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "cast"
+      ],
+      "type": "object"
+    },
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    }
+  },
+  "required": [
+    "conversation"
+  ],
+  "type": "object"
+}

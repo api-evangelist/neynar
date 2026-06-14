@@ -1,0 +1,67 @@
+{
+  "operationId": "hub-fetch-casts-mentioning-user",
+  "method": "GET",
+  "path": "/v1/castsByMention",
+  "summary": "Mentioning an FID",
+  "description": "Fetch casts mentioning a user.",
+  "tags": [
+    "Casts"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID that is mentioned in a cast",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Casts.",
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "messages"
+            ],
+            "properties": {
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CastAdd"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

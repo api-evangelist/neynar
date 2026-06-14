@@ -1,0 +1,11 @@
+{
+  "term": "buttonIndex",
+  "type": "property",
+  "description": "Identifies which button the user clicked in the frame. Frames can have up to 4 buttons, numbered from 1 to 4.",
+  "usedIn": [
+    "FrameActionBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

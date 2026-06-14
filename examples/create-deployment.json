@@ -1,0 +1,194 @@
+{
+  "operationId": "create-deployment",
+  "method": "POST",
+  "path": "/v2/studio/deployment/",
+  "summary": "Create a miniapp generator deployment",
+  "description": "Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "display_name": {
+          "description": "Display name for the deployment",
+          "type": "string"
+        },
+        "env": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables for the deployment",
+          "type": "object"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fid"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "created_at": {
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "type": "string"
+          },
+          "deleted_at": {
+            "description": "Deletion timestamp",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "dev_server_state": {
+            "description": "Dev server process state: stopped, starting, running, crashed, or hung",
+            "enum": [
+              "stopped",
+              "starting",
+              "running",
+              "crashed",
+              "hung"
+            ],
+            "type": "string"
+          },
+          "display_name": {
+            "description": "Display name for the project",
+            "type": "string"
+          },
+          "generated_app_exists": {
+            "description": "Whether a generated app exists in the deployment",
+            "type": "boolean"
+          },
+          "generated_app_serving": {
+            "description": "Whether the generated app is currently serving",
+            "type": "boolean"
+          },
+          "github_url": {
+            "description": "GitHub repository SSH URL",
+            "type": "string"
+          },
+          "has_database": {
+            "description": "Whether the deployment has a Neon database configured",
+            "type": "boolean"
+          },
+          "id": {
+            "description": "Deployment ID",
+            "type": "string"
+          },
+          "is_ready": {
+            "description": "Deployment is ready to serve app and accept prompts",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Kubernetes deployment name",
+            "type": "string"
+          },
+          "namespace": {
+            "description": "Kubernetes namespace",
+            "type": "string"
+          },
+          "production_app_status": {
+            "description": "Production app deployment status from Vercel",
+            "properties": {
+              "created_at": {
+                "description": "Deployment creation timestamp (Unix ms)",
+                "type": "number"
+              },
+              "deployment_state": {
+                "description": "Deployment state (e.g., READY, BUILDING, ERROR)",
+                "type": "string"
+              },
+              "deployment_url": {
+                "description": "Vercel deployment URL",
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Vercel project ID",
+                "type": "string"
+              },
+              "target": {
+                "description": "Deployment target (e.g., production, preview)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "project_id",
+              "deployment_url",
+              "deployment_state",
+              "created_at"
+            ],
+            "type": "object"
+          },
+          "updated_at": {
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "url": {
+            "description": "Public URL for the deployment",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "deleted_at",
+          "updated_at",
+          "created_at",
+          "namespace",
+          "name",
+          "is_ready",
+          "generated_app_exists",
+          "generated_app_serving"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

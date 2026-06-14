@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookSubscriptionFiltersFollow",
+  "title": "WebhookSubscriptionFiltersFollow",
+  "description": "Neynar Farcaster API schema for WebhookSubscriptionFiltersFollow",
+  "properties": {
+    "fids": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "target_fids": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "term": "proofs",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UsernameProofsResponse"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

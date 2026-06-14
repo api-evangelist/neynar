@@ -1,0 +1,11 @@
+{
+  "term": "conversation",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Conversation"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

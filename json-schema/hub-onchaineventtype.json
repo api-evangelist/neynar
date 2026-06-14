@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/OnChainEventType",
+  "title": "Hub OnChainEventType",
+  "description": "Neynar Hub API schema for OnChainEventType",
+  "type": "string",
+  "default": "EVENT_TYPE_SIGNER",
+  "enum": [
+    "EVENT_TYPE_SIGNER",
+    "EVENT_TYPE_SIGNER_MIGRATED",
+    "EVENT_TYPE_ID_REGISTER",
+    "EVENT_TYPE_STORAGE_RENT"
+  ]
+}

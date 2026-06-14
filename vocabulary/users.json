@@ -1,0 +1,14 @@
+{
+  "term": "users",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BestFriendsResponse",
+    "BulkUsersResponse",
+    "FollowersResponse",
+    "UsersResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

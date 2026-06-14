@@ -1,0 +1,166 @@
+{
+  "operationId": "get-wallet-balances",
+  "method": "GET",
+  "path": "/v2/onchain/token/balances",
+  "summary": "Get wallet token balances",
+  "description": "Fetch all token balances for a wallet address across multiple networks. Results are paginated.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "networks",
+      "in": "query",
+      "required": true,
+      "description": "Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum).",
+      "schema": {
+        "example": "base",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "address",
+      "in": "query",
+      "required": true,
+      "description": "Wallet address",
+      "schema": {
+        "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+        "pattern": "^0x[a-fA-F0-9]{40}$",
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to return (max 100)",
+      "schema": {
+        "default": 50,
+        "example": 50,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "balances": {
+            "items": {
+              "properties": {
+                "address": {
+                  "description": "Token contract address",
+                  "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+                  "pattern": "^0x[a-fA-F0-9]{40}$",
+                  "type": "string"
+                },
+                "balance": {
+                  "description": "Raw token balance",
+                  "example": "1000000000",
+                  "type": "string"
+                },
+                "balance_usd": {
+                  "description": "Balance value in USD",
+                  "example": "1000.50",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "decimals": {
+                  "description": "Token decimals",
+                  "example": 6,
+                  "type": "integer"
+                },
+                "image_url": {
+                  "description": "Token logo URL",
+                  "example": "https://example.com/token.png",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Token name",
+                  "example": "USD Coin",
+                  "type": "string"
+                },
+                "network": {
+                  "$ref": "#/components/schemas/Network"
+                },
+                "price_usd": {
+                  "description": "Token price in USD",
+                  "example": "1.00",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "Token symbol",
+                  "example": "USDC",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "network",
+                "address",
+                "name",
+                "symbol",
+                "decimals",
+                "balance",
+                "balance_usd",
+                "price_usd",
+                "image_url"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "next": {
+            "properties": {
+              "cursor": {
+                "description": "Pagination cursor for next page, null if no more results",
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cursor"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "balances",
+          "next"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

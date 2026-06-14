@@ -1,0 +1,11 @@
+{
+  "term": "authors",
+  "type": "property",
+  "description": "Up to five recent Farcaster users who posted about the topic",
+  "usedIn": [
+    "TrendingTopic"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

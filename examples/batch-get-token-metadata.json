@@ -1,0 +1,205 @@
+{
+  "operationId": "batch-get-token-metadata",
+  "method": "GET",
+  "path": "/v2/onchain/token/metadata/batch",
+  "summary": "Batch get token metadata",
+  "description": "Fetch metadata for multiple tokens in a single request. Provide comma-separated networks and addresses in the same order. Maximum 100 tokens per request.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "networks",
+      "in": "query",
+      "required": true,
+      "description": "Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum).",
+      "schema": {
+        "example": "base",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "addresses",
+      "in": "query",
+      "required": true,
+      "description": "Comma-separated list of token contract addresses corresponding to each network",
+      "schema": {
+        "example": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913,0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "tokens": {
+            "items": {
+              "nullable": true,
+              "properties": {
+                "address": {
+                  "description": "Token contract address",
+                  "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+                  "pattern": "^0x[a-fA-F0-9]{40}$",
+                  "type": "string"
+                },
+                "decimals": {
+                  "description": "Token decimals",
+                  "example": 6,
+                  "type": "integer"
+                },
+                "description": {
+                  "description": "Token description",
+                  "example": "USDC is a fully collateralized US dollar stablecoin",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "fdv": {
+                  "description": "Fully diluted valuation in USD",
+                  "example": "25000000000",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "holder_count": {
+                  "description": "Number of token holders",
+                  "example": 1500000,
+                  "nullable": true,
+                  "type": "integer"
+                },
+                "image_url": {
+                  "description": "Token logo URL",
+                  "example": "https://example.com/token.png",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "liquidity": {
+                  "description": "Total liquidity in USD",
+                  "example": "500000000",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "market_cap": {
+                  "description": "Market capitalization in USD",
+                  "example": "25000000000",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Token name",
+                  "example": "USD Coin",
+                  "type": "string"
+                },
+                "network": {
+                  "$ref": "#/components/schemas/Network"
+                },
+                "price_change_24h_pct": {
+                  "description": "24-hour price change percentage",
+                  "example": -1.2,
+                  "nullable": true,
+                  "type": "number"
+                },
+                "price_change_6h_pct": {
+                  "description": "6-hour price change percentage",
+                  "example": 0.5,
+                  "nullable": true,
+                  "type": "number"
+                },
+                "price_source": {
+                  "description": "Source of price data",
+                  "enum": [
+                    "onchain",
+                    "coingecko"
+                  ],
+                  "example": "onchain",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "price_updated_at": {
+                  "description": "Timestamp when price data was last updated (milliseconds)",
+                  "example": 1707177600000,
+                  "nullable": true,
+                  "type": "integer"
+                },
+                "price_usd": {
+                  "description": "Token price in USD",
+                  "example": "1.00",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "symbol": {
+                  "description": "Token symbol",
+                  "example": "USDC",
+                  "type": "string"
+                },
+                "total_supply": {
+                  "description": "Total token supply",
+                  "example": "1000000000000",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "volume_24h": {
+                  "description": "24-hour trading volume in USD",
+                  "example": "150000000",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "volume_6h": {
+                  "description": "6-hour trading volume in USD",
+                  "example": "50000000",
+                  "nullable": true,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "network",
+                "address",
+                "name",
+                "symbol",
+                "decimals",
+                "total_supply",
+                "image_url",
+                "price_usd",
+                "market_cap",
+                "fdv",
+                "liquidity",
+                "volume_6h",
+                "volume_24h",
+                "price_change_6h_pct",
+                "price_change_24h_pct",
+                "holder_count",
+                "description",
+                "price_updated_at",
+                "price_source"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "tokens"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

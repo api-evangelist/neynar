@@ -1,0 +1,13 @@
+{
+  "term": "details",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BulkFollowResponse",
+    "ErrorResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "operationId": "search-frames",
+  "method": "GET",
+  "path": "/v2/farcaster/frame/search/",
+  "summary": "Search mini apps",
+  "description": "Search for mini apps based on a query string",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [
+    {
+      "name": "q",
+      "in": "query",
+      "required": true,
+      "description": "Query string to search for mini apps",
+      "schema": {
+        "maxLength": 32,
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 20,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "networks",
+      "in": "query",
+      "required": false,
+      "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array.",
+      "schema": {
+        "example": [
+          "ethereum",
+          "base",
+          "solana"
+        ],
+        "items": {
+          "description": "Networks supported by mini apps",
+          "enum": [
+            "ethereum",
+            "base",
+            "arbitrum",
+            "arbitrum-sepolia",
+            "base-sepolia",
+            "degen",
+            "gnosis",
+            "optimism",
+            "optimism-sepolia",
+            "polygon",
+            "ethereum-sepolia",
+            "zora",
+            "unichain",
+            "monad-testnet",
+            "celo",
+            "solana"
+          ],
+          "example": "base",
+          "type": "string"
+        },
+        "title": "MiniappNetworksSchema",
+        "type": "array"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FrameCatalogResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "operationId": "fetch-trending-fungibles",
+  "method": "GET",
+  "path": "/v2/farcaster/fungible/trending/",
+  "summary": "Trending fungibles",
+  "description": "Fetch trending fungibles based on buy activity from watched addresses. Returns fungibles ranked by USD buy volume and buy count within the specified time window.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "network",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "enum": [
+          "base"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "time_window",
+      "in": "query",
+      "required": false,
+      "description": "Time window for trending calculations e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\"",
+      "schema": {
+        "default": "24h",
+        "enum": [
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "7d"
+        ],
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "trending": {
+            "items": {
+              "properties": {
+                "fungible": {
+                  "properties": {
+                    "address": {
+                      "description": "The contract address of the token",
+                      "type": "string"
+                    },
+                    "decimals": {
+                      "description": "The number of decimals the token uses",
+                      "type": "integer"
+                    },
+                    "logo": {
+                      "description": "The logo URL of the token",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The token name e.g. \"Ethereum\"",
+                      "type": "string"
+                    },
+                    "network": {
+                      "$ref": "#/components/schemas/Network"
+                    },
+                    "object": {
+                      "enum": [
+                        "fungible"
+                      ],
+                      "type": "string"
+                    },
+                    "price": {
+                      "properties": {
+                        "in_usd": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "in_usd"
+                      ],
+                      "type": "object"
+                    },
+                    "symbol": {
+                      "description": "The token symbol e.g. \"ETH\"",
+                      "type": "string"
+                    },
+                    "total_supply": {
+                      "description": "The total supply of the token",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "object",
+                    "network",
+                    "name",
+                    "symbol",
+                    "address",
+                    "decimals",
+                    "total_supply",
+                    "logo"
+                  ],
+                  "type": "object"
+                },
+                "object": {
+                  "enum": [
+                    "trending_fungible"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "object",
+                "fungible"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trending"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

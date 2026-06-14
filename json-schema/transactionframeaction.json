@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionFrameAction",
+  "title": "TransactionFrameAction",
+  "description": "Action button for primary CTA on the transaction mini app",
+  "properties": {
+    "button_color": {
+      "description": "Custom button color for action button",
+      "example": "#000000",
+      "type": "string"
+    },
+    "text": {
+      "description": "Custom text for action button",
+      "example": "Pay",
+      "type": "string"
+    },
+    "text_color": {
+      "description": "Custom text color for action button",
+      "example": "#FFFFFF",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

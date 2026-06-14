@@ -1,0 +1,12 @@
+{
+  "term": "signer_approval_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DeveloperManagedSigner",
+    "Signer"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

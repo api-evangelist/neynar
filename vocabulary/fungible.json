@@ -1,0 +1,11 @@
+{
+  "term": "fungible",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FarcasterFungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

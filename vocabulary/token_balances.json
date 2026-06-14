@@ -1,0 +1,11 @@
+{
+  "term": "token_balances",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddressBalance"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

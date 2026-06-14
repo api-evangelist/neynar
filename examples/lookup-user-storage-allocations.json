@@ -1,0 +1,42 @@
+{
+  "operationId": "lookup-user-storage-allocations",
+  "method": "GET",
+  "path": "/v2/farcaster/storage/allocations/",
+  "summary": "Allocation of user",
+  "description": "Fetches storage allocations for a given user",
+  "tags": [
+    "Storage"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "title": "Fid",
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/StorageAllocationsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

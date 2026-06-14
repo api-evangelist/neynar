@@ -1,0 +1,12 @@
+{
+  "term": "eventType",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "IdRegisterEventBody",
+    "SignerEventBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/StorageAllocation",
+  "title": "StorageAllocation",
+  "description": "Neynar Farcaster API schema for StorageAllocation",
+  "properties": {
+    "expiry": {
+      "example": "2024-10-08T22:03:49.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "object": {
+      "example": "storage_allocation",
+      "type": "string"
+    },
+    "timestamp": {
+      "example": "2023-10-09T22:03:49.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "units": {
+      "example": 10,
+      "type": "integer"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    }
+  },
+  "type": "object"
+}

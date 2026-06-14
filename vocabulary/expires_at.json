@@ -1,0 +1,13 @@
+{
+  "term": "expires_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "SubscribedToObject",
+    "WebhookSecret"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

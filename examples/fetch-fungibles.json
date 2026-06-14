@@ -1,0 +1,61 @@
+{
+  "operationId": "fetch-fungibles",
+  "method": "GET",
+  "path": "/v2/farcaster/fungibles/",
+  "summary": "Fetch fungibles",
+  "description": "Fetch details for fungible assets identified by fungible identifiers.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fungibles",
+      "in": "query",
+      "required": true,
+      "description": "Comma-separated fungible identifiers",
+      "schema": {
+        "example": "eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913,eip155:8453/erc20:0x2f6c17fa9f9bc3600346ab4e48c0701e1d5962ae",
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Optional FID of the viewer to personalize cast count filtering",
+      "schema": {
+        "type": "number"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FungiblesResponseSchema"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "term": "count",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastReplies",
+    "Notification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionFrameConfig",
+  "title": "TransactionFrameConfig",
+  "description": "Neynar Farcaster API schema for TransactionFrameConfig",
+  "properties": {
+    "action": {
+      "$ref": "#/components/schemas/TransactionFrameAction"
+    },
+    "allowlist_fids": {
+      "description": "Optional list of FIDs that are allowed to use this transaction mini app",
+      "items": {
+        "$ref": "#/components/schemas/Fid"
+      },
+      "type": "array"
+    },
+    "line_items": {
+      "description": "List of items included in the transaction",
+      "items": {
+        "$ref": "#/components/schemas/TransactionFrameLineItem"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "line_items"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+{
+  "term": "description",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "TransactionFrameLineItem",
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

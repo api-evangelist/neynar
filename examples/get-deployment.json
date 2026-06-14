@@ -1,0 +1,221 @@
+{
+  "operationId": "get-deployment",
+  "method": "GET",
+  "path": "/v2/studio/deployment/by-name-and-fid",
+  "summary": "Get deployment info",
+  "description": "Fetches info about a miniapp generator deployment by its deployment_id or name and creator's Farcaster ID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": false,
+      "description": "Deployment ID (UUID). Required if name not provided.",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "required": false,
+      "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "namespace",
+      "in": "query",
+      "required": false,
+      "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "created_at": {
+            "description": "Creation timestamp",
+            "format": "date-time",
+            "type": "string"
+          },
+          "deleted_at": {
+            "description": "Deletion timestamp",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "dev_server_state": {
+            "description": "Dev server process state: stopped, starting, running, crashed, or hung",
+            "enum": [
+              "stopped",
+              "starting",
+              "running",
+              "crashed",
+              "hung"
+            ],
+            "type": "string"
+          },
+          "display_name": {
+            "description": "Display name for the project",
+            "type": "string"
+          },
+          "generated_app_exists": {
+            "description": "Whether a generated app exists in the deployment",
+            "type": "boolean"
+          },
+          "generated_app_serving": {
+            "description": "Whether the generated app is currently serving",
+            "type": "boolean"
+          },
+          "github_url": {
+            "description": "GitHub repository SSH URL",
+            "type": "string"
+          },
+          "has_database": {
+            "description": "Whether the deployment has a Neon database configured",
+            "type": "boolean"
+          },
+          "id": {
+            "description": "Deployment ID",
+            "type": "string"
+          },
+          "is_ready": {
+            "description": "Deployment is ready to serve app and accept prompts",
+            "type": "boolean"
+          },
+          "name": {
+            "description": "Kubernetes deployment name",
+            "type": "string"
+          },
+          "namespace": {
+            "description": "Kubernetes namespace",
+            "type": "string"
+          },
+          "production_app_status": {
+            "description": "Production app deployment status from Vercel",
+            "properties": {
+              "created_at": {
+                "description": "Deployment creation timestamp (Unix ms)",
+                "type": "number"
+              },
+              "deployment_state": {
+                "description": "Deployment state (e.g., READY, BUILDING, ERROR)",
+                "type": "string"
+              },
+              "deployment_url": {
+                "description": "Vercel deployment URL",
+                "type": "string"
+              },
+              "project_id": {
+                "description": "Vercel project ID",
+                "type": "string"
+              },
+              "target": {
+                "description": "Deployment target (e.g., production, preview)",
+                "type": "string"
+              }
+            },
+            "required": [
+              "project_id",
+              "deployment_url",
+              "deployment_state",
+              "created_at"
+            ],
+            "type": "object"
+          },
+          "updated_at": {
+            "description": "Last update timestamp",
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "url": {
+            "description": "Public URL for the deployment",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "deleted_at",
+          "updated_at",
+          "created_at",
+          "namespace",
+          "name",
+          "is_ready",
+          "generated_app_exists",
+          "generated_app_serving"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

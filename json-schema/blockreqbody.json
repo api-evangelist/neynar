@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BlockReqBody",
+  "title": "BlockReqBody",
+  "description": "Neynar Farcaster API schema for BlockReqBody",
+  "properties": {
+    "blocked_fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "blocked_fid"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/Message",
+  "title": "Hub Message",
+  "description": "A Message is a delta operation on the Farcaster network that represents a state change. Messages are the fundamental unit of data in Farcaster and can represent various actions like:\n- Creating or removing casts (posts)\n- Adding or removing reactions\n- Following or unfollowing users\n- Updating profile data\n- Verifying Ethereum addresses\n\nEach message contains:\n- A MessageData object with the actual content\n- A hash of the content for integrity verification\n- A cryptographic signature to prove authenticity\n- The signer's public key for verification\n\nMessages are immutable once created and form an append-only log of all user actions on the network.",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "data": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/MessageDataCastAdd"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataCastRemove"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataReaction"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataLink"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataVerificationAdd"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataVerificationRemove"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataUserDataAdd"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataUsernameProof"
+            },
+            {
+              "$ref": "#/components/schemas/MessageDataFrameAction"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "type",
+            "mapping": {
+              "MESSAGE_TYPE_CAST_ADD": "#/components/schemas/MessageDataCastAdd",
+              "MESSAGE_TYPE_CAST_REMOVE": "#/components/schemas/MessageDataCastRemove",
+              "MESSAGE_TYPE_REACTION_ADD": "#/components/schemas/MessageDataReaction",
+              "MESSAGE_TYPE_REACTION_REMOVE": "#/components/schemas/MessageDataReaction",
+              "MESSAGE_TYPE_LINK_ADD": "#/components/schemas/MessageDataLink",
+              "MESSAGE_TYPE_LINK_REMOVE": "#/components/schemas/MessageDataLink",
+              "MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS": "#/components/schemas/MessageDataVerificationAdd",
+              "MESSAGE_TYPE_VERIFICATION_REMOVE": "#/components/schemas/MessageDataVerificationRemove",
+              "MESSAGE_TYPE_USER_DATA_ADD": "#/components/schemas/MessageDataUserDataAdd",
+              "MESSAGE_TYPE_USERNAME_PROOF": "#/components/schemas/MessageDataUsernameProof",
+              "MESSAGE_TYPE_FRAME_ACTION": "#/components/schemas/MessageDataFrameAction"
+            }
+          }
+        }
+      },
+      "required": [
+        "data"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/MessageCommon"
+    }
+  ]
+}

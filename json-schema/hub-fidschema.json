@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/FidSchema",
+  "title": "Hub FidSchema",
+  "description": "Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.\n",
+  "type": "integer",
+  "format": "uint64",
+  "minimum": 1,
+  "example": 1
+}

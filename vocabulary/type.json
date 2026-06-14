@@ -1,0 +1,34 @@
+{
+  "term": "type",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "ImageObject",
+    "MarkNotificationsAsSeenReqBody",
+    "Notification",
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData",
+    "TransactionFramePay",
+    "VideoObject",
+    "HubEventMergeMessage",
+    "HubEventMergeOnChainEvent",
+    "HubEventMergeUsernameProof",
+    "HubEventPruneMessage",
+    "HubEventRevokeMessage",
+    "LinkBody",
+    "MessageDataCommon",
+    "OnChainEventCommon",
+    "ReactionBody",
+    "UserDataBody",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

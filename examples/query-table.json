@@ -1,0 +1,207 @@
+{
+  "operationId": "query-table",
+  "method": "POST",
+  "path": "/v2/studio/deployment/database/query",
+  "summary": "Query table data",
+  "description": "Query data from a table with pagination and sorting.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "columns": {
+          "description": "Columns to select (defaults to all)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deployment_id": {
+          "description": "Deployment ID (UUID)",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user. Required for non-admin users.",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "description": "Maximum rows to return (default: 100, max: 1000)",
+          "maximum": 1000,
+          "minimum": 1,
+          "type": "number"
+        },
+        "offset": {
+          "description": "Number of rows to skip",
+          "minimum": 0,
+          "type": "number"
+        },
+        "orderBy": {
+          "description": "Column to sort by",
+          "type": "string"
+        },
+        "orderDirection": {
+          "description": "Sort direction",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "type": "string"
+        },
+        "table": {
+          "description": "Table name to query",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "deployment_id",
+        "table"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "columns": {
+            "description": "Column metadata",
+            "items": {
+              "properties": {
+                "name": {
+                  "description": "Column name",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "Column data type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "hasMore": {
+            "description": "Whether more rows are available",
+            "type": "boolean"
+          },
+          "limit": {
+            "description": "Applied limit",
+            "type": "number"
+          },
+          "offset": {
+            "description": "Applied offset",
+            "type": "number"
+          },
+          "rows": {
+            "description": "Query result rows",
+            "items": {
+              "additionalProperties": {},
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "totalCount": {
+            "description": "Total number of rows in table",
+            "type": "number"
+          }
+        },
+        "required": [
+          "columns",
+          "rows",
+          "totalCount",
+          "limit",
+          "offset",
+          "hasMore"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

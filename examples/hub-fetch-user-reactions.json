@@ -1,0 +1,76 @@
+{
+  "operationId": "hub-fetch-user-reactions",
+  "method": "GET",
+  "path": "/v1/reactionsByFid",
+  "summary": "By FID",
+  "description": "Fetch reactions by a user.",
+  "tags": [
+    "Reactions"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the reaction's creator",
+      "schema": {
+        "$ref": "#/components/schemas/FidSchema"
+      }
+    },
+    {
+      "name": "reaction_type",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/ReactionType"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Reactions.",
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "messages"
+            ],
+            "properties": {
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Reaction"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

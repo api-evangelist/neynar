@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionFrameLineItem",
+  "title": "TransactionFrameLineItem",
+  "description": "Neynar Farcaster API schema for TransactionFrameLineItem",
+  "properties": {
+    "description": {
+      "description": "Description of the line item in transaction",
+      "example": "Payment for goods",
+      "type": "string"
+    },
+    "image": {
+      "description": "Optional image URL for the line item in transaction",
+      "example": "https://i.imgur.com/ovGo3sz.png",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the line item in transaction",
+      "example": "Payment",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "description"
+  ],
+  "type": "object"
+}

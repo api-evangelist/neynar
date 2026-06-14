@@ -1,0 +1,19 @@
+{
+  "term": "success",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AppHostPostEventResponse",
+    "BanResponse",
+    "BulkFollowResponse",
+    "FollowResponse",
+    "MuteResponse",
+    "OperationResponse",
+    "PostCastResponse",
+    "RegisterUserResponse",
+    "WebhookResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

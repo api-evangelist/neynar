@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/PostCastReqBody",
+  "title": "PostCastReqBody",
+  "description": "Neynar Farcaster API schema for PostCastReqBody",
+  "properties": {
+    "channel_id": {
+      "description": "Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast",
+      "example": "neynar",
+      "type": "string"
+    },
+    "embeds": {
+      "items": {
+        "$ref": "#/components/schemas/PostCastReqBodyEmbeds"
+      },
+      "maxItems": 2,
+      "type": "array"
+    },
+    "idem": {
+      "$ref": "#/components/schemas/Idem"
+    },
+    "parent": {
+      "$ref": "#/components/schemas/CastParent"
+    },
+    "parent_author_fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "text": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "signer_uuid"
+  ],
+  "type": "object"
+}

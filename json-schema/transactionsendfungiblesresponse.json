@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionSendFungiblesResponse",
+  "title": "TransactionSendFungiblesResponse",
+  "description": "Neynar Farcaster API schema for TransactionSendFungiblesResponse",
+  "properties": {
+    "send_receipts": {
+      "items": {
+        "$ref": "#/components/schemas/TransactionSendFungiblesReceipt"
+      },
+      "type": "array"
+    },
+    "transactions": {
+      "items": {
+        "$ref": "#/components/schemas/TransactionSendTxInfo"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "send_receipts",
+    "transactions"
+  ],
+  "type": "object"
+}

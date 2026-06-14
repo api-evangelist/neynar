@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FramePayTransactionReqBody",
+  "title": "FramePayTransactionReqBody",
+  "description": "Neynar Farcaster API schema for FramePayTransactionReqBody",
+  "properties": {
+    "config": {
+      "$ref": "#/components/schemas/TransactionFrameConfig"
+    },
+    "idem": {
+      "$ref": "#/components/schemas/Idem"
+    },
+    "transaction": {
+      "properties": {
+        "to": {
+          "$ref": "#/components/schemas/TransactionFrameDestination"
+        }
+      },
+      "required": [
+        "to"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "transaction",
+    "config"
+  ],
+  "type": "object"
+}

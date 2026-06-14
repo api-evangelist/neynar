@@ -1,0 +1,20 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:Signer",
+  "schema:name": "Signer",
+  "schema:description": "Neynar Signer resource",
+  "properties": [
+    "fid",
+    "object",
+    "permissions",
+    "public_key",
+    "signer_approval_url",
+    "signer_uuid",
+    "status"
+  ],
+  "required": [
+    "signer_uuid",
+    "public_key",
+    "status"
+  ]
+}

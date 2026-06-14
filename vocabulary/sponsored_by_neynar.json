@@ -1,0 +1,11 @@
+{
+  "term": "sponsored_by_neynar",
+  "type": "property",
+  "description": "Neynar will sponsor the signer if set to true.\n**Note: ** If sponsor.fid and sponsor.signature are provided along with sponsored_by_neynar set to true,\nthe sponsor.fid and sponsor.signature will be ignored.\nNeynar will sponsor the signer on behalf of the user. The developer will get charged in credits.",
+  "usedIn": [
+    "SignedKeyRequestSponsor"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

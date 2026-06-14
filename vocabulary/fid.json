@@ -1,0 +1,33 @@
+{
+  "term": "fid",
+  "type": "property",
+  "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+  "usedIn": [
+    "BuyStorageReqBody",
+    "CastId",
+    "DeveloperManagedSigner",
+    "InviteChannelMemberReqBody",
+    "MiniappDomainResponse",
+    "MuteReqBody",
+    "PostCastReqBodyEmbedsCastIdProperties",
+    "ReactionLike",
+    "ReactionRecast",
+    "RegisterUserReqBody",
+    "RemoveChannelMemberReqBody",
+    "SignedKeyRequestSponsor",
+    "Signer",
+    "SignerUuidBody",
+    "TransactionSendFungiblesReceipt",
+    "TransactionSendFungiblesRecipient",
+    "User",
+    "UserDehydrated",
+    "UserFIDResponse",
+    "MessageDataCommon",
+    "OnChainEventCommon",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "external_link",
+  "type": "property",
+  "description": "Channel's external link.",
+  "usedIn": [
+    "Channel"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

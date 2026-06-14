@@ -1,0 +1,55 @@
+{
+  "operationId": "fetch-relevant-followers",
+  "method": "GET",
+  "path": "/v2/farcaster/followers/relevant/",
+  "summary": "Relevant followers",
+  "description": "Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\".",
+  "tags": [
+    "Follows"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "target_fid",
+      "in": "query",
+      "required": true,
+      "description": "User who's profile you are looking at",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/RelevantFollowersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

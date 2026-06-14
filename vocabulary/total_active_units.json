@@ -1,0 +1,12 @@
+{
+  "term": "total_active_units",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageAllocationsResponse",
+    "StorageUsageResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

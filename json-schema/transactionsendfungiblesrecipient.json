@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionSendFungiblesRecipient",
+  "title": "TransactionSendFungiblesRecipient",
+  "description": "Neynar Farcaster API schema for TransactionSendFungiblesRecipient",
+  "properties": {
+    "amount": {
+      "description": "Amount to send (must be greater than 0)",
+      "minimum": 1e-08,
+      "type": "number"
+    },
+    "fid": {
+      "$ref": "#/components/schemas/Fid"
+    }
+  },
+  "required": [
+    "fid",
+    "amount"
+  ],
+  "type": "object"
+}

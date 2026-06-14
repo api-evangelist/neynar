@@ -1,0 +1,11 @@
+{
+  "term": "pinned_cast_hash",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

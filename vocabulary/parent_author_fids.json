@@ -1,0 +1,11 @@
+{
+  "term": "parent_author_fids",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

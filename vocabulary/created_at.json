@@ -1,0 +1,16 @@
+{
+  "term": "created_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "MiniappDomainResponse",
+    "NotificationCampaign",
+    "Webhook",
+    "WebhookSecret",
+    "WebhookSubscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AuthorizationUrlResponse",
+  "title": "AuthorizationUrlResponse",
+  "description": "Neynar Farcaster API schema for AuthorizationUrlResponse",
+  "properties": {
+    "authorization_url": {
+      "format": "uri",
+      "type": "string"
+    }
+  },
+  "required": [
+    "authorization_url"
+  ],
+  "type": "object"
+}

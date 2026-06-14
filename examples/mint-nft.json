@@ -1,0 +1,278 @@
+{
+  "operationId": "mint-nft",
+  "method": "POST",
+  "path": "/v2/farcaster/nft/mint/",
+  "summary": "Mint NFT(s)",
+  "description": "Mints an NFT to one or more recipients on a specified network and contract, using a configured server wallet. Contact us to set up your wallet configuration if you don't have one.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "description": "Request body for NFT minting operation.",
+      "properties": {
+        "async": {
+          "description": "If true, returns immediately after sending the transaction.",
+          "example": false,
+          "type": "boolean"
+        },
+        "contract_address": {
+          "description": "Ethereum address",
+          "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "title": "EthAddress",
+          "type": "string"
+        },
+        "network": {
+          "description": "Network to mint on.",
+          "enum": [
+            "base",
+            "optimism",
+            "base-sepolia"
+          ],
+          "example": "base",
+          "type": "string"
+        },
+        "recipients": {
+          "description": "List of recipients to mint to (1-200 recipients allowed).",
+          "items": {
+            "anyOf": [
+              {
+                "properties": {
+                  "address": {
+                    "description": "Ethereum address",
+                    "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+                    "pattern": "^0x[a-fA-F0-9]{40}$",
+                    "title": "EthAddress",
+                    "type": "string"
+                  },
+                  "fid": {
+                    "not": {}
+                  },
+                  "quantity": {
+                    "default": 1,
+                    "description": "Quantity to mint (must be at least 1). Defaults to 1.",
+                    "example": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "address"
+                ],
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "address": {
+                    "not": {}
+                  },
+                  "fid": {
+                    "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+                    "example": 3,
+                    "format": "int32",
+                    "minimum": 0,
+                    "title": "Fid",
+                    "type": "integer"
+                  },
+                  "quantity": {
+                    "default": 1,
+                    "description": "Quantity to mint (must be at least 1). Defaults to 1.",
+                    "example": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "fid"
+                ],
+                "type": "object"
+              }
+            ],
+            "description": "NFT mint recipient. Exactly one of \"address\" or \"fid\" must be set."
+          },
+          "maxItems": 200,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "network",
+        "contract_address",
+        "recipients"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "description": "Response for NFT minting operation.",
+        "properties": {
+          "transactions": {
+            "description": "Array of per-recipient mint results (success or error).",
+            "items": {
+              "oneOf": [
+                {
+                  "description": "Successful mint transaction.",
+                  "properties": {
+                    "receipt": {
+                      "description": "Transaction receipt (if async is false).",
+                      "nullable": true,
+                      "properties": {
+                        "block_number": {
+                          "type": "string"
+                        },
+                        "gas_used": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "gas_used",
+                        "block_number"
+                      ],
+                      "type": "object"
+                    },
+                    "recipient": {
+                      "description": "Resolved mint recipient.",
+                      "properties": {
+                        "address": {
+                          "$ref": "#/components/schemas/EthAddress"
+                        },
+                        "fid": {
+                          "$ref": "#/components/schemas/Fid"
+                        },
+                        "quantity": {
+                          "minimum": 1,
+                          "type": "integer"
+                        },
+                        "tokens": {
+                          "description": "Minted token IDs parsed from Transfer events (sync mode only).",
+                          "items": {
+                            "properties": {
+                              "token_id": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "token_id"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "address",
+                        "quantity"
+                      ],
+                      "type": "object"
+                    },
+                    "transaction_hash": {
+                      "$ref": "#/components/schemas/PrefixedHexString"
+                    }
+                  },
+                  "required": [
+                    "recipient",
+                    "transaction_hash"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "description": "Failed mint for a single recipient.",
+                  "properties": {
+                    "error": {
+                      "description": "Error message for this recipient.",
+                      "example": "No supported mint project detected",
+                      "type": "string"
+                    },
+                    "recipient": {
+                      "description": "Mint recipient that failed.",
+                      "properties": {
+                        "address": {
+                          "$ref": "#/components/schemas/EthAddress"
+                        },
+                        "fid": {
+                          "$ref": "#/components/schemas/Fid"
+                        },
+                        "quantity": {
+                          "minimum": 1,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "quantity"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "recipient",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "transactions"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ZodError"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "402": {
+      "description": "Payment Required",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

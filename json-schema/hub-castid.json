@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/CastId",
+  "title": "Hub CastId",
+  "description": "A unique identifier for a cast (post) in the Farcaster network, consisting of the creator's FID and a hash of the cast's content. This combination ensures global uniqueness across all casts.",
+  "required": [
+    "fid",
+    "hash"
+  ],
+  "type": "object",
+  "properties": {
+    "fid": {
+      "title": "Fid of the user who created the cast",
+      "description": "The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast's author in the network.",
+      "type": "integer",
+      "format": "uint64",
+      "example": 2
+    },
+    "hash": {
+      "$ref": "#/components/schemas/CastHash"
+    }
+  }
+}

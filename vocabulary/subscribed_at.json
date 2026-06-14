@@ -1,0 +1,12 @@
+{
+  "term": "subscribed_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "SubscribedToObject"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

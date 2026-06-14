@@ -1,0 +1,11 @@
+{
+  "term": "nonce",
+  "type": "property",
+  "description": "The nonce value to sign the message",
+  "usedIn": [
+    "NonceResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

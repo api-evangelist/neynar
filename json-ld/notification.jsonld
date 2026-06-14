@@ -1,0 +1,22 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:Notification",
+  "schema:name": "Notification",
+  "schema:description": "Neynar Notification resource",
+  "properties": [
+    "cast",
+    "count",
+    "follows",
+    "most_recent_timestamp",
+    "object",
+    "reactions",
+    "seen",
+    "type"
+  ],
+  "required": [
+    "object",
+    "most_recent_timestamp",
+    "type",
+    "seen"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "mentionsPositions",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastAddBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

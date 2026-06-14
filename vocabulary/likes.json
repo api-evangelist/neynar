@@ -1,0 +1,11 @@
+{
+  "term": "likes",
+  "type": "property",
+  "description": "This has been deprecated and will always be an empty array. The property will be removed in the future",
+  "usedIn": [
+    "CastReactions"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

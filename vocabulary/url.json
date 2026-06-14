@@ -1,0 +1,22 @@
+{
+  "term": "url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "EmbedUrl",
+    "ImageObject",
+    "OembedPhotoData",
+    "TransactionFramePay",
+    "UpdateUserReqBody",
+    "VideoObject",
+    "WebhookPostReqBody",
+    "WebhookPutReqBody",
+    "FrameActionBody",
+    "UrlEmbed"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

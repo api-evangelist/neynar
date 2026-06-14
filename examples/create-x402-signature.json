@@ -1,0 +1,255 @@
+{
+  "operationId": "create-x402-signature",
+  "method": "POST",
+  "path": "/v2/signature/x402/",
+  "summary": "Create x402 signature",
+  "description": "Create a signature for a given x402 resource using the specified wallet.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "x-api-key",
+      "in": "header",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "payment_requirements": {
+          "properties": {
+            "accepts": {
+              "items": {
+                "properties": {
+                  "asset": {
+                    "description": "Ethereum address",
+                    "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+                    "pattern": "^0x[a-fA-F0-9]{40}$",
+                    "title": "EthAddress",
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "extra": {
+                    "additionalProperties": {},
+                    "nullable": true,
+                    "type": "object"
+                  },
+                  "maxAmountRequired": {
+                    "type": "string"
+                  },
+                  "maxTimeoutSeconds": {
+                    "type": "number"
+                  },
+                  "mimeType": {
+                    "type": "string"
+                  },
+                  "network": {
+                    "enum": [
+                      "base",
+                      "base-sepolia"
+                    ],
+                    "type": "string"
+                  },
+                  "outputSchema": {
+                    "additionalProperties": {},
+                    "nullable": true,
+                    "type": "object"
+                  },
+                  "payTo": {
+                    "description": "Ethereum address",
+                    "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+                    "pattern": "^0x[a-fA-F0-9]{40}$",
+                    "title": "EthAddress",
+                    "type": "string"
+                  },
+                  "resource": {
+                    "format": "uri",
+                    "type": "string"
+                  },
+                  "scheme": {
+                    "enum": [
+                      "exact"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "scheme",
+                  "network",
+                  "maxAmountRequired",
+                  "asset",
+                  "payTo",
+                  "resource",
+                  "description",
+                  "maxTimeoutSeconds"
+                ],
+                "type": "object"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "x402Version": {
+              "anyOf": [
+                {
+                  "enum": [
+                    1
+                  ],
+                  "type": "number"
+                },
+                {
+                  "enum": [
+                    2
+                  ],
+                  "type": "number"
+                }
+              ]
+            }
+          },
+          "required": [
+            "x402Version",
+            "accepts"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "payment_requirements"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "network": {
+            "enum": [
+              "base",
+              "base-sepolia"
+            ],
+            "type": "string"
+          },
+          "payload": {
+            "properties": {
+              "authorization": {
+                "properties": {
+                  "from": {
+                    "$ref": "#/components/schemas/EthAddress"
+                  },
+                  "nonce": {
+                    "pattern": "^0x[a-fA-F0-9]{64}$",
+                    "type": "string"
+                  },
+                  "to": {
+                    "$ref": "#/components/schemas/EthAddress"
+                  },
+                  "validAfter": {
+                    "type": "string"
+                  },
+                  "validBefore": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "value",
+                  "validAfter",
+                  "validBefore",
+                  "nonce"
+                ],
+                "type": "object"
+              },
+              "signature": {
+                "pattern": "^0x[a-fA-F0-9]{130}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "signature",
+              "authorization"
+            ],
+            "type": "object"
+          },
+          "scheme": {
+            "enum": [
+              "exact"
+            ],
+            "type": "string"
+          },
+          "x402Version": {
+            "anyOf": [
+              {
+                "enum": [
+                  1
+                ],
+                "type": "number"
+              },
+              {
+                "enum": [
+                  2
+                ],
+                "type": "number"
+              }
+            ]
+          }
+        },
+        "required": [
+          "x402Version",
+          "scheme",
+          "network",
+          "payload"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "operationId": "fetch-feed-by-topic",
+  "method": "GET",
+  "path": "/v2/farcaster/feed/topic/",
+  "summary": "By topic",
+  "description": "Fetch feed based on a topic slug.",
+  "tags": [
+    "Feed"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "slug",
+      "in": "query",
+      "required": true,
+      "description": "Topic slug to filter casts by. Must be lowercase and contain only alphanumeric characters and underscores.",
+      "schema": {
+        "example": "ai_agents",
+        "type": "string"
+      }
+    },
+    {
+      "name": "with_recasts",
+      "in": "query",
+      "required": false,
+      "description": "Include recasts in the response, true by default.",
+      "schema": {
+        "default": true,
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "example": 3,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch.",
+      "schema": {
+        "default": 25,
+        "example": 30,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FeedResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

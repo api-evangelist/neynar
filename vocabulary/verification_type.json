@@ -1,0 +1,11 @@
+{
+  "term": "verification_type",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddVerificationReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

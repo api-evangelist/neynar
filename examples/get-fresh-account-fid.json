@@ -1,0 +1,41 @@
+{
+  "operationId": "get-fresh-account-FID",
+  "method": "GET",
+  "path": "/v2/farcaster/user/fid/",
+  "summary": "Fetch fresh FID",
+  "description": "Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account).",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/UserFIDResponse"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

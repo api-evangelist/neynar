@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataVerificationAdd",
+  "title": "Hub MessageDataVerificationAdd",
+  "description": "Represents a message that adds verification of ownership for an Ethereum or Solana address to a user's profile. This verification proves that the user controls the specified blockchain address.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "verificationAddEthAddressBody"
+      ],
+      "properties": {
+        "verificationAddEthAddressBody": {
+          "description": "Contains the blockchain address being verified, along with cryptographic proof of ownership through a signature.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/VerificationAddEthAddressBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

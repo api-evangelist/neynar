@@ -1,0 +1,11 @@
+{
+  "term": "numFnameEvents",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DbStats"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

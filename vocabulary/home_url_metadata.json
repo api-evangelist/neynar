@@ -1,0 +1,11 @@
+{
+  "term": "home_url_metadata",
+  "type": "property",
+  "description": "Home URL metadata if available",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "operationId": "fetch-bulk-users-by-eth-or-sol-address",
+  "method": "GET",
+  "path": "/v2/farcaster/user/bulk-by-address/",
+  "summary": "By Eth or Sol addresses",
+  "description": "Fetches all users based on multiple Ethereum or Solana addresses.\n\nEach farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.\n\nA custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.\nYou can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "addresses",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of Ethereum or Solana addresses, up to 350 at a time",
+      "schema": {
+        "example": "0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "address_types",
+      "in": "query",
+      "required": false,
+      "description": "Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.",
+      "schema": {
+        "items": {
+          "enum": [
+            "custody_address",
+            "verified_address"
+          ],
+          "title": "BulkUserAddressType",
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BulkUsersByAddressResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

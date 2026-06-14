@@ -1,0 +1,31 @@
+{
+  "operationId": "hub-fetch-username-proof-by-name",
+  "method": "GET",
+  "path": "/v1/userNameProofByName",
+  "summary": "Proof for a username",
+  "description": "Fetch a proof for a username.",
+  "tags": [
+    "Usernames"
+  ],
+  "parameters": [
+    {
+      "name": "name",
+      "in": "query",
+      "required": true,
+      "description": "The Farcaster username or ENS address",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/UserNameProof"
+      },
+      "example": null
+    }
+  }
+}

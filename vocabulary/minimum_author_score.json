@@ -1,0 +1,11 @@
+{
+  "term": "minimum_author_score",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

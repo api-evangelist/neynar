@@ -1,0 +1,11 @@
+{
+  "term": "description_mentioned_profiles_ranges",
+  "type": "property",
+  "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.",
+  "usedIn": [
+    "Channel"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

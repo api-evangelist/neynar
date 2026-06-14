@@ -1,0 +1,180 @@
+{
+  "operationId": "list-conversations",
+  "method": "GET",
+  "path": "/v2/studio/deployment/conversations",
+  "summary": "List conversations for a deployment",
+  "description": "Lists all conversations for a specific deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": false,
+      "description": "Deployment ID (UUID). If provided, filters conversations to this deployment only.",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations.",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "name",
+      "in": "query",
+      "required": false,
+      "description": "Kubernetes deployment name. If provided, filters conversations to this deployment only.",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "description": "Include deleted conversations in the response. Defaults to false.",
+      "schema": {
+        "default": false,
+        "type": "boolean"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "conversations": {
+            "description": "List of conversations",
+            "items": {
+              "properties": {
+                "admin": {
+                  "description": "Whether the conversation is an admin conversation",
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "description": "Creation timestamp",
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "deployment_id": {
+                  "description": "Deployment ID",
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "id": {
+                  "description": "Conversation ID",
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "last_message_preview": {
+                  "description": "Preview of the last user message (truncated to ~80 chars)",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "title": {
+                  "description": "AI-generated title summarizing the conversation topic",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "updated_at": {
+                  "description": "Last update timestamp",
+                  "format": "date-time",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "created_at",
+                "updated_at",
+                "deployment_id",
+                "admin",
+                "title",
+                "last_message_preview"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "conversations"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

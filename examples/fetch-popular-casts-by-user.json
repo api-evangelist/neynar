@@ -1,0 +1,49 @@
+{
+  "operationId": "fetch-popular-casts-by-user",
+  "method": "GET",
+  "path": "/v2/farcaster/feed/user/popular/",
+  "summary": "10 most popular casts",
+  "description": "Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first",
+  "tags": [
+    "Feed"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of user whose feed you want to create",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BulkCastsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

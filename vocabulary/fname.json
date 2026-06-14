@@ -1,0 +1,13 @@
+{
+  "term": "fname",
+  "type": "tag",
+  "description": "Operations related to fname",
+  "source": [
+    "neynar-farcaster-api"
+  ],
+  "usedIn": [
+    "ReactionLike",
+    "ReactionRecast",
+    "RegisterUserReqBody"
+  ]
+}

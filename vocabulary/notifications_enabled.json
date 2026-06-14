@@ -1,0 +1,11 @@
+{
+  "term": "notifications_enabled",
+  "type": "property",
+  "description": "List of domains for which notifications are enabled for this user",
+  "usedIn": [
+    "AppHostUserStateResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

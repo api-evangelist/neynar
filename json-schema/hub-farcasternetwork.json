@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/FarcasterNetwork",
+  "title": "Hub FarcasterNetwork",
+  "description": "Farcaster network the message is intended for.\n- FARCASTER_NETWORK_MAINNET: Public primary network\n- FARCASTER_NETWORK_TESTNET: Public test network\n- FARCASTER_NETWORK_DEVNET: Private test network",
+  "type": "string",
+  "default": "FARCASTER_NETWORK_MAINNET",
+  "enum": [
+    "FARCASTER_NETWORK_MAINNET",
+    "FARCASTER_NETWORK_TESTNET",
+    "FARCASTER_NETWORK_DEVNET"
+  ]
+}

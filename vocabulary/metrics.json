@@ -1,0 +1,11 @@
+{
+  "term": "metrics",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastsMetricsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

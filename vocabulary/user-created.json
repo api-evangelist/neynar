@@ -1,0 +1,11 @@
+{
+  "term": "user.created",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFilters"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

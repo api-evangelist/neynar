@@ -1,0 +1,88 @@
+{
+  "operationId": "fetch-all-notifications",
+  "method": "GET",
+  "path": "/v2/farcaster/notifications/",
+  "summary": "For user",
+  "description": "Returns a list of notifications for a specific FID.",
+  "tags": [
+    "Notifications"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": false,
+      "description": "Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.",
+      "schema": {
+        "items": {
+          "enum": [
+            "follows",
+            "recasts",
+            "likes",
+            "mentions",
+            "replies",
+            "quotes"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 15,
+        "example": 15,
+        "format": "int32",
+        "maximum": 25,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/NotificationsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

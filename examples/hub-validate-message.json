@@ -1,0 +1,21 @@
+{
+  "operationId": "hub-validate-message",
+  "method": "POST",
+  "path": "/v1/validateMessage",
+  "summary": "Validate signed message",
+  "description": "Validate a message on the Farcaster network.",
+  "tags": [
+    "Message"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/ValidateMessageResponse"
+      },
+      "example": null
+    }
+  }
+}

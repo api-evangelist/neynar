@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NotificationCampaignStats",
+  "title": "NotificationCampaignStats",
+  "description": "Neynar Farcaster API schema for NotificationCampaignStats",
+  "properties": {
+    "error_breakdown": {
+      "description": "Detailed breakdown of errors encountered during notification delivery.",
+      "properties": {
+        "delivery_errors": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "A record mapping delivery error types to their occurrence counts.",
+          "type": "object"
+        },
+        "http_errors": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "A record mapping HTTP status codes to their occurrence counts.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "intended_recipient_app_fids": {
+      "description": "An array of Farcaster FIDs of intended recipient applications.",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "intended_recipient_notification_token_count": {
+      "description": "The total number of notification tokens for intended recipients.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "successful_sends": {
+      "description": "The number of notifications successfully sent.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "successful_sends_by_app_fid": {
+      "additionalProperties": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "description": "A record mapping app FIDs (as strings) to the number of successful sends for that app.",
+      "type": "object"
+    },
+    "total_opens": {
+      "description": "The total number of times notifications from this campaign have been opened.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "total_opens_by_app_fid": {
+      "additionalProperties": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "description": "A record mapping app FIDs (as strings) to the number of opens for that app.",
+      "type": "object"
+    },
+    "unique_opens": {
+      "description": "The number of unique recipients who opened a notification from this campaign.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "unique_opens_by_app_fid": {
+      "additionalProperties": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "description": "A record mapping app FIDs (as strings) to the number of unique opens for that app.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "intended_recipient_notification_token_count",
+    "intended_recipient_app_fids",
+    "successful_sends",
+    "successful_sends_by_app_fid",
+    "total_opens",
+    "total_opens_by_app_fid",
+    "unique_opens",
+    "unique_opens_by_app_fid",
+    "error_breakdown"
+  ],
+  "type": "object"
+}

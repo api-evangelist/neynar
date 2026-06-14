@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ConflictErrorRes",
+  "title": "ConflictErrorRes",
+  "description": "Details for the conflict error response",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "key": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "property": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "type": "object"
+}

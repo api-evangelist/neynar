@@ -1,0 +1,14 @@
+{
+  "term": "parent_author",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

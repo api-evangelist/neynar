@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataUsernameProof",
+  "title": "Hub MessageDataUsernameProof",
+  "description": "Neynar Hub API schema for MessageDataUsernameProof",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "usernameProofBody"
+      ],
+      "properties": {
+        "usernameProofBody": {
+          "$ref": "#/components/schemas/UserNameProof"
+        }
+      }
+    }
+  ]
+}

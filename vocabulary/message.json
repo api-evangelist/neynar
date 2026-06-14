@@ -1,0 +1,8 @@
+{
+  "term": "Message",
+  "type": "tag",
+  "description": "Operations related to messages.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FrameNotificationTokens",
+  "title": "FrameNotificationTokens",
+  "description": "Neynar Farcaster API schema for FrameNotificationTokens",
+  "properties": {
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    },
+    "notification_tokens": {
+      "items": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "object": {
+            "enum": [
+              "notification_token"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "enabled",
+              "disabled",
+              "invalid"
+            ],
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "notification_tokens",
+    "next"
+  ],
+  "type": "object"
+}

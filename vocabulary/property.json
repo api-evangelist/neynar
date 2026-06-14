@@ -1,0 +1,12 @@
+{
+  "term": "property",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ConflictErrorRes",
+    "ErrorRes"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "operationId": "insert-rows",
+  "method": "POST",
+  "path": "/v2/studio/deployment/database/tables/{table_name}/rows",
+  "summary": "Insert rows into table",
+  "description": "Inserts one or more rows into the specified table. Returns the inserted rows with generated values.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "table_name",
+      "in": "path",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID)",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user. Required for non-admin users.",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rows": {
+          "description": "Rows to insert (max 100)",
+          "items": {
+            "additionalProperties": {},
+            "type": "object"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "deployment_id",
+        "rows"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "insertedCount": {
+            "description": "Number of rows inserted",
+            "type": "number"
+          },
+          "rows": {
+            "description": "Inserted rows with generated values",
+            "items": {
+              "additionalProperties": {},
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "insertedCount",
+          "rows"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

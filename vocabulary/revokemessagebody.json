@@ -1,0 +1,11 @@
+{
+  "term": "revokeMessageBody",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubEventRevokeMessage"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

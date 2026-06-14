@@ -1,0 +1,73 @@
+{
+  "operationId": "fetch-follow-suggestions",
+  "method": "GET",
+  "path": "/v2/farcaster/following/suggested/",
+  "summary": "Suggest Follows",
+  "description": "Fetch a list of suggested users to follow. Used to help users discover new users to follow",
+  "tags": [
+    "Follows"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of the user whose following you want to fetch.",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/UsersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "term": "signers",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserOnChainReqBody",
+    "RegisterUserResponse",
+    "SignerListResponse",
+    "StorageUsageResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

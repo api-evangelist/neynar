@@ -1,0 +1,12 @@
+{
+  "term": "owner_address",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "Subscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

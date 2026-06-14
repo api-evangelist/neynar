@@ -1,0 +1,11 @@
+{
+  "term": "bio",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UpdateUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

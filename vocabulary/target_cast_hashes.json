@@ -1,0 +1,11 @@
+{
+  "term": "target_cast_hashes",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersReaction"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

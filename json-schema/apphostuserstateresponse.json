@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AppHostUserStateResponse",
+  "title": "AppHostUserStateResponse",
+  "description": "Neynar Farcaster API schema for AppHostUserStateResponse",
+  "properties": {
+    "notifications_enabled": {
+      "description": "List of domains for which notifications are enabled for this user",
+      "items": {
+        "properties": {
+          "domain": {
+            "description": "Domain of the mini app",
+            "type": "string"
+          },
+          "status": {
+            "description": "Status of notifications for this domain (usually 'valid')",
+            "type": "string"
+          },
+          "updated_at": {
+            "description": "When the notification preference was last updated",
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain",
+          "status",
+          "updated_at"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "notifications_enabled"
+  ],
+  "type": "object"
+}

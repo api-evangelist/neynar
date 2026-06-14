@@ -1,0 +1,11 @@
+{
+  "term": "numMessages",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DbStats"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

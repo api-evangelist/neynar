@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FarcasterFungible",
+  "title": "FarcasterFungible",
+  "description": "Neynar Farcaster API schema for FarcasterFungible",
+  "properties": {
+    "cast_count": {
+      "description": "The total number of comments on the token",
+      "type": "integer"
+    },
+    "fungible": {
+      "$ref": "#/components/schemas/Fungible"
+    },
+    "object": {
+      "enum": [
+        "farcaster_fungible"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "fungible",
+    "cast_count"
+  ],
+  "type": "object"
+}

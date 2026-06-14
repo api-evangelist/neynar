@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelMemberInvite",
+  "title": "ChannelMemberInvite",
+  "description": "Neynar Farcaster API schema for ChannelMemberInvite",
+  "properties": {
+    "channel_id": {
+      "$ref": "#/components/schemas/ChannelId"
+    },
+    "invited": {
+      "$ref": "#/components/schemas/User"
+    },
+    "inviter": {
+      "$ref": "#/components/schemas/User"
+    },
+    "role": {
+      "$ref": "#/components/schemas/ChannelMemberRole"
+    }
+  },
+  "required": [
+    "channel_id",
+    "role",
+    "inviter",
+    "invited"
+  ],
+  "type": "object"
+}

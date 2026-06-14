@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastEmbedded",
+  "title": "CastEmbedded",
+  "description": "Neynar Farcaster API schema for CastEmbedded",
+  "properties": {
+    "app": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/UserDehydrated"
+        }
+      ],
+      "nullable": true
+    },
+    "author": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "channel": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ChannelDehydrated"
+        }
+      ],
+      "nullable": true
+    },
+    "embeds": {
+      "items": {
+        "$ref": "#/components/schemas/EmbedDeep"
+      },
+      "type": "array"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "parent_author": {
+      "properties": {
+        "fid": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Fid"
+            }
+          ],
+          "nullable": true
+        }
+      },
+      "required": [
+        "fid"
+      ],
+      "type": "object"
+    },
+    "parent_hash": {
+      "nullable": true,
+      "type": "string"
+    },
+    "parent_url": {
+      "nullable": true,
+      "type": "string"
+    },
+    "root_parent_url": {
+      "nullable": true,
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "hash",
+    "parent_hash",
+    "parent_url",
+    "root_parent_url",
+    "parent_author",
+    "author",
+    "text",
+    "timestamp",
+    "embeds",
+    "channel"
+  ],
+  "type": "object"
+}

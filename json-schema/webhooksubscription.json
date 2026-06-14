@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookSubscription",
+  "title": "WebhookSubscription",
+  "description": "Neynar Farcaster API schema for WebhookSubscription",
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "filters": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFilters"
+    },
+    "object": {
+      "enum": [
+        "webhook_subscription"
+      ],
+      "type": "string"
+    },
+    "subscription_id": {
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "subscription_id",
+    "filters",
+    "created_at",
+    "updated_at"
+  ],
+  "type": "object"
+}

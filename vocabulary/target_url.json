@@ -1,0 +1,11 @@
+{
+  "term": "target_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

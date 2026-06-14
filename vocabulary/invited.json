@@ -1,0 +1,11 @@
+{
+  "term": "invited",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelMemberInvite"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

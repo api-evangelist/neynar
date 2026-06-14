@@ -1,0 +1,11 @@
+{
+  "term": "targetCastId",
+  "type": "property",
+  "description": "The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator's FID and the cast's hash.",
+  "usedIn": [
+    "ReactionBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

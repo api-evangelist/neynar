@@ -1,0 +1,11 @@
+{
+  "term": "requested_user_custody_address",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

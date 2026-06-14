@@ -1,0 +1,8 @@
+{
+  "term": "Verifications",
+  "type": "tag",
+  "description": "Operations related to verifications.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

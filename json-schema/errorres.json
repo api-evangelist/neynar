@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ErrorRes",
+  "title": "ErrorRes",
+  "description": "Details for the error response",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "property": {
+      "type": "string"
+    },
+    "status": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "term": "video",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EmbedUrlMetadata"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "operationId": "hub-lookup-reaction-by-id",
+  "method": "GET",
+  "path": "/v1/reactionById",
+  "summary": "By FID or cast",
+  "description": "Lookup a reaction by its FID or cast.",
+  "tags": [
+    "Reactions"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the reaction's creator",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "target_fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the cast's creator",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "target_hash",
+      "in": "query",
+      "required": true,
+      "description": "The cast's hash",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "reaction_type",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/ReactionType"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Reaction.",
+      "schema": {
+        "$ref": "#/components/schemas/Reaction"
+      },
+      "example": null
+    }
+  }
+}

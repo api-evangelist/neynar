@@ -1,0 +1,11 @@
+{
+  "term": "metadata[website_link]",
+  "type": "property",
+  "description": "Website link related to the token",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

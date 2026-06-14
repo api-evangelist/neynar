@@ -1,0 +1,49 @@
+{
+  "operationId": "hub-lookup-user-relation",
+  "method": "GET",
+  "path": "/v1/linkById",
+  "summary": "By its FID and target FID",
+  "description": "Lookup a link by its FID and target FID.",
+  "tags": [
+    "Links"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the link's originator",
+      "schema": {
+        "$ref": "#/components/schemas/FidSchema"
+      }
+    },
+    {
+      "name": "target_fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the target user for this link",
+      "schema": {
+        "$ref": "#/components/schemas/FidSchema"
+      }
+    },
+    {
+      "name": "link_type",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/LinkType"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Link.",
+      "schema": {
+        "$ref": "#/components/schemas/LinkAdd"
+      },
+      "example": null
+    }
+  }
+}

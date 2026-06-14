@@ -1,0 +1,11 @@
+{
+  "term": "webhooks",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookListResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

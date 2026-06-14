@@ -1,0 +1,17 @@
+{
+  "term": "provider_name",
+  "type": "property",
+  "description": "The name of the resource provider.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData",
+    "SubscribedTo",
+    "SubscribedToObject",
+    "Subscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

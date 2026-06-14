@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BlockListResponse",
+  "title": "BlockListResponse",
+  "description": "Neynar Farcaster API schema for BlockListResponse",
+  "properties": {
+    "blocks": {
+      "items": {
+        "$ref": "#/components/schemas/BlockRecord"
+      },
+      "type": "array"
+    },
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    }
+  },
+  "required": [
+    "blocks",
+    "next"
+  ],
+  "type": "object"
+}

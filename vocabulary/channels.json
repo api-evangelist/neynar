@@ -1,0 +1,15 @@
+{
+  "term": "channels",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelListResponse",
+    "ChannelResponseBulk",
+    "ChannelSearchResponse",
+    "TrendingChannelResponse",
+    "UsersActiveChannelsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

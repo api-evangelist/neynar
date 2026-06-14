@@ -1,0 +1,11 @@
+{
+  "term": "mergeMessageBody",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubEventMergeMessage"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

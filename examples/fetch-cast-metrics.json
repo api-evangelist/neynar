@@ -1,0 +1,80 @@
+{
+  "operationId": "fetch-cast-metrics",
+  "method": "GET",
+  "path": "/v2/farcaster/cast/metrics/",
+  "summary": "Metrics for casts",
+  "description": "Fetches metrics casts matching a query",
+  "tags": [
+    "Metrics"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "q",
+      "in": "query",
+      "required": true,
+      "description": "Query string to search for casts",
+      "schema": {
+        "example": "star wars",
+        "type": "string"
+      }
+    },
+    {
+      "name": "interval",
+      "in": "query",
+      "required": false,
+      "description": "Interval of time for which to fetch metrics. Default is 30d.",
+      "schema": {
+        "enum": [
+          "1d",
+          "7d",
+          "30d",
+          "90d",
+          "180d"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "author_fid",
+      "in": "query",
+      "required": false,
+      "description": "Fid of the user whose casts you want to search",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "channel_id",
+      "in": "query",
+      "required": false,
+      "description": "Channel ID of the casts you want to search",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/CastsMetricsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

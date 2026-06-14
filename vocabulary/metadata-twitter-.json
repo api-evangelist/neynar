@@ -1,0 +1,11 @@
+{
+  "term": "metadata[twitter]",
+  "type": "property",
+  "description": "Twitter profile link",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

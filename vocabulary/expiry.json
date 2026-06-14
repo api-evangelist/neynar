@@ -1,0 +1,13 @@
+{
+  "term": "expiry",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageAllocation",
+    "StorageRentEventBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

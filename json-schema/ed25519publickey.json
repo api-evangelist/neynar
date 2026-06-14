@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Ed25519PublicKey",
+  "title": "Ed25519PublicKey",
+  "description": "Ed25519 public key",
+  "example": "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22",
+  "pattern": "^0x[a-fA-F0-9]{64}$",
+  "type": "string"
+}

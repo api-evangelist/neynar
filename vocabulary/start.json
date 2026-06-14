@@ -1,0 +1,12 @@
+{
+  "term": "start",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastsMetrics",
+    "TextRange"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

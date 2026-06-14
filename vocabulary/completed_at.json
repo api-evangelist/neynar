@@ -1,0 +1,11 @@
+{
+  "term": "completed_at",
+  "type": "property",
+  "description": "When the campaign reached a terminal state (completed/failed/canceled). Null while still queued or running.",
+  "usedIn": [
+    "NotificationCampaign"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "registration",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserOnChainReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "term": "frame",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EmbedUrlMetadata",
+    "FarcasterManifest"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

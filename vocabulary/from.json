@@ -1,0 +1,11 @@
+{
+  "term": "from",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "IdRegisterEventBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

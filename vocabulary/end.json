@@ -1,0 +1,11 @@
+{
+  "term": "end",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TextRange"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

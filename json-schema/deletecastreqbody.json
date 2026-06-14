@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/DeleteCastReqBody",
+  "title": "DeleteCastReqBody",
+  "description": "Neynar Farcaster API schema for DeleteCastReqBody",
+  "properties": {
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "target_hash": {
+      "example": "0x71d5225f77e0164388b1d4c120825f3a2c1f131c",
+      "pattern": "^(0x)?[a-fA-F0-9]{40}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "target_hash"
+  ],
+  "type": "object"
+}

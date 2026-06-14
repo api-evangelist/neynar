@@ -1,0 +1,13 @@
+{
+  "term": "pfp_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UpdateUserReqBody",
+    "User",
+    "UserDehydrated"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

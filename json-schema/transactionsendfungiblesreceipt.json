@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionSendFungiblesReceipt",
+  "title": "TransactionSendFungiblesReceipt",
+  "description": "Neynar Farcaster API schema for TransactionSendFungiblesReceipt",
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "reason": {
+      "description": "Reason for failure (if status is failed)",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "sent",
+        "failed"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "fid",
+    "amount",
+    "status"
+  ],
+  "type": "object"
+}

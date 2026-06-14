@@ -1,0 +1,89 @@
+{
+  "operationId": "get-notification-campaign-stats",
+  "method": "GET",
+  "path": "/v2/farcaster/frame/notifications/",
+  "summary": "Get notification campaign stats",
+  "description": "Retrieve notification delivery and opened stats for notification campaigns",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [
+    {
+      "name": "campaign_id",
+      "in": "query",
+      "required": false,
+      "description": "An ID of a specific notification campaign to query",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "The number of results to return",
+      "schema": {
+        "default": 100,
+        "maximum": 1000,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          },
+          "notificationCampaigns": {
+            "items": {
+              "$ref": "#/components/schemas/NotificationCampaign"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "notificationCampaigns",
+          "next"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ZodError"
+          },
+          {
+            "$ref": "#/components/schemas/ErrorRes"
+          }
+        ]
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

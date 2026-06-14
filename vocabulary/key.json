@@ -1,0 +1,13 @@
+{
+  "term": "key",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ConflictErrorRes",
+    "SignerEventBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

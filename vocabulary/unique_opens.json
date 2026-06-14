@@ -1,0 +1,11 @@
+{
+  "term": "unique_opens",
+  "type": "property",
+  "description": "The number of unique recipients who opened a notification from this campaign.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

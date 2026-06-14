@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BanListResponse",
+  "title": "BanListResponse",
+  "description": "Neynar Farcaster API schema for BanListResponse",
+  "properties": {
+    "bans": {
+      "items": {
+        "$ref": "#/components/schemas/BanRecord"
+      },
+      "type": "array"
+    },
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    }
+  },
+  "required": [
+    "bans",
+    "next"
+  ],
+  "type": "object"
+}

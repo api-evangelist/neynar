@@ -1,0 +1,7 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastParent",
+  "title": "CastParent",
+  "description": "parent_url of the channel the cast is in, or hash of the cast",
+  "type": "string"
+}

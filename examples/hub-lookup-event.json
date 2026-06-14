@@ -1,0 +1,31 @@
+{
+  "operationId": "hub-lookup-event",
+  "method": "GET",
+  "path": "/v1/eventById",
+  "summary": "Event by ID",
+  "description": "Lookup an event by its ID.",
+  "tags": [
+    "HubEvents"
+  ],
+  "parameters": [
+    {
+      "name": "event_id",
+      "in": "query",
+      "required": true,
+      "description": "The Hub Id of the event",
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/HubEvent"
+      },
+      "example": null
+    }
+  }
+}

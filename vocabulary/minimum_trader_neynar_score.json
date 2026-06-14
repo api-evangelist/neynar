@@ -1,0 +1,11 @@
+{
+  "term": "minimum_trader_neynar_score",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersTrade"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

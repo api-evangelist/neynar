@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SubscriptionsResponse",
+  "title": "SubscriptionsResponse",
+  "description": "Neynar Farcaster API schema for SubscriptionsResponse",
+  "properties": {
+    "subscriptions_created": {
+      "items": {
+        "$ref": "#/components/schemas/Subscriptions"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

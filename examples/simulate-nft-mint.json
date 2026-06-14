@@ -1,0 +1,78 @@
+{
+  "operationId": "simulate-nft-mint",
+  "method": "GET",
+  "path": "/v2/farcaster/nft/mint/",
+  "summary": "Simulate NFT mint calldata",
+  "description": "Simulates mint calldata for the given recipients, contract, and network. Useful for previewing calldata and ABI before minting.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "recipients",
+      "in": "query",
+      "required": true,
+      "description": "JSON array of recipients (same structure as POST).",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "nft_contract_address",
+      "in": "query",
+      "required": true,
+      "description": "Ethereum address",
+      "schema": {
+        "example": "0x5a927ac639636e534b678e81768ca19e2c6280b7",
+        "pattern": "^0x[a-fA-F0-9]{40}$",
+        "title": "EthAddress",
+        "type": "string"
+      }
+    },
+    {
+      "name": "network",
+      "in": "query",
+      "required": true,
+      "description": "Network to mint on.",
+      "schema": {
+        "enum": [
+          "base",
+          "optimism",
+          "base-sepolia"
+        ],
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/SimulateNftMintResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ZodError"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

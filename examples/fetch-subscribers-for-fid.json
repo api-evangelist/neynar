@@ -1,0 +1,67 @@
+{
+  "operationId": "fetch-subscribers-for-fid",
+  "method": "GET",
+  "path": "/v2/farcaster/user/subscribers/",
+  "summary": "Subscribers of a user",
+  "description": "Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.",
+  "tags": [
+    "Subscribers"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "title": "Fid",
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "subscription_provider",
+      "in": "query",
+      "required": true,
+      "description": "The provider of the subscription.",
+      "schema": {
+        "enum": [
+          "fabric_stp",
+          "paragraph"
+        ],
+        "example": "fabric_stp",
+        "title": "SubscriptionProviders",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/SubscribersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

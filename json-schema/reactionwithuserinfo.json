@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ReactionWithUserInfo",
+  "title": "ReactionWithUserInfo",
+  "description": "Neynar Farcaster API schema for ReactionWithUserInfo",
+  "properties": {
+    "cast": {
+      "$ref": "#/components/schemas/CastDehydrated"
+    },
+    "object": {
+      "enum": [
+        "likes",
+        "recasts"
+      ],
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "object",
+    "cast",
+    "user"
+  ],
+  "type": "object"
+}

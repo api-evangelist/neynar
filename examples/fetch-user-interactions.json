@@ -1,0 +1,72 @@
+{
+  "operationId": "fetch-user-interactions",
+  "method": "GET",
+  "path": "/v2/farcaster/user/interactions/",
+  "summary": "User interactions",
+  "description": "Returns a list of interactions between two users",
+  "tags": [
+    "Agents"
+  ],
+  "parameters": [
+    {
+      "name": "fids",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of two FIDs",
+      "schema": {
+        "example": "194, 191",
+        "type": "string",
+        "x-accept-as": "integer",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": false,
+      "description": "Comma seperated list of Interaction type to fetch",
+      "schema": {
+        "items": {
+          "enum": [
+            "follows",
+            "recasts",
+            "likes",
+            "mentions",
+            "replies",
+            "quotes"
+          ],
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "interactions": {
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "interactions"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

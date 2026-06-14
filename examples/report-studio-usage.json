@@ -1,0 +1,132 @@
+{
+  "operationId": "report-studio-usage",
+  "method": "POST",
+  "path": "/v2/studio/usage/report",
+  "summary": "Report studio compute unit usage",
+  "description": "Called by miniapp-generator instances to report Claude SDK usage. Idempotent \u2014 duplicate submissions (same idempotency_key) are accepted but not double-counted.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "compute_units": {
+          "description": "Compute units to add (must be positive)",
+          "exclusiveMinimum": true,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "deployment_id": {
+          "type": "string"
+        },
+        "developer_uuid": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "description": "UUID from the Claude SDK result message",
+          "format": "uuid",
+          "type": "string"
+        },
+        "session_id": {
+          "description": "Claude session ID for audit trail",
+          "type": "string"
+        }
+      },
+      "required": [
+        "idempotency_key",
+        "developer_uuid",
+        "deployment_id",
+        "compute_units"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "accepted": {
+            "enum": [
+              true
+            ],
+            "type": "boolean"
+          },
+          "duplicate": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "accepted",
+          "duplicate"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

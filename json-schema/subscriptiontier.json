@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SubscriptionTier",
+  "title": "SubscriptionTier",
+  "description": "Neynar Farcaster API schema for SubscriptionTier",
+  "properties": {
+    "id": {
+      "example": 1,
+      "type": "integer"
+    },
+    "price": {
+      "properties": {
+        "initial_mint_price": {
+          "example": "0",
+          "type": "string"
+        },
+        "period_duration_seconds": {
+          "example": 2592000,
+          "type": "integer"
+        },
+        "tokens_per_period": {
+          "example": "3000000000000000",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

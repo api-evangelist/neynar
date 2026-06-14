@@ -1,0 +1,12 @@
+{
+  "term": "tiers",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "Subscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "muted_fid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MuteReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

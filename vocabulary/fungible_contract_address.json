@@ -1,0 +1,11 @@
+{
+  "term": "fungible_contract_address",
+  "type": "property",
+  "description": "Contract address of the fungible token to send. If not provided, the default is the native token of the network.",
+  "usedIn": [
+    "TransactionSendFungiblesReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

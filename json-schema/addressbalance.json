@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AddressBalance",
+  "title": "AddressBalance",
+  "description": "The token balances associated with a wallet address",
+  "properties": {
+    "object": {
+      "enum": [
+        "address_balance"
+      ],
+      "type": "string"
+    },
+    "token_balances": {
+      "items": {
+        "$ref": "#/components/schemas/TokenBalance"
+      },
+      "type": "array"
+    },
+    "verified_address": {
+      "properties": {
+        "address": {
+          "description": "The wallet address",
+          "type": "string"
+        },
+        "network": {
+          "$ref": "#/components/schemas/Network"
+        }
+      },
+      "required": [
+        "address",
+        "network"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "object",
+    "verified_address",
+    "token_balances"
+  ],
+  "type": "object"
+}

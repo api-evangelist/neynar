@@ -1,0 +1,11 @@
+{
+  "term": "migratedAt",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SignerMigratedEventBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "embedded_cast_hashes",
+  "type": "property",
+  "description": "Filter for casts that quote/embed these specific cast hashes",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

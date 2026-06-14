@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RelevantFollowersResponse",
+  "title": "RelevantFollowersResponse",
+  "description": "Neynar Farcaster API schema for RelevantFollowersResponse",
+  "properties": {
+    "all_relevant_followers_dehydrated": {
+      "items": {
+        "$ref": "#/components/schemas/FollowerDehydrated"
+      },
+      "type": "array"
+    },
+    "top_relevant_followers_hydrated": {
+      "items": {
+        "$ref": "#/components/schemas/Follower"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "top_relevant_followers_hydrated",
+    "all_relevant_followers_dehydrated"
+  ],
+  "type": "object"
+}

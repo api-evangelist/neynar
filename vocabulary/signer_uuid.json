@@ -1,0 +1,27 @@
+{
+  "term": "signer_uuid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "AddVerificationReqBody",
+    "BlockReqBody",
+    "ChannelFollowReqBody",
+    "DeleteCastReqBody",
+    "FarcasterActionReqBody",
+    "FollowReqBody",
+    "InviteChannelMemberReqBody",
+    "MarkNotificationsAsSeenReqBody",
+    "PostCastReqBody",
+    "ReactionReqBody",
+    "RegisterSignerKeyReqBody",
+    "RemoveChannelMemberReqBody",
+    "RemoveVerificationReqBody",
+    "RespondChannelInviteReqBody",
+    "Signer",
+    "SignerUuidBody",
+    "UpdateUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

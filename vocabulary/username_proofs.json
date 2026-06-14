@@ -1,0 +1,11 @@
+{
+  "term": "username_proofs",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageUsageResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

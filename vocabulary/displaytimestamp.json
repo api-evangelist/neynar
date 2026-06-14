@@ -1,0 +1,11 @@
+{
+  "term": "displayTimestamp",
+  "type": "property",
+  "description": "User-defined timestamp that preserves the original creation time when message.data.timestamp needs to be updated for compaction. Useful for maintaining chronological order in user feeds.",
+  "usedIn": [
+    "LinkBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

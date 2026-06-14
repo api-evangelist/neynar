@@ -1,0 +1,111 @@
+{
+  "operationId": "cancel-session",
+  "method": "POST",
+  "path": "/v2/studio/deployment/session/cancel",
+  "summary": "Cancel an active Claude session for a deployment",
+  "description": "Cancels an in-progress Claude Code session for a deployment. Safe to call even if no session is active \u2014 returns cancelled: false in that case.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "conversation_id": {
+          "description": "The conversation ID of the session to cancel",
+          "format": "uuid",
+          "type": "string"
+        },
+        "deployment_id": {
+          "description": "Deployment ID (UUID). Required if name not provided.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "conversation_id"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "cancelled": {
+            "description": "Whether an active session was found and cancelled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cancelled"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

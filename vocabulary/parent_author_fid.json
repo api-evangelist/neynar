@@ -1,0 +1,11 @@
+{
+  "term": "parent_author_fid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "PostCastReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

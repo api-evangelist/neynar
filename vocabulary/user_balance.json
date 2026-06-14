@@ -1,0 +1,11 @@
+{
+  "term": "user_balance",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BalanceResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

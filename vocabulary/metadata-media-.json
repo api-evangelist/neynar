@@ -1,0 +1,11 @@
+{
+  "term": "metadata[media]",
+  "type": "property",
+  "description": "Media file associated with the token. \nSupported formats are image/jpeg, image/gif and image/png",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

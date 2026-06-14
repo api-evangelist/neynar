@@ -1,0 +1,17 @@
+{
+  "term": "channel",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded",
+    "ChannelActivity",
+    "ChannelMember",
+    "ChannelResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

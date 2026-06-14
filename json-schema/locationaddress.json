@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/LocationAddress",
+  "title": "LocationAddress",
+  "description": "Neynar Farcaster API schema for LocationAddress",
+  "properties": {
+    "city": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "state_code": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "city",
+    "country"
+  ],
+  "type": "object"
+}

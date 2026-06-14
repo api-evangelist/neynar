@@ -1,0 +1,13 @@
+{
+  "term": "mentioned_profiles_ranges",
+  "type": "property",
+  "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.\nEach index within this list corresponds to the same-numbered index in the mentioned_profiles list.",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

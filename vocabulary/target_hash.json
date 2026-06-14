@@ -1,0 +1,11 @@
+{
+  "term": "target_hash",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DeleteCastReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

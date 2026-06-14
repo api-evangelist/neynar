@@ -1,0 +1,59 @@
+{
+  "operationId": "list-trending-topics",
+  "method": "GET",
+  "path": "/v2/farcaster/topic/trending/",
+  "summary": "Fetch trending topics",
+  "description": "Returns a list of trending topics for casts.",
+  "tags": [
+    "Topic"
+  ],
+  "parameters": [
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of topics to fetch.",
+      "schema": {
+        "default": 10,
+        "example": 10,
+        "format": "int32",
+        "maximum": 25,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/TrendingTopicsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

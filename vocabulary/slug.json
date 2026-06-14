@@ -1,0 +1,11 @@
+{
+  "term": "slug",
+  "type": "property",
+  "description": "A URL-friendly unique identifier for the topic",
+  "usedIn": [
+    "TrendingTopic"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

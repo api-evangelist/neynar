@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RegisterUserOnChainResponse",
+  "title": "RegisterUserOnChainResponse",
+  "description": "Neynar Farcaster API schema for RegisterUserOnChainResponse",
+  "properties": {
+    "message": {
+      "example": "Account registered successfully",
+      "type": "string"
+    },
+    "transaction_hash": {
+      "example": "0x2e276b4d014334797d9951ce2d3b7a11a4a58855cb07b3761de36785c618220a",
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "type": "object"
+}

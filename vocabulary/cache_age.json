@@ -1,0 +1,14 @@
+{
+  "term": "cache_age",
+  "type": "property",
+  "description": "The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

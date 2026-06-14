@@ -1,0 +1,16 @@
+{
+  "term": "viewer_context",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "Channel",
+    "ChannelDehydrated",
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

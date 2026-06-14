@@ -1,0 +1,15 @@
+{
+  "term": "units",
+  "type": "property",
+  "description": "Number of storage units to buy.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.",
+  "usedIn": [
+    "BuyStorageReqBody",
+    "StorageAllocation",
+    "StorageLimitsResponse",
+    "StorageRentEventBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

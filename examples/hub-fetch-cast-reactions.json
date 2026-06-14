@@ -1,0 +1,87 @@
+{
+  "operationId": "hub-fetch-cast-reactions",
+  "method": "GET",
+  "path": "/v1/reactionsByCast",
+  "summary": "On cast",
+  "description": "Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator's FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content.",
+  "tags": [
+    "Reactions"
+  ],
+  "parameters": [
+    {
+      "name": "target_fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the cast's creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash.",
+      "schema": {
+        "$ref": "#/components/schemas/FidSchema"
+      }
+    },
+    {
+      "name": "target_hash",
+      "in": "query",
+      "required": true,
+      "description": "The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid.",
+      "schema": {
+        "type": "string",
+        "pattern": "^0x[0-9a-fA-F]{40}$",
+        "example": "0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be"
+      }
+    },
+    {
+      "name": "reaction_type",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/ReactionType"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Reactions.",
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "messages"
+            ],
+            "properties": {
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Reaction"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

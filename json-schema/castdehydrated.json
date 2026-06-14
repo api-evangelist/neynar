@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastDehydrated",
+  "title": "CastDehydrated",
+  "description": "Neynar Farcaster API schema for CastDehydrated",
+  "properties": {
+    "app": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/UserDehydrated"
+        }
+      ],
+      "nullable": true
+    },
+    "author": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "hash": {
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "cast_dehydrated"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "hash"
+  ],
+  "type": "object"
+}

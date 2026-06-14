@@ -1,0 +1,147 @@
+{
+  "operationId": "delete-rows",
+  "method": "DELETE",
+  "path": "/v2/studio/deployment/database/tables/{table_name}/rows",
+  "summary": "Delete rows from table",
+  "description": "Deletes rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk deletes.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "table_name",
+      "in": "path",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID)",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user. Required for non-admin users.",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "limit": {
+          "description": "Maximum rows to delete (default: 1000)",
+          "maximum": 1000,
+          "minimum": 1,
+          "type": "number"
+        },
+        "where": {
+          "additionalProperties": {},
+          "description": "WHERE conditions (equality only, required)",
+          "type": "object"
+        }
+      },
+      "required": [
+        "deployment_id",
+        "where"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "deletedCount": {
+            "description": "Number of rows deleted",
+            "type": "number"
+          }
+        },
+        "required": [
+          "deletedCount"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

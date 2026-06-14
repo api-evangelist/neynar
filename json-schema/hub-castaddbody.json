@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/CastAddBody",
+  "title": "Hub CastAddBody",
+  "description": "Adds a new Cast",
+  "type": "object",
+  "properties": {
+    "embedsDeprecated": {
+      "title": "URLs to be embedded in the cast",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mentions": {
+      "title": "Fids mentioned in the cast",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "uint64",
+        "example": 2
+      }
+    },
+    "parentCastId": {
+      "$ref": "#/components/schemas/CastId"
+    },
+    "parentUrl": {
+      "title": "Parent URL",
+      "type": "string",
+      "example": "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2"
+    },
+    "text": {
+      "title": "Text of the cast",
+      "type": "string"
+    },
+    "mentionsPositions": {
+      "title": "Positions of the mentions in the text",
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "format": "int64"
+      }
+    },
+    "embeds": {
+      "title": "URLs or cast IDs to be embedded in the cast",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Embed"
+      }
+    }
+  },
+  "required": [
+    "embedsDeprecated",
+    "mentions",
+    "text",
+    "mentionsPositions",
+    "embeds"
+  ]
+}

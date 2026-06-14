@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/UserNameType",
+  "title": "Hub UserNameType",
+  "description": "Neynar Hub API schema for UserNameType",
+  "type": "string",
+  "default": "USERNAME_TYPE_FNAME",
+  "enum": [
+    "USERNAME_TYPE_FNAME",
+    "USERNAME_TYPE_ENS_L1"
+  ]
+}

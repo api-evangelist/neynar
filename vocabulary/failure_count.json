@@ -1,0 +1,11 @@
+{
+  "term": "failure_count",
+  "type": "property",
+  "description": "The number of notifications that failed to deliver.",
+  "usedIn": [
+    "SendFrameNotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

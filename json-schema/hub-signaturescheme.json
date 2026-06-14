@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/SignatureScheme",
+  "title": "Hub SignatureScheme",
+  "description": "Type of signature scheme used to sign the Message hash\n- SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)\n- SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme",
+  "type": "string",
+  "default": "SIGNATURE_SCHEME_ED25519",
+  "enum": [
+    "SIGNATURE_SCHEME_ED25519",
+    "SIGNATURE_SCHEME_EIP712"
+  ]
+}

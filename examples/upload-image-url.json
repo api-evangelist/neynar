@@ -1,0 +1,124 @@
+{
+  "operationId": "upload-image-url",
+  "method": "POST",
+  "path": "/v2/studio/deployment/upload-image-url",
+  "summary": "Upload image from URL to deployment",
+  "description": "Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID). Required if name not provided.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL of the image to download",
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "filename": {
+            "description": "Uploaded filename",
+            "type": "string"
+          },
+          "message": {
+            "description": "Status message",
+            "type": "string"
+          },
+          "success": {
+            "description": "Whether the upload was successful",
+            "type": "boolean"
+          },
+          "url": {
+            "description": "URL path to access the image",
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

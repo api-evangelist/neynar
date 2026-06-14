@@ -1,0 +1,11 @@
+{
+  "term": "blockNumber",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "OnChainEventCommon"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

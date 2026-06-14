@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FollowResponse",
+  "title": "FollowResponse",
+  "description": "Neynar Farcaster API schema for FollowResponse",
+  "properties": {
+    "hash": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "target_fid": {
+      "$ref": "#/components/schemas/Fid"
+    }
+  },
+  "required": [
+    "success",
+    "target_fid",
+    "hash"
+  ],
+  "type": "object"
+}

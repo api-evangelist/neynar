@@ -1,0 +1,8 @@
+{
+  "term": "Reaction",
+  "type": "tag",
+  "description": "Operations related to reaction",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

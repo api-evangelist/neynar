@@ -1,0 +1,11 @@
+{
+  "term": "ogUrl",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HtmlMetadata"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

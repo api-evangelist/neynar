@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Signer",
+  "title": "Signer",
+  "description": "Neynar Farcaster API schema for Signer",
+  "properties": {
+    "fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "object": {
+      "enum": [
+        "signer"
+      ],
+      "type": "string"
+    },
+    "permissions": {
+      "items": {
+        "$ref": "#/components/schemas/SharedSignerPermission"
+      },
+      "type": "array"
+    },
+    "public_key": {
+      "$ref": "#/components/schemas/Ed25519PublicKey"
+    },
+    "signer_approval_url": {
+      "type": "string"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "status": {
+      "enum": [
+        "generated",
+        "pending_approval",
+        "approved",
+        "revoked"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "public_key",
+    "status"
+  ],
+  "type": "object"
+}

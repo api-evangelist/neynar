@@ -1,0 +1,17 @@
+{
+  "term": "cast",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastResponse",
+    "EmbedCast",
+    "EmbedCastDeep",
+    "Notification",
+    "PostCastResponse",
+    "ReactionWithCastInfo",
+    "ReactionWithUserInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

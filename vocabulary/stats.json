@@ -1,0 +1,11 @@
+{
+  "term": "stats",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "NotificationCampaign"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Webhook",
+  "title": "Webhook",
+  "description": "Neynar Farcaster API schema for Webhook",
+  "properties": {
+    "active": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "deleted_at": {
+      "format": "date-time",
+      "nullable": true,
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "developer_uuid": {
+      "type": "string"
+    },
+    "http_timeout": {
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "webhook"
+      ],
+      "type": "string"
+    },
+    "rate_limit": {
+      "type": "integer"
+    },
+    "rate_limit_duration": {
+      "type": "string"
+    },
+    "secrets": {
+      "items": {
+        "$ref": "#/components/schemas/WebhookSecret"
+      },
+      "type": "array"
+    },
+    "subscription": {
+      "$ref": "#/components/schemas/WebhookSubscription"
+    },
+    "target_url": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "webhook_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "webhook_id",
+    "developer_uuid",
+    "target_url",
+    "title",
+    "secrets",
+    "description",
+    "http_timeout",
+    "rate_limit",
+    "active",
+    "rate_limit_duration",
+    "created_at",
+    "updated_at",
+    "deleted_at"
+  ],
+  "type": "object"
+}

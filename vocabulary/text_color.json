@@ -1,0 +1,11 @@
+{
+  "term": "text_color",
+  "type": "property",
+  "description": "Custom text color for action button",
+  "usedIn": [
+    "TransactionFrameAction"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

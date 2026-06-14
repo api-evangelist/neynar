@@ -1,0 +1,11 @@
+{
+  "term": "target_fid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FollowResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

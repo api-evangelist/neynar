@@ -1,0 +1,8 @@
+{
+  "term": "Fids",
+  "type": "tag",
+  "description": "Operations related to FIDs.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MessageDataFrameAction",
+  "title": "Hub MessageDataFrameAction",
+  "description": "Represents a user's interaction with a Farcaster Frame, which is an interactive element embedded within a cast. Frames allow users to engage with content through clickable buttons, creating interactive experiences within the Farcaster network.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageDataCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "frameActionBody"
+      ],
+      "properties": {
+        "frameActionBody": {
+          "description": "Contains the details of the frame interaction, including which button was pressed and the associated cast and URL.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/FrameActionBody"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

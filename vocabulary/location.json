@@ -1,0 +1,11 @@
+{
+  "term": "location",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "UpdateUserReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

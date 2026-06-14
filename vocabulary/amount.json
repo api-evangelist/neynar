@@ -1,0 +1,13 @@
+{
+  "term": "amount",
+  "type": "property",
+  "description": "Amount to send (must be greater than 0)",
+  "usedIn": [
+    "TransactionFrameDestination",
+    "TransactionSendFungiblesReceipt",
+    "TransactionSendFungiblesRecipient"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

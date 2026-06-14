@@ -1,0 +1,119 @@
+{
+  "operationId": "generate-image",
+  "method": "POST",
+  "path": "/v2/farcaster/nft/image/",
+  "summary": "Generate an NFT image",
+  "description": "Generate a new image or edit existing images using AI. Returns a publicly accessible URL to the generated image.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "format": {
+          "default": "png",
+          "description": "Output image format (default: png)",
+          "enum": [
+            "png",
+            "jpeg",
+            "webp"
+          ],
+          "type": "string"
+        },
+        "height": {
+          "default": 1024,
+          "description": "Output image height in pixels (default: 1024)",
+          "maximum": 4096,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "high_fidelity": {
+          "default": false,
+          "description": "Use the high-fidelity model (slower but more detailed). Default: false.",
+          "type": "boolean"
+        },
+        "prompt": {
+          "description": "Text prompt describing the image to generate",
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_image_urls": {
+          "description": "Optional array of source image URLs to edit or use as reference (max 5)",
+          "items": {
+            "format": "uri",
+            "type": "string"
+          },
+          "maxItems": 5,
+          "type": "array"
+        },
+        "width": {
+          "default": 1024,
+          "description": "Output image width in pixels (default: 1024)",
+          "maximum": 4096,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "image_url": {
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "image_url"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

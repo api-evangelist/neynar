@@ -1,0 +1,11 @@
+{
+  "term": "subscription_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

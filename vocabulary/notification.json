@@ -1,0 +1,11 @@
+{
+  "term": "notification",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SendFrameNotificationsReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

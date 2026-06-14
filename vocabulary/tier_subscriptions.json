@@ -1,0 +1,11 @@
+{
+  "term": "tier_subscriptions",
+  "type": "property",
+  "description": "List of subscription tiers for the user. Each entry describes a subscription tier and its expiration.",
+  "usedIn": [
+    "StorageLimitsResponse"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

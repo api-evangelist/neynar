@@ -1,0 +1,11 @@
+{
+  "term": "pruneMessageBody",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubEventPruneMessage"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

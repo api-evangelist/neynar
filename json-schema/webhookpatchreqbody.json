@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookPatchReqBody",
+  "title": "WebhookPatchReqBody",
+  "description": "Neynar Farcaster API schema for WebhookPatchReqBody",
+  "properties": {
+    "active": {
+      "enum": [
+        "true",
+        "false"
+      ],
+      "type": "string"
+    },
+    "webhook_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "webhook_id",
+    "active"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "term": "App Host",
+  "type": "tag",
+  "description": "Operations related to mini app host notifications",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

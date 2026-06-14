@@ -1,0 +1,51 @@
+{
+  "operationId": "hub-fetch-user-on-chain-events",
+  "method": "GET",
+  "path": "/v1/onChainEventsByFid",
+  "summary": "Fetch a list of on-chain events provided by an FID",
+  "description": "Fetch on-chain events provided by a user.",
+  "tags": [
+    "OnChainEvents"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID being requested",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "event_type",
+      "in": "query",
+      "required": true,
+      "description": "The numeric or string value of the event type being requested",
+      "schema": {
+        "$ref": "#/components/schemas/OnChainEventType"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OnChainEvent"
+            }
+          }
+        },
+        "required": [
+          "events"
+        ]
+      },
+      "example": null
+    }
+  }
+}

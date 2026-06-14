@@ -1,0 +1,68 @@
+{
+  "operationId": "lookup-users-by-x-username",
+  "method": "GET",
+  "path": "/v2/farcaster/user/by_x_username/",
+  "summary": "By X username",
+  "description": "Fetches the users who have verified the specified X (Twitter) username",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "x_username",
+      "in": "query",
+      "required": true,
+      "description": "X (Twitter) username to search for, without the @ symbol",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the viewer for contextual information like follows and blocks",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BulkUsersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

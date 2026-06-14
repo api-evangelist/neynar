@@ -1,0 +1,11 @@
+{
+  "term": "bans",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BanListResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

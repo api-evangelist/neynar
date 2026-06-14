@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/PostCastReqBodyEmbeds",
+  "title": "PostCastReqBodyEmbeds",
+  "description": "Neynar Farcaster API schema for PostCastReqBodyEmbeds",
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "additionalProperties": false,
+      "properties": {
+        "cast_id": {
+          "$ref": "#/components/schemas/PostCastReqBodyEmbedsCastIdProperties"
+        }
+      },
+      "required": [
+        "cast_id"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "castId": {
+          "$ref": "#/components/schemas/PostCastReqBodyEmbedsCastIdProperties"
+        }
+      },
+      "required": [
+        "castId"
+      ],
+      "type": "object"
+    },
+    {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "type": "object"
+    }
+  ]
+}

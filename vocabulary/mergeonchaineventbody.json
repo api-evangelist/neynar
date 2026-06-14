@@ -1,0 +1,11 @@
+{
+  "term": "mergeOnChainEventBody",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubEventMergeOnChainEvent"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

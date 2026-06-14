@@ -1,0 +1,14 @@
+{
+  "term": "target_fids",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FollowReqBody",
+    "SendFrameNotificationsReqBody",
+    "WebhookSubscriptionFiltersFollow",
+    "WebhookSubscriptionFiltersReaction"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "capacity",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "StorageObject"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

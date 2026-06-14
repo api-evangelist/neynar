@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AppHostPostEventReqBody",
+  "title": "AppHostPostEventReqBody",
+  "description": "Request body for app host events. Can either provide a signed_message or a signer_uuid with event details.",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/SignedMessageBody"
+    },
+    {
+      "$ref": "#/components/schemas/SignerUuidBody"
+    }
+  ]
+}

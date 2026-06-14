@@ -1,0 +1,27 @@
+{
+  "operationId": "publish-verification",
+  "method": "POST",
+  "path": "/v2/farcaster/user/verification/",
+  "summary": "Add verification",
+  "description": "Adds verification for an eth address or contract for the user \n(In order to add verification `signer_uuid` must be approved)",
+  "tags": [
+    "User"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/AddVerificationReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/OperationResponse"
+      },
+      "example": null
+    }
+  }
+}

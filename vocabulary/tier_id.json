@@ -1,0 +1,11 @@
+{
+  "term": "tier_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedToObject"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

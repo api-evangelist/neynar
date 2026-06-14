@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/MergeUserNameProofBody",
+  "title": "Hub MergeUserNameProofBody",
+  "description": "Neynar Hub API schema for MergeUserNameProofBody",
+  "type": "object",
+  "properties": {
+    "usernameProof": {
+      "$ref": "#/components/schemas/UserNameProof"
+    },
+    "deletedUsernameProof": {
+      "$ref": "#/components/schemas/UserNameProof"
+    },
+    "usernameProofMessage": {
+      "$ref": "#/components/schemas/Message"
+    },
+    "deletedUsernameProofMessage": {
+      "$ref": "#/components/schemas/Message"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "term": "owner",
+  "type": "property",
+  "description": "Ethereum address of the one who is creating the token",
+  "usedIn": [
+    "DeployFungibleReqBody",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

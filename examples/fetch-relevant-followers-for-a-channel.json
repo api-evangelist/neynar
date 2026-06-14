@@ -1,0 +1,55 @@
+{
+  "operationId": "fetch-relevant-followers-for-a-channel",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/followers/relevant/",
+  "summary": "Relevant followers",
+  "description": "Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\".",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "description": "Channel ID being queried",
+      "schema": {
+        "example": "neynar",
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/RelevantFollowersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

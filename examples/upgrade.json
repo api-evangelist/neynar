@@ -1,0 +1,237 @@
+{
+  "operationId": "upgrade",
+  "method": "POST",
+  "path": "/portal/subscription/upgrade",
+  "summary": "Process subscription upgrade with credit",
+  "description": "Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately.",
+  "tags": [
+    "portal",
+    "subscription"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "newPlan": {
+          "type": "string"
+        },
+        "productCategory": {
+          "enum": [
+            "API",
+            "STUDIO"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "newPlan"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "chargeAmount": {
+            "type": "number"
+          },
+          "creditApplied": {
+            "type": "number"
+          },
+          "effectiveImmediately": {
+            "type": "boolean"
+          },
+          "newPlan": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "newPlan",
+          "creditApplied",
+          "chargeAmount",
+          "effectiveImmediately"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "402": {
+      "description": "Payment Required",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

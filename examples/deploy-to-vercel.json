@@ -1,0 +1,165 @@
+{
+  "operationId": "deploy-to-vercel",
+  "method": "POST",
+  "path": "/v2/studio/vercel/",
+  "summary": "Deploy miniapp to Vercel",
+  "description": "Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID). Required if name not provided.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "env": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables for the Vercel deployment",
+          "type": "object"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Deployment name (used for both GitHub repo and Vercel project). Required if deployment_id not provided.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Kubernetes namespace name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "deployment_url": {
+            "description": "URL of the deployed Vercel app",
+            "type": "string"
+          },
+          "production_url": {
+            "description": "Production URL under neynar.app domain",
+            "type": "string"
+          },
+          "project_id": {
+            "description": "Vercel project ID",
+            "type": "string"
+          },
+          "success": {
+            "description": "Whether the deployment succeeded",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "409": {
+      "description": "Conflict",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

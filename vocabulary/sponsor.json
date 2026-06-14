@@ -1,0 +1,13 @@
+{
+  "term": "sponsor",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+    "RegisterDeveloperManagedSignedKeyReqBody",
+    "RegisterSignerKeyReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

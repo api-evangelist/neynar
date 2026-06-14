@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SharedSignerPermission",
+  "title": "SharedSignerPermission",
+  "description": "Neynar Farcaster API schema for SharedSignerPermission",
+  "enum": [
+    "WRITE_ALL",
+    "READ_ONLY",
+    "NONE",
+    "PUBLISH_CAST",
+    "DELETE_CAST",
+    "PUBLISH_REACTION",
+    "DELETE_REACTION",
+    "UPDATE_PROFILE",
+    "FOLLOW_USER",
+    "UNFOLLOW_USER",
+    "FOLLOW_CHANNEL",
+    "UNFOLLOW_CHANNEL",
+    "ADD_VERIFICATION",
+    "REMOVE_VERIFICATION",
+    "WRITE_FRAME_ACTION"
+  ],
+  "type": "string"
+}

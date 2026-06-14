@@ -1,0 +1,19 @@
+{
+  "term": "signature",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EncodedJsonFarcasterSignature",
+    "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+    "RegisterDeveloperManagedSignedKeyReqBody",
+    "RegisterSignerKeyReqBody",
+    "RegisterUserReqBody",
+    "SignedKeyRequestSponsor",
+    "MessageCommon",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

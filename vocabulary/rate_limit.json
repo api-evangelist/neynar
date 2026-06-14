@@ -1,0 +1,11 @@
+{
+  "term": "rate_limit",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

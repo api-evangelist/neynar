@@ -1,0 +1,295 @@
+{
+  "operationId": "upgrade-preview",
+  "method": "GET",
+  "path": "/portal/subscription/upgrade/preview",
+  "summary": "Get upgrade preview with credit calculation",
+  "description": "Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes.",
+  "tags": [
+    "portal",
+    "subscription"
+  ],
+  "parameters": [
+    {
+      "name": "newPlan",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "productCategory",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "enum": [
+          "API",
+          "STUDIO"
+        ],
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "billingDateUnchanged": {
+            "type": "boolean"
+          },
+          "chargeAmount": {
+            "type": "number"
+          },
+          "credit": {
+            "properties": {
+              "creditAmount": {
+                "type": "number"
+              },
+              "unitRate": {
+                "type": "number"
+              },
+              "unusedUnits": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "unusedUnits",
+              "unitRate",
+              "creditAmount"
+            ],
+            "type": "object"
+          },
+          "currentPlan": {
+            "properties": {
+              "computeUnitsLimit": {
+                "type": "number"
+              },
+              "computeUnitsUsed": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "price",
+              "computeUnitsLimit",
+              "computeUnitsUsed"
+            ],
+            "type": "object"
+          },
+          "newPlan": {
+            "properties": {
+              "computeUnitsLimit": {
+                "type": "number"
+              },
+              "name": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "name",
+              "price",
+              "computeUnitsLimit"
+            ],
+            "type": "object"
+          },
+          "usageCarriesOver": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "currentPlan",
+          "newPlan",
+          "credit",
+          "chargeAmount",
+          "billingDateUnchanged",
+          "usageCarriesOver"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "402": {
+      "description": "Payment Required",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "properties": {
+              "brand": {
+                "type": "string"
+              },
+              "last4": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "last4"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/EncodedJsonFarcasterSignature",
+  "title": "EncodedJsonFarcasterSignature",
+  "description": "Encoded JSON Farcaster signature",
+  "properties": {
+    "header": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "header",
+    "payload",
+    "signature"
+  ],
+  "type": "object"
+}

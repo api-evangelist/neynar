@@ -1,0 +1,11 @@
+{
+  "term": "domain",
+  "type": "property",
+  "description": "Domain name",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

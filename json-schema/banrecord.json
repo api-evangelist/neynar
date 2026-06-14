@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BanRecord",
+  "title": "BanRecord",
+  "description": "Neynar Farcaster API schema for BanRecord",
+  "properties": {
+    "banned": {
+      "$ref": "#/components/schemas/User"
+    },
+    "banned_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "ban"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "banned_at"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "term": "minimum_token_amount_usdc",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "WebhookSubscriptionFiltersTrade"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

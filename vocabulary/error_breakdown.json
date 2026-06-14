@@ -1,0 +1,11 @@
+{
+  "term": "error_breakdown",
+  "type": "property",
+  "description": "Detailed breakdown of errors encountered during notification delivery.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

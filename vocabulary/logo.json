@@ -1,0 +1,11 @@
+{
+  "term": "logo",
+  "type": "property",
+  "description": "The logo URL of the token",
+  "usedIn": [
+    "Fungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

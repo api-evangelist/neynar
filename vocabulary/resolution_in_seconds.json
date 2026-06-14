@@ -1,0 +1,11 @@
+{
+  "term": "resolution_in_seconds",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastsMetrics"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

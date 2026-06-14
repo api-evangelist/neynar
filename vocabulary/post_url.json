@@ -1,0 +1,12 @@
+{
+  "term": "post_url",
+  "type": "property",
+  "description": "Used specifically for the tx action type to post a successful transaction hash",
+  "usedIn": [
+    "FrameActionButton",
+    "FrameV1"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

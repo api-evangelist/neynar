@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BulkFollowResponse",
+  "title": "BulkFollowResponse",
+  "description": "Neynar Farcaster API schema for BulkFollowResponse",
+  "properties": {
+    "details": {
+      "items": {
+        "$ref": "#/components/schemas/FollowResponse"
+      },
+      "type": "array"
+    },
+    "success": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "success",
+    "details"
+  ],
+  "type": "object"
+}

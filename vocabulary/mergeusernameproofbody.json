@@ -1,0 +1,11 @@
+{
+  "term": "mergeUsernameProofBody",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubEventMergeUsernameProof"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

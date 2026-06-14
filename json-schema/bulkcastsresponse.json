@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BulkCastsResponse",
+  "title": "BulkCastsResponse",
+  "description": "Neynar Farcaster API schema for BulkCastsResponse",
+  "properties": {
+    "casts": {
+      "items": {
+        "$ref": "#/components/schemas/Cast"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "casts"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,69 @@
+{
+  "operationId": "publish-frame-notifications",
+  "method": "POST",
+  "path": "/v2/farcaster/frame/notifications/",
+  "summary": "Send notifications",
+  "description": "Send notifications to interactors of a mini app. By default every broadcast is delivered synchronously and returns 200 with aggregate counts. When the `ASYNC_NOTIFICATIONS_ENABLED` server flag is on, broadcasts with more than 100 notification tokens are queued and return 202 with a campaign_id instead; poll the campaign stats endpoint for progress. Small broadcasts always stay synchronous.",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/SendFrameNotificationsReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/SendFrameNotificationsResponse"
+      },
+      "example": null
+    },
+    "202": {
+      "description": "202",
+      "schema": {
+        "$ref": "#/components/schemas/QueuedFrameNotificationsResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ZodError"
+          },
+          {
+            "$ref": "#/components/schemas/ErrorRes"
+          }
+        ]
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "422": {
+      "description": "Unprocessable Content",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

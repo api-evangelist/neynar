@@ -1,0 +1,11 @@
+{
+  "term": "ogLocale",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HtmlMetadata"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

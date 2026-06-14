@@ -1,0 +1,19 @@
+{
+  "term": "app",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastDehydrated",
+    "CastEmbedded",
+    "Follower",
+    "ReactionForCast",
+    "ReactionWithCastInfo",
+    "Verification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

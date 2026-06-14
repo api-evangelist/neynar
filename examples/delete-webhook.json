@@ -1,0 +1,34 @@
+{
+  "operationId": "delete-webhook",
+  "method": "DELETE",
+  "path": "/v2/farcaster/webhook/",
+  "summary": "Delete a webhook",
+  "description": "Delete a webhook",
+  "tags": [
+    "Webhook"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/WebhookDeleteReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/WebhookResponse"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

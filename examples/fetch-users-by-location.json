@@ -1,0 +1,103 @@
+{
+  "operationId": "fetch-users-by-location",
+  "method": "GET",
+  "path": "/v2/farcaster/user/by_location/",
+  "summary": "By location",
+  "description": "Fetches a list of users given a location",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "latitude",
+      "in": "query",
+      "required": true,
+      "description": "Latitude of the location",
+      "schema": {
+        "example": 37.77,
+        "type": "number"
+      }
+    },
+    {
+      "name": "longitude",
+      "in": "query",
+      "required": true,
+      "description": "Longitude of the location",
+      "schema": {
+        "example": -122.41,
+        "type": "number"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the user viewing the feed. Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "example": 3,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "example": 25,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/UsersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

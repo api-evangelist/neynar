@@ -1,0 +1,11 @@
+{
+  "term": "cursor",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "NextCursor"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

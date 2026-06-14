@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionFrameResponse",
+  "title": "TransactionFrameResponse",
+  "description": "Neynar Farcaster API schema for TransactionFrameResponse",
+  "properties": {
+    "transaction_frame": {
+      "$ref": "#/components/schemas/TransactionFrame"
+    }
+  },
+  "required": [
+    "transaction_frame"
+  ],
+  "type": "object"
+}

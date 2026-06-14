@@ -1,0 +1,198 @@
+{
+  "operationId": "billing",
+  "method": "GET",
+  "path": "/portal/organization/billing",
+  "summary": "Get billing information for the current organization",
+  "description": "Retrieves billing and subscription details for the current organization, including plan status, product category, billing email, and effective plan.",
+  "tags": [
+    "portal",
+    "organization"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "billing_email": {
+            "nullable": true,
+            "type": "string"
+          },
+          "effective_plan": {
+            "type": "string"
+          },
+          "has_active_subscription": {
+            "type": "boolean"
+          },
+          "is_trialing": {
+            "type": "boolean"
+          },
+          "organization_name": {
+            "type": "string"
+          },
+          "organization_status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "plan_tier": {
+            "nullable": true,
+            "type": "string"
+          },
+          "product_category": {
+            "nullable": true,
+            "type": "string"
+          },
+          "product_name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stripe_customer_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stripe_product_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stripe_subscription_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "subscription_end": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "subscription_start": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "subscription_status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "workos_organization_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "workos_organization_id",
+          "organization_name",
+          "stripe_customer_id",
+          "organization_status",
+          "stripe_subscription_id",
+          "subscription_status",
+          "product_name",
+          "stripe_product_id",
+          "plan_tier",
+          "product_category",
+          "subscription_start",
+          "subscription_end",
+          "billing_email",
+          "has_active_subscription",
+          "is_trialing",
+          "effective_plan"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "401": {
+      "description": "Unauthorized",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "term": "target",
+  "type": "property",
+  "description": "Target of the button",
+  "usedIn": [
+    "FrameActionButton",
+    "ReactionReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

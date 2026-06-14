@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@vocab": "https://neynar.com/hub/vocab/",
+    "schema": "https://schema.org/",
+    "farcaster": "https://farcaster.xyz/vocab/",
+    "hub": "https://neynar.com/hub/vocab/",
+    "fid": {
+      "@id": "farcaster:fid",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "hash": {
+      "@id": "hub:hash"
+    },
+    "timestamp": {
+      "@id": "schema:dateCreated"
+    },
+    "network": {
+      "@id": "farcaster:network"
+    },
+    "data": {
+      "@id": "hub:data"
+    }
+  },
+  "@type": "hub:HubAPIContext",
+  "schema:name": "Neynar Hub API Context",
+  "schema:description": "JSON-LD context for Neynar Hub API resources",
+  "schema:version": "2.35.0",
+  "schema:url": "https://hub-api.neynar.com"
+}

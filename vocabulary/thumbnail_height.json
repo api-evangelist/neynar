@@ -1,0 +1,14 @@
+{
+  "term": "thumbnail_height",
+  "type": "property",
+  "description": "The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

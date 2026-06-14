@@ -1,0 +1,12 @@
+{
+  "term": "blockHash",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "OnChainEventCommon",
+    "VerificationAddEthAddressBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

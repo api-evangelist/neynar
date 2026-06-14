@@ -1,0 +1,11 @@
+{
+  "term": "embedded_cast_author_fids",
+  "type": "property",
+  "description": "Filter for casts that contain embedded casts authored by these FIDs",
+  "usedIn": [
+    "WebhookSubscriptionFiltersCast"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

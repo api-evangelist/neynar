@@ -1,0 +1,77 @@
+{
+  "operationId": "hub-fetch-reactions-by-target",
+  "method": "GET",
+  "path": "/v1/reactionsByTarget",
+  "summary": "To a target URL",
+  "description": "Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.",
+  "tags": [
+    "Reactions"
+  ],
+  "parameters": [
+    {
+      "name": "url",
+      "in": "query",
+      "required": true,
+      "description": "Target URL starting with 'chain://'.",
+      "schema": {
+        "type": "string",
+        "example": "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2"
+      }
+    },
+    {
+      "name": "reaction_type",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/ReactionType"
+      }
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "The requested Reactions.",
+      "schema": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "messages"
+            ],
+            "properties": {
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Reaction"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/PaginationResponse"
+          }
+        ]
+      },
+      "example": null
+    }
+  }
+}

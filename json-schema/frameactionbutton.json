@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FrameActionButton",
+  "title": "FrameActionButton",
+  "description": "Neynar Farcaster API schema for FrameActionButton",
+  "properties": {
+    "action_type": {
+      "$ref": "#/components/schemas/FrameButtonActionType"
+    },
+    "index": {
+      "description": "Index of the button",
+      "type": "integer"
+    },
+    "post_url": {
+      "description": "Used specifically for the tx action type to post a successful transaction hash",
+      "type": "string"
+    },
+    "target": {
+      "description": "Target of the button",
+      "type": "string"
+    },
+    "title": {
+      "description": "Title of the button",
+      "type": "string"
+    }
+  },
+  "required": [
+    "index",
+    "action_type"
+  ],
+  "type": "object"
+}

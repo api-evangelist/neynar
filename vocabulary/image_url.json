@@ -1,0 +1,12 @@
+{
+  "term": "image_url",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Channel",
+    "ChannelDehydrated"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

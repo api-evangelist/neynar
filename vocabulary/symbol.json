@@ -1,0 +1,12 @@
+{
+  "term": "symbol",
+  "type": "property",
+  "description": "Symbol/Ticker for the token",
+  "usedIn": [
+    "DeployFungibleReqBody",
+    "Fungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

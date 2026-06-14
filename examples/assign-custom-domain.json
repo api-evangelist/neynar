@@ -1,0 +1,188 @@
+{
+  "operationId": "assign-custom-domain",
+  "method": "PUT",
+  "path": "/v2/studio/vercel/domain",
+  "summary": "Assign a custom subdomain to a deployed miniapp",
+  "description": "Assigns a custom *.neynar.app subdomain to the user's deployed miniapp. The new domain is added to the Vercel project alongside the existing auto-assigned domain. The productionDomain in the database is updated to the custom domain. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "Farcaster ID of the requesting user",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "deployment_id": {
+          "description": "Deployment ID (UUID) of the miniapp",
+          "format": "uuid",
+          "type": "string"
+        },
+        "subdomain": {
+          "description": "The desired subdomain (without .neynar.app suffix). Must be 3-63 characters, lowercase alphanumeric and hyphens only.",
+          "maxLength": 63,
+          "minLength": 3,
+          "pattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "deployment_id",
+        "subdomain"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "domain": {
+            "description": "The full assigned domain (e.g., myapp.neynar.app)",
+            "type": "string"
+          },
+          "previous_domain": {
+            "description": "The previous production domain, if any",
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              true
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "domain"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "409": {
+      "description": "Conflict",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "success": {
+            "enum": [
+              false
+            ],
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success",
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

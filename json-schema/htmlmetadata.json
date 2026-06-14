@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/HtmlMetadata",
+  "title": "HtmlMetadata",
+  "description": "Neynar Farcaster API schema for HtmlMetadata",
+  "properties": {
+    "favicon": {
+      "type": "string"
+    },
+    "modifiedTime": {
+      "type": "string"
+    },
+    "oembed": {
+      "discriminator": {
+        "mapping": {
+          "link": "#/components/schemas/OembedLinkData",
+          "photo": "#/components/schemas/OembedPhotoData",
+          "rich": "#/components/schemas/OembedRichData",
+          "video": "#/components/schemas/OembedVideoData"
+        },
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/OembedRichData"
+        },
+        {
+          "$ref": "#/components/schemas/OembedVideoData"
+        },
+        {
+          "$ref": "#/components/schemas/OembedPhotoData"
+        },
+        {
+          "$ref": "#/components/schemas/OembedLinkData"
+        }
+      ],
+      "type": "object"
+    },
+    "ogArticleAuthor": {
+      "type": "string"
+    },
+    "ogArticleExpirationTime": {
+      "type": "string"
+    },
+    "ogArticleModifiedTime": {
+      "type": "string"
+    },
+    "ogArticlePublishedTime": {
+      "type": "string"
+    },
+    "ogArticlePublisher": {
+      "type": "string"
+    },
+    "ogArticleSection": {
+      "type": "string"
+    },
+    "ogArticleTag": {
+      "type": "string"
+    },
+    "ogAudio": {
+      "type": "string"
+    },
+    "ogAudioSecureURL": {
+      "type": "string"
+    },
+    "ogAudioType": {
+      "type": "string"
+    },
+    "ogAudioURL": {
+      "type": "string"
+    },
+    "ogAvailability": {
+      "type": "string"
+    },
+    "ogDate": {
+      "type": "string"
+    },
+    "ogDescription": {
+      "type": "string"
+    },
+    "ogDeterminer": {
+      "type": "string"
+    },
+    "ogEpisode": {
+      "type": "string"
+    },
+    "ogImage": {
+      "items": {
+        "$ref": "#/components/schemas/ImageObject"
+      },
+      "type": "array"
+    },
+    "ogLocale": {
+      "type": "string"
+    },
+    "ogLocaleAlternate": {
+      "type": "string"
+    },
+    "ogLogo": {
+      "type": "string"
+    },
+    "ogMovie": {
+      "type": "string"
+    },
+    "ogPriceAmount": {
+      "type": "string"
+    },
+    "ogPriceCurrency": {
+      "type": "string"
+    },
+    "ogProductAvailability": {
+      "type": "string"
+    },
+    "ogProductCondition": {
+      "type": "string"
+    },
+    "ogProductPriceAmount": {
+      "type": "string"
+    },
+    "ogProductPriceCurrency": {
+      "type": "string"
+    },
+    "ogProductRetailerItemId": {
+      "type": "string"
+    },
+    "ogSiteName": {
+      "type": "string"
+    },
+    "ogTitle": {
+      "type": "string"
+    },
+    "ogType": {
+      "type": "string"
+    },
+    "ogUrl": {
+      "type": "string"
+    },
+    "ogVideo": {
+      "items": {
+        "$ref": "#/components/schemas/VideoObject"
+      },
+      "type": "array"
+    },
+    "ogVideoActor": {
+      "type": "string"
+    },
+    "ogVideoActorId": {
+      "type": "string"
+    },
+    "ogVideoActorRole": {
+      "type": "string"
+    },
+    "ogVideoDirector": {
+      "type": "string"
+    },
+    "ogVideoDuration": {
+      "type": "string"
+    },
+    "ogVideoOther": {
+      "type": "string"
+    },
+    "ogVideoReleaseDate": {
+      "type": "string"
+    },
+    "ogVideoSecureURL": {
+      "type": "string"
+    },
+    "ogVideoSeries": {
+      "type": "string"
+    },
+    "ogVideoTag": {
+      "type": "string"
+    },
+    "ogVideoTvShow": {
+      "type": "string"
+    },
+    "ogVideoWriter": {
+      "type": "string"
+    },
+    "ogWebsite": {
+      "type": "string"
+    },
+    "updatedTime": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

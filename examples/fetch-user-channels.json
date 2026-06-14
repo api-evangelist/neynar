@@ -1,0 +1,54 @@
+{
+  "operationId": "fetch-user-channels",
+  "method": "GET",
+  "path": "/v2/farcaster/user/channels/",
+  "summary": "Following",
+  "description": "Returns a list of all channels with their details that a FID follows.",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "The FID of the user.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelListResponse"
+      },
+      "example": null
+    }
+  }
+}

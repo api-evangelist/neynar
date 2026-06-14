@@ -1,0 +1,11 @@
+{
+  "term": "success_count",
+  "type": "property",
+  "description": "The number of notifications successfully delivered.",
+  "usedIn": [
+    "SendFrameNotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

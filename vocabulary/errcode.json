@@ -1,0 +1,11 @@
+{
+  "term": "errCode",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ErrorResponse"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

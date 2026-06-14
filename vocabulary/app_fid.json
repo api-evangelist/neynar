@@ -1,0 +1,13 @@
+{
+  "term": "app_fid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+    "RegisterDeveloperManagedSignedKeyReqBody",
+    "RegisterSignerKeyReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

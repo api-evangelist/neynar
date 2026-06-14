@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelId",
+  "title": "ChannelId",
+  "description": "The unique identifier of a farcaster channel",
+  "example": "neynar",
+  "type": "string"
+}

@@ -1,0 +1,12 @@
+{
+  "term": "cast_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EmbedCast",
+    "EmbedCastDeep"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

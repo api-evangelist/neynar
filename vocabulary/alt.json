@@ -1,0 +1,11 @@
+{
+  "term": "alt",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ImageObject"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

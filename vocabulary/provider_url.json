@@ -1,0 +1,14 @@
+{
+  "term": "provider_url",
+  "type": "property",
+  "description": "The url of the resource provider.",
+  "usedIn": [
+    "OembedLinkData",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

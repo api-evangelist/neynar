@@ -1,0 +1,31 @@
+{
+  "operationId": "hub-lookup-user-storage-limit",
+  "method": "GET",
+  "path": "/v1/storageLimitsByFid",
+  "summary": "FID's limits",
+  "description": "Fetch a user's storage limits.",
+  "tags": [
+    "Storage"
+  ],
+  "parameters": [
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/StorageLimitsResponse"
+      },
+      "example": null
+    }
+  }
+}

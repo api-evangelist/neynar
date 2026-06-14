@@ -1,0 +1,11 @@
+{
+  "term": "gas_used",
+  "type": "property",
+  "description": "Gas used for the transaction.",
+  "usedIn": [
+    "TransactionSendTxInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "operationId": "mark-notifications-as-seen",
+  "method": "POST",
+  "path": "/v2/farcaster/notifications/seen/",
+  "summary": "Mark as seen",
+  "description": "Mark notifications as seen.\nYou can choose one of two authorization methods, either:\n  1. Provide a valid signer_uuid in the request body (Most common)\n  2. Provide a valid, signed \"Bearer\" token in the request's `Authorization` header similar to the\n     approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)",
+  "tags": [
+    "Notifications"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    }
+  ],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/MarkNotificationsAsSeenReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/OperationResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

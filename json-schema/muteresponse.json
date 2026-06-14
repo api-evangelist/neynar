@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/MuteResponse",
+  "title": "MuteResponse",
+  "description": "Neynar Farcaster API schema for MuteResponse",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "success": {
+      "example": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "success"
+  ],
+  "type": "object"
+}

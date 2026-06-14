@@ -1,0 +1,12 @@
+{
+  "term": "state",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameV1",
+    "LocationAddress"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

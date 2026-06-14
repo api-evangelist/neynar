@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NextCursor",
+  "title": "NextCursor",
+  "description": "Returns next cursor",
+  "properties": {
+    "cursor": {
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "cursor"
+  ],
+  "type": "object"
+}

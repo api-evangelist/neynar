@@ -1,0 +1,11 @@
+{
+  "term": "blocked_by",
+  "type": "property",
+  "description": "Indicates if the viewer is blocked by the user.",
+  "usedIn": [
+    "UserViewerContext"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

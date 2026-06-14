@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ReactionsResponse",
+  "title": "ReactionsResponse",
+  "description": "Neynar Farcaster API schema for ReactionsResponse",
+  "properties": {
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    },
+    "reactions": {
+      "items": {
+        "$ref": "#/components/schemas/ReactionWithCastInfo"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "reactions",
+    "next"
+  ],
+  "type": "object"
+}

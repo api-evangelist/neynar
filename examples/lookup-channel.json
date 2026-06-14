@@ -1,0 +1,63 @@
+{
+  "operationId": "lookup-channel",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/",
+  "summary": "By ID or parent_url",
+  "description": "Returns details of a channel",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "description": "Channel ID for the channel being queried",
+      "schema": {
+        "example": "neynar",
+        "type": "string"
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": false,
+      "description": "Type of identifier being used to query the channel. Defaults to ID.",
+      "schema": {
+        "enum": [
+          "id",
+          "parent_url"
+        ],
+        "example": "id",
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the user viewing the channel.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelResponse"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

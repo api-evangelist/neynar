@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TransactionFrame",
+  "title": "TransactionFrame",
+  "description": "Neynar Farcaster API schema for TransactionFrame",
+  "discriminator": {
+    "mapping": {
+      "pay": "#/components/schemas/TransactionFramePay"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/TransactionFramePay"
+    }
+  ],
+  "type": "object"
+}

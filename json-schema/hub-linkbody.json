@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/LinkBody",
+  "title": "Hub LinkBody",
+  "description": "Defines a social connection between users in the Farcaster network. Currently used to establish following relationships, allowing users to curate their content feed.",
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/LinkType"
+    },
+    "displayTimestamp": {
+      "title": "Original Timestamp",
+      "description": "User-defined timestamp that preserves the original creation time when message.data.timestamp needs to be updated for compaction. Useful for maintaining chronological order in user feeds.",
+      "type": "integer",
+      "format": "int64",
+      "example": 48994466
+    },
+    "targetFid": {
+      "$ref": "#/components/schemas/FidSchema"
+    }
+  },
+  "required": [
+    "type",
+    "targetFid"
+  ]
+}

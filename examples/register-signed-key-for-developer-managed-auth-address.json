@@ -1,0 +1,65 @@
+{
+  "operationId": "register-signed-key-for-developer-managed-auth-address",
+  "method": "POST",
+  "path": "/v2/farcaster/auth_address/developer_managed/signed_key/",
+  "summary": "Register Signed Key",
+  "description": "Allow apps to register an Ethereum addresses as authorized \"auth addresses\" for a user's Farcaster account, enabling seamless Sign-In With Farcaster (SIWF) across applications without repeated custody wallet authorizations.",
+  "tags": [
+    "AuthAddress"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/RegisterAuthAddressDeveloperManagedSignedKeyReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/EthAddress"
+          },
+          "auth_address_approval_url": {
+            "format": "uri",
+            "type": "string"
+          },
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "status": {
+            "enum": [
+              "pending_approval",
+              "approved",
+              "revoked"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "address",
+          "status"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

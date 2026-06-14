@@ -1,0 +1,72 @@
+{
+  "operationId": "fetch-trending-channels",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/trending/",
+  "summary": "Channels by activity",
+  "description": "Returns a list of trending channels based on activity",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "time_window",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "enum": [
+          "1d",
+          "7d",
+          "30d"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 10,
+        "format": "int32",
+        "maximum": 25,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/TrendingChannelResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

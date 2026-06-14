@@ -1,0 +1,11 @@
+{
+  "term": "hashScheme",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MessageCommon"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

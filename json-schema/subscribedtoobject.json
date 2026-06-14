@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SubscribedToObject",
+  "title": "SubscribedToObject",
+  "description": "Neynar Farcaster API schema for SubscribedToObject",
+  "properties": {
+    "chain": {
+      "example": 8453,
+      "type": "integer"
+    },
+    "contract_address": {
+      "example": "0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac",
+      "type": "string"
+    },
+    "expires_at": {
+      "example": "2023-09-13T22:10:22.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "subscription_dehydrated"
+      ],
+      "type": "string"
+    },
+    "protocol_version": {
+      "example": 1,
+      "type": "integer"
+    },
+    "provider_name": {
+      "example": "fabric_stp",
+      "type": "string"
+    },
+    "subscribed_at": {
+      "example": "2023-09-13T22:10:22.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "tier_id": {
+      "example": "0",
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "provider_name"
+  ],
+  "type": "object"
+}

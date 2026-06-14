@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/CastEmbed",
+  "title": "Hub CastEmbed",
+  "description": "Neynar Hub API schema for CastEmbed",
+  "type": "object",
+  "properties": {
+    "castId": {
+      "$ref": "#/components/schemas/CastId"
+    }
+  },
+  "required": [
+    "castId"
+  ]
+}

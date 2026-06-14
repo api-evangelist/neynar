@@ -1,0 +1,13 @@
+{
+  "term": "public_key",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DeveloperManagedSigner",
+    "RegisterDeveloperManagedSignedKeyReqBody",
+    "Signer"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

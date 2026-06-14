@@ -1,0 +1,11 @@
+{
+  "term": "successful_sends_by_app_fid",
+  "type": "property",
+  "description": "A record mapping app FIDs (as strings) to the number of successful sends for that app.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

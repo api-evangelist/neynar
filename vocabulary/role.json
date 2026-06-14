@@ -1,0 +1,16 @@
+{
+  "term": "role",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelMember",
+    "ChannelMemberInvite",
+    "ChannelUserContext",
+    "InviteChannelMemberReqBody",
+    "RemoveChannelMemberReqBody",
+    "RespondChannelInviteReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

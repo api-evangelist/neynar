@@ -1,0 +1,11 @@
+{
+  "term": "dbStats",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "HubInfoResponse"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

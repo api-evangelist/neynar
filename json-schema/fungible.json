@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Fungible",
+  "title": "Fungible",
+  "description": "Neynar Farcaster API schema for Fungible",
+  "properties": {
+    "address": {
+      "description": "The contract address of the token",
+      "type": "string"
+    },
+    "decimals": {
+      "description": "The number of decimals the token uses",
+      "type": "integer"
+    },
+    "logo": {
+      "description": "The logo URL of the token",
+      "nullable": true,
+      "type": "string"
+    },
+    "name": {
+      "description": "The token name e.g. \"Ethereum\"",
+      "type": "string"
+    },
+    "network": {
+      "$ref": "#/components/schemas/Network"
+    },
+    "object": {
+      "enum": [
+        "fungible"
+      ],
+      "type": "string"
+    },
+    "symbol": {
+      "description": "The token symbol e.g. \"ETH\"",
+      "type": "string"
+    },
+    "total_supply": {
+      "description": "The total supply of the token",
+      "nullable": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "network",
+    "name",
+    "symbol",
+    "address",
+    "decimals",
+    "total_supply",
+    "logo"
+  ],
+  "type": "object"
+}

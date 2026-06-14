@@ -1,0 +1,11 @@
+{
+  "term": "image_aspect_ratio",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FrameV1"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

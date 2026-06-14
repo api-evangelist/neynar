@@ -1,0 +1,11 @@
+{
+  "term": "blocked",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "BlockRecord"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

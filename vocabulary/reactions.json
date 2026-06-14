@@ -1,0 +1,8 @@
+{
+  "term": "Reactions",
+  "type": "tag",
+  "description": "Operations related to reactions.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

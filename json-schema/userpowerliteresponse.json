@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/UserPowerLiteResponse",
+  "title": "UserPowerLiteResponse",
+  "description": "Neynar Farcaster API schema for UserPowerLiteResponse",
+  "properties": {
+    "result": {
+      "properties": {
+        "fids": {
+          "description": "List of FIDs",
+          "items": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "fids"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "result"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/VerificationType",
+  "title": "VerificationType",
+  "description": "Type of verification. 0 = EOA, 1 = contract",
+  "anyOf": [
+    {
+      "enum": [
+        0
+      ],
+      "type": "number"
+    },
+    {
+      "enum": [
+        1
+      ],
+      "type": "number"
+    }
+  ],
+  "default": 0,
+  "format": "int32",
+  "type": "integer"
+}

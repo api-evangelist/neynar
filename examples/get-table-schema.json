@@ -1,0 +1,252 @@
+{
+  "operationId": "get-table-schema",
+  "method": "GET",
+  "path": "/v2/studio/deployment/database/tables/{table_name}/schema",
+  "summary": "Get table schema",
+  "description": "Retrieves the complete schema for a table including columns, indexes, and foreign keys.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [
+    {
+      "name": "table_name",
+      "in": "path",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "deployment_id",
+      "in": "query",
+      "required": true,
+      "description": "Deployment ID (UUID)",
+      "schema": {
+        "format": "uuid",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": false,
+      "description": "Farcaster ID of the user. Required for non-admin users.",
+      "schema": {
+        "example": 3,
+        "format": "int32",
+        "minimum": 0,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "columns": {
+            "description": "Table columns",
+            "items": {
+              "properties": {
+                "defaultValue": {
+                  "description": "Default value expression",
+                  "nullable": true,
+                  "type": "string"
+                },
+                "isPrimaryKey": {
+                  "description": "Whether the column is part of primary key",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Column name",
+                  "type": "string"
+                },
+                "nullable": {
+                  "description": "Whether the column allows NULL values",
+                  "type": "boolean"
+                },
+                "position": {
+                  "description": "Ordinal position in table",
+                  "type": "number"
+                },
+                "type": {
+                  "description": "Column data type",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "nullable",
+                "defaultValue",
+                "isPrimaryKey",
+                "position"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "foreignKeys": {
+            "description": "Foreign key relationships",
+            "items": {
+              "properties": {
+                "columnName": {
+                  "description": "Local column name",
+                  "type": "string"
+                },
+                "constraintName": {
+                  "description": "Constraint name",
+                  "type": "string"
+                },
+                "referencedColumn": {
+                  "description": "Referenced column name",
+                  "type": "string"
+                },
+                "referencedTable": {
+                  "description": "Referenced table name",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "constraintName",
+                "columnName",
+                "referencedTable",
+                "referencedColumn"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "indexes": {
+            "description": "Table indexes",
+            "items": {
+              "properties": {
+                "columns": {
+                  "description": "Columns in the index",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "isPrimary": {
+                  "description": "Whether this is the primary key index",
+                  "type": "boolean"
+                },
+                "isUnique": {
+                  "description": "Whether the index enforces uniqueness",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Index name",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "columns",
+                "isUnique",
+                "isPrimary"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "primaryKeyColumns": {
+            "description": "Primary key column names",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tableName": {
+            "description": "Table name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tableName",
+          "columns",
+          "indexes",
+          "foreignKeys",
+          "primaryKeyColumns"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "403": {
+      "description": "Forbidden",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

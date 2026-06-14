@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/OembedVideoData",
+  "title": "OembedVideoData",
+  "description": "Video OEmbed data",
+  "properties": {
+    "author_name": {
+      "description": "The name of the author/owner of the resource.",
+      "nullable": true,
+      "type": "string"
+    },
+    "author_url": {
+      "description": "A URL for the author/owner of the resource.",
+      "nullable": true,
+      "type": "string"
+    },
+    "cache_age": {
+      "description": "The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.",
+      "nullable": true,
+      "type": "string"
+    },
+    "height": {
+      "description": "The height in pixels required to display the HTML.",
+      "nullable": true,
+      "type": "number"
+    },
+    "html": {
+      "description": "The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.",
+      "nullable": true,
+      "type": "string"
+    },
+    "provider_name": {
+      "description": "The name of the resource provider.",
+      "nullable": true,
+      "type": "string"
+    },
+    "provider_url": {
+      "description": "The url of the resource provider.",
+      "nullable": true,
+      "type": "string"
+    },
+    "thumbnail_height": {
+      "description": "The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.",
+      "nullable": true,
+      "type": "number"
+    },
+    "thumbnail_url": {
+      "description": "A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.",
+      "nullable": true,
+      "type": "string"
+    },
+    "thumbnail_width": {
+      "description": "The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.",
+      "nullable": true,
+      "type": "number"
+    },
+    "title": {
+      "description": "A text title, describing the resource.",
+      "nullable": true,
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "video"
+      ],
+      "type": "string"
+    },
+    "version": {
+      "nullable": true,
+      "type": "string"
+    },
+    "width": {
+      "description": "The width in pixels required to display the HTML.",
+      "nullable": true,
+      "type": "number"
+    }
+  },
+  "required": [
+    "type",
+    "version",
+    "html"
+  ],
+  "type": "object"
+}

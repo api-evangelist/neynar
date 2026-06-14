@@ -1,0 +1,112 @@
+{
+  "operationId": "fetch-user-reciprocal-followers",
+  "method": "GET",
+  "path": "/v2/farcaster/followers/reciprocal/",
+  "summary": "Reciprocal Followers",
+  "description": "Returns users who the given FID follows and they follow the FID back (reciprocal following relationship)",
+  "tags": [
+    "Follows"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fid",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "default": 25,
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "sort_type",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "default": "algorithmic",
+        "enum": [
+          "desc_chron",
+          "algorithmic"
+        ],
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "next": {
+            "$ref": "#/components/schemas/NextCursor"
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/ReciprocalFollower"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "users",
+          "next"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

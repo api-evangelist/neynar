@@ -1,0 +1,11 @@
+{
+  "term": "latitude",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Location"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

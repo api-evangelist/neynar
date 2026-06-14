@@ -1,0 +1,11 @@
+{
+  "term": "auth_addresses",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

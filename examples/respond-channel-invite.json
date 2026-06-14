@@ -1,0 +1,41 @@
+{
+  "operationId": "respond-channel-invite",
+  "method": "PUT",
+  "path": "/v2/farcaster/channel/member/invite/",
+  "summary": "Accept or reject an invite",
+  "description": "Accept or reject a channel invite",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/RespondChannelInviteReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/OperationResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

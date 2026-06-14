@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelMemberInviteListResponse",
+  "title": "ChannelMemberInviteListResponse",
+  "description": "Neynar Farcaster API schema for ChannelMemberInviteListResponse",
+  "properties": {
+    "invites": {
+      "items": {
+        "$ref": "#/components/schemas/ChannelMemberInvite"
+      },
+      "type": "array"
+    },
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    }
+  },
+  "required": [
+    "invites"
+  ],
+  "type": "object"
+}

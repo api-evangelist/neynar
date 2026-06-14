@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/FidsResponse",
+  "title": "Hub FidsResponse",
+  "description": "Neynar Hub API schema for FidsResponse",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "fids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FidSchema"
+          }
+        }
+      },
+      "required": [
+        "fids"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/PaginationResponse"
+    }
+  ]
+}

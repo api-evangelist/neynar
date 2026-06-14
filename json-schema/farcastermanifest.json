@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FarcasterManifest",
+  "title": "FarcasterManifest",
+  "description": "Neynar Farcaster API schema for FarcasterManifest",
+  "properties": {
+    "account_association": {
+      "$ref": "#/components/schemas/EncodedJsonFarcasterSignature"
+    },
+    "frame": {
+      "properties": {
+        "button_title": {
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed description of the configuration",
+          "type": "string"
+        },
+        "hero_image_url": {
+          "description": "URL of the hero image displayed for the configuration",
+          "format": "uri",
+          "type": "string"
+        },
+        "home_url": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "noindex": {
+          "description": "Whether search engines should not index this configuration",
+          "type": "boolean"
+        },
+        "og_description": {
+          "description": "Description used for Open Graph previews",
+          "type": "string"
+        },
+        "og_image_url": {
+          "description": "Image URL used for Open Graph previews",
+          "format": "uri",
+          "type": "string"
+        },
+        "og_title": {
+          "description": "Title used for Open Graph previews",
+          "type": "string"
+        },
+        "primary_category": {
+          "description": "Primary category the configuration belongs to",
+          "type": "string"
+        },
+        "screenshot_urls": {
+          "description": "URLs of screenshots showcasing the configuration",
+          "items": {
+            "format": "uri",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "splash_background_color": {
+          "type": "string"
+        },
+        "splash_image_url": {
+          "type": "string"
+        },
+        "subtitle": {
+          "description": "Short subtitle for the configuration",
+          "type": "string"
+        },
+        "tagline": {
+          "description": "Short tagline for the configuration",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tags associated with the configuration",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "version": {
+          "enum": [
+            "1",
+            "0.0.0",
+            "0.0.1",
+            "next"
+          ],
+          "type": "string"
+        },
+        "webhook_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "name",
+        "home_url",
+        "icon_url"
+      ],
+      "type": "object"
+    },
+    "miniapp": {
+      "properties": {
+        "button_title": {
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed description of the configuration",
+          "type": "string"
+        },
+        "hero_image_url": {
+          "description": "URL of the hero image displayed for the configuration",
+          "format": "uri",
+          "type": "string"
+        },
+        "home_url": {
+          "type": "string"
+        },
+        "icon_url": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "noindex": {
+          "description": "Whether search engines should not index this configuration",
+          "type": "boolean"
+        },
+        "og_description": {
+          "description": "Description used for Open Graph previews",
+          "type": "string"
+        },
+        "og_image_url": {
+          "description": "Image URL used for Open Graph previews",
+          "format": "uri",
+          "type": "string"
+        },
+        "og_title": {
+          "description": "Title used for Open Graph previews",
+          "type": "string"
+        },
+        "primary_category": {
+          "description": "Primary category the configuration belongs to",
+          "type": "string"
+        },
+        "screenshot_urls": {
+          "description": "URLs of screenshots showcasing the configuration",
+          "items": {
+            "format": "uri",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "splash_background_color": {
+          "type": "string"
+        },
+        "splash_image_url": {
+          "type": "string"
+        },
+        "subtitle": {
+          "description": "Short subtitle for the configuration",
+          "type": "string"
+        },
+        "tagline": {
+          "description": "Short tagline for the configuration",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tags associated with the configuration",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "version": {
+          "enum": [
+            "1",
+            "0.0.0",
+            "0.0.1",
+            "next"
+          ],
+          "type": "string"
+        },
+        "webhook_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "version",
+        "name",
+        "home_url",
+        "icon_url"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "account_association"
+  ],
+  "type": "object"
+}

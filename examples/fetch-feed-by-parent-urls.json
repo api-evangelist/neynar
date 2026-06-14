@@ -1,0 +1,98 @@
+{
+  "operationId": "fetch-feed-by-parent-urls",
+  "method": "GET",
+  "path": "/v2/farcaster/feed/parent_urls/",
+  "summary": "By parent URLs",
+  "description": "Fetch feed based on parent URLs",
+  "tags": [
+    "Feed"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "parent_urls",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of parent_urls",
+      "schema": {
+        "example": "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc",
+        "type": "string",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "with_recasts",
+      "in": "query",
+      "required": false,
+      "description": "Include recasts in the response, true by default",
+      "schema": {
+        "default": true,
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "with_replies",
+      "in": "query",
+      "required": false,
+      "description": "Include replies in the response, false by default",
+      "schema": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FeedResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

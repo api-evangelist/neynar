@@ -1,0 +1,11 @@
+{
+  "term": "notificationDetails",
+  "type": "property",
+  "description": "Details for notification setup, only present when event is notifications_enabled",
+  "usedIn": [
+    "AppHostGetEventResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

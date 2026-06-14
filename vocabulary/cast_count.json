@@ -1,0 +1,12 @@
+{
+  "term": "cast_count",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastsMetrics",
+    "FarcasterFungible"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

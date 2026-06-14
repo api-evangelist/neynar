@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/StorageAllocationsResponse",
+  "title": "StorageAllocationsResponse",
+  "description": "Neynar Farcaster API schema for StorageAllocationsResponse",
+  "properties": {
+    "allocations": {
+      "items": {
+        "$ref": "#/components/schemas/StorageAllocation"
+      },
+      "type": "array"
+    },
+    "total_active_units": {
+      "example": 13,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

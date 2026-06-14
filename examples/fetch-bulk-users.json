@@ -1,0 +1,58 @@
+{
+  "operationId": "fetch-bulk-users",
+  "method": "GET",
+  "path": "/v2/farcaster/user/bulk/",
+  "summary": "By FIDs",
+  "description": "Fetches information about multiple users based on FIDs",
+  "tags": [
+    "User"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "fids",
+      "in": "query",
+      "required": true,
+      "description": "Comma separated list of FIDs, up to 100 at a time",
+      "schema": {
+        "example": "194, 191, 6131",
+        "type": "string",
+        "x-accept-as": "integer",
+        "x-comma-separated": true
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "example": 3,
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/BulkUsersResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

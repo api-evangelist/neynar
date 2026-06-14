@@ -1,0 +1,11 @@
+{
+  "term": "topics",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TrendingTopicsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

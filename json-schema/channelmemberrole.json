@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelMemberRole",
+  "title": "ChannelMemberRole",
+  "description": "The role of a channel member",
+  "enum": [
+    "member",
+    "moderator",
+    "owner"
+  ],
+  "type": "string"
+}

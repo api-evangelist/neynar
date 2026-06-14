@@ -1,0 +1,19 @@
+{
+  "term": "timestamp",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded",
+    "ReciprocalFollower",
+    "StorageAllocation",
+    "MessageDataCommon",
+    "UserNameProof"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

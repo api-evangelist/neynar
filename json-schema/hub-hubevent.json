@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/HubEvent",
+  "title": "Hub HubEvent",
+  "description": "Neynar Hub API schema for HubEvent",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/HubEventMergeMessage"
+    },
+    {
+      "$ref": "#/components/schemas/HubEventPruneMessage"
+    },
+    {
+      "$ref": "#/components/schemas/HubEventRevokeMessage"
+    },
+    {
+      "$ref": "#/components/schemas/HubEventMergeUsernameProof"
+    },
+    {
+      "$ref": "#/components/schemas/HubEventMergeOnChainEvent"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "HUB_EVENT_TYPE_MERGE_MESSAGE": "#/components/schemas/HubEventMergeMessage",
+      "HUB_EVENT_TYPE_PRUNE_MESSAGE": "#/components/schemas/HubEventPruneMessage",
+      "HUB_EVENT_TYPE_REVOKE_MESSAGE": "#/components/schemas/HubEventRevokeMessage",
+      "HUB_EVENT_TYPE_MERGE_USERNAME_PROOF": "#/components/schemas/HubEventMergeUsernameProof",
+      "HUB_EVENT_TYPE_MERGE_ON_CHAIN_EVENT": "#/components/schemas/HubEventMergeOnChainEvent"
+    }
+  }
+}

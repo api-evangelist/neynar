@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AppHostGetEventResponse",
+  "title": "AppHostGetEventResponse",
+  "description": "Neynar Farcaster API schema for AppHostGetEventResponse",
+  "properties": {
+    "event": {
+      "description": "Legacy event type corresponding to the requested event type:\n- frame_added: User adds a mini app to their account\n- frame_removed: User removes a mini app from their account\n- notifications_enabled: User enables notifications for a mini app\n- notifications_disabled: User disables notifications for a mini app",
+      "type": "string"
+    },
+    "notificationDetails": {
+      "description": "Details for notification setup, only present when event is notifications_enabled",
+      "properties": {
+        "token": {
+          "description": "Token to use when sending notifications to this user",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL endpoint for sending notifications",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "token"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "event"
+  ],
+  "type": "object"
+}

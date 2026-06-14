@@ -1,0 +1,12 @@
+{
+  "term": "follower_count",
+  "type": "property",
+  "description": "Number of followers the channel has.",
+  "usedIn": [
+    "Channel",
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/IdRegisterEventBody",
+  "title": "Hub IdRegisterEventBody",
+  "description": "Neynar Hub API schema for IdRegisterEventBody",
+  "type": "object",
+  "properties": {
+    "to": {
+      "pattern": "^0x[a-fA-F0-9]*$",
+      "type": "string",
+      "example": "0x00000000fcd5a8e45785c8a4b9a718c9348e4f18"
+    },
+    "eventType": {
+      "$ref": "#/components/schemas/IdRegisterEventType"
+    },
+    "from": {
+      "pattern": "^0x[a-fA-F0-9]*$|^$",
+      "type": "string",
+      "example": "0x00000000fcd5a8e45785c8a4b9a718c9348e4f18"
+    },
+    "recoveryAddress": {
+      "pattern": "^0x[a-fA-F0-9]*$",
+      "type": "string",
+      "example": "0x00000000fcd5a8e45785c8a4b9a718c9348e4f18"
+    }
+  },
+  "required": [
+    "to",
+    "from",
+    "eventType",
+    "recoveryAddress"
+  ]
+}

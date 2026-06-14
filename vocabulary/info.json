@@ -1,0 +1,8 @@
+{
+  "term": "Info",
+  "type": "tag",
+  "description": "Operations related to hub information.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

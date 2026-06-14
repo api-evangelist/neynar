@@ -1,0 +1,13 @@
+{
+  "term": "chain",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo",
+    "SubscribedToObject",
+    "Subscription"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

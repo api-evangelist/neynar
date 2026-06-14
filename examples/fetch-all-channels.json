@@ -1,0 +1,44 @@
+{
+  "operationId": "fetch-all-channels",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/list/",
+  "summary": "Fetch all channels with their details",
+  "description": "Returns a list of all channels with their details",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 30,
+        "maximum": 200,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelListResponse"
+      },
+      "example": null
+    }
+  }
+}

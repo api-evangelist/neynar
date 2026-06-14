@@ -1,0 +1,11 @@
+{
+  "term": "send_receipts",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TransactionSendFungiblesResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

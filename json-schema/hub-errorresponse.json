@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/ErrorResponse",
+  "title": "Hub ErrorResponse",
+  "description": "Neynar Hub API schema for ErrorResponse",
+  "required": [
+    "code",
+    "details",
+    "errCode",
+    "metadata",
+    "name",
+    "presentable"
+  ],
+  "type": "object",
+  "properties": {
+    "errCode": {
+      "type": "string"
+    },
+    "presentable": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer"
+    },
+    "details": {
+      "type": "string"
+    },
+    "metadata": {
+      "required": [
+        "errcode"
+      ],
+      "type": "object",
+      "properties": {
+        "errcode": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

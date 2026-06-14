@@ -1,0 +1,15 @@
+{
+  "term": "width",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ImageObject",
+    "OembedPhotoData",
+    "OembedRichData",
+    "OembedVideoData",
+    "VideoObject"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

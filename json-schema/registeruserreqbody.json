@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RegisterUserReqBody",
+  "title": "RegisterUserReqBody",
+  "description": "Neynar Farcaster API schema for RegisterUserReqBody",
+  "properties": {
+    "deadline": {
+      "type": "number"
+    },
+    "fid": {
+      "type": "number"
+    },
+    "fname": {
+      "type": "string"
+    },
+    "metadata": {
+      "properties": {
+        "bio": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "location": {
+          "properties": {
+            "latitude": {
+              "format": "double",
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            "longitude": {
+              "format": "double",
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "type": "object"
+        },
+        "pfp_url": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified_accounts": {
+          "properties": {
+            "github": {
+              "type": "string"
+            },
+            "x": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "requested_user_custody_address": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "signer": {
+      "properties": {
+        "app_fid": {
+          "type": "number"
+        },
+        "deadline": {
+          "type": "number"
+        },
+        "signed_key_request_metadata_signature": {
+          "type": "string"
+        },
+        "uuid": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid",
+        "signed_key_request_metadata_signature",
+        "app_fid",
+        "deadline"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "signature",
+    "fid",
+    "requested_user_custody_address",
+    "deadline"
+  ],
+  "type": "object"
+}

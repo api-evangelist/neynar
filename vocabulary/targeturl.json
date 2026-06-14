@@ -1,0 +1,11 @@
+{
+  "term": "targetUrl",
+  "type": "property",
+  "description": "The URL being reacted to. Used when reacting to external content or when the cast ID is not available.",
+  "usedIn": [
+    "ReactionBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

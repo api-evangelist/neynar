@@ -1,0 +1,11 @@
+{
+  "term": "cast_count_30d",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "ChannelActivity"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

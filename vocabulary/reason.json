@@ -1,0 +1,11 @@
+{
+  "term": "reason",
+  "type": "property",
+  "description": "Reason for failure (if status is failed)",
+  "usedIn": [
+    "TransactionSendFungiblesReceipt"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

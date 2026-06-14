@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/CastViewerContext",
+  "title": "CastViewerContext",
+  "description": "Adds context on interactions the viewer has made with the cast.",
+  "properties": {
+    "liked": {
+      "description": "Indicates if the viewer liked the cast.",
+      "type": "boolean"
+    },
+    "recasted": {
+      "description": "Indicates if the viewer recasted the cast.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "liked",
+    "recasted"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "term": "UserData",
+  "type": "tag",
+  "description": "Operations related to user data.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

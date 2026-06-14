@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/ReactionType",
+  "title": "Hub ReactionType",
+  "description": "Type of interaction a user can have with content on the Farcaster network.\n- Like: Express appreciation for the target content. Similar to \"likes\" or \"favorites\" on other platforms.\n- Recast: Share the target content with the user's followers, similar to a \"retweet\" or \"reblog\". Helps increase content visibility.",
+  "type": "string",
+  "default": "Like",
+  "enum": [
+    "Like",
+    "Recast"
+  ],
+  "example": "Like"
+}

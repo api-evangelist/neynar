@@ -1,0 +1,91 @@
+{
+  "operationId": "fetch-cast-reactions",
+  "method": "GET",
+  "path": "/v2/farcaster/reactions/cast/",
+  "summary": "Reactions for cast",
+  "description": "Fetches reactions for a given cast",
+  "tags": [
+    "Reaction"
+  ],
+  "parameters": [
+    {
+      "name": "hash",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "example": "0x71d5225f77e0164388b1d4c120825f3a2c1f131c",
+        "pattern": "^(0x)?[a-fA-F0-9]{40}$",
+        "type": "string"
+      }
+    },
+    {
+      "name": "types",
+      "in": "query",
+      "required": true,
+      "description": "Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.",
+      "schema": {
+        "items": {
+          "enum": [
+            "all",
+            "likes",
+            "recasts"
+          ],
+          "title": "ReactionsType",
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 25,
+        "example": 30,
+        "format": "int32",
+        "maximum": 100,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ReactionsCastResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

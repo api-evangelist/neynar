@@ -1,0 +1,17 @@
+{
+  "term": "author",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastDehydrated",
+    "CastEmbedded",
+    "FrameV2",
+    "FrameV2WithFullAuthor"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

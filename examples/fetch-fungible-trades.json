@@ -1,0 +1,194 @@
+{
+  "operationId": "fetch-fungible-trades",
+  "method": "GET",
+  "path": "/v2/farcaster/fungible/trades/",
+  "summary": "Get fungible trades",
+  "description": "Get recent trades for a specific fungible within a timeframe. Returns trades ordered by timestamp (most recent first).",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [
+    {
+      "name": "network",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "enum": [
+          "base"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "address",
+      "in": "query",
+      "required": true,
+      "description": "Contract address",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "time_window",
+      "in": "query",
+      "required": false,
+      "description": "Time window for trades e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\"",
+      "schema": {
+        "default": "24h",
+        "enum": [
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "7d"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "min_amount_usd",
+      "in": "query",
+      "required": false,
+      "description": "Minimum USD amount to filter trades",
+      "schema": {
+        "type": "number"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "object": {
+            "enum": [
+              "fungible_trades"
+            ],
+            "type": "string"
+          },
+          "trades": {
+            "items": {
+              "properties": {
+                "object": {
+                  "enum": [
+                    "trade"
+                  ],
+                  "type": "string"
+                },
+                "pool": {
+                  "properties": {
+                    "address": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "enum": [
+                        "pool"
+                      ],
+                      "type": "string"
+                    },
+                    "protocol_family": {
+                      "type": "string"
+                    },
+                    "protocol_version": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "object",
+                    "address"
+                  ],
+                  "type": "object"
+                },
+                "trader": {
+                  "$ref": "#/components/schemas/UserDehydrated"
+                },
+                "transaction": {
+                  "properties": {
+                    "hash": {
+                      "type": "string"
+                    },
+                    "net_transfer": {
+                      "properties": {
+                        "object": {
+                          "enum": [
+                            "net_transfer"
+                          ],
+                          "type": "string"
+                        },
+                        "receiving_fungible": {
+                          "$ref": "#/components/schemas/FungibleBalance"
+                        },
+                        "sending_fungible": {
+                          "$ref": "#/components/schemas/FungibleBalance"
+                        }
+                      },
+                      "required": [
+                        "object",
+                        "receiving_fungible",
+                        "sending_fungible"
+                      ],
+                      "type": "object"
+                    },
+                    "network": {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "object": {
+                          "enum": [
+                            "network"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "object",
+                        "name"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "hash",
+                    "network",
+                    "net_transfer"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "object",
+                "trader",
+                "transaction"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "object",
+          "trades"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

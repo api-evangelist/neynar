@@ -1,0 +1,142 @@
+{
+  "operationId": "lookup-cast-conversation",
+  "method": "GET",
+  "path": "/v2/farcaster/cast/conversation/",
+  "summary": "Conversation for a cast",
+  "description": "Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.",
+  "tags": [
+    "Cast"
+  ],
+  "parameters": [
+    {
+      "name": "",
+      "in": "",
+      "required": false,
+      "description": ""
+    },
+    {
+      "name": "identifier",
+      "in": "query",
+      "required": true,
+      "description": "Cast identifier (It's either a URL or a hash)",
+      "schema": {
+        "example": "https://warpcast.com/rish/0x9288c1",
+        "type": "string"
+      }
+    },
+    {
+      "name": "type",
+      "in": "query",
+      "required": true,
+      "description": "The query param accepted by the API. Sent along with identifier param.\nurl - Cast identifier is a url\nhash - Cast identifier is a hash",
+      "schema": {
+        "enum": [
+          "url",
+          "hash"
+        ],
+        "example": "url",
+        "type": "string"
+      }
+    },
+    {
+      "name": "reply_depth",
+      "in": "query",
+      "required": false,
+      "description": "The depth of replies in the conversation that will be returned (default 2)",
+      "schema": {
+        "default": 2,
+        "maximum": 5,
+        "minimum": 0,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "include_chronological_parent_casts",
+      "in": "query",
+      "required": false,
+      "description": "Include all parent casts in chronological order",
+      "schema": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "sort_type",
+      "in": "query",
+      "required": false,
+      "description": "Sort type for the ordering of descendants. Default is `chron`",
+      "schema": {
+        "enum": [
+          "chron",
+          "desc_chron",
+          "algorithmic"
+        ],
+        "example": "chron",
+        "type": "string"
+      }
+    },
+    {
+      "name": "fold",
+      "in": "query",
+      "required": false,
+      "description": "Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.",
+      "schema": {
+        "enum": [
+          "above",
+          "below"
+        ],
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 30,
+        "format": "int32",
+        "maximum": 50,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/Conversation"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

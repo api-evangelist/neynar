@@ -1,0 +1,11 @@
+{
+  "term": "was_refreshed",
+  "type": "property",
+  "description": "Whether the domain was refreshed/updated during this request",
+  "usedIn": [
+    "MiniappDomainResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

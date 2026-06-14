@@ -1,0 +1,33 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:Channel",
+  "schema:name": "Channel",
+  "schema:description": "Neynar Channel resource",
+  "properties": [
+    "created_at",
+    "description",
+    "description_mentioned_profiles",
+    "description_mentioned_profiles_ranges",
+    "external_link",
+    "follower_count",
+    "hosts",
+    "id",
+    "image_url",
+    "lead",
+    "member_count",
+    "moderator",
+    "moderator_fids",
+    "name",
+    "object",
+    "parent_url",
+    "pinned_cast_hash",
+    "url",
+    "viewer_context"
+  ],
+  "required": [
+    "id",
+    "url",
+    "object",
+    "created_at"
+  ]
+}

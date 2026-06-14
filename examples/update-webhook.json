@@ -1,0 +1,34 @@
+{
+  "operationId": "update-webhook",
+  "method": "PUT",
+  "path": "/v2/farcaster/webhook/",
+  "summary": "Update a webhook",
+  "description": "Update a webhook",
+  "tags": [
+    "Webhook"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "$ref": "#/components/schemas/WebhookPutReqBody"
+    },
+    "example": null
+  },
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/WebhookResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

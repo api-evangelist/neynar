@@ -1,0 +1,11 @@
+{
+  "term": "parent",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "PostCastReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

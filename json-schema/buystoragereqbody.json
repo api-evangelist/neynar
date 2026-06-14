@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/BuyStorageReqBody",
+  "title": "BuyStorageReqBody",
+  "description": "Neynar Farcaster API schema for BuyStorageReqBody",
+  "properties": {
+    "fid": {
+      "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+      "example": 1,
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "idem": {
+      "$ref": "#/components/schemas/Idem"
+    },
+    "units": {
+      "description": "Number of storage units to buy.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.",
+      "example": 1,
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "fid"
+  ],
+  "type": "object"
+}

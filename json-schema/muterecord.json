@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/MuteRecord",
+  "title": "MuteRecord",
+  "description": "Neynar Farcaster API schema for MuteRecord",
+  "properties": {
+    "muted": {
+      "$ref": "#/components/schemas/User"
+    },
+    "muted_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "mute"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "muted",
+    "muted_at"
+  ],
+  "type": "object"
+}

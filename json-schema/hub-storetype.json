@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/StoreType",
+  "title": "Hub StoreType",
+  "description": "Neynar Hub API schema for StoreType",
+  "type": "string",
+  "default": "STORE_TYPE_CASTS",
+  "enum": [
+    "STORE_TYPE_CASTS",
+    "STORE_TYPE_LINKS",
+    "STORE_TYPE_REACTIONS",
+    "STORE_TYPE_USER_DATA",
+    "STORE_TYPE_VERIFICATIONS",
+    "STORE_TYPE_USERNAME_PROOFS"
+  ]
+}

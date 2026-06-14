@@ -1,0 +1,13 @@
+{
+  "term": "replies",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

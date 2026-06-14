@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Fid",
+  "title": "Fid",
+  "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+  "example": 3,
+  "format": "int32",
+  "minimum": 0,
+  "type": "integer"
+}

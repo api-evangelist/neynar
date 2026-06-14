@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookSubscriptionFilters",
+  "title": "WebhookSubscriptionFilters",
+  "description": "Neynar Farcaster API schema for WebhookSubscriptionFilters",
+  "properties": {
+    "cast.created": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersCast"
+    },
+    "cast.deleted": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersCast"
+    },
+    "follow.created": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
+    },
+    "follow.deleted": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersFollow"
+    },
+    "reaction.created": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
+    },
+    "reaction.deleted": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersReaction"
+    },
+    "trade.created": {
+      "$ref": "#/components/schemas/WebhookSubscriptionFiltersTrade"
+    },
+    "user.created": {
+      "properties": {},
+      "type": "object"
+    },
+    "user.updated": {
+      "properties": {
+        "fids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

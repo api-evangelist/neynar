@@ -1,0 +1,11 @@
+{
+  "term": "parentUrl",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastAddBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

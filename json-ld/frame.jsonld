@@ -1,0 +1,8 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:Frame",
+  "schema:name": "Frame",
+  "schema:description": "Neynar Frame resource",
+  "properties": [],
+  "required": []
+}

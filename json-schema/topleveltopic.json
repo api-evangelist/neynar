@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TopLevelTopic",
+  "title": "TopLevelTopic",
+  "description": "The top-level category the topic belongs to",
+  "enum": [
+    "arts_culture",
+    "business_entrepreneurs",
+    "celebrity_pop_culture",
+    "diaries_daily_life",
+    "family",
+    "fashion_style",
+    "film_tv_video",
+    "fitness_health",
+    "food_dining",
+    "gaming",
+    "learning_educational",
+    "music",
+    "news_social_concern",
+    "other_hobbies",
+    "relationships",
+    "science_technology",
+    "sports",
+    "travel_adventure",
+    "youth_student_life"
+  ],
+  "type": "string"
+}

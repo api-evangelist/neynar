@@ -1,0 +1,39 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:Webhook",
+  "schema:name": "Webhook",
+  "schema:description": "Neynar Webhook resource",
+  "properties": [
+    "active",
+    "created_at",
+    "deleted_at",
+    "description",
+    "developer_uuid",
+    "http_timeout",
+    "object",
+    "rate_limit",
+    "rate_limit_duration",
+    "secrets",
+    "subscription",
+    "target_url",
+    "title",
+    "updated_at",
+    "webhook_id"
+  ],
+  "required": [
+    "object",
+    "webhook_id",
+    "developer_uuid",
+    "target_url",
+    "title",
+    "secrets",
+    "description",
+    "http_timeout",
+    "rate_limit",
+    "active",
+    "rate_limit_duration",
+    "created_at",
+    "updated_at",
+    "deleted_at"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "term": "moderator",
+  "type": "property",
+  "description": "Use `lead` instead.",
+  "usedIn": [
+    "Channel"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

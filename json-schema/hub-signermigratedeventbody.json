@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/SignerMigratedEventBody",
+  "title": "Hub SignerMigratedEventBody",
+  "description": "Neynar Hub API schema for SignerMigratedEventBody",
+  "type": "object",
+  "properties": {
+    "migratedAt": {
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "required": [
+    "migratedAt"
+  ]
+}

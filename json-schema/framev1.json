@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FrameV1",
+  "title": "FrameV1",
+  "description": "Mini app v1 object",
+  "properties": {
+    "buttons": {
+      "items": {
+        "$ref": "#/components/schemas/FrameActionButton"
+      },
+      "type": "array"
+    },
+    "frames_url": {
+      "description": "Launch URL of the mini app",
+      "type": "string"
+    },
+    "image": {
+      "description": "URL of the image",
+      "type": "string"
+    },
+    "image_aspect_ratio": {
+      "type": "string"
+    },
+    "input": {
+      "properties": {
+        "text": {
+          "description": "Input text for the mini app",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "post_url": {
+      "description": "Post URL to take an action on this mini app",
+      "type": "string"
+    },
+    "state": {
+      "properties": {
+        "serialized": {
+          "description": "State for the mini app in a serialized format",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "title": {
+      "type": "string"
+    },
+    "version": {
+      "description": "Version of the mini app, 'next' for v2, 'vNext' for v1",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version",
+    "image",
+    "frames_url"
+  ],
+  "type": "object"
+}

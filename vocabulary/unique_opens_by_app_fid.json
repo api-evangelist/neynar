@@ -1,0 +1,11 @@
+{
+  "term": "unique_opens_by_app_fid",
+  "type": "property",
+  "description": "A record mapping app FIDs (as strings) to the number of unique opens for that app.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

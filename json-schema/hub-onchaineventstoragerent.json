@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/OnChainEventStorageRent",
+  "title": "Hub OnChainEventStorageRent",
+  "description": "Neynar Hub API schema for OnChainEventStorageRent",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/OnChainEventCommon"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "storageRentEventBody": {
+          "$ref": "#/components/schemas/StorageRentEventBody"
+        }
+      },
+      "required": [
+        "storageRentEventBody"
+      ]
+    }
+  ]
+}

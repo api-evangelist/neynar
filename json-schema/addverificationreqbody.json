@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/AddVerificationReqBody",
+  "title": "AddVerificationReqBody",
+  "description": "Neynar Farcaster API schema for AddVerificationReqBody",
+  "properties": {
+    "address": {
+      "$ref": "#/components/schemas/EthAddress"
+    },
+    "block_hash": {
+      "example": "0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29",
+      "type": "string"
+    },
+    "chain_id": {
+      "$ref": "#/components/schemas/VerificationChainId"
+    },
+    "eth_signature": {
+      "example": "0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b",
+      "type": "string"
+    },
+    "signer_uuid": {
+      "$ref": "#/components/schemas/SignerUUID"
+    },
+    "verification_type": {
+      "$ref": "#/components/schemas/VerificationType"
+    }
+  },
+  "required": [
+    "signer_uuid",
+    "address",
+    "block_hash",
+    "eth_signature"
+  ],
+  "type": "object"
+}

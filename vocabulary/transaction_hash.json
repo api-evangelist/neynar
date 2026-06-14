@@ -1,0 +1,12 @@
+{
+  "term": "transaction_hash",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "RegisterUserOnChainResponse",
+    "TransactionSendTxInfo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

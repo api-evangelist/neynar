@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/IdRegisterEventType",
+  "title": "Hub IdRegisterEventType",
+  "description": "Neynar Hub API schema for IdRegisterEventType",
+  "type": "string",
+  "default": "ID_REGISTER_EVENT_TYPE_REGISTER",
+  "enum": [
+    "ID_REGISTER_EVENT_TYPE_REGISTER",
+    "ID_REGISTER_EVENT_TYPE_TRANSFER",
+    "ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY"
+  ]
+}

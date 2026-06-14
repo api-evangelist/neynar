@@ -1,0 +1,41 @@
+{
+  "operationId": "lookup-developer-managed-signer",
+  "method": "GET",
+  "path": "/v2/farcaster/signer/developer_managed/",
+  "summary": "Status by public key",
+  "description": "Fetches the status of a developer managed signer by public key",
+  "tags": [
+    "Signer"
+  ],
+  "parameters": [
+    {
+      "name": "public_key",
+      "in": "query",
+      "required": true,
+      "description": "Ed25519 public key",
+      "schema": {
+        "example": "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22",
+        "pattern": "^0x[a-fA-F0-9]{64}$",
+        "title": "Ed25519PublicKey",
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/DeveloperManagedSigner"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

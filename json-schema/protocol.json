@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Protocol",
+  "title": "Protocol",
+  "description": "Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana",
+  "enum": [
+    "evm",
+    "solana"
+  ],
+  "example": "evm",
+  "type": "string"
+}

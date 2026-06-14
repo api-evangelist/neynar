@@ -1,0 +1,17 @@
+{
+  "term": "status",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "DeveloperManagedSigner",
+    "ErrorRes",
+    "NotificationCampaign",
+    "QueuedFrameNotificationsResponse",
+    "Signer",
+    "TransactionFramePay",
+    "TransactionSendFungiblesReceipt"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

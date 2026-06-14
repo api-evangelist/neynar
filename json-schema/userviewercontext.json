@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/UserViewerContext",
+  "title": "UserViewerContext",
+  "description": "Adds context on the viewer's follow relationship with the user.",
+  "properties": {
+    "blocked_by": {
+      "description": "Indicates if the viewer is blocked by the user.",
+      "type": "boolean"
+    },
+    "blocking": {
+      "description": "Indicates if the viewer is blocking the user.",
+      "type": "boolean"
+    },
+    "followed_by": {
+      "description": "Indicates if the viewer is followed by the user.",
+      "type": "boolean"
+    },
+    "following": {
+      "description": "Indicates if the viewer is following the user.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "following",
+    "followed_by",
+    "blocking",
+    "blocked_by"
+  ],
+  "type": "object"
+}

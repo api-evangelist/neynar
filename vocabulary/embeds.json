@@ -1,0 +1,18 @@
+{
+  "term": "embeds",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded",
+    "PostCastReqBody",
+    "WebhookSubscriptionFiltersCast",
+    "CastAddBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

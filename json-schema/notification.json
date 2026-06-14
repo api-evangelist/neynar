@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Notification",
+  "title": "Notification",
+  "description": "Neynar Farcaster API schema for Notification",
+  "properties": {
+    "cast": {
+      "$ref": "#/components/schemas/Cast"
+    },
+    "count": {
+      "description": "The number of notifications of this(follows, likes, recast) type bundled in a single notification.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "follows": {
+      "items": {
+        "$ref": "#/components/schemas/Follower"
+      },
+      "type": "array"
+    },
+    "most_recent_timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "notification"
+      ],
+      "type": "string"
+    },
+    "reactions": {
+      "items": {
+        "$ref": "#/components/schemas/ReactionWithUserInfo"
+      },
+      "type": "array"
+    },
+    "seen": {
+      "type": "boolean"
+    },
+    "type": {
+      "enum": [
+        "follows",
+        "recasts",
+        "likes",
+        "mention",
+        "reply",
+        "quote"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "object",
+    "most_recent_timestamp",
+    "type",
+    "seen"
+  ],
+  "type": "object"
+}

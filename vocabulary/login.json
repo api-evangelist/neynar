@@ -1,0 +1,8 @@
+{
+  "term": "Login",
+  "type": "tag",
+  "description": "Operations related to login",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

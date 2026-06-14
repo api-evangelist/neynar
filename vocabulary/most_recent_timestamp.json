@@ -1,0 +1,11 @@
+{
+  "term": "most_recent_timestamp",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Notification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

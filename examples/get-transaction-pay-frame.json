@@ -1,0 +1,52 @@
+{
+  "operationId": "get-transaction-pay-frame",
+  "method": "GET",
+  "path": "/v2/farcaster/frame/transaction/pay/",
+  "summary": "Get transaction pay mini app",
+  "description": "Retrieves details about a transaction pay mini app by ID",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [
+    {
+      "name": "id",
+      "in": "query",
+      "required": true,
+      "description": "ID of the transaction mini app to retrieve",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/TransactionFrameResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

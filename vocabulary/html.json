@@ -1,0 +1,13 @@
+{
+  "term": "html",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "EmbedUrlMetadata",
+    "OembedRichData",
+    "OembedVideoData"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

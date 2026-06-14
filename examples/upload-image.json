@@ -1,0 +1,88 @@
+{
+  "operationId": "upload-image",
+  "method": "POST",
+  "path": "/v2/studio/deployment/upload-image",
+  "summary": "Upload image to deployment",
+  "description": "Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "filename": {
+            "description": "Uploaded filename",
+            "type": "string"
+          },
+          "message": {
+            "description": "Status message",
+            "type": "string"
+          },
+          "success": {
+            "description": "Whether the upload was successful",
+            "type": "boolean"
+          },
+          "url": {
+            "description": "URL path to access the image",
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

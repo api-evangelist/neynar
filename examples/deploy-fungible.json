@@ -1,0 +1,35 @@
+{
+  "operationId": "deploy-fungible",
+  "method": "POST",
+  "path": "/v2/fungible/",
+  "summary": "Deploy fungible",
+  "description": "Creates a new token.\nThis is an allowlisted API, reach out if you want access.",
+  "tags": [
+    "Onchain"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/DeployFungibleResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

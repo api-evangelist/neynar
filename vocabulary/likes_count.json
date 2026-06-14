@@ -1,0 +1,11 @@
+{
+  "term": "likes_count",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastReactions"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

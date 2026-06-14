@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ReactionRecast",
+  "title": "ReactionRecast",
+  "description": "Neynar Farcaster API schema for ReactionRecast",
+  "properties": {
+    "fid": {
+      "$ref": "#/components/schemas/Fid"
+    },
+    "fname": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "fid",
+    "fname"
+  ],
+  "type": "object"
+}

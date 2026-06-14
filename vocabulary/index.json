@@ -1,0 +1,5751 @@
+{
+  "name": "Neynar API Vocabulary",
+  "description": "Vocabulary terms extracted from Neynar Farcaster API and Hub API OpenAPI specifications",
+  "totalTerms": 483,
+  "terms": [
+    {
+      "term": "User",
+      "type": "tag",
+      "description": "Operations related to user",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Signer",
+      "type": "tag",
+      "description": "Operations related to signer",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Cast",
+      "type": "tag",
+      "description": "Operations related to cast",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Feed",
+      "type": "tag",
+      "description": "Operations related to feed",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Reaction",
+      "type": "tag",
+      "description": "Operations related to reaction",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Notifications",
+      "type": "tag",
+      "description": "Operations related to notifications",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Channel",
+      "type": "tag",
+      "description": "Operations related to channels",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Follows",
+      "type": "tag",
+      "description": "Operations related to follows",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Storage",
+      "type": "tag",
+      "description": "Operations related to storage",
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Frame",
+      "type": "tag",
+      "description": "Operations related to mini apps",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Agents",
+      "type": "tag",
+      "description": "Operations for building AI agents",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "fname",
+      "type": "tag",
+      "description": "Operations related to fname",
+      "source": [
+        "neynar-farcaster-api"
+      ],
+      "usedIn": [
+        "ReactionLike",
+        "ReactionRecast",
+        "RegisterUserReqBody"
+      ]
+    },
+    {
+      "term": "Webhook",
+      "type": "tag",
+      "description": "Operations related to a webhook",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Action",
+      "type": "tag",
+      "description": "Securely communicate and perform actions on behalf of users across different apps",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Subscribers",
+      "type": "tag",
+      "description": "Operations related to a subscriptions",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Mute",
+      "type": "tag",
+      "description": "Operations related to a mute",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Block",
+      "type": "tag",
+      "description": "Operations related to a block",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Ban",
+      "type": "tag",
+      "description": "Operations related to a ban",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Onchain",
+      "type": "tag",
+      "description": "Operations related to onchain data",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Login",
+      "type": "tag",
+      "description": "Operations related to login",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Metrics",
+      "type": "tag",
+      "description": "Operations related to retrieving metrics",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "App Host",
+      "type": "tag",
+      "description": "Operations related to mini app host notifications",
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody",
+        "Fungible",
+        "Location",
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RemoveVerificationReqBody",
+        "TransactionFrameDestination",
+        "Verification",
+        "VerificationAddEthAddressBody",
+        "VerificationRemoveBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "block_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody",
+        "RemoveVerificationReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "chain_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "eth_signature",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody",
+        "RemoveVerificationReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signer_uuid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody",
+        "BlockReqBody",
+        "ChannelFollowReqBody",
+        "DeleteCastReqBody",
+        "FarcasterActionReqBody",
+        "FollowReqBody",
+        "InviteChannelMemberReqBody",
+        "MarkNotificationsAsSeenReqBody",
+        "PostCastReqBody",
+        "ReactionReqBody",
+        "RegisterSignerKeyReqBody",
+        "RemoveChannelMemberReqBody",
+        "RemoveVerificationReqBody",
+        "RespondChannelInviteReqBody",
+        "Signer",
+        "SignerUuidBody",
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verification_type",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddVerificationReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "object",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddressBalance",
+        "BanRecord",
+        "BlockRecord",
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastDehydrated",
+        "Channel",
+        "ChannelActivity",
+        "ChannelDehydrated",
+        "ChannelMember",
+        "FarcasterFungible",
+        "Follower",
+        "FollowerDehydrated",
+        "Fungible",
+        "FungibleBalance",
+        "MuteRecord",
+        "Notification",
+        "ReactionForCast",
+        "ReactionWithCastInfo",
+        "ReactionWithUserInfo",
+        "ReciprocalFollower",
+        "Signer",
+        "StorageAllocation",
+        "StorageObject",
+        "StorageUsageResponse",
+        "SubscribedTo",
+        "SubscribedToObject",
+        "Subscriber",
+        "Subscription",
+        "TokenBalance",
+        "User",
+        "UserDehydrated",
+        "Verification",
+        "Webhook",
+        "WebhookSubscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "token_balances",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddressBalance"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verified_address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AddressBalance"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "event",
+      "type": "property",
+      "description": "Legacy event type corresponding to the requested event type:\n- frame_added: User adds a mini app to their account\n- frame_removed: User removes a mini app from their account\n- notifications_enabled: User enables notifications for a mini app\n- notifications_disabled: User disables notifications for a mini app",
+      "usedIn": [
+        "AppHostGetEventResponse",
+        "SignerUuidBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "notificationDetails",
+      "type": "property",
+      "description": "Details for notification setup, only present when event is notifications_enabled",
+      "usedIn": [
+        "AppHostGetEventResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "message",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AppHostPostEventResponse",
+        "BanResponse",
+        "ConflictErrorRes",
+        "ErrorRes",
+        "MuteResponse",
+        "OperationResponse",
+        "RegisterUserOnChainResponse",
+        "RegisterUserResponse",
+        "WebhookResponse",
+        "ZodError",
+        "MergeMessageBody",
+        "PruneMessageBody",
+        "RevokeMessageBody",
+        "ValidateMessageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "success",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AppHostPostEventResponse",
+        "BanResponse",
+        "BulkFollowResponse",
+        "FollowResponse",
+        "MuteResponse",
+        "OperationResponse",
+        "PostCastResponse",
+        "RegisterUserResponse",
+        "WebhookResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "notifications_enabled",
+      "type": "property",
+      "description": "List of domains for which notifications are enabled for this user",
+      "usedIn": [
+        "AppHostUserStateResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "authorization_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "AuthorizationUrlResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "user_balance",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BalanceResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "bans",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BanListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "next",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BanListResponse",
+        "BestFriendsResponse",
+        "BlockListResponse",
+        "ChannelListResponse",
+        "ChannelMemberInviteListResponse",
+        "ChannelMemberListResponse",
+        "ChannelSearchResponse",
+        "Conversation",
+        "FeedResponse",
+        "FollowersResponse",
+        "FrameCatalogResponse",
+        "FrameNotificationTokens",
+        "MuteListResponse",
+        "NotificationsResponse",
+        "ReactionsCastResponse",
+        "ReactionsResponse",
+        "TrendingChannelResponse",
+        "TrendingTopicsResponse",
+        "UsersActiveChannelsResponse",
+        "UsersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "banned",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BanRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "banned_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BanRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BanReqBody",
+        "WebhookSubscriptionFiltersFollow",
+        "WebhookSubscriptionFiltersReaction",
+        "WebhookSubscriptionFiltersTrade"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "users",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BestFriendsResponse",
+        "BulkUsersResponse",
+        "FollowersResponse",
+        "UsersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocks",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BlockListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocked",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BlockRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocked_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BlockRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocker",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BlockRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocked_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BlockReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "casts",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BulkCastsResponse",
+        "FeedResponse",
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "details",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BulkFollowResponse",
+        "ErrorResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "fid",
+      "type": "property",
+      "description": "The unique identifier of a farcaster user or app (unsigned integer)",
+      "usedIn": [
+        "BuyStorageReqBody",
+        "CastId",
+        "DeveloperManagedSigner",
+        "InviteChannelMemberReqBody",
+        "MiniappDomainResponse",
+        "MuteReqBody",
+        "PostCastReqBodyEmbedsCastIdProperties",
+        "ReactionLike",
+        "ReactionRecast",
+        "RegisterUserReqBody",
+        "RemoveChannelMemberReqBody",
+        "SignedKeyRequestSponsor",
+        "Signer",
+        "SignerUuidBody",
+        "TransactionSendFungiblesReceipt",
+        "TransactionSendFungiblesRecipient",
+        "User",
+        "UserDehydrated",
+        "UserFIDResponse",
+        "MessageDataCommon",
+        "OnChainEventCommon",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "idem",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "BuyStorageReqBody",
+        "FramePayTransactionReqBody",
+        "PostCastReqBody",
+        "ReactionReqBody",
+        "RegisterUserOnChainReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "units",
+      "type": "property",
+      "description": "Number of storage units to buy.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links.",
+      "usedIn": [
+        "BuyStorageReqBody",
+        "StorageAllocation",
+        "StorageLimitsResponse",
+        "StorageRentEventBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "app",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastDehydrated",
+        "CastEmbedded",
+        "Follower",
+        "ReactionForCast",
+        "ReactionWithCastInfo",
+        "Verification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "author",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastDehydrated",
+        "CastEmbedded",
+        "FrameV2",
+        "FrameV2WithFullAuthor"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "author_channel_context",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "channel",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded",
+        "ChannelActivity",
+        "ChannelMember",
+        "ChannelResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "embeds",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded",
+        "PostCastReqBody",
+        "WebhookSubscriptionFiltersCast",
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastDehydrated",
+        "CastEmbedded",
+        "CastId",
+        "FollowResponse",
+        "PostCastReqBodyEmbedsCastIdProperties",
+        "MessageCommon"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mentioned_channels",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "mentioned_channels_ranges",
+      "type": "property",
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.\nEach index within this list corresponds to the same-numbered index in the mentioned_channels list.",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "mentioned_profiles",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "mentioned_profiles_ranges",
+      "type": "property",
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.\nEach index within this list corresponds to the same-numbered index in the mentioned_profiles list.",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_author",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded",
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reactions",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "Notification",
+        "ReactionsCastResponse",
+        "ReactionsResponse",
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "replies",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "root_parent_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "text",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded",
+        "PostCastReqBody",
+        "TransactionFrameAction",
+        "WebhookSubscriptionFiltersCast",
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "thread_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "timestamp",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "CastEmbedded",
+        "ReciprocalFollower",
+        "StorageAllocation",
+        "MessageDataCommon",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "type",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "ImageObject",
+        "MarkNotificationsAsSeenReqBody",
+        "Notification",
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "TransactionFramePay",
+        "VideoObject",
+        "HubEventMergeMessage",
+        "HubEventMergeOnChainEvent",
+        "HubEventMergeUsernameProof",
+        "HubEventPruneMessage",
+        "HubEventRevokeMessage",
+        "LinkBody",
+        "MessageDataCommon",
+        "OnChainEventCommon",
+        "ReactionBody",
+        "UserDataBody",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "viewer_context",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Cast",
+        "CastAndConversations",
+        "CastAndConversationsRef",
+        "Channel",
+        "ChannelDehydrated",
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "direct_replies",
+      "type": "property",
+      "description": "note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.",
+      "usedIn": [
+        "CastAndConversations",
+        "CastAndConversationsRef"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastEmbedCrawlResponse",
+        "EmbedUrl",
+        "FrameV2",
+        "FrameV2WithFullAuthor",
+        "RegisterUserReqBody",
+        "SubscribedTo",
+        "Subscription",
+        "ErrorResponse",
+        "SignerEventBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "likes",
+      "type": "property",
+      "description": "This has been deprecated and will always be an empty array. The property will be removed in the future",
+      "usedIn": [
+        "CastReactions"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "likes_count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastReactions"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "recasts",
+      "type": "property",
+      "description": "This has been deprecated and will always be an empty array. The property will be removed in the future",
+      "usedIn": [
+        "CastReactions"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "recasts_count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastReactions"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastReplies",
+        "Notification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastResponse",
+        "EmbedCast",
+        "EmbedCastDeep",
+        "Notification",
+        "PostCastResponse",
+        "ReactionWithCastInfo",
+        "ReactionWithUserInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "liked",
+      "type": "property",
+      "description": "Indicates if the viewer liked the cast.",
+      "usedIn": [
+        "CastViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "recasted",
+      "type": "property",
+      "description": "Indicates if the viewer recasted the cast.",
+      "usedIn": [
+        "CastViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast_count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastsMetrics",
+        "FarcasterFungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "resolution_in_seconds",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastsMetrics"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "start",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastsMetrics",
+        "TextRange"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metrics",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastsMetricsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "result",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastsResponse",
+        "CastsSearchResponse",
+        "UserPowerLiteResponse",
+        "UserSearchResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "created_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "MiniappDomainResponse",
+        "NotificationCampaign",
+        "Webhook",
+        "WebhookSecret",
+        "WebhookSubscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "description",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "TransactionFrameLineItem",
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "description_mentioned_profiles",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "description_mentioned_profiles_ranges",
+      "type": "property",
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "external_link",
+      "type": "property",
+      "description": "Channel's external link.",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "follower_count",
+      "type": "property",
+      "description": "Number of followers the channel has.",
+      "usedIn": [
+        "Channel",
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "hosts",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "ChannelDehydrated",
+        "NotificationCampaign",
+        "SubscriptionTier",
+        "TransactionFramePay",
+        "HubEventMergeMessage",
+        "HubEventMergeOnChainEvent",
+        "HubEventMergeUsernameProof",
+        "HubEventPruneMessage",
+        "HubEventRevokeMessage"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "image_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "ChannelDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "lead",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "member_count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "moderator",
+      "type": "property",
+      "description": "Use `lead` instead.",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "moderator_fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "name",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "ChannelDehydrated",
+        "DeployFungibleReqBody",
+        "Fungible",
+        "TransactionFrameLineItem",
+        "TrendingTopic",
+        "WebhookPostReqBody",
+        "WebhookPutReqBody",
+        "ErrorResponse",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "pinned_cast_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Channel",
+        "EmbedUrl",
+        "ImageObject",
+        "OembedPhotoData",
+        "TransactionFramePay",
+        "UpdateUserReqBody",
+        "VideoObject",
+        "WebhookPostReqBody",
+        "WebhookPutReqBody",
+        "FrameActionBody",
+        "UrlEmbed"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "cast_count_1d",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelActivity"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast_count_30d",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelActivity"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast_count_7d",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelActivity"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "channel_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelFollowReqBody",
+        "ChannelMemberInvite",
+        "InviteChannelMemberReqBody",
+        "PostCastReqBody",
+        "RemoveChannelMemberReqBody",
+        "RespondChannelInviteReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "channels",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelListResponse",
+        "ChannelResponseBulk",
+        "ChannelSearchResponse",
+        "TrendingChannelResponse",
+        "UsersActiveChannelsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "role",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMember",
+        "ChannelMemberInvite",
+        "ChannelUserContext",
+        "InviteChannelMemberReqBody",
+        "RemoveChannelMemberReqBody",
+        "RespondChannelInviteReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "user",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMember",
+        "Follower",
+        "FollowerDehydrated",
+        "ReactionForCast",
+        "ReactionWithCastInfo",
+        "ReactionWithUserInfo",
+        "ReciprocalFollower",
+        "RegisterUserOnChainResponse",
+        "RegisterUserResponse",
+        "StorageAllocation",
+        "StorageUsageResponse",
+        "Subscriber",
+        "UserResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "invited",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMemberInvite"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "inviter",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMemberInvite"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "invites",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMemberInviteListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "members",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ChannelMemberListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "following",
+      "type": "property",
+      "description": "Indicates if the user is following the channel.",
+      "usedIn": [
+        "ChannelUserContext",
+        "UserViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "code",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ConflictErrorRes",
+        "ErrorRes",
+        "ZodError",
+        "ErrorResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "key",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ConflictErrorRes",
+        "SignerEventBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "property",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ConflictErrorRes",
+        "ErrorRes"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "conversation",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Conversation"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "summary",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ConversationSummary",
+        "TrendingTopic"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DeleteCastReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "factory",
+      "type": "property",
+      "description": "Factory name\n- wow -> [wow.xyz](https://wow.xyz)\n- clanker -> [clanker.world](https://www.clanker.world)",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[description]",
+      "type": "property",
+      "description": "Description of the token",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[discord]",
+      "type": "property",
+      "description": "Discord server link",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[media]",
+      "type": "property",
+      "description": "Media file associated with the token. \nSupported formats are image/jpeg, image/gif and image/png",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[nsfw]",
+      "type": "property",
+      "description": "Indicates if the token is NSFW (Not Safe For Work).",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[telegram]",
+      "type": "property",
+      "description": "Telegram link",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[twitter]",
+      "type": "property",
+      "description": "Twitter profile link",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "metadata[website_link]",
+      "type": "property",
+      "description": "Website link related to the token",
+      "usedIn": [
+        "DeployFungibleReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "network",
+      "type": "property",
+      "description": "Network/Chain name",
+      "usedIn": [
+        "DeployFungibleReqBody",
+        "Fungible",
+        "TransactionFrameDestination",
+        "TransactionSendFungiblesReqBody",
+        "TransactionSendTxInfo",
+        "MessageDataCommon"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "owner",
+      "type": "property",
+      "description": "Ethereum address of the one who is creating the token",
+      "usedIn": [
+        "DeployFungibleReqBody",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "symbol",
+      "type": "property",
+      "description": "Symbol/Ticker for the token",
+      "usedIn": [
+        "DeployFungibleReqBody",
+        "Fungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "contract",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DeployFungibleResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "public_key",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DeveloperManagedSigner",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "Signer"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signer_approval_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DeveloperManagedSigner",
+        "Signer"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "status",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DeveloperManagedSigner",
+        "ErrorRes",
+        "NotificationCampaign",
+        "QueuedFrameNotificationsResponse",
+        "Signer",
+        "TransactionFramePay",
+        "TransactionSendFungiblesReceipt"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedCast",
+        "EmbedCastDeep"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "_status",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "content_length",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "content_type",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "frame",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata",
+        "FarcasterManifest"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "html",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "image",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata",
+        "FrameV1",
+        "FrameV2",
+        "FrameV2WithFullAuthor",
+        "TransactionFrameLineItem"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "video",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EmbedUrlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "header",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EncodedJsonFarcasterSignature"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "payload",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EncodedJsonFarcasterSignature"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signature",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "EncodedJsonFarcasterSignature",
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "RegisterSignerKeyReqBody",
+        "RegisterUserReqBody",
+        "SignedKeyRequestSponsor",
+        "MessageCommon",
+        "UserNameProof"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "action",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FarcasterActionReqBody",
+        "TransactionFrameConfig"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "base_url",
+      "type": "property",
+      "description": "The base URL of the app on which the action is being performed.",
+      "usedIn": [
+        "FarcasterActionReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "fungible",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FarcasterFungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "account_association",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FarcasterManifest"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "miniapp",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FarcasterManifest"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "available",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FnameAvailabilityResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FollowReqBody",
+        "SendFrameNotificationsReqBody",
+        "WebhookSubscriptionFiltersFollow",
+        "WebhookSubscriptionFiltersReaction"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FollowResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "action_type",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameActionButton"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "index",
+      "type": "property",
+      "description": "Index of the button",
+      "usedIn": [
+        "FrameActionButton"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "post_url",
+      "type": "property",
+      "description": "Used specifically for the tx action type to post a successful transaction hash",
+      "usedIn": [
+        "FrameActionButton",
+        "FrameV1"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target",
+      "type": "property",
+      "description": "Target of the button",
+      "usedIn": [
+        "FrameActionButton",
+        "ReactionReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "title",
+      "type": "property",
+      "description": "Title of the button",
+      "usedIn": [
+        "FrameActionButton",
+        "FrameV1",
+        "FrameV2",
+        "FrameV2WithFullAuthor",
+        "NotificationCampaign",
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "frames",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameCatalogResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "notification_tokens",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameNotificationTokens"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "config",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FramePayTransactionReqBody",
+        "TransactionFramePay"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "transaction",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FramePayTransactionReqBody",
+        "TransactionFramePay"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "buttons",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameV1"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "frames_url",
+      "type": "property",
+      "description": "Launch URL of the mini app",
+      "usedIn": [
+        "FrameV1",
+        "FrameV2",
+        "FrameV2WithFullAuthor"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "image_aspect_ratio",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameV1"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "input",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameV1"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "state",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameV1",
+        "LocationAddress"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "version",
+      "type": "property",
+      "description": "Version of the mini app, 'next' for v2, 'vNext' for v1",
+      "usedIn": [
+        "FrameV1",
+        "FrameV2",
+        "FrameV2WithFullAuthor",
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "manifest",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FrameV2",
+        "FrameV2WithFullAuthor",
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "decimals",
+      "type": "property",
+      "description": "The number of decimals the token uses",
+      "usedIn": [
+        "Fungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "logo",
+      "type": "property",
+      "description": "The logo URL of the token",
+      "usedIn": [
+        "Fungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "total_supply",
+      "type": "property",
+      "description": "The total supply of the token",
+      "usedIn": [
+        "Fungible"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "balance",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FungibleBalance",
+        "TokenBalance"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "token",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FungibleBalance",
+        "SubscribedTo",
+        "Subscription",
+        "TokenBalance"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "fungibles",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "FungiblesResponseSchema"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "favicon",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "modifiedTime",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "oembed",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticleAuthor",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticleExpirationTime",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticleModifiedTime",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticlePublishedTime",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticlePublisher",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticleSection",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogArticleTag",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogAudio",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogAudioSecureURL",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogAudioType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogAudioURL",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogAvailability",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogDate",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogDescription",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogDeterminer",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogEpisode",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogImage",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogLocale",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogLocaleAlternate",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogLogo",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogMovie",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogPriceAmount",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogPriceCurrency",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogProductAvailability",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogProductCondition",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogProductPriceAmount",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogProductPriceCurrency",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogProductRetailerItemId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogSiteName",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogTitle",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogUrl",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideo",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoActor",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoActorId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoActorRole",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoDirector",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoDuration",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoOther",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoReleaseDate",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoSecureURL",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoSeries",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoTag",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoTvShow",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogVideoWriter",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "ogWebsite",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "updatedTime",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HtmlMetadata"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "alt",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ImageObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "height",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ImageObject",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "VideoObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "width",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ImageObject",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "VideoObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "latitude",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Location"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "longitude",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Location"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "radius",
+      "type": "property",
+      "description": "The radius in meters for the location search. Any location within this radius will be returned.",
+      "usedIn": [
+        "Location"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "city",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "LocationAddress"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "country",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "LocationAddress"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "country_code",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "LocationAddress"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "state_code",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "LocationAddress"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "domain",
+      "type": "property",
+      "description": "Domain name",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "error_message",
+      "type": "property",
+      "description": "High-level error message if processing failed",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "home_url_metadata",
+      "type": "property",
+      "description": "Home URL metadata if available",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "updated_at",
+      "type": "property",
+      "description": "Last update timestamp",
+      "usedIn": [
+        "MiniappDomainResponse",
+        "Webhook",
+        "WebhookSecret",
+        "WebhookSubscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "validation_errors",
+      "type": "property",
+      "description": "Validation errors from processing, if any",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "was_found",
+      "type": "property",
+      "description": "Whether the domain was found in the table before processing",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "was_refreshed",
+      "type": "property",
+      "description": "Whether the domain was refreshed/updated during this request",
+      "usedIn": [
+        "MiniappDomainResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "mutes",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MuteListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "muted",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MuteRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "muted_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MuteRecord"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "muted_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MuteReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cursor",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "NextCursor"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "nonce",
+      "type": "property",
+      "description": "The nonce value to sign the message",
+      "usedIn": [
+        "NonceResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "follows",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Notification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "most_recent_timestamp",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Notification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "seen",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Notification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "body",
+      "type": "property",
+      "description": "The body text of the notification.",
+      "usedIn": [
+        "NotificationCampaign"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "completed_at",
+      "type": "property",
+      "description": "When the campaign reached a terminal state (completed/failed/canceled). Null while still queued or running.",
+      "usedIn": [
+        "NotificationCampaign"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "queued_at",
+      "type": "property",
+      "description": "When the campaign was enqueued for async delivery.",
+      "usedIn": [
+        "NotificationCampaign"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "stats",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "NotificationCampaign"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "error_breakdown",
+      "type": "property",
+      "description": "Detailed breakdown of errors encountered during notification delivery.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "intended_recipient_app_fids",
+      "type": "property",
+      "description": "An array of Farcaster FIDs of intended recipient applications.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "intended_recipient_notification_token_count",
+      "type": "property",
+      "description": "The total number of notification tokens for intended recipients.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "successful_sends",
+      "type": "property",
+      "description": "The number of notifications successfully sent.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "successful_sends_by_app_fid",
+      "type": "property",
+      "description": "A record mapping app FIDs (as strings) to the number of successful sends for that app.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "total_opens",
+      "type": "property",
+      "description": "The total number of times notifications from this campaign have been opened.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "total_opens_by_app_fid",
+      "type": "property",
+      "description": "A record mapping app FIDs (as strings) to the number of opens for that app.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "unique_opens",
+      "type": "property",
+      "description": "The number of unique recipients who opened a notification from this campaign.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "unique_opens_by_app_fid",
+      "type": "property",
+      "description": "A record mapping app FIDs (as strings) to the number of unique opens for that app.",
+      "usedIn": [
+        "NotificationCampaignStats"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "notifications",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "NotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "unseen_notifications_count",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "NotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "author_name",
+      "type": "property",
+      "description": "The name of the author/owner of the resource.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "author_url",
+      "type": "property",
+      "description": "A URL for the author/owner of the resource.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cache_age",
+      "type": "property",
+      "description": "The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "provider_name",
+      "type": "property",
+      "description": "The name of the resource provider.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData",
+        "SubscribedTo",
+        "SubscribedToObject",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "provider_url",
+      "type": "property",
+      "description": "The url of the resource provider.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "thumbnail_height",
+      "type": "property",
+      "description": "The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "thumbnail_url",
+      "type": "property",
+      "description": "A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "thumbnail_width",
+      "type": "property",
+      "description": "The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.",
+      "usedIn": [
+        "OembedLinkData",
+        "OembedPhotoData",
+        "OembedRichData",
+        "OembedVideoData"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "PostCastReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_author_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "PostCastReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "campaign_id",
+      "type": "property",
+      "description": "The unique identifier for the notification campaign.",
+      "usedIn": [
+        "QueuedFrameNotificationsResponse",
+        "SendFrameNotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reaction_timestamp",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ReactionForCast",
+        "ReactionWithCastInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reaction_type",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ReactionForCast",
+        "ReactionReqBody",
+        "ReactionWithCastInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_author_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ReactionReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "app_fid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "RegisterSignerKeyReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "deadline",
+      "type": "property",
+      "description": "unix timestamp in seconds that controls how long the signed key request is valid for. (24 hours from now is recommended)",
+      "usedIn": [
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "RegisterSignerKeyReqBody",
+        "RegisterUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "redirect_url",
+      "type": "property",
+      "description": "Url to redirect to after the signer is approved.\n**Note** : This should only be used when requesting a signer from a native mobile application.",
+      "usedIn": [
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "RegisterSignerKeyReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "sponsor",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterAuthAddressDeveloperManagedSignedKeyReqBody",
+        "RegisterDeveloperManagedSignedKeyReqBody",
+        "RegisterSignerKeyReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "pre_registration_calls",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserOnChainReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "registration",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserOnChainReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signers",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserOnChainReqBody",
+        "RegisterUserResponse",
+        "SignerListResponse",
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "storage_units",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserOnChainReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "transaction_hash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserOnChainResponse",
+        "TransactionSendTxInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "requested_user_custody_address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signer",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RegisterUserReqBody",
+        "RegisterUserResponse",
+        "MessageCommon"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "all_relevant_followers_dehydrated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RelevantFollowersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "top_relevant_followers_hydrated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RelevantFollowersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "all_relevant_fungible_owners_dehydrated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RelevantFungibleOwnersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "top_relevant_fungible_owners_hydrated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "RelevantFungibleOwnersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "accept",
+      "type": "property",
+      "description": "Accept or reject the invite",
+      "usedIn": [
+        "RespondChannelInviteReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "filters",
+      "type": "property",
+      "description": "Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.",
+      "usedIn": [
+        "SendFrameNotificationsReqBody",
+        "WebhookSubscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "notification",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SendFrameNotificationsReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "failure_count",
+      "type": "property",
+      "description": "The number of notifications that failed to deliver.",
+      "usedIn": [
+        "SendFrameNotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "not_attempted_count",
+      "type": "property",
+      "description": "The number of notifications not attempted (e.g., disabled tokens, invalid tokens).",
+      "usedIn": [
+        "SendFrameNotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "retryable_fids",
+      "type": "property",
+      "description": "List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.",
+      "usedIn": [
+        "SendFrameNotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "success_count",
+      "type": "property",
+      "description": "The number of notifications successfully delivered.",
+      "usedIn": [
+        "SendFrameNotificationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "sponsored_by_neynar",
+      "type": "property",
+      "description": "Neynar will sponsor the signer if set to true.\n**Note: ** If sponsor.fid and sponsor.signature are provided along with sponsored_by_neynar set to true,\nthe sponsor.fid and sponsor.signature will be ignored.\nNeynar will sponsor the signer on behalf of the user. The developer will get charged in credits.",
+      "usedIn": [
+        "SignedKeyRequestSponsor"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "app_domain",
+      "type": "property",
+      "description": "Domain of the mini app",
+      "usedIn": [
+        "SignedMessageBody",
+        "SignerUuidBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "signed_message",
+      "type": "property",
+      "description": "JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.",
+      "usedIn": [
+        "SignedMessageBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "permissions",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Signer"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "expiry",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageAllocation",
+        "StorageRentEventBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "allocations",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageAllocationsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "total_active_units",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageAllocationsResponse",
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "capacity",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "used",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "links",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "username_proofs",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageUsageResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verified_addresses",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageUsageResponse",
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "chain",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "SubscribedToObject",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "contract_address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "SubscribedToObject",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "creator",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "expires_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "SubscribedToObject",
+        "WebhookSecret"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "owner_address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "price",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "Subscription",
+        "SubscriptionTier"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "protocol_version",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "SubscribedToObject",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "subscribed_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "SubscribedToObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "tier",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "tiers",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedTo",
+        "Subscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "tier_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedToObject"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "subscribed_to",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribedToResponse",
+        "Subscriber"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "subscribers",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SubscribersResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "subscriptions_created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Subscriptions",
+        "SubscriptionsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "end",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TextRange"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "button_color",
+      "type": "property",
+      "description": "Custom button color for action button",
+      "usedIn": [
+        "TransactionFrameAction"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "text_color",
+      "type": "property",
+      "description": "Custom text color for action button",
+      "usedIn": [
+        "TransactionFrameAction"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "allowlist_fids",
+      "type": "property",
+      "description": "Optional list of FIDs that are allowed to use this transaction mini app",
+      "usedIn": [
+        "TransactionFrameConfig"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "line_items",
+      "type": "property",
+      "description": "List of items included in the transaction",
+      "usedIn": [
+        "TransactionFrameConfig"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "amount",
+      "type": "property",
+      "description": "Amount to send (must be greater than 0)",
+      "usedIn": [
+        "TransactionFrameDestination",
+        "TransactionSendFungiblesReceipt",
+        "TransactionSendFungiblesRecipient"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "token_contract_address",
+      "type": "property",
+      "description": "Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base)",
+      "usedIn": [
+        "TransactionFrameDestination"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "transaction_frame",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TransactionFrameResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reason",
+      "type": "property",
+      "description": "Reason for failure (if status is failed)",
+      "usedIn": [
+        "TransactionSendFungiblesReceipt"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "fungible_contract_address",
+      "type": "property",
+      "description": "Contract address of the fungible token to send. If not provided, the default is the native token of the network.",
+      "usedIn": [
+        "TransactionSendFungiblesReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "recipients",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TransactionSendFungiblesReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "send_receipts",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TransactionSendFungiblesResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "transactions",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TransactionSendFungiblesResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "approval_hash",
+      "type": "property",
+      "description": "Hash of the transaction that approved the transfer. This is only present if the fungible token is not native token of the network.",
+      "usedIn": [
+        "TransactionSendTxInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "gas_used",
+      "type": "property",
+      "description": "Gas used for the transaction.",
+      "usedIn": [
+        "TransactionSendTxInfo"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "authors",
+      "type": "property",
+      "description": "Up to five recent Farcaster users who posted about the topic",
+      "usedIn": [
+        "TrendingTopic"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "slug",
+      "type": "property",
+      "description": "A URL-friendly unique identifier for the topic",
+      "usedIn": [
+        "TrendingTopic"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "top_level_topic",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TrendingTopic"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "topics",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "TrendingTopicsResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "banner",
+      "type": "property",
+      "description": "Requires pro subscription.",
+      "usedIn": [
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "bio",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "display_name",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody",
+        "User",
+        "UserDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "location",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "pfp_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody",
+        "User",
+        "UserDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "primary_eth_address",
+      "type": "property",
+      "description": "Must be one of the verified addresses.",
+      "usedIn": [
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "primary_sol_address",
+      "type": "property",
+      "description": "Must be one of the verified addresses.",
+      "usedIn": [
+        "UpdateUserReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "username",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody",
+        "User",
+        "UserDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verified_accounts",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UpdateUserReqBody",
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "auth_addresses",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "custody_address",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User",
+        "UserDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "experimental",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "following_count",
+      "type": "property",
+      "description": "The number of users the user is following.",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "pro",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "profile",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "registered_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "score",
+      "type": "property",
+      "description": "Score that represents the probability that the account is not spam.",
+      "usedIn": [
+        "User",
+        "UserDehydrated"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verifications",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "User"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocked_by",
+      "type": "property",
+      "description": "Indicates if the viewer is blocked by the user.",
+      "usedIn": [
+        "UserViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "blocking",
+      "type": "property",
+      "description": "Indicates if the viewer is blocking the user.",
+      "usedIn": [
+        "UserViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "followed_by",
+      "type": "property",
+      "description": "Indicates if the viewer is followed by the user.",
+      "usedIn": [
+        "UserViewerContext"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "protocol",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Verification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "verified_at",
+      "type": "property",
+      "description": "ISO timestamp when the verification was created",
+      "usedIn": [
+        "Verification"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "active",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook",
+        "WebhookPatchReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "deleted_at",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook",
+        "WebhookSecret"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "developer_uuid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "http_timeout",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "rate_limit",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "rate_limit_duration",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "secrets",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "subscription",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook",
+        "WebhookPostReqBody",
+        "WebhookPutReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_url",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "webhook_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "Webhook",
+        "WebhookDeleteReqBody",
+        "WebhookPatchReqBody",
+        "WebhookPutReqBody"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "webhooks",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookListResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "webhook",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookResponse"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "uid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSecret"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "value",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSecret",
+        "UserDataBody"
+      ],
+      "source": [
+        "neynar-farcaster-api",
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "subscription_id",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscription"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast.created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "cast.deleted",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "follow.created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "follow.deleted",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reaction.created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "reaction.deleted",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "trade.created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "user.created",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "user.updated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFilters"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "author_fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "embedded_cast_author_fids",
+      "type": "property",
+      "description": "Filter for casts that contain embedded casts authored by these FIDs",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "embedded_cast_hashes",
+      "type": "property",
+      "description": "Filter for casts that quote/embed these specific cast hashes",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "exclude_author_fids",
+      "type": "property",
+      "description": "Exclude casts that matches these authors.\n**Note:**\nThis is applied as an AND operation against rest of the filters.\nRest of the filters are bundled as an OR operation.",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "mentioned_fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "minimum_author_score",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_author_fids",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_hashes",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "parent_urls",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "root_parent_urls",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersCast"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "target_cast_hashes",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersReaction"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "minimum_token_amount_usdc",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersTrade"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "minimum_trader_neynar_score",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "WebhookSubscriptionFiltersTrade"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "errors",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ZodError"
+      ],
+      "source": [
+        "neynar-farcaster-api"
+      ]
+    },
+    {
+      "term": "Info",
+      "type": "tag",
+      "description": "Operations related to hub information.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Casts",
+      "type": "tag",
+      "description": "Operations related to casts.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Reactions",
+      "type": "tag",
+      "description": "Operations related to reactions.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Links",
+      "type": "tag",
+      "description": "Operations related to links.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "UserData",
+      "type": "tag",
+      "description": "Operations related to user data.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Fids",
+      "type": "tag",
+      "description": "Operations related to FIDs.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Usernames",
+      "type": "tag",
+      "description": "Operations related to usernames.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Verifications",
+      "type": "tag",
+      "description": "Operations related to verifications.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "OnChainEvents",
+      "type": "tag",
+      "description": "Operations related to on-chain events.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "Message",
+      "type": "tag",
+      "description": "Operations related to messages.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "HubEvents",
+      "type": "tag",
+      "description": "Operations related to hub events.",
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "nextPageToken",
+      "type": "property",
+      "description": "Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.",
+      "usedIn": [
+        "PaginationResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "embedsDeprecated",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mentions",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "parentCastId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "parentUrl",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mentionsPositions",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastAddBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "castId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "CastEmbed",
+        "FrameActionBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "numMessages",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DbStats"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "numFidEvents",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DbStats"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "numFnameEvents",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "DbStats"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "errCode",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ErrorResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "presentable",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ErrorResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "buttonIndex",
+      "type": "property",
+      "description": "Identifies which button the user clicked in the frame. Frames can have up to 4 buttons, numbered from 1 to 4.",
+      "usedIn": [
+        "FrameActionBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mergeMessageBody",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubEventMergeMessage"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mergeOnChainEventBody",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubEventMergeOnChainEvent"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "mergeUsernameProofBody",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubEventMergeUsernameProof"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "pruneMessageBody",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubEventPruneMessage"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "revokeMessageBody",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubEventRevokeMessage"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "isSyncing",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "nickname",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "rootHash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "dbStats",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "peerId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "hubOperatorFid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "HubInfoResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "to",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "IdRegisterEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "eventType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "IdRegisterEventBody",
+        "SignerEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "from",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "IdRegisterEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "recoveryAddress",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "IdRegisterEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "displayTimestamp",
+      "type": "property",
+      "description": "User-defined timestamp that preserves the original creation time when message.data.timestamp needs to be updated for compaction. Useful for maintaining chronological order in user feeds.",
+      "usedIn": [
+        "LinkBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "targetFid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "LinkBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "deletedMessages",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeMessageBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "onChainEvent",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeOnChainEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "usernameProof",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeUserNameProofBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "deletedUsernameProof",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeUserNameProofBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "usernameProofMessage",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeUserNameProofBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "deletedUsernameProofMessage",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MergeUserNameProofBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "hashScheme",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MessageCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "signatureScheme",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "MessageCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "chainId",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "blockNumber",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "blockHash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon",
+        "VerificationAddEthAddressBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "blockTimestamp",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "transactionHash",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "logIndex",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "txIndex",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "OnChainEventCommon"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "targetCastId",
+      "type": "property",
+      "description": "The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator's FID and the cast's hash.",
+      "usedIn": [
+        "ReactionBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "targetUrl",
+      "type": "property",
+      "description": "The URL being reacted to. Used when reacting to external content or when the cast ID is not available.",
+      "usedIn": [
+        "ReactionBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "keyType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SignerEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "metadataType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SignerEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "migratedAt",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "SignerMigratedEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "storeType",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageLimit"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "limit",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageLimit"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "limits",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageLimitsResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "unitDetails",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageLimitsResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "tier_subscriptions",
+      "type": "property",
+      "description": "List of subscription tiers for the user. Each entry describes a subscription tier and its expiration.",
+      "usedIn": [
+        "StorageLimitsResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "payer",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "StorageRentEventBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "proofs",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "UsernameProofsResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "valid",
+      "type": "property",
+      "description": "",
+      "usedIn": [
+        "ValidateMessageResponse"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    },
+    {
+      "term": "ethSignature",
+      "type": "property",
+      "description": "Base64-encoded signature produced by the blockchain address, proving ownership. For Ethereum, this is an ECDSA signature of a specific message format.",
+      "usedIn": [
+        "VerificationAddEthAddressBody"
+      ],
+      "source": [
+        "neynar-hub-api"
+      ]
+    }
+  ]
+}

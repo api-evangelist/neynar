@@ -1,0 +1,164 @@
+{
+  "operationId": "fetch-relevant-frames",
+  "method": "GET",
+  "path": "/v2/farcaster/frame/relevant/",
+  "summary": "Relevant mini apps",
+  "description": "Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user",
+  "tags": [
+    "Frame"
+  ],
+  "parameters": [
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": true,
+      "description": "FID of the user to fetch relevant mini apps for",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "time_window",
+      "in": "query",
+      "required": false,
+      "description": "Time window used to limit statistics used to calculate mini app relevance",
+      "schema": {
+        "default": "7d",
+        "enum": [
+          "1h",
+          "6h",
+          "12h",
+          "24h",
+          "7d"
+        ],
+        "example": "7d",
+        "type": "string"
+      }
+    },
+    {
+      "name": "networks",
+      "in": "query",
+      "required": false,
+      "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array.",
+      "schema": {
+        "example": [
+          "ethereum",
+          "base",
+          "solana"
+        ],
+        "items": {
+          "description": "Networks supported by mini apps",
+          "enum": [
+            "ethereum",
+            "base",
+            "arbitrum",
+            "arbitrum-sepolia",
+            "base-sepolia",
+            "degen",
+            "gnosis",
+            "optimism",
+            "optimism-sepolia",
+            "polygon",
+            "ethereum-sepolia",
+            "zora",
+            "unichain",
+            "monad-testnet",
+            "celo",
+            "solana"
+          ],
+          "example": "base",
+          "type": "string"
+        },
+        "title": "MiniappNetworksSchema",
+        "type": "array"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "properties": {
+          "relevant_frames": {
+            "items": {
+              "properties": {
+                "frame": {
+                  "description": "FrameV2 object",
+                  "properties": {
+                    "author": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "frames_url": {
+                      "description": "Launch URL of the mini app",
+                      "type": "string"
+                    },
+                    "image": {
+                      "description": "URL of the image",
+                      "type": "string"
+                    },
+                    "manifest": {
+                      "$ref": "#/components/schemas/FarcasterManifest"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "html": {
+                          "$ref": "#/components/schemas/HtmlMetadata"
+                        }
+                      },
+                      "required": [
+                        "html"
+                      ],
+                      "type": "object"
+                    },
+                    "title": {
+                      "description": "Button title of a mini app",
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "Version of the mini app, 'next' for v2, 'vNext' for v1",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "version",
+                    "image",
+                    "frames_url"
+                  ],
+                  "type": "object"
+                },
+                "remaining_relevant_users": {
+                  "description": "Array of remaining relevant users in dehydrated form",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDehydrated"
+                  },
+                  "type": "array"
+                },
+                "top_relevant_users": {
+                  "description": "Array of the most relevant users",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "frame",
+                "top_relevant_users",
+                "remaining_relevant_users"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "relevant_frames"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

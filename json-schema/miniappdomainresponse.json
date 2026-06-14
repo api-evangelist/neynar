@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/MiniappDomainResponse",
+  "title": "MiniappDomainResponse",
+  "description": "Response containing domain information, metadata, and validation errors if any",
+  "properties": {
+    "created_at": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "type": "string"
+    },
+    "domain": {
+      "description": "Domain name",
+      "type": "string"
+    },
+    "error_message": {
+      "description": "High-level error message if processing failed",
+      "type": "string"
+    },
+    "fid": {
+      "description": "FID associated with the domain",
+      "example": 3,
+      "format": "int32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "home_url_metadata": {
+      "additionalProperties": {},
+      "description": "Home URL metadata if available",
+      "nullable": true,
+      "type": "object"
+    },
+    "manifest": {
+      "$ref": "#/components/schemas/FarcasterManifest"
+    },
+    "updated_at": {
+      "description": "Last update timestamp",
+      "format": "date-time",
+      "type": "string"
+    },
+    "validation_errors": {
+      "description": "Validation errors from processing, if any",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "was_found": {
+      "description": "Whether the domain was found in the table before processing",
+      "type": "boolean"
+    },
+    "was_refreshed": {
+      "description": "Whether the domain was refreshed/updated during this request",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "domain",
+    "fid",
+    "manifest",
+    "created_at",
+    "updated_at",
+    "was_found",
+    "was_refreshed"
+  ],
+  "type": "object"
+}

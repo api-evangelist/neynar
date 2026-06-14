@@ -1,0 +1,11 @@
+{
+  "term": "seen",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Notification"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

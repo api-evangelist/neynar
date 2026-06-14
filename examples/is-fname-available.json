@@ -1,0 +1,38 @@
+{
+  "operationId": "is-fname-available",
+  "method": "GET",
+  "path": "/v2/farcaster/fname/availability/",
+  "summary": "Check fname availability",
+  "description": "Check if a given fname is available",
+  "tags": [
+    "fname"
+  ],
+  "parameters": [
+    {
+      "name": "fname",
+      "in": "query",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/FnameAvailabilityResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "term": "balance",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FungibleBalance",
+    "TokenBalance"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

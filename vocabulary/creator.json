@@ -1,0 +1,11 @@
+{
+  "term": "creator",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "SubscribedTo"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

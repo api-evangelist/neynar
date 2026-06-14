@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/hub/OnChainEventSignerMigrated",
+  "title": "Hub OnChainEventSignerMigrated",
+  "description": "Neynar Hub API schema for OnChainEventSignerMigrated",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/OnChainEventCommon"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "signerMigratedEventBody": {
+          "$ref": "#/components/schemas/SignerMigratedEventBody"
+        }
+      },
+      "required": [
+        "signerMigratedEventBody"
+      ]
+    }
+  ]
+}

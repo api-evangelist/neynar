@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SignerUUID",
+  "title": "SignerUUID",
+  "description": "UUID of the signer.\n`signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.",
+  "example": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec",
+  "type": "string"
+}

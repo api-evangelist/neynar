@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SimulateNftMintResponse",
+  "title": "SimulateNftMintResponse",
+  "description": "Calldata simulations for NFT minting.",
+  "items": {
+    "properties": {
+      "abi": {
+        "description": "ABI for the mint function.",
+        "nullable": true
+      },
+      "args": {
+        "items": {},
+        "type": "array"
+      },
+      "calldata": {
+        "description": "Calldata for the mint transaction.",
+        "example": "0xabcdef",
+        "type": "string"
+      },
+      "data": {
+        "example": "0x1234abcd",
+        "type": "string"
+      },
+      "estimated_total_cost_wei": {
+        "description": "Estimated total cost in wei (value + gas). Use this for price display.",
+        "example": "100000000000000",
+        "type": "string"
+      },
+      "function_name": {
+        "example": "mintTo",
+        "type": "string"
+      },
+      "network": {
+        "example": "base",
+        "type": "string"
+      },
+      "recipient": {
+        "anyOf": [
+          {
+            "properties": {
+              "address": {
+                "$ref": "#/components/schemas/EthAddress"
+              },
+              "fid": {
+                "not": {}
+              },
+              "quantity": {
+                "default": 1,
+                "description": "Quantity to mint (must be at least 1). Defaults to 1.",
+                "example": 1,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "address"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "address": {
+                "not": {}
+              },
+              "fid": {
+                "$ref": "#/components/schemas/Fid"
+              },
+              "quantity": {
+                "default": 1,
+                "description": "Quantity to mint (must be at least 1). Defaults to 1.",
+                "example": 1,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "fid"
+            ],
+            "type": "object"
+          }
+        ],
+        "description": "NFT mint recipient. Exactly one of \"address\" or \"fid\" must be set."
+      },
+      "to": {
+        "$ref": "#/components/schemas/EthAddress"
+      },
+      "value": {
+        "example": "0",
+        "type": "string"
+      }
+    },
+    "required": [
+      "recipient",
+      "function_name",
+      "args",
+      "to",
+      "data",
+      "value",
+      "estimated_total_cost_wei",
+      "network",
+      "calldata"
+    ],
+    "type": "object"
+  },
+  "type": "array"
+}

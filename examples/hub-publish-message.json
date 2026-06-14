@@ -1,0 +1,21 @@
+{
+  "operationId": "hub-publish-message",
+  "method": "POST",
+  "path": "/v1/submitMessage",
+  "summary": "Submit signed message",
+  "description": "Submit a message to the Farcaster network.",
+  "tags": [
+    "Message"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/Message"
+      },
+      "example": null
+    }
+  }
+}

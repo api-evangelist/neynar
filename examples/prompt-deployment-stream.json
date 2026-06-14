@@ -1,0 +1,184 @@
+{
+  "operationId": "prompt-deployment-stream",
+  "method": "POST",
+  "path": "/v2/studio/deployment/prompt/stream",
+  "summary": "Prompt a deployment with streaming response",
+  "description": "Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.",
+  "tags": [
+    "studio"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "required": true,
+    "schema": {
+      "properties": {
+        "conversation_id": {
+          "description": "Optional conversation ID to continue an existing chat. If not provided, a new conversation will be created.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "deployment_id": {
+          "description": "Deployment ID (UUID). Required if name not provided.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fid": {
+          "description": "Farcaster ID of the user; if not provided, namespace must be provided",
+          "example": 3,
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "images": {
+          "description": "Optional images for multimodal messages. Each image is base64-encoded.",
+          "items": {
+            "properties": {
+              "data": {
+                "description": "Base64-encoded image data or data URL (data:image/png;base64,...)",
+                "type": "string"
+              },
+              "mediaType": {
+                "description": "MIME type of the image, e.g. image/png",
+                "enum": [
+                  "image/jpeg",
+                  "image/png",
+                  "image/gif",
+                  "image/webp"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "mediaType",
+              "data"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Kubernetes deployment name. Required if deployment_id not provided.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID.",
+          "type": "string"
+        },
+        "prompt": {
+          "description": "Prompt string to send to the deployment",
+          "type": "string"
+        },
+        "session_id": {
+          "description": "Optional Claude SDK session ID to resume an existing Claude Code session. Enables session-based conversation continuity.",
+          "type": "string"
+        },
+        "system_prompt_variant": {
+          "description": "System prompt variant to use. Defaults to stable if not provided.",
+          "enum": [
+            "canary",
+            "beta",
+            "stable"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "prompt"
+      ],
+      "type": "object"
+    },
+    "example": null
+  },
+  "responses": {
+    "202": {
+      "description": "202",
+      "schema": {
+        "properties": {
+          "conversation_id": {
+            "description": "The conversation ID",
+            "format": "uuid",
+            "type": "string"
+          },
+          "queued": {
+            "description": "Indicates the message was queued to the active session",
+            "enum": [
+              true
+            ],
+            "type": "boolean"
+          },
+          "session_id": {
+            "description": "The session ID the message was queued to",
+            "type": "string"
+          }
+        },
+        "required": [
+          "queued",
+          "session_id",
+          "conversation_id"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "404": {
+      "description": "Resource not found",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "413": {
+      "description": "Content Too Large",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    },
+    "500": {
+      "description": "Server Error",
+      "schema": {
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "example": null
+    }
+  }
+}

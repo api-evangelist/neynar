@@ -1,0 +1,11 @@
+{
+  "term": "country",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "LocationAddress"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

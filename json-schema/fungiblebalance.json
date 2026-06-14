@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FungibleBalance",
+  "title": "FungibleBalance",
+  "description": "Neynar Farcaster API schema for FungibleBalance",
+  "properties": {
+    "balance": {
+      "properties": {
+        "in_token": {
+          "type": "string"
+        },
+        "in_usd": {
+          "nullable": true,
+          "type": "number"
+        }
+      },
+      "required": [
+        "in_usd",
+        "in_token"
+      ],
+      "type": "object"
+    },
+    "object": {
+      "enum": [
+        "fungible_balance"
+      ],
+      "type": "string"
+    },
+    "token": {
+      "$ref": "#/components/schemas/Fungible"
+    }
+  },
+  "required": [
+    "object",
+    "token",
+    "balance"
+  ],
+  "type": "object"
+}

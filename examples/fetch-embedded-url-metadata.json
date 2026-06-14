@@ -1,0 +1,38 @@
+{
+  "operationId": "fetch-embedded-url-metadata",
+  "method": "GET",
+  "path": "/v2/farcaster/cast/embed/crawl/",
+  "summary": "Embedded URL metadata",
+  "description": "Crawls the given URL and returns metadata useful when embedding the URL in a cast.",
+  "tags": [
+    "Cast"
+  ],
+  "parameters": [
+    {
+      "name": "url",
+      "in": "query",
+      "required": true,
+      "description": "URL to crawl metadata of",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/CastEmbedCrawlResponse"
+      },
+      "example": null
+    },
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/ErrorRes"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "term": "transactions",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "TransactionSendFungiblesResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/SubscriptionCheckResponse",
+  "title": "SubscriptionCheckResponse",
+  "description": "Neynar Farcaster API schema for SubscriptionCheckResponse",
+  "anyOf": [
+    {
+      "additionalProperties": {
+        "properties": {
+          "expires_at": {
+            "format": "int64",
+            "nullable": true,
+            "type": "integer"
+          },
+          "object": {
+            "enum": [
+              "subscribed_to_dehydrated"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "subscribed_at": {
+            "format": "int64",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SubscriptionTier"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "object",
+          "status",
+          "expires_at",
+          "subscribed_at",
+          "tier"
+        ]
+      }
+    }
+  ],
+  "type": "object"
+}

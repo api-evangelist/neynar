@@ -1,0 +1,11 @@
+{
+  "term": "intended_recipient_notification_token_count",
+  "type": "property",
+  "description": "The total number of notification tokens for intended recipients.",
+  "usedIn": [
+    "NotificationCampaignStats"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

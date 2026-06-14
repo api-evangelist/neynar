@@ -1,0 +1,11 @@
+{
+  "term": "experimental",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "User"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

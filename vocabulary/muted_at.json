@@ -1,0 +1,11 @@
+{
+  "term": "muted_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "MuteRecord"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

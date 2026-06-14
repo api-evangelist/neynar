@@ -1,0 +1,11 @@
+{
+  "term": "permissions",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Signer"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

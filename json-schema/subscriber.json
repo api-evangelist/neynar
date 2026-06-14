@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Subscriber",
+  "title": "Subscriber",
+  "description": "Neynar Farcaster API schema for Subscriber",
+  "properties": {
+    "object": {
+      "enum": [
+        "subscriber"
+      ],
+      "type": "string"
+    },
+    "subscribed_to": {
+      "$ref": "#/components/schemas/SubscribedToObject"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "object",
+    "user",
+    "subscribed_to"
+  ],
+  "type": "object"
+}

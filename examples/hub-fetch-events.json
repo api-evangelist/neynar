@@ -1,0 +1,46 @@
+{
+  "operationId": "hub-fetch-events",
+  "method": "GET",
+  "path": "/v1/events",
+  "summary": "Page of events",
+  "description": "Fetch a list of events.",
+  "tags": [
+    "HubEvents"
+  ],
+  "parameters": [
+    {
+      "name": "from_event_id",
+      "in": "query",
+      "required": false,
+      "description": "An optional Hub Id to start getting events from.\nThis is also returned from the API as nextPageEventId, which\ncan be used to page through all the Hub events. Set it to 0\nto start from the first event.\n",
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "nextPageEventId": {
+            "type": "integer"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HubEvent"
+            }
+          }
+        },
+        "required": [
+          "nextPageEventId",
+          "events"
+        ]
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "term": "metadata",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "CastEmbedCrawlResponse",
+    "EmbedUrl",
+    "FrameV2",
+    "FrameV2WithFullAuthor",
+    "RegisterUserReqBody",
+    "SubscribedTo",
+    "Subscription",
+    "ErrorResponse",
+    "SignerEventBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

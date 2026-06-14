@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/EmbedUrlMetadata",
+  "title": "EmbedUrlMetadata",
+  "description": "Neynar Farcaster API schema for EmbedUrlMetadata",
+  "properties": {
+    "_status": {
+      "type": "string"
+    },
+    "content_length": {
+      "nullable": true,
+      "type": "integer"
+    },
+    "content_type": {
+      "nullable": true,
+      "type": "string"
+    },
+    "frame": {
+      "$ref": "#/components/schemas/Frame"
+    },
+    "html": {
+      "$ref": "#/components/schemas/HtmlMetadata"
+    },
+    "image": {
+      "properties": {
+        "height_px": {
+          "type": "integer"
+        },
+        "width_px": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "video": {
+      "properties": {
+        "duration_s": {
+          "type": "number"
+        },
+        "stream": {
+          "items": {
+            "properties": {
+              "codec_name": {
+                "type": "string"
+              },
+              "height_px": {
+                "type": "integer"
+              },
+              "width_px": {
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "_status"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "term": "text",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Cast",
+    "CastAndConversations",
+    "CastAndConversationsRef",
+    "CastEmbedded",
+    "PostCastReqBody",
+    "TransactionFrameAction",
+    "WebhookSubscriptionFiltersCast",
+    "CastAddBody"
+  ],
+  "source": [
+    "neynar-farcaster-api",
+    "neynar-hub-api"
+  ]
+}

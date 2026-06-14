@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/TrendingTopicsResponse",
+  "title": "TrendingTopicsResponse",
+  "description": "Neynar Farcaster API schema for TrendingTopicsResponse",
+  "properties": {
+    "next": {
+      "$ref": "#/components/schemas/NextCursor"
+    },
+    "topics": {
+      "items": {
+        "$ref": "#/components/schemas/TrendingTopic"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "topics",
+    "next"
+  ],
+  "type": "object"
+}

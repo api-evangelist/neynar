@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/OperationResponse",
+  "title": "OperationResponse",
+  "description": "Neynar Farcaster API schema for OperationResponse",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

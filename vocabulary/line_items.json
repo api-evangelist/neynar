@@ -1,0 +1,11 @@
+{
+  "term": "line_items",
+  "type": "property",
+  "description": "List of items included in the transaction",
+  "usedIn": [
+    "TransactionFrameConfig"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

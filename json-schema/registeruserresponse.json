@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/RegisterUserResponse",
+  "title": "RegisterUserResponse",
+  "description": "Neynar Farcaster API schema for RegisterUserResponse",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "signer": {
+      "$ref": "#/components/schemas/Signer"
+    },
+    "signers": {
+      "items": {
+        "properties": {
+          "fid": {
+            "$ref": "#/components/schemas/Fid"
+          },
+          "object": {
+            "enum": [
+              "signer"
+            ],
+            "type": "string"
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/SharedSignerPermission"
+            },
+            "type": "array"
+          },
+          "public_key": {
+            "$ref": "#/components/schemas/Ed25519PublicKey"
+          },
+          "signer_approval_url": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "generated",
+              "pending_approval",
+              "approved",
+              "revoked"
+            ],
+            "type": "string"
+          },
+          "uuid": {
+            "$ref": "#/components/schemas/SignerUUID"
+          }
+        },
+        "required": [
+          "public_key",
+          "status",
+          "uuid"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "success": {
+      "enum": [
+        true
+      ],
+      "type": "boolean"
+    },
+    "user": {
+      "$ref": "#/components/schemas/User"
+    }
+  },
+  "required": [
+    "success",
+    "message",
+    "signers"
+  ],
+  "type": "object"
+}

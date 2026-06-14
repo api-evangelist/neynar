@@ -1,0 +1,11 @@
+{
+  "term": "liked",
+  "type": "property",
+  "description": "Indicates if the viewer liked the cast.",
+  "usedIn": [
+    "CastViewerContext"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

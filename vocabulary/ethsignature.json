@@ -1,0 +1,11 @@
+{
+  "term": "ethSignature",
+  "type": "property",
+  "description": "Base64-encoded signature produced by the blockchain address, proving ownership. For Ethereum, this is an ECDSA signature of a specific message format.",
+  "usedIn": [
+    "VerificationAddEthAddressBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "term": "Mute",
+  "type": "tag",
+  "description": "Operations related to a mute",
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "term": "deleted_at",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook",
+    "WebhookSecret"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

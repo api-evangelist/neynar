@@ -1,0 +1,64 @@
+{
+  "operationId": "search-channels",
+  "method": "GET",
+  "path": "/v2/farcaster/channel/search/",
+  "summary": "Search by ID or name",
+  "description": "Returns a list of channels based on ID or name",
+  "tags": [
+    "Channel"
+  ],
+  "parameters": [
+    {
+      "name": "q",
+      "in": "query",
+      "required": true,
+      "description": "Channel ID or name for the channel being queried",
+      "schema": {
+        "example": "neynar",
+        "type": "string"
+      }
+    },
+    {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "description": "Number of results to fetch",
+      "schema": {
+        "default": 20,
+        "example": 30,
+        "maximum": 200,
+        "minimum": 1,
+        "type": "integer"
+      }
+    },
+    {
+      "name": "cursor",
+      "in": "query",
+      "required": false,
+      "description": "Pagination cursor.",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "viewer_fid",
+      "in": "query",
+      "required": false,
+      "description": "FID of the user viewing the channels.",
+      "schema": {
+        "minimum": 1,
+        "type": "integer"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Success",
+      "schema": {
+        "$ref": "#/components/schemas/ChannelSearchResponse"
+      },
+      "example": null
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "term": "http_timeout",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

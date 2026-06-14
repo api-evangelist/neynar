@@ -1,0 +1,12 @@
+{
+  "term": "following",
+  "type": "property",
+  "description": "Indicates if the user is following the channel.",
+  "usedIn": [
+    "ChannelUserContext",
+    "UserViewerContext"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

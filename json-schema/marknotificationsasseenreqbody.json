@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/MarkNotificationsAsSeenReqBody",
+  "title": "MarkNotificationsAsSeenReqBody",
+  "description": "Neynar Farcaster API schema for MarkNotificationsAsSeenReqBody",
+  "properties": {
+    "signer_uuid": {
+      "description": "The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header.",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/NotificationType"
+    }
+  },
+  "type": "object"
+}

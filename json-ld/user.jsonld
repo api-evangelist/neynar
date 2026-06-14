@@ -1,0 +1,40 @@
+{
+  "@context": "https://neynar.com/vocab/context.jsonld",
+  "@type": "neynar:User",
+  "schema:name": "User",
+  "schema:description": "Neynar User resource",
+  "properties": [
+    "auth_addresses",
+    "custody_address",
+    "display_name",
+    "experimental",
+    "fid",
+    "follower_count",
+    "following_count",
+    "object",
+    "pfp_url",
+    "pro",
+    "profile",
+    "registered_at",
+    "score",
+    "username",
+    "verifications",
+    "verified_accounts",
+    "verified_addresses",
+    "viewer_context"
+  ],
+  "required": [
+    "object",
+    "fid",
+    "username",
+    "custody_address",
+    "registered_at",
+    "profile",
+    "follower_count",
+    "following_count",
+    "verifications",
+    "auth_addresses",
+    "verified_addresses",
+    "verified_accounts"
+  ]
+}

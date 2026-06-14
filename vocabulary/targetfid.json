@@ -1,0 +1,11 @@
+{
+  "term": "targetFid",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "LinkBody"
+  ],
+  "source": [
+    "neynar-hub-api"
+  ]
+}

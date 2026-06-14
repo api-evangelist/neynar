@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ChannelMember",
+  "title": "ChannelMember",
+  "description": "Neynar Farcaster API schema for ChannelMember",
+  "properties": {
+    "channel": {
+      "discriminator": {
+        "mapping": {
+          "channel": "#/components/schemas/Channel",
+          "channel_dehydrated": "#/components/schemas/ChannelDehydrated"
+        },
+        "propertyName": "object"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/Channel"
+        },
+        {
+          "$ref": "#/components/schemas/ChannelDehydrated"
+        }
+      ],
+      "type": "object"
+    },
+    "object": {
+      "enum": [
+        "member"
+      ],
+      "type": "string"
+    },
+    "role": {
+      "$ref": "#/components/schemas/ChannelMemberRole"
+    },
+    "user": {
+      "discriminator": {
+        "mapping": {
+          "user": "#/components/schemas/User",
+          "user_dehydrated": "#/components/schemas/UserDehydrated"
+        },
+        "propertyName": "object"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/UserDehydrated"
+        },
+        {
+          "$ref": "#/components/schemas/User"
+        }
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "object",
+    "role",
+    "user",
+    "channel"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,14 @@
+{
+  "term": "webhook_id",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "Webhook",
+    "WebhookDeleteReqBody",
+    "WebhookPatchReqBody",
+    "WebhookPutReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

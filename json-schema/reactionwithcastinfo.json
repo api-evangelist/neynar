@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/ReactionWithCastInfo",
+  "title": "ReactionWithCastInfo",
+  "description": "Neynar Farcaster API schema for ReactionWithCastInfo",
+  "properties": {
+    "app": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    },
+    "cast": {
+      "$ref": "#/components/schemas/Cast"
+    },
+    "object": {
+      "enum": [
+        "likes",
+        "recasts"
+      ],
+      "type": "string"
+    },
+    "reaction_timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "reaction_type": {
+      "enum": [
+        "like",
+        "recast"
+      ],
+      "type": "string"
+    },
+    "user": {
+      "$ref": "#/components/schemas/UserDehydrated"
+    }
+  },
+  "required": [
+    "reaction_type",
+    "cast",
+    "reaction_timestamp",
+    "object",
+    "user"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/Channel",
+  "title": "Channel",
+  "description": "Neynar Farcaster API schema for Channel",
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "description_mentioned_profiles": {
+      "items": {
+        "$ref": "#/components/schemas/UserDehydrated"
+      },
+      "type": "array"
+    },
+    "description_mentioned_profiles_ranges": {
+      "description": "Positions within the text (inclusive start, exclusive end) where each mention occurs.",
+      "items": {
+        "$ref": "#/components/schemas/TextRange"
+      },
+      "type": "array"
+    },
+    "external_link": {
+      "description": "Channel's external link.",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "follower_count": {
+      "description": "Number of followers the channel has.",
+      "type": "number"
+    },
+    "hosts": {
+      "deprecated": true,
+      "items": {
+        "$ref": "#/components/schemas/User"
+      },
+      "type": "array"
+    },
+    "id": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "lead": {
+      "$ref": "#/components/schemas/User"
+    },
+    "member_count": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "moderator": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/User"
+        }
+      ],
+      "deprecated": true,
+      "description": "Use `lead` instead."
+    },
+    "moderator_fids": {
+      "items": {
+        "$ref": "#/components/schemas/Fid"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "object": {
+      "enum": [
+        "channel"
+      ],
+      "type": "string"
+    },
+    "parent_url": {
+      "format": "uri",
+      "type": "string"
+    },
+    "pinned_cast_hash": {
+      "example": "0x71d5225f77e0164388b1d4c120825f3a2c1f131c",
+      "pattern": "^(0x)?[a-fA-F0-9]{40}$",
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "viewer_context": {
+      "$ref": "#/components/schemas/ChannelUserContext"
+    }
+  },
+  "required": [
+    "id",
+    "url",
+    "object",
+    "created_at"
+  ],
+  "type": "object"
+}

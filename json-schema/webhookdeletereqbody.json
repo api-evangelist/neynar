@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/WebhookDeleteReqBody",
+  "title": "WebhookDeleteReqBody",
+  "description": "Neynar Farcaster API schema for WebhookDeleteReqBody",
+  "properties": {
+    "webhook_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "webhook_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+{
+  "term": "action",
+  "type": "property",
+  "description": "",
+  "usedIn": [
+    "FarcasterActionReqBody",
+    "TransactionFrameConfig"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

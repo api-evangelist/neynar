@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/FungiblesResponseSchema",
+  "title": "FungiblesResponseSchema",
+  "description": "Response containing fungible details",
+  "properties": {
+    "fungibles": {
+      "items": {
+        "$ref": "#/components/schemas/FarcasterFungible"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "fungibles"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neynar.com/schemas/NotificationCampaignStatus",
+  "title": "NotificationCampaignStatus",
+  "description": "Always \"queued\" for a successful async enqueue.",
+  "enum": [
+    "queued",
+    "running",
+    "completed",
+    "failed",
+    "canceled"
+  ],
+  "type": "string"
+}

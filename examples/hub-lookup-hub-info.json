@@ -1,0 +1,32 @@
+{
+  "operationId": "hub-lookup-hub-info",
+  "method": "GET",
+  "path": "/v1/info",
+  "summary": "Sync Methods",
+  "description": "Retrieve hub information.",
+  "tags": [
+    "Info"
+  ],
+  "parameters": [
+    {
+      "name": "dbstats",
+      "in": "query",
+      "required": true,
+      "description": "Controls whether the response includes database statistics. When true, the response includes information about the hub's database state, storage usage, and performance metrics.",
+      "schema": {
+        "type": "boolean",
+        "example": true
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "A successful response.",
+      "schema": {
+        "$ref": "#/components/schemas/HubInfoResponse"
+      },
+      "example": null
+    }
+  }
+}

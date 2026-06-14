@@ -1,0 +1,8 @@
+{
+  "term": "OnChainEvents",
+  "type": "tag",
+  "description": "Operations related to on-chain events.",
+  "source": [
+    "neynar-hub-api"
+  ]
+}

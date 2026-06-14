@@ -1,0 +1,11 @@
+{
+  "term": "metadata[telegram]",
+  "type": "property",
+  "description": "Telegram link",
+  "usedIn": [
+    "DeployFungibleReqBody"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}

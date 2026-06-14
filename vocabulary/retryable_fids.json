@@ -1,0 +1,11 @@
+{
+  "term": "retryable_fids",
+  "type": "property",
+  "description": "List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.",
+  "usedIn": [
+    "SendFrameNotificationsResponse"
+  ],
+  "source": [
+    "neynar-farcaster-api"
+  ]
+}
