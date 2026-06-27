@@ -37,7 +37,7 @@ apis:
     url: https://docs.neynar.com
   - type: OpenAPI
     url: https://raw.githubusercontent.com/neynarxyz/OAS/main/src/api/spec.yaml
-  - type: Quickstart
+  - type: GettingStarted
     url: https://docs.neynar.com/reference/quickstart
   - type: RateLimits
     url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
