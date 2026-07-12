@@ -94,3 +94,10 @@ aid: api-evangelist-neynar
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
+common:
+  - type: DomainSecurity
+    url: security/neynar-domain-security.yml
+  - type: Authentication
+    url: authentication/neynar-authentication.yml
+  - url: https://neynar.com/blog
+    type: Blog
