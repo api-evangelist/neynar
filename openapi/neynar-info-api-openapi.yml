@@ -1,0 +1,131 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Info API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Info
+  description: Operations related to hub information.
+paths:
+  /v1/info:
+    get:
+      tags:
+      - Info
+      summary: Sync Methods
+      description: Retrieve hub information.
+      externalDocs:
+        description: Farcaster Hub API
+        url: https://docs.neynar.com/reference/lookup-hub-info
+      operationId: lookup-hub-info
+      parameters:
+      - name: dbstats
+        in: query
+        description: Controls whether the response includes database statistics. When true, the response includes information about the hub's database state, storage usage, and performance metrics.
+        required: true
+        schema:
+          type: boolean
+          example: true
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubInfoResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    DbStats:
+      required:
+      - numFidEvents
+      - numFnameEvents
+      - numMessages
+      type: object
+      properties:
+        numMessages:
+          type: integer
+          format: uint64
+        numFidEvents:
+          type: integer
+          format: uint64
+        numFnameEvents:
+          type: integer
+          format: uint64
+    HubInfoResponse:
+      title: Response Types for the Sync RPC Methods
+      required:
+      - hubOperatorFid
+      - isSyncing
+      - nickname
+      - peerId
+      - rootHash
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+        isSyncing:
+          type: boolean
+        nickname:
+          type: string
+        rootHash:
+          type: string
+        dbStats:
+          $ref: '#/components/schemas/DbStats'
+        peerId:
+          type: string
+        hubOperatorFid:
+          type: integer
+          format: uint64
+    ErrorResponse:
+      required:
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
+      properties:
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

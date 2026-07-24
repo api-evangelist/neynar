@@ -1,0 +1,199 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Topic API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: Topic
+paths:
+  /v2/farcaster/topic/trending/:
+    get:
+      description: Returns a list of trending topics for casts.
+      externalDocs:
+        url: https://docs.neynar.com/reference/list-trending-topics
+      operationId: list-trending-topics
+      parameters:
+      - description: Number of topics to fetch.
+        in: query
+        name: limit
+        schema:
+          default: 10
+          example: 10
+          format: int32
+          maximum: 25
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendingTopicsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Fetch trending topics
+      tags:
+      - Topic
+components:
+  schemas:
+    TopLevelTopic:
+      description: The top-level category the topic belongs to
+      enum:
+      - arts_culture
+      - business_entrepreneurs
+      - celebrity_pop_culture
+      - diaries_daily_life
+      - family
+      - fashion_style
+      - film_tv_video
+      - fitness_health
+      - food_dining
+      - gaming
+      - learning_educational
+      - music
+      - news_social_concern
+      - other_hobbies
+      - relationships
+      - science_technology
+      - sports
+      - travel_adventure
+      - youth_student_life
+      title: TopLevelTopic
+      type: string
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    TrendingTopic:
+      properties:
+        authors:
+          description: Up to five recent Farcaster users who posted about the topic
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          maxItems: 5
+          type: array
+        name:
+          description: The display name of the topic
+          type: string
+        slug:
+          description: A URL-friendly unique identifier for the topic
+          type: string
+        summary:
+          description: Short summary of the topic if available
+          nullable: true
+          type: string
+        top_level_topic:
+          $ref: '#/components/schemas/TopLevelTopic'
+      required:
+      - name
+      - slug
+      - top_level_topic
+      - summary
+      - authors
+      title: TrendingTopic
+      type: object
+    TrendingTopicsResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        topics:
+          items:
+            $ref: '#/components/schemas/TrendingTopic'
+          type: array
+      required:
+      - topics
+      - next
+      title: TrendingTopicsResponse
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          nullable: true
+          type: string
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

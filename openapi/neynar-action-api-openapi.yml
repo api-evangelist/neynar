@@ -1,0 +1,83 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Securely communicate and perform actions on behalf of users across different apps
+  externalDocs:
+    description: More info about farcaster actions
+    url: https://docs.neynar.com/docs/farcaster-actions-spec
+  name: Action
+paths:
+  /v2/farcaster/action/:
+    post:
+      description: Securely communicate and perform actions on behalf of users across different apps. It enables an app to send data or trigger actions in another app on behalf of a mutual user by signing messages using the user's Farcaster signer.
+      externalDocs:
+        url: https://docs.neynar.com/reference/publish-farcaster-action
+      operationId: publish-farcaster-action
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FarcasterActionReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+          description: Success
+      summary: User actions across apps
+      tags:
+      - Action
+components:
+  schemas:
+    FarcasterActionReqBody:
+      properties:
+        action:
+          properties:
+            payload:
+              description: The payload of the action being performed.
+              properties: {}
+              type: object
+            type:
+              description: The type of action being performed.
+              example: create.user
+              type: string
+          required:
+          - type
+          type: object
+        base_url:
+          description: The base URL of the app on which the action is being performed.
+          example: https://example.com
+          format: uri
+          type: string
+        signer_uuid:
+          description: The signer_uuid of the user on behalf of whom the action is being performed.
+          example: 123e4567-e89b-12d3-a456-426614174000
+          format: uuid
+          type: string
+      required:
+      - signer_uuid
+      - base_url
+      - action
+      title: FarcasterActionReqBody
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

@@ -1,0 +1,344 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action App Host API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to mini app host notifications
+  externalDocs:
+    description: More info about mini app host notifications
+    url: https://docs.neynar.com/docs/app-host-notifications
+  name: App Host
+paths:
+  /v2/farcaster/app_host/user/event/:
+    get:
+      description: Returns event object for app host events. Used if the app host intends to sign the event message instead of using Neynar-hosted signers.
+      externalDocs:
+        url: https://docs.neynar.com/reference/app-host-get-event
+      operationId: app-host-get-event
+      parameters:
+      - description: The domain of the mini app
+        in: query
+        name: app_domain
+        required: true
+        schema:
+          example: demo.neynar.com
+          type: string
+      - description: The FID of the user who initiated the event
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: The type of event
+        in: query
+        name: event
+        required: true
+        schema:
+          enum:
+          - frame_added
+          - frame_removed
+          - notifications_enabled
+          - notifications_disabled
+          title: AppHostEventType
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppHostGetEventResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Generate event
+      tags:
+      - App Host
+    post:
+      description: Post an app_host event to the domain's webhook. Events such as enabling or disabling notifications for a user. Provide either a signed message or the signer UUID of an authorized neynar-hosted signers.
+      externalDocs:
+        url: https://docs.neynar.com/reference/app-host-post-event
+      operationId: app-host-post-event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppHostPostEventReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppHostPostEventResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Gateway
+      summary: Send event
+      tags:
+      - App Host
+  /v2/farcaster/app_host/user/state/:
+    get:
+      description: Returns the current notification state for a specific user across all mini app domains in this app host. Shows which domains have notifications enabled.
+      externalDocs:
+        url: https://docs.neynar.com/reference/app-host-get-user-state
+      operationId: app-host-get-user-state
+      parameters:
+      - description: The FID of the user
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppHostUserStateResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Enabled notifications
+      tags:
+      - App Host
+components:
+  schemas:
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    AppHostPostEventReqBody:
+      anyOf:
+      - $ref: '#/components/schemas/SignedMessageBody'
+      - $ref: '#/components/schemas/SignerUuidBody'
+      description: Request body for app host events. Can either provide a signed_message or a signer_uuid with event details.
+      title: AppHostPostEventReqBody
+    AppHostUserStateResponse:
+      properties:
+        notifications_enabled:
+          description: List of domains for which notifications are enabled for this user
+          items:
+            properties:
+              domain:
+                description: Domain of the mini app
+                type: string
+              status:
+                description: Status of notifications for this domain (usually 'valid')
+                type: string
+              updated_at:
+                description: When the notification preference was last updated
+                format: date-time
+                type: string
+            required:
+            - domain
+            - status
+            - updated_at
+            type: object
+          type: array
+      required:
+      - notifications_enabled
+      title: AppHostUserStateResponse
+      type: object
+    SignedMessageBody:
+      properties:
+        app_domain:
+          description: Domain of the mini app
+          example: demo.neynar.com
+          type: string
+        signed_message:
+          anyOf:
+          - type: string
+          - $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
+          description: JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.
+      required:
+      - signed_message
+      - app_domain
+      title: SignedMessageBody
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    AppHostGetEventResponse:
+      properties:
+        event:
+          description: 'Legacy event type corresponding to the requested event type:
+
+            - frame_added: User adds a mini app to their account
+
+            - frame_removed: User removes a mini app from their account
+
+            - notifications_enabled: User enables notifications for a mini app
+
+            - notifications_disabled: User disables notifications for a mini app'
+          type: string
+        notificationDetails:
+          description: Details for notification setup, only present when event is notifications_enabled
+          properties:
+            token:
+              description: Token to use when sending notifications to this user
+              type: string
+            url:
+              description: URL endpoint for sending notifications
+              type: string
+          required:
+          - url
+          - token
+          type: object
+      required:
+      - event
+      title: AppHostGetEventResponse
+      type: object
+    EncodedJsonFarcasterSignature:
+      description: Encoded JSON Farcaster signature
+      properties:
+        header:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string
+      required:
+      - header
+      - payload
+      - signature
+      title: EncodedJsonFarcasterSignature
+      type: object
+    SignerUUID:
+      description: 'UUID of the signer.
+
+        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
+      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
+      title: SignerUUID
+      type: string
+    AppHostPostEventResponse:
+      properties:
+        message:
+          example: Successfully processed event
+          type: string
+        success:
+          example: true
+          type: boolean
+      required:
+      - success
+      title: AppHostPostEventResponse
+      type: object
+    SignerUuidBody:
+      properties:
+        app_domain:
+          description: Domain of the mini app
+          type: string
+        event:
+          description: 'Types of events that can occur between a user and an app host:
+
+            - frame_added: User adds a mini app to their account
+
+            - frame_removed: User removes a mini app from their account
+
+            - notifications_enabled: User enables notifications for a mini app
+
+            - notifications_disabled: User disables notifications for a mini app'
+          enum:
+          - frame_added
+          - frame_removed
+          - notifications_enabled
+          - notifications_disabled
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - app_domain
+      - fid
+      - event
+      title: SignerUuidBody
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

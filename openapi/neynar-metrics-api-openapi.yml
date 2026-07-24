@@ -1,0 +1,131 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Metrics API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to retrieving metrics
+  name: Metrics
+paths:
+  /v2/farcaster/cast/metrics/:
+    get:
+      description: Fetches metrics casts matching a query
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-cast-metrics
+      operationId: fetch-cast-metrics
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Query string to search for casts
+        in: query
+        name: q
+        required: true
+        schema:
+          example: star wars
+          type: string
+      - description: Interval of time for which to fetch metrics. Default is 30d.
+        in: query
+        name: interval
+        schema:
+          enum:
+          - 1d
+          - 7d
+          - 30d
+          - 90d
+          - 180d
+          type: string
+      - description: Fid of the user whose casts you want to search
+        in: query
+        name: author_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Channel ID of the casts you want to search
+        in: query
+        name: channel_id
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CastsMetricsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Metrics for casts
+      tags:
+      - Metrics
+components:
+  schemas:
+    CastsMetricsResponse:
+      properties:
+        metrics:
+          items:
+            $ref: '#/components/schemas/CastsMetrics'
+          type: array
+      required:
+      - metrics
+      title: CastsMetricsResponse
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    CastsMetrics:
+      properties:
+        cast_count:
+          format: int32
+          type: integer
+        resolution_in_seconds:
+          format: int32
+          type: integer
+        start:
+          format: date-time
+          type: string
+      required:
+      - start
+      - resolution_in_seconds
+      - cast_count
+      title: CastsMetrics
+      type: object
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

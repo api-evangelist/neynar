@@ -1,0 +1,475 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Storage API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to storage
+  externalDocs:
+    description: More info about storage
+    url: https://docs.neynar.com/reference/storage-operations
+  name: Storage
+paths:
+  /v2/farcaster/storage/allocations/:
+    get:
+      description: Fetches storage allocations for a given user
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-user-storage-allocations
+      operationId: lookup-user-storage-allocations
+      parameters:
+      - description: The unique identifier of a farcaster user or app (unsigned integer)
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          title: Fid
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageAllocationsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Allocation of user
+      tags:
+      - Storage
+  /v2/farcaster/storage/buy/:
+    post:
+      description: 'This api will help you rent units of storage for an year for a specific FID.
+
+        A storage unit lets you store 5000 casts, 2500 reactions and 2500 links. Requires x-wallet-id header.'
+      externalDocs:
+        url: https://docs.neynar.com/reference/buy-storage
+      operationId: buy-storage
+      parameters:
+      - $ref: '#/components/parameters/WalletIdHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuyStorageReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageAllocationsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZodError'
+          description: Bad Request
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorRes'
+          description: Conflict
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Buy storage
+      tags:
+      - Storage
+  /v2/farcaster/storage/usage/:
+    get:
+      description: Fetches storage usage for a given user
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-user-storage-usage
+      operationId: lookup-user-storage-usage
+      parameters:
+      - description: The unique identifier of a farcaster user or app (unsigned integer)
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          title: Fid
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageUsageResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Usage of user
+      tags:
+      - Storage
+  /v1/storageLimitsByFid:
+    get:
+      tags:
+      - Storage
+      summary: FID's limits
+      description: Fetch a user's storage limits.
+      externalDocs:
+        description: Fetch a user's storage limits
+        url: https://docs.neynar.com/reference/lookup-user-storage-limit
+      operationId: lookup-user-storage-limit
+      parameters:
+      - name: fid
+        in: query
+        required: true
+        schema:
+          type: integer
+        example: 3
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageLimitsResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    StorageAllocation:
+      properties:
+        expiry:
+          example: '2024-10-08T22:03:49.000Z'
+          format: date-time
+          type: string
+        object:
+          example: storage_allocation
+          type: string
+        timestamp:
+          example: '2023-10-09T22:03:49.000Z'
+          format: date-time
+          type: string
+        units:
+          example: 10
+          type: integer
+        user:
+          $ref: '#/components/schemas/UserDehydrated'
+      title: StorageAllocation
+      type: object
+    StorageObject:
+      properties:
+        capacity:
+          example: 10000
+          type: integer
+        object:
+          example: storage
+          type: string
+        used:
+          example: 3659
+          type: integer
+      title: StorageObject
+      type: object
+    StorageLimit:
+      type: object
+      properties:
+        storeType:
+          $ref: '#/components/schemas/StoreType'
+        limit:
+          type: integer
+          format: uint64
+      required:
+      - storeType
+      - limit
+    ConflictErrorRes:
+      description: Details for the conflict error response
+      properties:
+        code:
+          type: string
+        key:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+      required:
+      - message
+      title: ConflictErrorRes
+      type: object
+    ErrorResponse:
+      required:
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
+      properties:
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    StorageLimitsResponse:
+      type: object
+      properties:
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageLimit'
+        units:
+          type: integer
+          format: uint64
+          description: Total storage units bought by the user.
+          example: 1
+        unitDetails:
+          type: object
+          properties:
+            unitType:
+              type: string
+              enum:
+              - UnitTypeLegacy
+              - UnitType2024
+            unitSize:
+              type: integer
+              format: uint64
+              example: 1
+        tier_subscriptions:
+          type: array
+          description: List of subscription tiers for the user. Each entry describes a subscription tier and its expiration.
+          items:
+            type: object
+            properties:
+              tier_type:
+                type: string
+                description: The name of the subscription tier
+                enum:
+                - Pro
+              expires_at:
+                type: integer
+                format: int64
+                description: Expiration time of the subscription tier as a Unix timestamp (seconds since epoch).
+                example: 1749611663
+      required:
+      - limits
+      - units
+      - unitDetails
+    Idem:
+      description: "An Idempotency key is a unique identifier for the request.\n**Note:** \n1) This is used to prevent duplicate requests. Use the same idem key on retry attempts.\n2) This should be a unique identifier for each request.\n3) Recommended format is a 16-character string generated by the developer at the time of making this request."
+      title: Idem
+      type: string
+    ZodError:
+      properties:
+        code:
+          example: InvalidField
+          type: string
+        errors:
+          items:
+            properties:
+              code:
+                type: string
+              expected:
+                type: string
+              message:
+                type: string
+              path:
+                items:
+                  type: string
+                type: array
+              received:
+                type: string
+            required:
+            - code
+            - expected
+            - received
+            - path
+            - message
+            type: object
+          type: array
+        message:
+          example: Invalid query parameters
+          type: string
+      required:
+      - message
+      - code
+      - errors
+      title: ZodError
+      type: object
+    StoreType:
+      type: string
+      default: STORE_TYPE_CASTS
+      enum:
+      - STORE_TYPE_CASTS
+      - STORE_TYPE_LINKS
+      - STORE_TYPE_REACTIONS
+      - STORE_TYPE_USER_DATA
+      - STORE_TYPE_VERIFICATIONS
+      - STORE_TYPE_USERNAME_PROOFS
+    StorageUsageResponse:
+      properties:
+        casts:
+          $ref: '#/components/schemas/StorageObject'
+        links:
+          $ref: '#/components/schemas/StorageObject'
+        object:
+          example: storage_usage
+          type: string
+        reactions:
+          $ref: '#/components/schemas/StorageObject'
+        signers:
+          $ref: '#/components/schemas/StorageObject'
+        total_active_units:
+          example: 2
+          type: integer
+        user:
+          $ref: '#/components/schemas/UserDehydrated'
+        username_proofs:
+          $ref: '#/components/schemas/StorageObject'
+        verified_addresses:
+          $ref: '#/components/schemas/StorageObject'
+      title: StorageUsageResponse
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    BuyStorageReqBody:
+      properties:
+        fid:
+          description: The unique identifier of a farcaster user or app (unsigned integer)
+          example: 1
+          format: int32
+          minimum: 1
+          type: integer
+        idem:
+          $ref: '#/components/schemas/Idem'
+        units:
+          description: 'Number of storage units to buy.
+
+            A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.'
+          example: 1
+          minimum: 1
+          type: integer
+      required:
+      - fid
+      title: BuyStorageReqBody
+      type: object
+    StorageAllocationsResponse:
+      properties:
+        allocations:
+          items:
+            $ref: '#/components/schemas/StorageAllocation'
+          type: array
+        total_active_units:
+          example: 13
+          type: integer
+      title: StorageAllocationsResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    WalletIdHeader:
+      description: Wallet ID to use for transactions
+      in: header
+      name: x-wallet-id
+      required: true
+      schema:
+        type: string
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

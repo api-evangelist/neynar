@@ -1,0 +1,1698 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action User API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to user
+  externalDocs:
+    description: More info about user
+    url: https://docs.neynar.com/reference/user-operations
+  name: User
+paths:
+  /v2/farcaster/user/:
+    patch:
+      description: "Update user profile \n(In order to update user's profile `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/update-user
+      operationId: update-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '207':
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    items:
+                      properties:
+                        message:
+                          type: string
+                      required:
+                      - message
+                      type: object
+                    type: array
+                  success:
+                    type: boolean
+                required:
+                - success
+                - errors
+                type: object
+          description: '207'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Update user profile
+      tags:
+      - User
+    post:
+      description: "Register account on farcaster. Optionally provide x-wallet-id header to use your own wallet. \n\n**Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user."
+      externalDocs:
+        url: https://docs.neynar.com/reference/register-account
+      operationId: register-account
+      parameters:
+      - $ref: '#/components/parameters/WalletIdHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUserResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictErrorRes'
+          description: Conflict
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Register new account
+      tags:
+      - User
+  /v2/farcaster/user/best_friends/:
+    get:
+      description: Returns the best friends of a user ranked by mutual affinity score based on interactions with each other.
+      externalDocs:
+        url: https://docs.neynar.com/reference/get-user-best-friends
+      operationId: get-user-best-friends
+      parameters:
+      - description: The FID of the user
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 3
+          example: 5
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BestFriendsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZodError'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Best friends
+      tags:
+      - User
+  /v2/farcaster/user/bulk-by-address/:
+    get:
+      description: 'Fetches all users based on multiple Ethereum or Solana addresses.
+
+
+        Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.
+
+
+        A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+
+        You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.'
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-bulk-users-by-eth-or-sol-address
+      operationId: fetch-bulk-users-by-eth-or-sol-address
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Comma separated list of Ethereum or Solana addresses, up to 350 at a time
+        in: query
+        name: addresses
+        required: true
+        schema:
+          example: 0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce
+          type: string
+          x-comma-separated: true
+      - description: 'Customize which address types the request should search for. This is a comma-separated string that can include the following values: ''custody_address'' and ''verified_address''. By default api returns both. To select multiple types, use a comma-separated list of these values.'
+        in: query
+        name: address_types
+        schema:
+          items:
+            enum:
+            - custody_address
+            - verified_address
+            title: BulkUserAddressType
+            type: string
+          type: array
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUsersByAddressResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: By Eth or Sol addresses
+      tags:
+      - User
+  /v2/farcaster/user/bulk/:
+    get:
+      description: Fetches information about multiple users based on FIDs
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-bulk-users
+      operationId: fetch-bulk-users
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Comma separated list of FIDs, up to 100 at a time
+        in: query
+        name: fids
+        required: true
+        schema:
+          example: 194, 191, 6131
+          type: string
+          x-accept-as: integer
+          x-comma-separated: true
+      - in: query
+        name: viewer_fid
+        schema:
+          example: 3
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUsersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: By FIDs
+      tags:
+      - User
+  /v2/farcaster/user/by_location/:
+    get:
+      description: Fetches a list of users given a location
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-users-by-location
+      operationId: fetch-users-by-location
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Latitude of the location
+        in: query
+        name: latitude
+        required: true
+        schema:
+          example: 37.77
+          type: number
+      - description: Longitude of the location
+        in: query
+        name: longitude
+        required: true
+        schema:
+          example: -122.41
+          type: number
+      - description: FID of the user viewing the feed. Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          example: 3
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          example: 25
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: By location
+      tags:
+      - User
+  /v2/farcaster/user/by_username/:
+    get:
+      description: Fetches a single hydrated user object given a username
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-user-by-username
+      operationId: lookup-user-by-username
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Username of the user to fetch
+        in: query
+        name: username
+        required: true
+        schema:
+          example: neynar
+          type: string
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: By username
+      tags:
+      - User
+  /v2/farcaster/user/by_x_username/:
+    get:
+      description: Fetches the users who have verified the specified X (Twitter) username
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-users-by-x-username
+      operationId: lookup-users-by-x-username
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: X (Twitter) username to search for, without the @ symbol
+        in: query
+        name: x_username
+        required: true
+        schema:
+          type: string
+      - description: FID of the viewer for contextual information like follows and blocks
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUsersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: By X username
+      tags:
+      - User
+  /v2/farcaster/user/custody-address/:
+    get:
+      description: Lookup a user by custody-address
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-user-by-custody-address
+      operationId: lookup-user-by-custody-address
+      parameters:
+      - description: Custody Address associated with mnemonic
+        in: query
+        name: custody_address
+        required: true
+        schema:
+          example: '0xd1b702203b1b3b641a699997746bd4a12d157909'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: By custody-address
+      tags:
+      - User
+  /v2/farcaster/user/fid/:
+    get:
+      description: Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account).
+      externalDocs:
+        url: https://docs.neynar.com/reference/get-fresh-account-fid
+      operationId: get-fresh-account-FID
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - $ref: '#/components/parameters/WalletIdHeader'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserFIDResponse'
+          description: Success
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Fetch fresh FID
+      tags:
+      - User
+  /v2/farcaster/user/follow/:
+    delete:
+      description: "Unfollow a user \n(In order to unfollow a user `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/unfollow-user
+      operationId: unfollow-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FollowReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkFollowResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Unfollow user
+      tags:
+      - User
+    post:
+      description: "Follow a user \n(In order to follow a user `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/follow-user
+      operationId: follow-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FollowReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkFollowResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Follow user
+      tags:
+      - User
+  /v2/farcaster/user/search/:
+    get:
+      description: Search for Usernames
+      externalDocs:
+        url: https://docs.neynar.com/reference/search-user
+      operationId: search-user
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - in: query
+        name: q
+        required: true
+        schema:
+          example: r
+          type: string
+      - description: Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of users to fetch
+        in: query
+        name: limit
+        schema:
+          default: 5
+          example: 10
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSearchResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Search for Usernames
+      tags:
+      - User
+  /v2/farcaster/user/verification/:
+    delete:
+      description: "Removes verification for an eth address for the user \n(In order to delete verification `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/delete-verification
+      operationId: delete-verification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveVerificationReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+      summary: Delete verification
+      tags:
+      - User
+    post:
+      description: "Adds verification for an eth address or contract for the user \n(In order to add verification `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/publish-verification
+      operationId: publish-verification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddVerificationReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+      summary: Add verification
+      tags:
+      - User
+  /v2/farcaster/user/verifications/:
+    get:
+      description: Fetch all Ethereum and Solana verified addresses for a Farcaster user. Use this endpoint to identify which wallets are associated with which Farcaster applications for the specified user.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-verifications
+      operationId: fetch-verifications
+      parameters:
+      - description: FID of the user whose verifications to fetch
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  verifications:
+                    items:
+                      $ref: '#/components/schemas/Verification'
+                    type: array
+                required:
+                - verifications
+                type: object
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Fetch verifications
+      tags:
+      - User
+components:
+  schemas:
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    Protocol:
+      description: 'Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana'
+      enum:
+      - evm
+      - solana
+      example: evm
+      title: Protocol
+      type: string
+    VerificationChainId:
+      anyOf:
+      - enum:
+        - 0
+        type: number
+      - enum:
+        - 1
+        type: number
+      - enum:
+        - 10
+        type: number
+      default: 0
+      description: Chain ID for farcaster verifications. 0 for EOA verifications, 1 or 10 for contract verifications
+      format: int32
+      title: VerificationChainId
+      type: integer
+    OperationResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+      title: OperationResponse
+      type: object
+    SignerUUID:
+      description: 'UUID of the signer.
+
+        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
+      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
+      title: SignerUUID
+      type: string
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          nullable: true
+          type: string
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                  nullable: true
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+                  nullable: true
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    Signer:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - signer
+          type: string
+        permissions:
+          items:
+            $ref: '#/components/schemas/SharedSignerPermission'
+          type: array
+        public_key:
+          $ref: '#/components/schemas/Ed25519PublicKey'
+        signer_approval_url:
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        status:
+          enum:
+          - generated
+          - pending_approval
+          - approved
+          - revoked
+          type: string
+      required:
+      - signer_uuid
+      - public_key
+      - status
+      title: Signer
+      type: object
+    UserResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      title: UserResponse
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    UsersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      - next
+      title: UsersResponse
+      type: object
+    Verification:
+      description: Verification details of an address
+      properties:
+        address:
+          description: Address string (hex for ethereum, base58 for solana)
+          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+          type: string
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
+        object:
+          enum:
+          - verification
+          type: string
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+        verified_at:
+          description: ISO timestamp when the verification was created
+          example: '2024-01-01T00:00:00.000Z'
+          type: string
+      required:
+      - object
+      - address
+      - protocol
+      - verified_at
+      title: Verification
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    FollowReqBody:
+      properties:
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        target_fids:
+          example:
+          - 194
+          - 3
+          items:
+            minimum: 1
+            type: integer
+          maxItems: 100
+          type: array
+      required:
+      - signer_uuid
+      - target_fids
+      title: FollowReqBody
+      type: object
+    UpdateUserReqBody:
+      properties:
+        banner:
+          description: Requires pro subscription.
+          type: string
+        bio:
+          type: string
+        display_name:
+          type: string
+        location:
+          properties:
+            latitude:
+              format: double
+              maximum: 90
+              minimum: -90
+              type: number
+            longitude:
+              format: double
+              maximum: 180
+              minimum: -180
+              type: number
+          required:
+          - latitude
+          - longitude
+          type: object
+        pfp_url:
+          type: string
+        primary_eth_address:
+          description: Must be one of the verified addresses.
+          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+          pattern: ^0x[a-fA-F0-9]{40}$
+          type: string
+        primary_sol_address:
+          description: Must be one of the verified addresses.
+          pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        url:
+          type: string
+        username:
+          type: string
+        verified_accounts:
+          properties:
+            github:
+              type: string
+            x:
+              type: string
+          type: object
+      required:
+      - signer_uuid
+      title: UpdateUserReqBody
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    AddVerificationReqBody:
+      properties:
+        address:
+          $ref: '#/components/schemas/EthAddress'
+        block_hash:
+          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
+          type: string
+        chain_id:
+          $ref: '#/components/schemas/VerificationChainId'
+        eth_signature:
+          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        verification_type:
+          $ref: '#/components/schemas/VerificationType'
+      required:
+      - signer_uuid
+      - address
+      - block_hash
+      - eth_signature
+      title: AddVerificationReqBody
+      type: object
+    RegisterUserResponse:
+      properties:
+        message:
+          type: string
+        signer:
+          $ref: '#/components/schemas/Signer'
+        signers:
+          items:
+            properties:
+              fid:
+                $ref: '#/components/schemas/Fid'
+              object:
+                enum:
+                - signer
+                type: string
+              permissions:
+                items:
+                  $ref: '#/components/schemas/SharedSignerPermission'
+                type: array
+              public_key:
+                $ref: '#/components/schemas/Ed25519PublicKey'
+              signer_approval_url:
+                type: string
+              status:
+                enum:
+                - generated
+                - pending_approval
+                - approved
+                - revoked
+                type: string
+              uuid:
+                $ref: '#/components/schemas/SignerUUID'
+            required:
+            - public_key
+            - status
+            - uuid
+            type: object
+          type: array
+        success:
+          enum:
+          - true
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - success
+      - message
+      - signers
+      title: RegisterUserResponse
+      type: object
+    FollowResponse:
+      properties:
+        hash:
+          type: string
+        success:
+          type: boolean
+        target_fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - success
+      - target_fid
+      - hash
+      title: FollowResponse
+      type: object
+    UserFIDResponse:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - fid
+      title: UserFIDResponse
+      type: object
+    BestFriendsResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            properties:
+              fid:
+                type: integer
+              mutual_affinity_score:
+                type: number
+              username:
+                type: string
+            required:
+            - fid
+            - mutual_affinity_score
+            - username
+            type: object
+          type: array
+      required:
+      - users
+      title: BestFriendsResponse
+      type: object
+    SharedSignerPermission:
+      enum:
+      - WRITE_ALL
+      - READ_ONLY
+      - NONE
+      - PUBLISH_CAST
+      - DELETE_CAST
+      - PUBLISH_REACTION
+      - DELETE_REACTION
+      - UPDATE_PROFILE
+      - FOLLOW_USER
+      - UNFOLLOW_USER
+      - FOLLOW_CHANNEL
+      - UNFOLLOW_CHANNEL
+      - ADD_VERIFICATION
+      - REMOVE_VERIFICATION
+      - WRITE_FRAME_ACTION
+      title: SharedSignerPermission
+      type: string
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    Ed25519PublicKey:
+      description: Ed25519 public key
+      example: '0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22'
+      pattern: ^0x[a-fA-F0-9]{64}$
+      title: Ed25519PublicKey
+      type: string
+    UserSearchResponse:
+      properties:
+        result:
+          properties:
+            next:
+              $ref: '#/components/schemas/NextCursor'
+            users:
+              items:
+                $ref: '#/components/schemas/User'
+              type: array
+          required:
+          - users
+          type: object
+      required:
+      - result
+      title: UserSearchResponse
+      type: object
+    ZodError:
+      properties:
+        code:
+          example: InvalidField
+          type: string
+        errors:
+          items:
+            properties:
+              code:
+                type: string
+              expected:
+                type: string
+              message:
+                type: string
+              path:
+                items:
+                  type: string
+                type: array
+              received:
+                type: string
+            required:
+            - code
+            - expected
+            - received
+            - path
+            - message
+            type: object
+          type: array
+        message:
+          example: Invalid query parameters
+          type: string
+      required:
+      - message
+      - code
+      - errors
+      title: ZodError
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    BulkFollowResponse:
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/FollowResponse'
+          type: array
+        success:
+          type: boolean
+      required:
+      - success
+      - details
+      title: BulkFollowResponse
+      type: object
+    RegisterUserReqBody:
+      properties:
+        deadline:
+          type: number
+        fid:
+          type: number
+        fname:
+          type: string
+        metadata:
+          properties:
+            bio:
+              type: string
+            display_name:
+              type: string
+            location:
+              properties:
+                latitude:
+                  format: double
+                  maximum: 90
+                  minimum: -90
+                  type: number
+                longitude:
+                  format: double
+                  maximum: 180
+                  minimum: -180
+                  type: number
+              required:
+              - latitude
+              - longitude
+              type: object
+            pfp_url:
+              type: string
+            url:
+              type: string
+            username:
+              type: string
+            verified_accounts:
+              properties:
+                github:
+                  type: string
+                x:
+                  type: string
+              type: object
+          type: object
+        requested_user_custody_address:
+          type: string
+        signature:
+          type: string
+        signer:
+          properties:
+            app_fid:
+              type: number
+            deadline:
+              type: number
+            signed_key_request_metadata_signature:
+              type: string
+            uuid:
+              format: uuid
+              type: string
+          required:
+          - uuid
+          - signed_key_request_metadata_signature
+          - app_fid
+          - deadline
+          type: object
+      required:
+      - signature
+      - fid
+      - requested_user_custody_address
+      - deadline
+      title: RegisterUserReqBody
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          nullable: true
+          type: string
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    BulkUsersResponse:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      title: BulkUsersResponse
+      type: object
+    ConflictErrorRes:
+      description: Details for the conflict error response
+      properties:
+        code:
+          type: string
+        key:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+      required:
+      - message
+      title: ConflictErrorRes
+      type: object
+    VerificationType:
+      anyOf:
+      - enum:
+        - 0
+        type: number
+      - enum:
+        - 1
+        type: number
+      default: 0
+      description: Type of verification. 0 = EOA, 1 = contract
+      format: int32
+      title: VerificationType
+      type: integer
+    RemoveVerificationReqBody:
+      properties:
+        address:
+          $ref: '#/components/schemas/EthAddress'
+        block_hash:
+          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
+          type: string
+        eth_signature:
+          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - address
+      - block_hash
+      - eth_signature
+      title: RemoveVerificationReqBody
+      type: object
+    BulkUsersByAddressResponse:
+      anyOf:
+      - additionalProperties:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      title: BulkUsersByAddressResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  parameters:
+    WalletIdHeader:
+      description: Wallet ID to use for transactions
+      in: header
+      name: x-wallet-id
+      required: true
+      schema:
+        type: string
+      x-is-global-header: true
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

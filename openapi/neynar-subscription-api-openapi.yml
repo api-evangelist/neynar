@@ -1,0 +1,398 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action subscription API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- name: subscription
+paths:
+  /portal/subscription/upgrade:
+    post:
+      description: Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately.
+      externalDocs:
+        url: https://docs.neynar.com/reference/upgrade
+      operationId: upgrade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                newPlan:
+                  type: string
+                productCategory:
+                  enum:
+                  - API
+                  - STUDIO
+                  type: string
+              required:
+              - newPlan
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  chargeAmount:
+                    type: number
+                  creditApplied:
+                    type: number
+                  effectiveImmediately:
+                    type: boolean
+                  newPlan:
+                    type: string
+                  success:
+                    type: boolean
+                required:
+                - success
+                - newPlan
+                - creditApplied
+                - chargeAmount
+                - effectiveImmediately
+                type: object
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Unauthorized
+        '402':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Payment Required
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Server Error
+      summary: Process subscription upgrade with credit
+      tags:
+      - subscription
+  /portal/subscription/upgrade/preview:
+    get:
+      description: Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes.
+      externalDocs:
+        url: https://docs.neynar.com/reference/upgrade-preview
+      operationId: upgrade-preview
+      parameters:
+      - in: query
+        name: newPlan
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: productCategory
+        schema:
+          enum:
+          - API
+          - STUDIO
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  billingDateUnchanged:
+                    type: boolean
+                  chargeAmount:
+                    type: number
+                  credit:
+                    properties:
+                      creditAmount:
+                        type: number
+                      unitRate:
+                        type: number
+                      unusedUnits:
+                        type: number
+                    required:
+                    - unusedUnits
+                    - unitRate
+                    - creditAmount
+                    type: object
+                  currentPlan:
+                    properties:
+                      computeUnitsLimit:
+                        type: number
+                      computeUnitsUsed:
+                        type: number
+                      name:
+                        type: string
+                      price:
+                        type: number
+                    required:
+                    - name
+                    - price
+                    - computeUnitsLimit
+                    - computeUnitsUsed
+                    type: object
+                  newPlan:
+                    properties:
+                      computeUnitsLimit:
+                        type: number
+                      name:
+                        type: string
+                      price:
+                        type: number
+                    required:
+                    - name
+                    - price
+                    - computeUnitsLimit
+                    type: object
+                  usageCarriesOver:
+                    type: boolean
+                required:
+                - currentPlan
+                - newPlan
+                - credit
+                - chargeAmount
+                - billingDateUnchanged
+                - usageCarriesOver
+                type: object
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Unauthorized
+        '402':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Payment Required
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  paymentMethod:
+                    properties:
+                      brand:
+                        type: string
+                      last4:
+                        type: string
+                    required:
+                    - brand
+                    - last4
+                    type: object
+                required:
+                - code
+                - message
+                type: object
+          description: Server Error
+      summary: Get upgrade preview with credit calculation
+      tags:
+      - subscription
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

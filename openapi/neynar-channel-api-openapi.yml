@@ -1,0 +1,1586 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Channel API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to channels
+  externalDocs:
+    description: More info about channels
+    url: https://docs.neynar.com/reference/channel-operations
+  name: Channel
+paths:
+  /v2/farcaster/channel/:
+    get:
+      description: Returns details of a channel
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-channel
+      operationId: lookup-channel
+      parameters:
+      - description: Channel ID for the channel being queried
+        in: query
+        name: id
+        required: true
+        schema:
+          example: neynar
+          type: string
+      - description: Type of identifier being used to query the channel. Defaults to ID.
+        in: query
+        name: type
+        schema:
+          enum:
+          - id
+          - parent_url
+          example: id
+          type: string
+      - description: FID of the user viewing the channel.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponse'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: By ID or parent_url
+      tags:
+      - Channel
+  /v2/farcaster/channel/bulk/:
+    get:
+      description: Returns details of multiple channels
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-bulk-channels
+      operationId: fetch-bulk-channels
+      parameters:
+      - description: Comma separated list of channel IDs or parent_urls, up to 100 at a time
+        in: query
+        name: ids
+        required: true
+        schema:
+          example: neynar,warpcast
+          type: string
+          x-comma-separated: true
+      - description: Type of identifier being used to query the channels. Defaults to ID.
+        in: query
+        name: type
+        schema:
+          enum:
+          - id
+          - parent_url
+          example: id
+          title: ChannelType
+          type: string
+      - description: FID of the user viewing the channels.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelResponseBulk'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Bulk fetch
+      tags:
+      - Channel
+  /v2/farcaster/channel/follow/:
+    delete:
+      description: Unfollow a channel
+      externalDocs:
+        url: https://docs.neynar.com/reference/unfollow-channel
+      operationId: unfollow-channel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelFollowReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Gateway
+      summary: Unfollow a channel
+      tags:
+      - Channel
+    post:
+      description: Follow a channel
+      externalDocs:
+        url: https://docs.neynar.com/reference/follow-channel
+      operationId: follow-channel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChannelFollowReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Gateway
+      summary: Follow a channel
+      tags:
+      - Channel
+  /v2/farcaster/channel/followers/:
+    get:
+      description: Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-followers-for-a-channel
+      operationId: fetch-followers-for-a-channel
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Channel ID for the channel being queried
+        in: query
+        name: id
+        required: true
+        schema:
+          example: founders
+          type: string
+      - description: Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: Number of followers to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          example: 30
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: For channel
+      tags:
+      - Channel
+  /v2/farcaster/channel/followers/relevant/:
+    get:
+      description: Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as "X, Y, Z follow this channel".
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-relevant-followers-for-a-channel
+      operationId: fetch-relevant-followers-for-a-channel
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Channel ID being queried
+        in: query
+        name: id
+        required: true
+        schema:
+          example: neynar
+          type: string
+      - description: The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelevantFollowersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Relevant followers
+      tags:
+      - Channel
+  /v2/farcaster/channel/list/:
+    get:
+      description: Returns a list of all channels with their details
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-all-channels
+      operationId: fetch-all-channels
+      parameters:
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          maximum: 200
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelListResponse'
+          description: Success
+      summary: Fetch all channels with their details
+      tags:
+      - Channel
+  /v2/farcaster/channel/member/:
+    delete:
+      description: Remove a user from a channel or a user's invite to a channel role
+      externalDocs:
+        url: https://docs.neynar.com/reference/remove-channel-member
+      operationId: remove-channel-member
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveChannelMemberReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Remove user
+      tags:
+      - Channel
+  /v2/farcaster/channel/member/invite/:
+    post:
+      description: Invite a user to a channel
+      externalDocs:
+        url: https://docs.neynar.com/reference/invite-channel-member
+      operationId: invite-channel-member
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteChannelMemberReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Invite
+      tags:
+      - Channel
+    put:
+      description: Accept or reject a channel invite
+      externalDocs:
+        url: https://docs.neynar.com/reference/respond-channel-invite
+      operationId: respond-channel-invite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RespondChannelInviteReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Accept or reject an invite
+      tags:
+      - Channel
+  /v2/farcaster/channel/member/invite/list/:
+    get:
+      description: Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-channel-invites
+      operationId: fetch-channel-invites
+      parameters:
+      - description: Channel ID for the channel being queried
+        in: query
+        name: channel_id
+        schema:
+          example: neynar
+          type: string
+      - description: FID of the user being invited
+        in: query
+        name: invited_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMemberInviteListResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Open invites
+      tags:
+      - Channel
+  /v2/farcaster/channel/member/list/:
+    get:
+      description: Fetch a list of members in a channel
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-channel-members
+      operationId: fetch-channel-members
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Channel ID for the channel being queried
+        in: query
+        name: channel_id
+        required: true
+        schema:
+          example: neynar
+          type: string
+      - description: FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members.
+        in: query
+        name: fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMemberListResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Fetch members
+      tags:
+      - Channel
+  /v2/farcaster/channel/search/:
+    get:
+      description: Returns a list of channels based on ID or name
+      externalDocs:
+        url: https://docs.neynar.com/reference/search-channels
+      operationId: search-channels
+      parameters:
+      - description: Channel ID or name for the channel being queried
+        in: query
+        name: q
+        required: true
+        schema:
+          example: neynar
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          maximum: 200
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - description: FID of the user viewing the channels.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelSearchResponse'
+          description: Success
+      summary: Search by ID or name
+      tags:
+      - Channel
+  /v2/farcaster/channel/trending/:
+    get:
+      description: Returns a list of trending channels based on activity
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-trending-channels
+      operationId: fetch-trending-channels
+      parameters:
+      - in: query
+        name: time_window
+        schema:
+          enum:
+          - 1d
+          - 7d
+          - 30d
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 10
+          format: int32
+          maximum: 25
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendingChannelResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Channels by activity
+      tags:
+      - Channel
+  /v2/farcaster/channel/user/:
+    get:
+      description: Fetches all channels that a user has casted in, in reverse chronological order.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-users-active-channels
+      operationId: fetch-users-active-channels
+      parameters:
+      - description: The user's FID (identifier)
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersActiveChannelsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Fetch channels that user is active in
+      tags:
+      - Channel
+  /v2/farcaster/user/channels/:
+    get:
+      description: Returns a list of all channels with their details that a FID follows.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-user-channels
+      operationId: fetch-user-channels
+      parameters:
+      - description: The FID of the user.
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelListResponse'
+          description: Success
+      summary: Following
+      tags:
+      - Channel
+  /v2/farcaster/user/memberships/list/:
+    get:
+      description: Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-user-channel-memberships
+      operationId: fetch-user-channel-memberships
+      parameters:
+      - description: The FID of the user.
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelMemberListResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Member of
+      tags:
+      - Channel
+components:
+  schemas:
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    Follower:
+      properties:
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
+        object:
+          enum:
+          - follower
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      title: Follower
+      type: object
+    ChannelMember:
+      properties:
+        channel:
+          discriminator:
+            mapping:
+              channel: '#/components/schemas/Channel'
+              channel_dehydrated: '#/components/schemas/ChannelDehydrated'
+            propertyName: object
+          oneOf:
+          - $ref: '#/components/schemas/Channel'
+          - $ref: '#/components/schemas/ChannelDehydrated'
+          type: object
+        object:
+          enum:
+          - member
+          type: string
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        user:
+          discriminator:
+            mapping:
+              user: '#/components/schemas/User'
+              user_dehydrated: '#/components/schemas/UserDehydrated'
+            propertyName: object
+          oneOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          - $ref: '#/components/schemas/User'
+          type: object
+      required:
+      - object
+      - role
+      - user
+      - channel
+      title: ChannelMember
+      type: object
+    RemoveChannelMemberReqBody:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      - fid
+      - role
+      title: RemoveChannelMemberReqBody
+      type: object
+    OperationResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+      title: OperationResponse
+      type: object
+    ChannelListResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      title: ChannelListResponse
+      type: object
+    InviteChannelMemberReqBody:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      - fid
+      - role
+      title: InviteChannelMemberReqBody
+      type: object
+    SignerUUID:
+      description: 'UUID of the signer.
+
+        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
+      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
+      title: SignerUUID
+      type: string
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          nullable: true
+          type: string
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                  nullable: true
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+                  nullable: true
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    ChannelMemberInvite:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        invited:
+          $ref: '#/components/schemas/User'
+        inviter:
+          $ref: '#/components/schemas/User'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - channel_id
+      - role
+      - inviter
+      - invited
+      title: ChannelMemberInvite
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    UsersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      - next
+      title: UsersResponse
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    ChannelResponse:
+      properties:
+        channel:
+          $ref: '#/components/schemas/Channel'
+      required:
+      - channel
+      title: ChannelResponse
+      type: object
+    TrendingChannelResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/ChannelActivity'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      - next
+      title: TrendingChannelResponse
+      type: object
+    ChannelMemberInviteListResponse:
+      properties:
+        invites:
+          items:
+            $ref: '#/components/schemas/ChannelMemberInvite'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - invites
+      title: ChannelMemberInviteListResponse
+      type: object
+    ChannelActivity:
+      properties:
+        cast_count_1d:
+          type: string
+        cast_count_30d:
+          type: string
+        cast_count_7d:
+          type: string
+        channel:
+          $ref: '#/components/schemas/Channel'
+        object:
+          enum:
+          - channel_activity
+          type: string
+      required:
+      - object
+      - cast_count_1d
+      - cast_count_7d
+      - cast_count_30d
+      - channel
+      title: ChannelActivity
+      type: object
+    ChannelSearchResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      - next
+      title: ChannelSearchResponse
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    FollowerDehydrated:
+      properties:
+        object:
+          enum:
+          - follower_dehydrated
+          type: string
+        user:
+          $ref: '#/components/schemas/UserDehydrated'
+      required:
+      - object
+      - user
+      title: FollowerDehydrated
+      type: object
+    RelevantFollowersResponse:
+      properties:
+        all_relevant_followers_dehydrated:
+          items:
+            $ref: '#/components/schemas/FollowerDehydrated'
+          type: array
+        top_relevant_followers_hydrated:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      required:
+      - top_relevant_followers_hydrated
+      - all_relevant_followers_dehydrated
+      title: RelevantFollowersResponse
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          nullable: true
+          type: string
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    ChannelFollowReqBody:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      title: ChannelFollowReqBody
+      type: object
+    ChannelId:
+      description: The unique identifier of a farcaster channel
+      example: neynar
+      title: ChannelId
+      type: string
+    RespondChannelInviteReqBody:
+      properties:
+        accept:
+          description: Accept or reject the invite
+          type: boolean
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      - role
+      - accept
+      title: RespondChannelInviteReqBody
+      type: object
+    ChannelResponseBulk:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+      required:
+      - channels
+      title: ChannelResponseBulk
+      type: object
+    UsersActiveChannelsResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      title: UsersActiveChannelsResponse
+      type: object
+    Channel:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        description:
+          type: string
+        description_mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          type: array
+        description_mentioned_profiles_ranges:
+          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        external_link:
+          description: Channel's external link.
+          properties:
+            title:
+              type: string
+            url:
+              type: string
+          type: object
+        follower_count:
+          description: Number of followers the channel has.
+          type: number
+        hosts:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        id:
+          type: string
+        image_url:
+          type: string
+        lead:
+          $ref: '#/components/schemas/User'
+        member_count:
+          format: int32
+          type: integer
+        moderator:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          deprecated: true
+          description: Use `lead` instead.
+        moderator_fids:
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        name:
+          type: string
+        object:
+          enum:
+          - channel
+          type: string
+        parent_url:
+          format: uri
+          type: string
+        pinned_cast_hash:
+          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+          pattern: ^(0x)?[a-fA-F0-9]{40}$
+          type: string
+        url:
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - url
+      - object
+      - created_at
+      title: Channel
+      type: object
+    ChannelMemberListResponse:
+      properties:
+        members:
+          items:
+            $ref: '#/components/schemas/ChannelMember'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - members
+      - next
+      title: ChannelMemberListResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

@@ -1,0 +1,909 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Subscribers API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to a subscriptions
+  name: Subscribers
+paths:
+  /v2/farcaster/user/subscribed_to/:
+    get:
+      description: Fetch what FIDs and contracts a FID is subscribed to.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-subscribed-to-for-fid
+      operationId: fetch-subscribed-to-for-fid
+      parameters:
+      - description: The unique identifier of a farcaster user or app (unsigned integer)
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          title: Fid
+          type: integer
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: The provider of the subscription.
+        in: query
+        name: subscription_provider
+        required: true
+        schema:
+          enum:
+          - fabric_stp
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribedToResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Subscribed to
+      tags:
+      - Subscribers
+  /v2/farcaster/user/subscribers/:
+    get:
+      description: Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-subscribers-for-fid
+      operationId: fetch-subscribers-for-fid
+      parameters:
+      - description: The unique identifier of a farcaster user or app (unsigned integer)
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          title: Fid
+          type: integer
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: The provider of the subscription.
+        in: query
+        name: subscription_provider
+        required: true
+        schema:
+          enum:
+          - fabric_stp
+          - paragraph
+          example: fabric_stp
+          title: SubscriptionProviders
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscribersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Subscribers of a user
+      tags:
+      - Subscribers
+  /v2/farcaster/user/subscriptions_created/:
+    get:
+      description: Fetch created subscriptions for a given FID's.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-subscriptions-for-fid
+      operationId: fetch-subscriptions-for-fid
+      parameters:
+      - description: The unique identifier of a farcaster user or app (unsigned integer)
+        in: query
+        name: fid
+        required: true
+        schema:
+          example: 3
+          format: int32
+          minimum: 0
+          title: Fid
+          type: integer
+      - description: The provider of the subscription.
+        in: query
+        name: subscription_provider
+        required: true
+        schema:
+          enum:
+          - fabric_stp
+          title: SubscriptionProvider
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Subscriptions created by FID
+      tags:
+      - Subscribers
+  /v2/stp/subscription_check/:
+    get:
+      description: Check if a wallet address is subscribed to a given STP (Hypersub) contract.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-subscription-check
+      operationId: fetch-subscription-check
+      parameters:
+      - description: Comma separated list of Ethereum addresses, up to 350 at a time
+        in: query
+        name: addresses
+        required: true
+        schema:
+          example: 0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7
+          type: string
+          x-comma-separated: true
+      - description: Ethereum address of the STP contract
+        in: query
+        name: contract_address
+        required: true
+        schema:
+          example: '0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b'
+          type: string
+      - description: Chain ID of the STP contract
+        in: query
+        name: chain_id
+        required: true
+        schema:
+          example: '8453'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCheckResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Hypersub subscription check
+      tags:
+      - Subscribers
+components:
+  schemas:
+    SubscribersResponse:
+      properties:
+        subscribers:
+          items:
+            $ref: '#/components/schemas/Subscriber'
+          type: array
+      title: SubscribersResponse
+      type: object
+    Subscriptions:
+      properties:
+        subscriptions_created:
+          items:
+            $ref: '#/components/schemas/Subscription'
+          type: array
+      required:
+      - subscriptions_created
+      title: Subscriptions
+      type: object
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    Subscriber:
+      properties:
+        object:
+          enum:
+          - subscriber
+          type: string
+        subscribed_to:
+          $ref: '#/components/schemas/SubscribedToObject'
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      - subscribed_to
+      title: Subscriber
+      type: object
+    SubscriptionCheckResponse:
+      anyOf:
+      - additionalProperties:
+          properties:
+            expires_at:
+              format: int64
+              nullable: true
+              type: integer
+            object:
+              enum:
+              - subscribed_to_dehydrated
+              type: string
+            status:
+              type: boolean
+            subscribed_at:
+              format: int64
+              nullable: true
+              type: integer
+            tier:
+              allOf:
+              - $ref: '#/components/schemas/SubscriptionTier'
+              nullable: true
+          required:
+          - object
+          - status
+          - expires_at
+          - subscribed_at
+          - tier
+      title: SubscriptionCheckResponse
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          nullable: true
+          type: string
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                  nullable: true
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+                  nullable: true
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    SubscribedToResponse:
+      properties:
+        subscribed_to:
+          items:
+            $ref: '#/components/schemas/SubscribedTo'
+          type: array
+      title: SubscribedToResponse
+      type: object
+    Subscription:
+      properties:
+        chain:
+          example: 8453
+          type: integer
+        contract_address:
+          example: '0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58'
+          type: string
+        metadata:
+          properties:
+            art_url:
+              example: https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg
+              type: string
+            symbol:
+              example: MMS
+              type: string
+            title:
+              example: /memes channel sub
+              type: string
+          required:
+          - title
+          - symbol
+          - art_url
+          type: object
+        object:
+          enum:
+          - subscription
+          type: string
+        owner_address:
+          example: '0xb6f6dce6000ca88cc936b450cedb16a5c15f157f'
+          type: string
+        price:
+          properties:
+            initial_mint_price:
+              example: '0'
+              type: string
+            period_duration_seconds:
+              example: 2592000
+              type: integer
+            tokens_per_period:
+              example: '350574998400000'
+              type: string
+          required:
+          - period_duration_seconds
+          - tokens_per_period
+          - initial_mint_price
+          type: object
+        protocol_version:
+          example: 1
+          type: integer
+        provider_name:
+          example: fabric_stp
+          type: string
+        tiers:
+          items:
+            $ref: '#/components/schemas/SubscriptionTier'
+          type: array
+        token:
+          properties:
+            address:
+              example: null
+              nullable: true
+              type: string
+            decimals:
+              example: 18
+              type: integer
+            erc20:
+              example: false
+              type: boolean
+            symbol:
+              example: ETH
+              type: string
+          required:
+          - symbol
+          - address
+          - decimals
+          - erc20
+          type: object
+      required:
+      - object
+      - contract_address
+      - chain
+      - metadata
+      - owner_address
+      - price
+      - protocol_version
+      - token
+      title: Subscription
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    SubscribedTo:
+      properties:
+        chain:
+          example: 8453
+          type: integer
+        contract_address:
+          example: '0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58'
+          type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        expires_at:
+          example: '2023-09-13T22:10:22.000Z'
+          format: date-time
+          type: string
+        metadata:
+          properties:
+            art_url:
+              example: https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg
+              type: string
+            symbol:
+              example: MMS
+              type: string
+            title:
+              example: /memes channel sub
+              type: string
+          required:
+          - title
+          - symbol
+          - art_url
+          type: object
+        object:
+          enum:
+          - subscription
+          type: string
+        owner_address:
+          example: '0xb6f6dce6000ca88cc936b450cedb16a5c15f157f'
+          type: string
+        price:
+          properties:
+            initial_mint_price:
+              example: '0'
+              type: string
+            period_duration_seconds:
+              example: 2592000
+              type: integer
+            tokens_per_period:
+              example: '350574998400000'
+              type: string
+          required:
+          - period_duration_seconds
+          - tokens_per_period
+          - initial_mint_price
+          type: object
+        protocol_version:
+          example: 1
+          type: integer
+        provider_name:
+          example: fabric_stp
+          type: string
+        subscribed_at:
+          example: '2023-09-13T22:10:22.000Z'
+          format: date-time
+          type: string
+        tier:
+          $ref: '#/components/schemas/SubscriptionTier'
+        tiers:
+          items:
+            $ref: '#/components/schemas/SubscriptionTier'
+          type: array
+        token:
+          properties:
+            address:
+              example: null
+              nullable: true
+              type: string
+            decimals:
+              example: 18
+              type: integer
+            erc20:
+              example: false
+              type: boolean
+            symbol:
+              example: ETH
+              type: string
+          required:
+          - symbol
+          - address
+          - decimals
+          - erc20
+          type: object
+      required:
+      - object
+      - contract_address
+      - chain
+      - metadata
+      - owner_address
+      - price
+      - protocol_version
+      - token
+      - expires_at
+      - subscribed_at
+      - tier
+      - creator
+      title: SubscribedTo
+      type: object
+    SubscriptionTier:
+      properties:
+        id:
+          example: 1
+          type: integer
+        price:
+          properties:
+            initial_mint_price:
+              example: '0'
+              type: string
+            period_duration_seconds:
+              example: 2592000
+              type: integer
+            tokens_per_period:
+              example: '3000000000000000'
+              type: string
+          type: object
+      title: SubscriptionTier
+      type: object
+    SubscribedToObject:
+      properties:
+        chain:
+          example: 8453
+          type: integer
+        contract_address:
+          example: '0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac'
+          type: string
+        expires_at:
+          example: '2023-09-13T22:10:22.000Z'
+          format: date-time
+          type: string
+        object:
+          enum:
+          - subscription_dehydrated
+          type: string
+        protocol_version:
+          example: 1
+          type: integer
+        provider_name:
+          example: fabric_stp
+          type: string
+        subscribed_at:
+          example: '2023-09-13T22:10:22.000Z'
+          format: date-time
+          type: string
+        tier_id:
+          example: '0'
+          type: string
+      required:
+      - object
+      - provider_name
+      title: SubscribedToObject
+      type: object
+    SubscriptionsResponse:
+      properties:
+        subscriptions_created:
+          items:
+            $ref: '#/components/schemas/Subscriptions'
+          type: array
+      title: SubscriptionsResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

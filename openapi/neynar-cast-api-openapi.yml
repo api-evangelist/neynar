@@ -1,0 +1,2463 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Cast API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to cast
+  externalDocs:
+    description: More info about cast
+    url: https://docs.neynar.com/reference/cast-operations
+  name: Cast
+paths:
+  /v2/farcaster/cast/:
+    delete:
+      description: "Delete an existing cast. \n(In order to delete a cast `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/delete-cast
+      operationId: delete-cast
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteCastReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperationResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Delete a cast
+      tags:
+      - Cast
+    get:
+      description: Gets information about an individual cast by passing in a Farcaster web URL or cast hash
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-cast-by-hash-or-url
+      operationId: lookup-cast-by-hash-or-url
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Cast identifier (It's either a URL or a hash)
+        in: query
+        name: identifier
+        required: true
+        schema:
+          example: https://farcaster.xyz/rish/0xafa59bb7
+          type: string
+      - description: 'The query param accepted by the API. Sent along with identifier param.
+
+          url - Cast identifier is a url
+
+          hash - Cast identifier is a hash'
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - url
+          - hash
+          example: url
+          type: string
+      - description: adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CastResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: By hash or URL
+      tags:
+      - Cast
+    post:
+      description: "Posts a cast or cast reply. Works with mentions and embeds.  \n(In order to post a cast `signer_uuid` must be approved)"
+      externalDocs:
+        url: https://docs.neynar.com/reference/publish-cast
+      operationId: publish-cast
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCastReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostCastResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Post a cast
+      tags:
+      - Cast
+  /v2/farcaster/cast/conversation/:
+    get:
+      description: Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-cast-conversation
+      operationId: lookup-cast-conversation
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Cast identifier (It's either a URL or a hash)
+        in: query
+        name: identifier
+        required: true
+        schema:
+          example: https://warpcast.com/rish/0x9288c1
+          type: string
+      - description: 'The query param accepted by the API. Sent along with identifier param.
+
+          url - Cast identifier is a url
+
+          hash - Cast identifier is a hash'
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - url
+          - hash
+          example: url
+          type: string
+      - description: The depth of replies in the conversation that will be returned (default 2)
+        in: query
+        name: reply_depth
+        schema:
+          default: 2
+          maximum: 5
+          minimum: 0
+          type: integer
+      - description: Include all parent casts in chronological order
+        in: query
+        name: include_chronological_parent_casts
+        schema:
+          default: false
+          type: boolean
+      - description: Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Sort type for the ordering of descendants. Default is `chron`
+        in: query
+        name: sort_type
+        schema:
+          enum:
+          - chron
+          - desc_chron
+          - algorithmic
+          example: chron
+          type: string
+      - description: Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding.
+        in: query
+        name: fold
+        schema:
+          enum:
+          - above
+          - below
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          format: int32
+          maximum: 50
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Conversation'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Conversation for a cast
+      tags:
+      - Cast
+  /v2/farcaster/cast/embed/crawl/:
+    get:
+      description: Crawls the given URL and returns metadata useful when embedding the URL in a cast.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-embedded-url-metadata
+      operationId: fetch-embedded-url-metadata
+      parameters:
+      - description: URL to crawl metadata of
+        in: query
+        name: url
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CastEmbedCrawlResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Embedded URL metadata
+      tags:
+      - Cast
+  /v2/farcaster/cast/quotes/:
+    get:
+      description: Fetch casts that quote a given cast
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-cast-quotes
+      operationId: fetch-cast-quotes
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Cast identifier (It's either a URL or a hash)
+        in: query
+        name: identifier
+        required: true
+        schema:
+          example: https://farcaster.xyz/rish/0xafa59bb7
+          type: string
+      - description: 'The query param accepted by the API. Sent along with identifier param.
+
+          url - Cast identifier is a url
+
+          hash - Cast identifier is a hash'
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - url
+          - hash
+          example: url
+          type: string
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          example: 30
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  casts:
+                    items:
+                      $ref: '#/components/schemas/Cast'
+                    type: array
+                  next:
+                    $ref: '#/components/schemas/NextCursor'
+                required:
+                - casts
+                - next
+                type: object
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Cast Quotes
+      tags:
+      - Cast
+  /v2/farcaster/cast/search/:
+    get:
+      description: Search for casts based on a query string, with optional AND filters
+      externalDocs:
+        url: https://docs.neynar.com/reference/search-casts
+      operationId: search-casts
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: 'Query string to search for casts. Supported operators:
+
+
+          | Operator  | Description                                                                                              |
+
+          | --------- | -------------------------------------------------------------------------------------------------------- |
+
+          | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         |
+
+          | `\|`      | Acts as the OR operator.                                                                                 |
+
+          | `*`       | When used at the end of a term, signifies a prefix query.                                                  |
+
+          | `"`       | Wraps several terms into a phrase (for example, `"star wars"`).                                          |
+
+          | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars \| trek)`).                                     |
+
+          | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. |
+
+          | `-`       | Negates the term.                                                                                        |
+
+          | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20` or `before:2025-04-20T23:59:59`)      |
+
+          | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20` or `after:2025-04-20T00:00:00`)         |'
+        in: query
+        name: q
+        required: true
+        schema:
+          example: star (wars | trek) "space battle" after:2024-05-04
+          type: string
+      - description: 'Choices are:
+
+          - `literal` - Searches for the words in the query string (default)
+
+          - `semantic` - Searches for the meaning of the query string
+
+          - `hybrid` - Combines both literal and semantic results'
+        in: query
+        name: mode
+        schema:
+          enum:
+          - literal
+          - semantic
+          - hybrid
+          example: literal
+          type: string
+      - description: 'Choices are:
+
+          - `desc_chron` - All casts sorted by time in a descending order (default)
+
+          - `chron` - All casts sorted by time in ascending order
+
+          - `algorithmic` - Casts sorted by engagement and time'
+        in: query
+        name: sort_type
+        schema:
+          enum:
+          - desc_chron
+          - chron
+          - algorithmic
+          example: desc_chron
+          type: string
+      - description: Fid of the user whose casts you want to search
+        in: query
+        name: author_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Parent URL of the casts you want to search
+        in: query
+        name: parent_url
+        schema:
+          type: string
+      - description: Channel ID of the casts you want to search
+        in: query
+        name: channel_id
+        schema:
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          example: 25
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CastsSearchResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Search for casts
+      tags:
+      - Cast
+  /v2/farcaster/casts/:
+    get:
+      description: Fetch multiple casts using their respective hashes.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-bulk-casts
+      operationId: fetch-bulk-casts
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: Hashes of the cast to be retrived (Comma separated, no spaces)
+        in: query
+        name: casts
+        required: true
+        schema:
+          example: 0xa896906a5e397b4fec247c3ee0e9e4d4990b8004,0x27ff810f7f718afd8c40be236411f017982e0994
+          type: string
+          x-comma-separated: true
+      - description: adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Optional parameter to sort the casts based on different criteria
+        in: query
+        name: sort_type
+        schema:
+          enum:
+          - trending
+          - likes
+          - recasts
+          - replies
+          - recent
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CastsResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Bulk fetch casts
+      tags:
+      - Cast
+components:
+  schemas:
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    CastEmbedded:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          nullable: true
+        author:
+          $ref: '#/components/schemas/UserDehydrated'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelDehydrated'
+          nullable: true
+        embeds:
+          items:
+            $ref: '#/components/schemas/EmbedDeep'
+          type: array
+        hash:
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+              nullable: true
+          required:
+          - fid
+          type: object
+        parent_hash:
+          nullable: true
+          type: string
+        parent_url:
+          nullable: true
+          type: string
+        root_parent_url:
+          nullable: true
+          type: string
+        text:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - channel
+      title: CastEmbedded
+      type: object
+    Conversation:
+      properties:
+        conversation:
+          properties:
+            cast:
+              $ref: '#/components/schemas/CastAndConversations'
+            chronological_parent_casts:
+              items:
+                $ref: '#/components/schemas/Cast'
+              type: array
+          required:
+          - cast
+          type: object
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - conversation
+      title: Conversation
+      type: object
+    PostCastReqBody:
+      properties:
+        channel_id:
+          description: Channel ID of the channel where the cast is to be posted. e.g. neynar, farcaster, warpcast
+          example: neynar
+          type: string
+        embeds:
+          items:
+            $ref: '#/components/schemas/PostCastReqBodyEmbeds'
+          maxItems: 2
+          type: array
+        idem:
+          $ref: '#/components/schemas/Idem'
+        parent:
+          $ref: '#/components/schemas/CastParent'
+        parent_author_fid:
+          $ref: '#/components/schemas/Fid'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        text:
+          type: string
+      required:
+      - signer_uuid
+      title: PostCastReqBody
+      type: object
+    CastsSearchResponse:
+      properties:
+        result:
+          properties:
+            casts:
+              items:
+                $ref: '#/components/schemas/Cast'
+              type: array
+            next:
+              $ref: '#/components/schemas/NextCursor'
+          required:
+          - casts
+          - next
+          type: object
+      required:
+      - result
+      title: CastsSearchResponse
+      type: object
+    OperationResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+      title: OperationResponse
+      type: object
+    SignerUUID:
+      description: 'UUID of the signer.
+
+        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
+      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
+      title: SignerUUID
+      type: string
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    FrameV1:
+      description: Mini app v1 object
+      properties:
+        buttons:
+          items:
+            $ref: '#/components/schemas/FrameActionButton'
+          type: array
+        frames_url:
+          description: Launch URL of the mini app
+          type: string
+        image:
+          description: URL of the image
+          type: string
+        image_aspect_ratio:
+          type: string
+        input:
+          properties:
+            text:
+              description: Input text for the mini app
+              type: string
+          type: object
+        post_url:
+          description: Post URL to take an action on this mini app
+          type: string
+        state:
+          properties:
+            serialized:
+              description: State for the mini app in a serialized format
+              type: string
+          type: object
+        title:
+          type: string
+        version:
+          description: Version of the mini app, 'next' for v2, 'vNext' for v1
+          type: string
+      required:
+      - version
+      - image
+      - frames_url
+      title: FrameV1
+      type: object
+    FrameButtonActionType:
+      description: The action type of a mini app button. Action types "mint" & "link" are to be handled on the client side only and so they will produce a no/op for POST /farcaster/frame/action.
+      enum:
+      - post
+      - post_redirect
+      - tx
+      - link
+      - mint
+      title: FrameButtonActionType
+      type: string
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          nullable: true
+          type: string
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                  nullable: true
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+                  nullable: true
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    Embed:
+      anyOf:
+      - $ref: '#/components/schemas/EmbedCast'
+      - $ref: '#/components/schemas/EmbedUrl'
+      title: Embed
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    OembedVideoData:
+      description: Video OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          nullable: true
+          type: string
+        author_url:
+          description: A URL for the author/owner of the resource.
+          nullable: true
+          type: string
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          nullable: true
+          type: string
+        height:
+          description: The height in pixels required to display the HTML.
+          nullable: true
+          type: number
+        html:
+          description: The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
+          nullable: true
+          type: string
+        provider_name:
+          description: The name of the resource provider.
+          nullable: true
+          type: string
+        provider_url:
+          description: The url of the resource provider.
+          nullable: true
+          type: string
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          nullable: true
+          type: number
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          nullable: true
+          type: string
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          nullable: true
+          type: number
+        title:
+          description: A text title, describing the resource.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - video
+          type: string
+        version:
+          nullable: true
+          type: string
+        width:
+          description: The width in pixels required to display the HTML.
+          nullable: true
+          type: number
+      required:
+      - type
+      - version
+      - html
+      title: OembedVideoData
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    EmbedUrl:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/EmbedUrlMetadata'
+        url:
+          type: string
+      required:
+      - url
+      title: EmbedUrl
+      type: object
+    CastDehydrated:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          nullable: true
+        author:
+          $ref: '#/components/schemas/UserDehydrated'
+        hash:
+          type: string
+        object:
+          enum:
+          - cast_dehydrated
+          type: string
+      required:
+      - object
+      - hash
+      title: CastDehydrated
+      type: object
+    FarcasterManifest:
+      properties:
+        account_association:
+          $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
+        frame:
+          properties:
+            button_title:
+              type: string
+            description:
+              description: Detailed description of the configuration
+              type: string
+            hero_image_url:
+              description: URL of the hero image displayed for the configuration
+              format: uri
+              type: string
+            home_url:
+              type: string
+            icon_url:
+              type: string
+            image_url:
+              type: string
+            name:
+              type: string
+            noindex:
+              description: Whether search engines should not index this configuration
+              type: boolean
+            og_description:
+              description: Description used for Open Graph previews
+              type: string
+            og_image_url:
+              description: Image URL used for Open Graph previews
+              format: uri
+              type: string
+            og_title:
+              description: Title used for Open Graph previews
+              type: string
+            primary_category:
+              description: Primary category the configuration belongs to
+              type: string
+            screenshot_urls:
+              description: URLs of screenshots showcasing the configuration
+              items:
+                format: uri
+                type: string
+              type: array
+            splash_background_color:
+              type: string
+            splash_image_url:
+              type: string
+            subtitle:
+              description: Short subtitle for the configuration
+              type: string
+            tagline:
+              description: Short tagline for the configuration
+              type: string
+            tags:
+              description: Tags associated with the configuration
+              items:
+                type: string
+              type: array
+            version:
+              enum:
+              - '1'
+              - 0.0.0
+              - 0.0.1
+              - next
+              type: string
+            webhook_url:
+              type: string
+          required:
+          - version
+          - name
+          - home_url
+          - icon_url
+          type: object
+        miniapp:
+          properties:
+            button_title:
+              type: string
+            description:
+              description: Detailed description of the configuration
+              type: string
+            hero_image_url:
+              description: URL of the hero image displayed for the configuration
+              format: uri
+              type: string
+            home_url:
+              type: string
+            icon_url:
+              type: string
+            image_url:
+              type: string
+            name:
+              type: string
+            noindex:
+              description: Whether search engines should not index this configuration
+              type: boolean
+            og_description:
+              description: Description used for Open Graph previews
+              type: string
+            og_image_url:
+              description: Image URL used for Open Graph previews
+              format: uri
+              type: string
+            og_title:
+              description: Title used for Open Graph previews
+              type: string
+            primary_category:
+              description: Primary category the configuration belongs to
+              type: string
+            screenshot_urls:
+              description: URLs of screenshots showcasing the configuration
+              items:
+                format: uri
+                type: string
+              type: array
+            splash_background_color:
+              type: string
+            splash_image_url:
+              type: string
+            subtitle:
+              description: Short subtitle for the configuration
+              type: string
+            tagline:
+              description: Short tagline for the configuration
+              type: string
+            tags:
+              description: Tags associated with the configuration
+              items:
+                type: string
+              type: array
+            version:
+              enum:
+              - '1'
+              - 0.0.0
+              - 0.0.1
+              - next
+              type: string
+            webhook_url:
+              type: string
+          required:
+          - version
+          - name
+          - home_url
+          - icon_url
+          type: object
+      required:
+      - account_association
+      title: FarcasterManifest
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    OembedRichData:
+      description: Rich OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          nullable: true
+          type: string
+        author_url:
+          description: A URL for the author/owner of the resource.
+          nullable: true
+          type: string
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          nullable: true
+          type: string
+        height:
+          description: The height in pixels required to display the HTML.
+          nullable: true
+          type: number
+        html:
+          description: The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
+          nullable: true
+          type: string
+        provider_name:
+          description: The name of the resource provider.
+          nullable: true
+          type: string
+        provider_url:
+          description: The url of the resource provider.
+          nullable: true
+          type: string
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          nullable: true
+          type: number
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          nullable: true
+          type: string
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          nullable: true
+          type: number
+        title:
+          description: A text title, describing the resource.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - rich
+          type: string
+        version:
+          nullable: true
+          type: string
+        width:
+          description: The width in pixels required to display the HTML.
+          nullable: true
+          type: number
+      required:
+      - type
+      - version
+      - html
+      title: OembedRichData
+      type: object
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    ImageObject:
+      properties:
+        alt:
+          type: string
+        height:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        width:
+          type: string
+      required:
+      - url
+      title: ImageObject
+      type: object
+    ChannelOrChannelDehydrated:
+      discriminator:
+        mapping:
+          channel: '#/components/schemas/Channel'
+          channel_dehydrated: '#/components/schemas/ChannelDehydrated'
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/Channel'
+      - $ref: '#/components/schemas/ChannelDehydrated'
+      title: ChannelOrChannelDehydrated
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    CastEmbedCrawlResponse:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/EmbedUrlMetadata'
+      required:
+      - metadata
+      title: CastEmbedCrawlResponse
+      type: object
+    FrameV2:
+      description: Mini app v2 object
+      properties:
+        author:
+          $ref: '#/components/schemas/UserDehydrated'
+        frames_url:
+          description: Launch URL of the mini app
+          type: string
+        image:
+          description: URL of the image
+          type: string
+        manifest:
+          $ref: '#/components/schemas/FarcasterManifest'
+        metadata:
+          properties:
+            html:
+              $ref: '#/components/schemas/HtmlMetadata'
+          required:
+          - html
+          type: object
+        title:
+          description: Button title of a mini app
+          type: string
+        version:
+          description: Version of the mini app, 'next' for v2, 'vNext' for v1
+          type: string
+      required:
+      - version
+      - image
+      - frames_url
+      title: FrameV2
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    OembedLinkData:
+      description: Link OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          nullable: true
+          type: string
+        author_url:
+          description: A URL for the author/owner of the resource.
+          nullable: true
+          type: string
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          nullable: true
+          type: string
+        provider_name:
+          description: The name of the resource provider.
+          nullable: true
+          type: string
+        provider_url:
+          description: The url of the resource provider.
+          nullable: true
+          type: string
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          nullable: true
+          type: number
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          nullable: true
+          type: string
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          nullable: true
+          type: number
+        title:
+          description: A text title, describing the resource.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - link
+          type: string
+        version:
+          nullable: true
+          type: string
+      required:
+      - type
+      - version
+      title: OembedLinkData
+      type: object
+    EmbedCastDeep:
+      properties:
+        cast:
+          $ref: '#/components/schemas/CastDehydrated'
+        cast_id:
+          $ref: '#/components/schemas/CastId'
+      required:
+      - cast
+      title: EmbedCastDeep
+      type: object
+    CastAndConversationsRef:
+      description: Reference to CastAndConversations to avoid circular reference
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          nullable: true
+        author:
+          $ref: '#/components/schemas/User'
+        author_channel_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+          nullable: true
+        direct_replies:
+          description: 'note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.'
+          items:
+            properties: {}
+            type: object
+          type: array
+        embeds:
+          items:
+            $ref: '#/components/schemas/Embed'
+          type: array
+        hash:
+          type: string
+        mentioned_channels:
+          items:
+            $ref: '#/components/schemas/ChannelDehydrated'
+          type: array
+        mentioned_channels_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        mentioned_profiles_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        object:
+          enum:
+          - cast
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+              nullable: true
+          required:
+          - fid
+          type: object
+        parent_hash:
+          nullable: true
+          type: string
+        parent_url:
+          nullable: true
+          type: string
+        reactions:
+          $ref: '#/components/schemas/CastReactions'
+        replies:
+          $ref: '#/components/schemas/CastReplies'
+        root_parent_url:
+          nullable: true
+          type: string
+        text:
+          type: string
+        thread_hash:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/CastNotificationType'
+        viewer_context:
+          $ref: '#/components/schemas/CastViewerContext'
+      required:
+      - object
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - reactions
+      - replies
+      - thread_hash
+      - mentioned_profiles
+      - mentioned_profiles_ranges
+      - mentioned_channels
+      - mentioned_channels_ranges
+      - channel
+      - direct_replies
+      title: CastAndConversationsRef
+      type: object
+    CastReplies:
+      properties:
+        count:
+          format: int32
+          type: integer
+      required:
+      - count
+      title: CastReplies
+      type: object
+    CastResponse:
+      properties:
+        cast:
+          $ref: '#/components/schemas/Cast'
+      required:
+      - cast
+      title: CastResponse
+      type: object
+    CastParent:
+      description: parent_url of the channel the cast is in, or hash of the cast
+      title: CastParent
+      type: string
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    VideoObject:
+      properties:
+        height:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        width:
+          type: string
+      required:
+      - url
+      title: VideoObject
+      type: object
+    HtmlMetadata:
+      properties:
+        favicon:
+          type: string
+        modifiedTime:
+          type: string
+        oembed:
+          discriminator:
+            mapping:
+              link: '#/components/schemas/OembedLinkData'
+              photo: '#/components/schemas/OembedPhotoData'
+              rich: '#/components/schemas/OembedRichData'
+              video: '#/components/schemas/OembedVideoData'
+            propertyName: type
+          oneOf:
+          - $ref: '#/components/schemas/OembedRichData'
+          - $ref: '#/components/schemas/OembedVideoData'
+          - $ref: '#/components/schemas/OembedPhotoData'
+          - $ref: '#/components/schemas/OembedLinkData'
+          type: object
+        ogArticleAuthor:
+          type: string
+        ogArticleExpirationTime:
+          type: string
+        ogArticleModifiedTime:
+          type: string
+        ogArticlePublishedTime:
+          type: string
+        ogArticlePublisher:
+          type: string
+        ogArticleSection:
+          type: string
+        ogArticleTag:
+          type: string
+        ogAudio:
+          type: string
+        ogAudioSecureURL:
+          type: string
+        ogAudioType:
+          type: string
+        ogAudioURL:
+          type: string
+        ogAvailability:
+          type: string
+        ogDate:
+          type: string
+        ogDescription:
+          type: string
+        ogDeterminer:
+          type: string
+        ogEpisode:
+          type: string
+        ogImage:
+          items:
+            $ref: '#/components/schemas/ImageObject'
+          type: array
+        ogLocale:
+          type: string
+        ogLocaleAlternate:
+          type: string
+        ogLogo:
+          type: string
+        ogMovie:
+          type: string
+        ogPriceAmount:
+          type: string
+        ogPriceCurrency:
+          type: string
+        ogProductAvailability:
+          type: string
+        ogProductCondition:
+          type: string
+        ogProductPriceAmount:
+          type: string
+        ogProductPriceCurrency:
+          type: string
+        ogProductRetailerItemId:
+          type: string
+        ogSiteName:
+          type: string
+        ogTitle:
+          type: string
+        ogType:
+          type: string
+        ogUrl:
+          type: string
+        ogVideo:
+          items:
+            $ref: '#/components/schemas/VideoObject'
+          type: array
+        ogVideoActor:
+          type: string
+        ogVideoActorId:
+          type: string
+        ogVideoActorRole:
+          type: string
+        ogVideoDirector:
+          type: string
+        ogVideoDuration:
+          type: string
+        ogVideoOther:
+          type: string
+        ogVideoReleaseDate:
+          type: string
+        ogVideoSecureURL:
+          type: string
+        ogVideoSeries:
+          type: string
+        ogVideoTag:
+          type: string
+        ogVideoTvShow:
+          type: string
+        ogVideoWriter:
+          type: string
+        ogWebsite:
+          type: string
+        updatedTime:
+          type: string
+      title: HtmlMetadata
+      type: object
+    EmbedCast:
+      properties:
+        cast:
+          $ref: '#/components/schemas/CastEmbedded'
+        cast_id:
+          $ref: '#/components/schemas/CastId'
+      required:
+      - cast
+      title: EmbedCast
+      type: object
+    Frame:
+      anyOf:
+      - $ref: '#/components/schemas/FrameV1'
+      - $ref: '#/components/schemas/FrameV2'
+      discriminator:
+        mapping:
+          '1': '#/components/schemas/FrameV2'
+          0.0.0: '#/components/schemas/FrameV2'
+          0.0.1: '#/components/schemas/FrameV2'
+          next: '#/components/schemas/FrameV2'
+          vNext: '#/components/schemas/FrameV1'
+        propertyName: version
+      title: Frame
+    EmbedUrlMetadata:
+      properties:
+        _status:
+          type: string
+        content_length:
+          nullable: true
+          type: integer
+        content_type:
+          nullable: true
+          type: string
+        frame:
+          $ref: '#/components/schemas/Frame'
+        html:
+          $ref: '#/components/schemas/HtmlMetadata'
+        image:
+          properties:
+            height_px:
+              type: integer
+            width_px:
+              type: integer
+          type: object
+        video:
+          properties:
+            duration_s:
+              type: number
+            stream:
+              items:
+                properties:
+                  codec_name:
+                    type: string
+                  height_px:
+                    type: integer
+                  width_px:
+                    type: integer
+                type: object
+              type: array
+          type: object
+      required:
+      - _status
+      title: EmbedUrlMetadata
+      type: object
+    ReactionRecast:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        fname:
+          type: string
+      required:
+      - fid
+      - fname
+      title: ReactionRecast
+      type: object
+    Idem:
+      description: "An Idempotency key is a unique identifier for the request.\n**Note:** \n1) This is used to prevent duplicate requests. Use the same idem key on retry attempts.\n2) This should be a unique identifier for each request.\n3) Recommended format is a 16-character string generated by the developer at the time of making this request."
+      title: Idem
+      type: string
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    OembedPhotoData:
+      description: Photo OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          nullable: true
+          type: string
+        author_url:
+          description: A URL for the author/owner of the resource.
+          nullable: true
+          type: string
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          nullable: true
+          type: string
+        height:
+          description: The height in pixels of the image specified in the url parameter.
+          nullable: true
+          type: number
+        provider_name:
+          description: The name of the resource provider.
+          nullable: true
+          type: string
+        provider_url:
+          description: The url of the resource provider.
+          nullable: true
+          type: string
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          nullable: true
+          type: number
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          nullable: true
+          type: string
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          nullable: true
+          type: number
+        title:
+          description: A text title, describing the resource.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - photo
+          type: string
+        url:
+          description: The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
+          nullable: true
+          type: string
+        version:
+          nullable: true
+          type: string
+        width:
+          description: The width in pixels of the image specified in the url parameter.
+          nullable: true
+          type: number
+      required:
+      - type
+      - version
+      - url
+      title: OembedPhotoData
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    PostCastResponse:
+      properties:
+        cast:
+          properties:
+            author:
+              properties:
+                fid:
+                  $ref: '#/components/schemas/Fid'
+              required:
+              - fid
+              type: object
+            hash:
+              example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+              pattern: ^(0x)?[a-fA-F0-9]{40}$
+              type: string
+            text:
+              type: string
+          required:
+          - hash
+          - author
+          - text
+          type: object
+        success:
+          type: boolean
+      required:
+      - success
+      - cast
+      title: PostCastResponse
+      type: object
+    CastAndConversations:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          nullable: true
+        author:
+          $ref: '#/components/schemas/User'
+        author_channel_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+          nullable: true
+        direct_replies:
+          description: 'note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.'
+          items:
+            $ref: '#/components/schemas/CastAndConversationsRef'
+          type: array
+        embeds:
+          items:
+            $ref: '#/components/schemas/Embed'
+          type: array
+        hash:
+          type: string
+        mentioned_channels:
+          items:
+            $ref: '#/components/schemas/ChannelDehydrated'
+          type: array
+        mentioned_channels_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        mentioned_profiles_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        object:
+          enum:
+          - cast
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+              nullable: true
+          required:
+          - fid
+          type: object
+        parent_hash:
+          nullable: true
+          type: string
+        parent_url:
+          nullable: true
+          type: string
+        reactions:
+          $ref: '#/components/schemas/CastReactions'
+        replies:
+          $ref: '#/components/schemas/CastReplies'
+        root_parent_url:
+          nullable: true
+          type: string
+        text:
+          type: string
+        thread_hash:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/CastNotificationType'
+        viewer_context:
+          $ref: '#/components/schemas/CastViewerContext'
+      required:
+      - object
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - reactions
+      - replies
+      - thread_hash
+      - mentioned_profiles
+      - mentioned_profiles_ranges
+      - mentioned_channels
+      - mentioned_channels_ranges
+      - channel
+      - direct_replies
+      title: CastAndConversations
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          nullable: true
+          type: string
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    EmbedDeep:
+      anyOf:
+      - $ref: '#/components/schemas/EmbedCastDeep'
+      - $ref: '#/components/schemas/EmbedUrl'
+      title: EmbedDeep
+    CastViewerContext:
+      description: Adds context on interactions the viewer has made with the cast.
+      properties:
+        liked:
+          description: Indicates if the viewer liked the cast.
+          type: boolean
+        recasted:
+          description: Indicates if the viewer recasted the cast.
+          type: boolean
+      required:
+      - liked
+      - recasted
+      title: CastViewerContext
+      type: object
+    CastReactions:
+      properties:
+        likes:
+          deprecated: true
+          description: This has been deprecated and will always be an empty array. The property will be removed in the future
+          items:
+            $ref: '#/components/schemas/ReactionLike'
+          type: array
+        likes_count:
+          format: int32
+          type: integer
+        recasts:
+          deprecated: true
+          description: This has been deprecated and will always be an empty array. The property will be removed in the future
+          items:
+            $ref: '#/components/schemas/ReactionRecast'
+          type: array
+        recasts_count:
+          format: int32
+          type: integer
+      required:
+      - likes
+      - recasts
+      - likes_count
+      - recasts_count
+      title: CastReactions
+      type: object
+    Cast:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+          nullable: true
+        author:
+          $ref: '#/components/schemas/User'
+        author_channel_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+          nullable: true
+        embeds:
+          items:
+            $ref: '#/components/schemas/Embed'
+          type: array
+        hash:
+          type: string
+        mentioned_channels:
+          items:
+            $ref: '#/components/schemas/ChannelDehydrated'
+          type: array
+        mentioned_channels_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        mentioned_profiles_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        object:
+          enum:
+          - cast
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+              nullable: true
+          required:
+          - fid
+          type: object
+        parent_hash:
+          nullable: true
+          type: string
+        parent_url:
+          nullable: true
+          type: string
+        reactions:
+          $ref: '#/components/schemas/CastReactions'
+        replies:
+          $ref: '#/components/schemas/CastReplies'
+        root_parent_url:
+          nullable: true
+          type: string
+        text:
+          type: string
+        thread_hash:
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/CastNotificationType'
+        viewer_context:
+          $ref: '#/components/schemas/CastViewerContext'
+      required:
+      - object
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - reactions
+      - replies
+      - thread_hash
+      - mentioned_profiles
+      - mentioned_profiles_ranges
+      - mentioned_channels
+      - mentioned_channels_ranges
+      - channel
+      title: Cast
+      type: object
+    CastsResponse:
+      properties:
+        result:
+          properties:
+            casts:
+              items:
+                $ref: '#/components/schemas/Cast'
+              type: array
+          required:
+          - casts
+          type: object
+      required:
+      - result
+      title: CastsResponse
+      type: object
+    FrameActionButton:
+      properties:
+        action_type:
+          $ref: '#/components/schemas/FrameButtonActionType'
+        index:
+          description: Index of the button
+          type: integer
+        post_url:
+          description: Used specifically for the tx action type to post a successful transaction hash
+          type: string
+        target:
+          description: Target of the button
+          type: string
+        title:
+          description: Title of the button
+          type: string
+      required:
+      - index
+      - action_type
+      title: FrameActionButton
+      type: object
+    PostCastReqBodyEmbeds:
+      additionalProperties: false
+      anyOf:
+      - additionalProperties: false
+        properties:
+          cast_id:
+            $ref: '#/components/schemas/PostCastReqBodyEmbedsCastIdProperties'
+        required:
+        - cast_id
+        type: object
+      - additionalProperties: false
+        properties:
+          castId:
+            $ref: '#/components/schemas/PostCastReqBodyEmbedsCastIdProperties'
+        required:
+        - castId
+        type: object
+      - additionalProperties: false
+        properties:
+          url:
+            type: string
+        required:
+        - url
+        type: object
+      title: PostCastReqBodyEmbeds
+    ReactionLike:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        fname:
+          type: string
+      required:
+      - fid
+      - fname
+      title: ReactionLike
+      type: object
+    DeleteCastReqBody:
+      properties:
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        target_hash:
+          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+          pattern: ^(0x)?[a-fA-F0-9]{40}$
+          type: string
+      required:
+      - signer_uuid
+      - target_hash
+      title: DeleteCastReqBody
+      type: object
+    PostCastReqBodyEmbedsCastIdProperties:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        hash:
+          type: string
+      required:
+      - hash
+      - fid
+      title: PostCastReqBodyEmbedsCastIdProperties
+      type: object
+    EncodedJsonFarcasterSignature:
+      description: Encoded JSON Farcaster signature
+      properties:
+        header:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string
+      required:
+      - header
+      - payload
+      - signature
+      title: EncodedJsonFarcasterSignature
+      type: object
+    CastNotificationType:
+      description: The notification type of a cast.
+      enum:
+      - cast-mention
+      - cast-reply
+      title: CastNotificationType
+      type: string
+    Channel:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        description:
+          type: string
+        description_mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          type: array
+        description_mentioned_profiles_ranges:
+          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        external_link:
+          description: Channel's external link.
+          properties:
+            title:
+              type: string
+            url:
+              type: string
+          type: object
+        follower_count:
+          description: Number of followers the channel has.
+          type: number
+        hosts:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        id:
+          type: string
+        image_url:
+          type: string
+        lead:
+          $ref: '#/components/schemas/User'
+        member_count:
+          format: int32
+          type: integer
+        moderator:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          deprecated: true
+          description: Use `lead` instead.
+        moderator_fids:
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        name:
+          type: string
+        object:
+          enum:
+          - channel
+          type: string
+        parent_url:
+          format: uri
+          type: string
+        pinned_cast_hash:
+          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+          pattern: ^(0x)?[a-fA-F0-9]{40}$
+          type: string
+        url:
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - url
+      - object
+      - created_at
+      title: Channel
+      type: object
+    CastId:
+      deprecated: true
+      description: '[DEPRECATED: Use "cast" key instead]'
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        hash:
+          type: string
+      required:
+      - fid
+      - hash
+      title: CastId
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

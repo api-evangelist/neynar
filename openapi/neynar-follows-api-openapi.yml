@@ -1,0 +1,805 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Follows API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to follows
+  externalDocs:
+    description: More info about follows
+    url: https://docs.neynar.com/reference/follows-operations
+  name: Follows
+paths:
+  /v2/farcaster/followers/:
+    get:
+      description: Returns a list of followers for a specific FID.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-user-followers
+      operationId: fetch-user-followers
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: User who's profile you are looking at
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - description: Sort type for fetch followers. Default is `desc_chron`
+        in: query
+        name: sort_type
+        schema:
+          enum:
+          - desc_chron
+          - algorithmic
+          example: desc_chron
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 20
+          example: 30
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Followers
+      tags:
+      - Follows
+  /v2/farcaster/followers/reciprocal/:
+    get:
+      description: Returns users who the given FID follows and they follow the FID back (reciprocal following relationship)
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-user-reciprocal-followers
+      operationId: fetch-user-reciprocal-followers
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - in: query
+        name: viewer_fid
+        schema:
+          minimum: 1
+          type: integer
+      - in: query
+        name: limit
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor
+        in: query
+        name: cursor
+        schema:
+          type: string
+      - in: query
+        name: sort_type
+        schema:
+          default: algorithmic
+          enum:
+          - desc_chron
+          - algorithmic
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  next:
+                    $ref: '#/components/schemas/NextCursor'
+                  users:
+                    items:
+                      $ref: '#/components/schemas/ReciprocalFollower'
+                    type: array
+                required:
+                - users
+                - next
+                type: object
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Reciprocal Followers
+      tags:
+      - Follows
+  /v2/farcaster/followers/relevant/:
+    get:
+      description: Returns a list of relevant followers for a specific FID. This usually shows on a profile as "X, Y and Z follow this user".
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-relevant-followers
+      operationId: fetch-relevant-followers
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: User who's profile you are looking at
+        in: query
+        name: target_fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelevantFollowersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Relevant followers
+      tags:
+      - Follows
+  /v2/farcaster/following/:
+    get:
+      description: Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type.
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-user-following
+      operationId: fetch-user-following
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: FID of the user whose following you want to fetch.
+        in: query
+        name: fid
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+      - description: Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          example: 3
+          minimum: 1
+          type: integer
+      - description: Optional parameter to sort the users based on different criteria.
+        in: query
+        name: sort_type
+        schema:
+          enum:
+          - desc_chron
+          - algorithmic
+          example: desc_chron
+          type: string
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      - description: Pagination cursor.
+        in: query
+        name: cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FollowersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Following
+      tags:
+      - Follows
+  /v2/farcaster/following/suggested/:
+    get:
+      description: Fetch a list of suggested users to follow. Used to help users discover new users to follow
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-follow-suggestions
+      operationId: fetch-follow-suggestions
+      parameters:
+      - $ref: '#/components/parameters/NeynarExperimentalHeader'
+      - description: FID of the user whose following you want to fetch.
+        in: query
+        name: fid
+        required: true
+        schema:
+          type: integer
+      - description: Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`.
+        in: query
+        name: viewer_fid
+        schema:
+          type: integer
+      - description: Number of results to fetch
+        in: query
+        name: limit
+        schema:
+          default: 25
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        x-is-limit-param: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Suggest Follows
+      tags:
+      - Follows
+components:
+  schemas:
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    Follower:
+      properties:
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
+        object:
+          enum:
+          - follower
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      title: Follower
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          nullable: true
+          type: string
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                  nullable: true
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+                  nullable: true
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    ReciprocalFollower:
+      properties:
+        object:
+          enum:
+          - reciprocal_follower
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      - timestamp
+      title: ReciprocalFollower
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    UsersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      - next
+      title: UsersResponse
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          nullable: true
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          nullable: true
+          type: string
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    FollowerDehydrated:
+      properties:
+        object:
+          enum:
+          - follower_dehydrated
+          type: string
+        user:
+          $ref: '#/components/schemas/UserDehydrated'
+      required:
+      - object
+      - user
+      title: FollowerDehydrated
+      type: object
+    RelevantFollowersResponse:
+      properties:
+        all_relevant_followers_dehydrated:
+          items:
+            $ref: '#/components/schemas/FollowerDehydrated'
+          type: array
+        top_relevant_followers_hydrated:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      required:
+      - top_relevant_followers_hydrated
+      - all_relevant_followers_dehydrated
+      title: RelevantFollowersResponse
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          nullable: true
+          type: string
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    FollowersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      required:
+      - users
+      - next
+      title: FollowersResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS

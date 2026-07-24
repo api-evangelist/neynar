@@ -1,0 +1,511 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: team@neynar.com
+    name: Neynar
+    url: https://neynar.com/
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  title: Neynar Action Webhook API
+  version: 3.176.0
+servers:
+- url: https://api.neynar.com
+security:
+- ApiKeyAuth: []
+tags:
+- description: Operations related to a webhook
+  name: Webhook
+paths:
+  /v2/farcaster/webhook/:
+    delete:
+      description: Delete a webhook
+      externalDocs:
+        url: https://docs.neynar.com/reference/delete-webhook
+      operationId: delete-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookDeleteReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Delete a webhook
+      tags:
+      - Webhook
+    get:
+      description: Fetch a webhook
+      externalDocs:
+        url: https://docs.neynar.com/reference/lookup-webhook
+      operationId: lookup-webhook
+      parameters:
+      - in: query
+        name: webhook_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Fetch a webhook
+      tags:
+      - Webhook
+    patch:
+      description: Update webhook active status
+      externalDocs:
+        url: https://docs.neynar.com/reference/update-webhook-active-status
+      operationId: update-webhook-active-status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPatchReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Update webhook status
+      tags:
+      - Webhook
+    post:
+      description: Create a webhook
+      externalDocs:
+        url: https://docs.neynar.com/reference/publish-webhook
+      operationId: publish-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPostReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Resource not found
+      summary: Create a webhook
+      tags:
+      - Webhook
+    put:
+      description: Update a webhook
+      externalDocs:
+        url: https://docs.neynar.com/reference/update-webhook
+      operationId: update-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPutReqBody'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Update a webhook
+      tags:
+      - Webhook
+  /v2/farcaster/webhook/list/:
+    get:
+      description: Fetch a list of webhooks associated to a user
+      externalDocs:
+        url: https://docs.neynar.com/reference/fetch-webhooks
+      operationId: fetch-webhooks
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookListResponse'
+          description: Success
+      summary: Associated webhooks of user
+      tags:
+      - Webhook
+components:
+  schemas:
+    WebhookResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      title: WebhookResponse
+      type: object
+    WebhookSubscriptionFiltersReaction:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_cast_hashes:
+          items:
+            example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+            pattern: ^(0x)?[a-fA-F0-9]{40}$
+            type: string
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersReaction
+      type: object
+    Webhook:
+      properties:
+        active:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+        deleted_at:
+          format: date-time
+          nullable: true
+          type: string
+        description:
+          type: string
+        developer_uuid:
+          type: string
+        http_timeout:
+          type: string
+        object:
+          enum:
+          - webhook
+          type: string
+        rate_limit:
+          type: integer
+        rate_limit_duration:
+          type: string
+        secrets:
+          items:
+            $ref: '#/components/schemas/WebhookSecret'
+          type: array
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscription'
+        target_url:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - object
+      - webhook_id
+      - developer_uuid
+      - target_url
+      - title
+      - secrets
+      - description
+      - http_timeout
+      - rate_limit
+      - active
+      - rate_limit_duration
+      - created_at
+      - updated_at
+      - deleted_at
+      title: Webhook
+      type: object
+    WebhookSubscriptionFiltersFollow:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersFollow
+      type: object
+    WebhookSubscriptionFilters:
+      properties:
+        cast.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        cast.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        follow.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        follow.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        reaction.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        reaction.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        trade.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersTrade'
+        user.created:
+          properties: {}
+          type: object
+        user.updated:
+          properties:
+            fids:
+              items:
+                type: integer
+              type: array
+          type: object
+      title: WebhookSubscriptionFilters
+      type: object
+    WebhookSubscriptionFiltersCast:
+      properties:
+        author_fids:
+          items:
+            type: integer
+          type: array
+        embedded_cast_author_fids:
+          description: Filter for casts that contain embedded casts authored by these FIDs
+          items:
+            type: number
+          type: array
+        embedded_cast_hashes:
+          description: Filter for casts that quote/embed these specific cast hashes
+          items:
+            type: string
+          type: array
+        embeds:
+          description: "Regex pattern to match the embeded_url (key embeds) of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b"
+          example: "\b(farcaster|neynar)\b"
+          type: string
+        exclude_author_fids:
+          description: 'Exclude casts that matches these authors.
+
+            **Note:**
+
+            This is applied as an AND operation against rest of the filters.
+
+            Rest of the filters are bundled as an OR operation.'
+          items:
+            type: integer
+          type: array
+        mentioned_fids:
+          items:
+            type: integer
+          type: array
+        minimum_author_score:
+          default: 0
+          maximum: 1
+          minimum: 0
+          type: number
+        parent_author_fids:
+          items:
+            type: integer
+          type: array
+        parent_hashes:
+          items:
+            type: string
+          type: array
+        parent_urls:
+          items:
+            type: string
+          type: array
+        root_parent_urls:
+          items:
+            type: string
+          type: array
+        text:
+          description: "Regex pattern to match the text key of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen"
+          example: (?i)\$degen
+          type: string
+      title: WebhookSubscriptionFiltersCast
+      type: object
+    WebhookSubscription:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        filters:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        object:
+          enum:
+          - webhook_subscription
+          type: string
+        subscription_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - object
+      - subscription_id
+      - filters
+      - created_at
+      - updated_at
+      title: WebhookSubscription
+      type: object
+    WebhookSecret:
+      properties:
+        created_at:
+          type: string
+        deleted_at:
+          nullable: true
+          type: string
+        expires_at:
+          type: string
+        uid:
+          type: string
+        updated_at:
+          type: string
+        value:
+          type: string
+      required:
+      - uid
+      - value
+      - expires_at
+      - created_at
+      - updated_at
+      - deleted_at
+      title: WebhookSecret
+      type: object
+    WebhookPatchReqBody:
+      properties:
+        active:
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - webhook_id
+      - active
+      title: WebhookPatchReqBody
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    WebhookPostReqBody:
+      properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
+      required:
+      - name
+      - url
+      title: WebhookPostReqBody
+      type: object
+    WebhookDeleteReqBody:
+      properties:
+        webhook_id:
+          type: string
+      required:
+      - webhook_id
+      title: WebhookDeleteReqBody
+      type: object
+    WebhookPutReqBody:
+      properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - name
+      - url
+      - webhook_id
+      title: WebhookPutReqBody
+      type: object
+    WebhookListResponse:
+      properties:
+        webhooks:
+          items:
+            $ref: '#/components/schemas/Webhook'
+          type: array
+      required:
+      - webhooks
+      title: WebhookListResponse
+      type: object
+    WebhookSubscriptionFiltersTrade:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        minimum_token_amount_usdc:
+          minimum: 0
+          type: number
+        minimum_trader_neynar_score:
+          maximum: 1
+          minimum: 0
+          type: number
+      title: WebhookSubscriptionFiltersTrade
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      description: API key to authorize requests
+      in: header
+      name: x-api-key
+      type: apiKey
+      x-default: NEYNAR_API_DOCS
