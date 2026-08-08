@@ -1294,7 +1294,7 @@ sdks:
   url: https://github.com/neynarxyz/go-sdk
 - type: Rust SDK
   url: https://github.com/neynarxyz/rust-sdk
-aid: api-evangelist-neynar
+aid: neynar
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
