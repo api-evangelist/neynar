@@ -1,0 +1,1886 @@
+{
+  "item": [
+    {
+      "id": "d1310fd7-4804-4e3a-969f-dfaee71e84d2",
+      "name": "Signer",
+      "description": {
+        "content": "Operations related to signer",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f527d7e2-aedb-45ce-9268-ad493366f45f",
+          "name": "Fetch authorization url",
+          "request": {
+            "name": "Fetch authorization url",
+            "description": {
+              "content": "Fetch authorization url (Fetched authorized url useful for SIWN login operation)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "login",
+                "authorize",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b755bdb2-11bd-4c97-a619-520363ebcf58",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "login",
+                    "authorize",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authorization_url\": \"https://Ph.pcle22xN7z+vYDEnvseV1nGtgE8ZJEgyG-eryc8.UcHUg3FGsU58Z-m\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2920d55-7ee7-4573-9d17-0ca37c37c3ac",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "login",
+                    "authorize",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f19da216-61bd-4c86-8769-468c426d3c80",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "login",
+                    "authorize",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "585b7e0a-60af-4080-9f54-5aa582582785",
+          "name": "Publish message",
+          "request": {
+            "name": "Publish message",
+            "description": {
+              "content": "Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "message",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f31a192-eccc-4867-aefa-ee882bbff386",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "message",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b36bfe8a-9bdc-4a63-9c2f-7e9b20b1e8e8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "message",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52224c99-0db4-4575-9462-71877ea5bb54",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "message",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d9cff01-58dc-408e-94e0-1350c45be7ae",
+          "name": "Status",
+          "request": {
+            "name": "Status",
+            "description": {
+              "content": "Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "signer_uuid",
+                  "value": "<string>",
+                  "description": "(Required) UUID of the signer.\n`signer_uuid` is paired with API key, can't use a `uuid` made with a different API key."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b19e076c-41b1-473e-a97b-7433e196951b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "signer_uuid",
+                      "value": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"status\": \"revoked\",\n  \"fid\": 3,\n  \"object\": \"signer\",\n  \"permissions\": [\n    \"READ_ONLY\",\n    \"UNFOLLOW_CHANNEL\"\n  ],\n  \"signer_approval_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4015b07c-ce05-4ea0-8458-3bc238304795",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "signer_uuid",
+                      "value": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7329dcd-86b2-4944-b31d-4755553b8091",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "signer_uuid",
+                      "value": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddd47027-4d51-4b30-ac44-c8d8d91db41a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "signer_uuid",
+                      "value": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81d09981-a95c-4626-b87e-cb7bba247ff5",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "signer_uuid",
+                      "value": "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "490c5872-2fa5-43e5-bf26-0e951051283b",
+          "name": "Create signer",
+          "request": {
+            "name": "Create signer",
+            "description": {
+              "content": "Creates a signer and returns the signer status. \n\n**Note**: While tesing please reuse the signer, it costs money to approve a signer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d52b4eb-09c5-4403-96f6-6ac662216155",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"status\": \"pending_approval\",\n  \"fid\": 3,\n  \"object\": \"signer\",\n  \"permissions\": [\n    \"FOLLOW_CHANNEL\",\n    \"READ_ONLY\"\n  ],\n  \"signer_approval_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dfbd56f-d022-4fd8-859c-2cc81a4abec8",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b4b9320-d0f6-46a8-93b7-429250b7870c",
+          "name": "Status by public key",
+          "request": {
+            "name": "Status by public key",
+            "description": {
+              "content": "Fetches the status of a developer managed signer by public key",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                "developer_managed",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "public_key",
+                  "value": "<string>",
+                  "description": "(Required) Ed25519 public key"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "580aa518-b36c-4b07-af7f-3b8acd7987f0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "developer_managed",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "public_key",
+                      "value": "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"status\": \"pending_approval\",\n  \"fid\": 3,\n  \"signer_approval_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "196f7ab7-a8fa-4457-81a5-178c4ab57312",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "developer_managed",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "public_key",
+                      "value": "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3a6ba73-1d03-4d27-8803-c240c192c35f",
+          "name": "Register Signed Key",
+          "request": {
+            "name": "Register Signed Key",
+            "description": {
+              "content": "Registers an signed key and returns the developer managed signer status with an approval url.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                "developer_managed",
+                "signed_key",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"public_key\": \"<string>\",\n  \"signature\": \"<string>\",\n  \"app_fid\": \"<integer>\",\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": \"<integer>\",\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a179484-1a1e-4f9f-945c-513cb49d12e8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "developer_managed",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"signature\": \"0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"status\": \"pending_approval\",\n  \"fid\": 3,\n  \"signer_approval_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f71d657e-031b-4a3a-8c52-c834daf23704",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "developer_managed",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"signature\": \"0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1480d32-4fd4-4db6-9f85-d028ef4532a8",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "developer_managed",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"signature\": \"0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41071caf-540b-4ac4-8ff6-fcd73fd09cdf",
+          "name": "List signers",
+          "request": {
+            "name": "List signers",
+            "description": {
+              "content": "Fetches a list of signers for a custody address",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                "list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "message",
+                  "value": "<string>",
+                  "description": "(Required) A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded."
+                },
+                {
+                  "disabled": false,
+                  "key": "signature",
+                  "value": "<string>",
+                  "description": "(Required) The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bd5f4b2-f9bf-4d7f-9615-18578d25d6d3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z"
+                    },
+                    {
+                      "key": "signature",
+                      "value": "0x25f8...1cf"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signers\": [\n    {\n      \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n      \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n      \"status\": \"approved\",\n      \"fid\": 3,\n      \"object\": \"signer\",\n      \"permissions\": [\n        \"REMOVE_VERIFICATION\",\n        \"UNFOLLOW_CHANNEL\"\n      ],\n      \"signer_approval_url\": \"string\"\n    },\n    {\n      \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n      \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n      \"status\": \"generated\",\n      \"fid\": 3,\n      \"object\": \"signer\",\n      \"permissions\": [\n        \"ADD_VERIFICATION\",\n        \"DELETE_CAST\"\n      ],\n      \"signer_approval_url\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9514b7d-76ed-47cb-a53e-500eaf8a62b7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z"
+                    },
+                    {
+                      "key": "signature",
+                      "value": "0x25f8...1cf"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc5a52bc-ce19-4f84-939c-ce9b207fa592",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z"
+                    },
+                    {
+                      "key": "signature",
+                      "value": "0x25f8...1cf"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ca735e2-91cc-47db-8641-14e1567b1998",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "message",
+                      "value": "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z"
+                    },
+                    {
+                      "key": "signature",
+                      "value": "0x25f8...1cf"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bff8277-715e-4c0b-b8a5-064ee2daee97",
+          "name": "Register Signed Key",
+          "request": {
+            "name": "Register Signed Key",
+            "description": {
+              "content": "Registers an app FID, deadline and a signature. Returns the signer status with an approval url.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "signer",
+                "signed_key",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signer_uuid\": \"<string>\",\n  \"signature\": \"<string>\",\n  \"app_fid\": \"<integer>\",\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": \"<integer>\",\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8da8b0a-18ed-4bb5-9fe4-dc83e39693f5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"signature\": \"<string>\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"public_key\": \"0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22\",\n  \"status\": \"revoked\",\n  \"fid\": 3,\n  \"object\": \"signer\",\n  \"permissions\": [\n    \"FOLLOW_USER\",\n    \"PUBLISH_REACTION\"\n  ],\n  \"signer_approval_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e504637a-ae63-4efa-9861-a58a859f115e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"signature\": \"<string>\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fc037e3-4797-4458-8b19-093f645f4916",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"signature\": \"<string>\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b098320-e18b-4caf-985b-61c6b8120c8b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"signature\": \"<string>\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "442f2424-c073-4092-b00e-9a2f21840735",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "signer",
+                    "signed_key",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"signature\": \"<string>\",\n  \"app_fid\": 3,\n  \"deadline\": \"<integer>\",\n  \"redirect_url\": \"<string>\",\n  \"sponsor\": {\n    \"fid\": 3,\n    \"signature\": \"<string>\",\n    \"sponsored_by_neynar\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 2184\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c8c10818-f704-4cd3-8aa1-85f42477d8a1",
+    "name": "Neynar Action Signer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

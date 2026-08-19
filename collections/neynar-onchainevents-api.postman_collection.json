@@ -1,0 +1,500 @@
+{
+  "item": [
+    {
+      "id": "4ee7b532-8ac7-435e-aabe-eafae1e955ee",
+      "name": "OnChainEvents",
+      "description": {
+        "content": "Operations related to on-chain events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26b5a8c6-c9c6-4c94-92ef-4115fa608f23",
+          "name": "Fetch an on-chain ID Registry Event for a given Address",
+          "request": {
+            "name": "Fetch an on-chain ID Registry Event for a given Address",
+            "description": {
+              "content": "Fetch an on-chain ID Registry Event for a given Address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onChainIdRegistryEventByAddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "(Required) The ETH address being requested"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86b97b9c-0f43-400e-bf3c-1e9b696e772c",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainIdRegistryEventByAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockHash\": \"0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28\",\n  \"blockNumber\": 7935,\n  \"blockTimestamp\": 2960,\n  \"chainId\": 8777,\n  \"fid\": 5910,\n  \"idRegisterEventBody\": {\n    \"to\": \"0x00000000fcd5a8e45785c8a4b9a718c9348e4f18\",\n    \"from\": \"0x00000000fcd5a8e45785c8a4b9a718c9348e4f18\",\n    \"eventType\": \"ID_REGISTER_EVENT_TYPE_REGISTER\",\n    \"recoveryAddress\": \"0x00000000fcd5a8e45785c8a4b9a718c9348e4f18\"\n  },\n  \"logIndex\": 941,\n  \"transactionHash\": \"0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952\",\n  \"txIndex\": 3292,\n  \"type\": \"EVENT_TYPE_SIGNER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bc3f82f-e5e0-43eb-9ed0-5853fdf96c74",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainIdRegistryEventByAddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7143,\n  \"details\": \"string\",\n  \"errCode\": \"string\",\n  \"metadata\": {\n    \"errcode\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"name\": \"string\",\n  \"presentable\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f32b8ad-4e63-4103-8442-988a8b97d352",
+          "name": "Fetch a list of on-chain events provided by an FID",
+          "request": {
+            "name": "Fetch a list of on-chain events provided by an FID",
+            "description": {
+              "content": "Fetch on-chain events provided by a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onChainEventsByFid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The FID being requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "EVENT_TYPE_SIGNER",
+                  "description": "(Required) The numeric or string value of the event type being requested"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a862d3d2-98a0-45e7-a2dc-1fa86875270e",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainEventsByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "616"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "EVENT_TYPE_SIGNER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"blockHash\": \"0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28\",\n      \"blockNumber\": 2005,\n      \"blockTimestamp\": 7840,\n      \"chainId\": 2202,\n      \"fid\": 8068,\n      \"logIndex\": 3019,\n      \"signerEventBody\": {\n        \"key\": \"0x7B8cc0Ba22fAaCbf3E218c6e56De3AEEFA4EcCdF0FC9CcBbbaf63EEfFfa3b0cf\",\n        \"keyType\": 3466,\n        \"eventType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": \"wfrMQMWkZVHyLo9NUzikvOZF69WK3Ju9mvUVXJ4nT0R=\",\n        \"metadataType\": 8154\n      },\n      \"transactionHash\": \"0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952\",\n      \"txIndex\": 3362,\n      \"type\": \"EVENT_TYPE_SIGNER\"\n    },\n    {\n      \"blockHash\": \"0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28\",\n      \"blockNumber\": 1736,\n      \"blockTimestamp\": 1181,\n      \"chainId\": 4752,\n      \"fid\": 515,\n      \"logIndex\": 9480,\n      \"signerEventBody\": {\n        \"key\": \"0xD9afF0a7DC50b7FAE96aC452b53768e93AAB17fdebbd731CBfa73cF05Ae2B502\",\n        \"keyType\": 1844,\n        \"eventType\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": \"\",\n        \"metadataType\": 3824\n      },\n      \"transactionHash\": \"0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952\",\n      \"txIndex\": 9349,\n      \"type\": \"EVENT_TYPE_SIGNER\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e92c336-463d-4428-ab0e-99d6e8224117",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainEventsByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "616"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "EVENT_TYPE_SIGNER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7473,\n  \"details\": \"string\",\n  \"errCode\": \"string\",\n  \"metadata\": {\n    \"errcode\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"name\": \"string\",\n  \"presentable\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaa596ce-de8c-4d12-a219-46dd1a01382d",
+          "name": "Fetch a list of signers provided by an FID",
+          "request": {
+            "name": "Fetch a list of signers provided by an FID",
+            "description": {
+              "content": "**Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onChainSignersByFid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The FID being requested"
+                },
+                {
+                  "disabled": false,
+                  "key": "signer",
+                  "value": "<string>",
+                  "description": "The optional key of signer"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a21b3851-7bb1-47b8-a892-7056ec28bd3c",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainSignersByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "616"
+                    },
+                    {
+                      "key": "signer",
+                      "value": "0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"blockHash\": \"0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28\",\n  \"blockNumber\": 9886,\n  \"blockTimestamp\": 6579,\n  \"chainId\": 5053,\n  \"fid\": 8549,\n  \"logIndex\": 4241,\n  \"signerEventBody\": {\n    \"key\": \"0x6Ed9Bf0ff8dBD8aE7DFDFB2e1076cc4b478bCCD30f9F9ddEDA7D0CCc4A2d78Cb\",\n    \"keyType\": 2381,\n    \"eventType\": \"SIGNER_EVENT_TYPE_ADD\",\n    \"metadata\": \"6gPNRjGYp00i3gUoET4krHQUtFi+Etyi\",\n    \"metadataType\": 4974\n  },\n  \"transactionHash\": \"0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952\",\n  \"txIndex\": 9642,\n  \"type\": \"EVENT_TYPE_SIGNER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2ed2d00-96cd-49b4-8ea3-02aa58fa06be",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onChainSignersByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "616"
+                    },
+                    {
+                      "key": "signer",
+                      "value": "0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7473,\n  \"details\": \"string\",\n  \"errCode\": \"string\",\n  \"metadata\": {\n    \"errcode\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"name\": \"string\",\n  \"presentable\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f383187-3a3f-4423-b523-947a805b3289",
+    "name": "Neynar Action OnChainEvents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

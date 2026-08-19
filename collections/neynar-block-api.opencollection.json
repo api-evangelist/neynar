@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Block API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Block",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Block FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/block/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a block for a given FID."
+        },
+        {
+          "info": {
+            "name": "Unblock FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/block/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a block for a given FID."
+        },
+        {
+          "info": {
+            "name": "Blocked / Blocked by FIDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/block/list/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "blocker_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return the users that this user has blocked"
+              },
+              {
+                "name": "blocked_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return the users that have blocked this user"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetches all FIDs that a user has blocked or has been blocked by"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

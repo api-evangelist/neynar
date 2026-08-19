@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Reaction API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post a reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/reaction/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a reaction (like or recast) to a given cast \n(In order to post a reaction `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Delete reaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/reaction/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a reaction (like or recast) to a cast \n(In order to delete a reaction `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Reactions for cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/reactions/cast/",
+            "params": [
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetches reactions for a given cast"
+        },
+        {
+          "info": {
+            "name": "Reactions for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/reactions/user/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of reaction to fetch (likes or recasts or all)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetches reactions for a given user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

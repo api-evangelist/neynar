@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action AuthAddress API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuthAddress",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Status by auth address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/auth_address/developer_managed/",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Ethereum address"
+              }
+            ]
+          },
+          "docs": "Fetches the status of a developer managed auth address by auth address"
+        },
+        {
+          "info": {
+            "name": "Register Signed Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/auth_address/developer_managed/signed_key/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allow apps to register an Ethereum addresses as authorized \"auth addresses\" for a user's Farcaster account, enabling seamless Sign-In With Farcaster (SIWF) across applications without repeated custody wallet authorizations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Signer API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch authorization url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/login/authorize/",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch authorization url (Fetched authorized url useful for SIWN login operation)"
+        },
+        {
+          "info": {
+            "name": "Publish message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/message/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request."
+        },
+        {
+          "info": {
+            "name": "Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/signer/",
+            "params": [
+              {
+                "name": "signer_uuid",
+                "value": "",
+                "type": "query",
+                "description": "UUID of the signer.\n`signer_uuid` is paired with API key, can't use a `uuid` made with a different API key."
+              }
+            ]
+          },
+          "docs": "Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)"
+        },
+        {
+          "info": {
+            "name": "Create signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/signer/"
+          },
+          "docs": "Creates a signer and returns the signer status. \n\n**Note**: While tesing please reuse the signer, it costs money to approve a signer."
+        },
+        {
+          "info": {
+            "name": "Status by public key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/signer/developer_managed/",
+            "params": [
+              {
+                "name": "public_key",
+                "value": "",
+                "type": "query",
+                "description": "Ed25519 public key"
+              }
+            ]
+          },
+          "docs": "Fetches the status of a developer managed signer by public key"
+        },
+        {
+          "info": {
+            "name": "Register Signed Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/signer/developer_managed/signed_key/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers an signed key and returns the developer managed signer status with an approval url."
+        },
+        {
+          "info": {
+            "name": "List signers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/signer/list/",
+            "params": [
+              {
+                "name": "message",
+                "value": "",
+                "type": "query",
+                "description": "A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded."
+              },
+              {
+                "name": "signature",
+                "value": "",
+                "type": "query",
+                "description": "The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer."
+              }
+            ]
+          },
+          "docs": "Fetches a list of signers for a custody address"
+        },
+        {
+          "info": {
+            "name": "Register Signed Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/signer/signed_key/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers an app FID, deadline and a signature. Returns the signer status with an approval url."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

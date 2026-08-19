@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Reactions API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "By FID or cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/reactionById",
+            "params": [
+              {
+                "name": "fid",
+                "value": "616",
+                "type": "query",
+                "description": "The FID of the reaction's creator"
+              },
+              {
+                "name": "target_fid",
+                "value": "616",
+                "type": "query",
+                "description": "The FID of the cast's creator"
+              },
+              {
+                "name": "target_hash",
+                "value": "0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be",
+                "type": "query",
+                "description": "The cast's hash"
+              },
+              {
+                "name": "reaction_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lookup a reaction by its FID or cast."
+        },
+        {
+          "info": {
+            "name": "On cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/reactionsByCast",
+            "params": [
+              {
+                "name": "target_fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the cast's creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash."
+              },
+              {
+                "name": "target_hash",
+                "value": "",
+                "type": "query",
+                "description": "The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid."
+              },
+              {
+                "name": "reaction_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator's FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content."
+        },
+        {
+          "info": {
+            "name": "By FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/reactionsByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the reaction's creator"
+              },
+              {
+                "name": "reaction_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Fetch reactions by a user."
+        },
+        {
+          "info": {
+            "name": "To a target URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/reactionsByTarget",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Target URL starting with 'chain://'."
+              },
+              {
+                "name": "reaction_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

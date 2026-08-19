@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Storage API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allocation of user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/storage/allocations/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              }
+            ]
+          },
+          "docs": "Fetches storage allocations for a given user"
+        },
+        {
+          "info": {
+            "name": "Buy storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/storage/buy/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This api will help you rent units of storage for an year for a specific FID.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links. Requires x-wallet-id header."
+        },
+        {
+          "info": {
+            "name": "Usage of user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/storage/usage/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              }
+            ]
+          },
+          "docs": "Fetches storage usage for a given user"
+        },
+        {
+          "info": {
+            "name": "FID's limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/storageLimitsByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "3",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch a user's storage limits."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

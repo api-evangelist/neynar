@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action fname API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "fname",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check fname availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fname/availability/",
+            "params": [
+              {
+                "name": "fname",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check if a given fname is available"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action HubEvents API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HubEvents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Page of events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/events",
+            "params": [
+              {
+                "name": "from_event_id",
+                "value": "0",
+                "type": "query",
+                "description": "An optional Hub Id to start getting events from.\nThis is also returned from the API as nextPageEventId, which\ncan be used to page through all the Hub events. Set it to 0\nto start from the first event.\n"
+              }
+            ]
+          },
+          "docs": "Fetch a list of events."
+        },
+        {
+          "info": {
+            "name": "Event by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/eventById",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "query",
+                "description": "The Hub Id of the event"
+              }
+            ]
+          },
+          "docs": "Lookup an event by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

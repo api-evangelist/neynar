@@ -1,0 +1,502 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Channel API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channel",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "By ID or parent_url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID for the channel being queried"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of identifier being used to query the channel. Defaults to ID."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user viewing the channel."
+              }
+            ]
+          },
+          "docs": "Returns details of a channel"
+        },
+        {
+          "info": {
+            "name": "Bulk fetch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/bulk/",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of channel IDs or parent_urls, up to 100 at a time"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of identifier being used to query the channels. Defaults to ID."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user viewing the channels."
+              }
+            ]
+          },
+          "docs": "Returns details of multiple channels"
+        },
+        {
+          "info": {
+            "name": "Follow a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/channel/follow/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Follow a channel"
+        },
+        {
+          "info": {
+            "name": "Unfollow a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/channel/follow/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unfollow a channel"
+        },
+        {
+          "info": {
+            "name": "For channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/followers/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID for the channel being queried"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of followers to fetch"
+              }
+            ]
+          },
+          "docs": "Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination."
+        },
+        {
+          "info": {
+            "name": "Relevant followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/followers/relevant/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID being queried"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`."
+              }
+            ]
+          },
+          "docs": "Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as \"X, Y, Z follow this channel\"."
+        },
+        {
+          "info": {
+            "name": "Fetch all channels with their details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/list/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of all channels with their details"
+        },
+        {
+          "info": {
+            "name": "Remove user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/channel/member/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a user from a channel or a user's invite to a channel role"
+        },
+        {
+          "info": {
+            "name": "Invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/channel/member/invite/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite a user to a channel"
+        },
+        {
+          "info": {
+            "name": "Accept or reject an invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neynar.com/v2/farcaster/channel/member/invite/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accept or reject a channel invite"
+        },
+        {
+          "info": {
+            "name": "Open invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/member/invite/list/",
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID for the channel being queried"
+              },
+              {
+                "name": "invited_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user being invited"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned."
+        },
+        {
+          "info": {
+            "name": "Fetch members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/member/list/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID for the channel being queried"
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch a list of members in a channel"
+        },
+        {
+          "info": {
+            "name": "Search by ID or name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/search/",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID or name for the channel being queried"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user viewing the channels."
+              }
+            ]
+          },
+          "docs": "Returns a list of channels based on ID or name"
+        },
+        {
+          "info": {
+            "name": "Channels by activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/trending/",
+            "params": [
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of trending channels based on activity"
+        },
+        {
+          "info": {
+            "name": "Fetch channels that user is active in",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/channel/user/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The user's FID (identifier)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetches all channels that a user has casted in, in reverse chronological order."
+        },
+        {
+          "info": {
+            "name": "Following",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/channels/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of all channels with their details that a FID follows."
+        },
+        {
+          "info": {
+            "name": "Member of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/memberships/list/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

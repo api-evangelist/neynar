@@ -1,0 +1,1117 @@
+{
+  "item": [
+    {
+      "id": "ffe31600-8ca8-47ae-a73a-05f02e5e411b",
+      "name": "Reaction",
+      "description": {
+        "content": "Operations related to reaction",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "792cb1a2-57ff-4f20-bd6b-b17eaa081af3",
+          "name": "Delete reaction",
+          "request": {
+            "name": "Delete reaction",
+            "description": {
+              "content": "Delete a reaction (like or recast) to a cast \n(In order to delete a reaction `signer_uuid` must be approved)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "reaction",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signer_uuid\": \"<string>\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c363e80-9fbc-46fa-bc3e-105581f22409",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3680292e-a34d-4f92-960e-c140da1dfe80",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac2ad2d0-5afc-49d5-acb4-f6655d73ae2b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4afe5399-bfe9-4273-a8c1-143fc21b4cf2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a0dd508-e9c6-494b-ba22-21cb08099ea0",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "652ba6ac-6a78-462d-803d-25d19afdf267",
+          "name": "Post a reaction",
+          "request": {
+            "name": "Post a reaction",
+            "description": {
+              "content": "Post a reaction (like or recast) to a given cast \n(In order to post a reaction `signer_uuid` must be approved)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "reaction",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"signer_uuid\": \"<string>\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc991204-dbdb-41f8-9c38-47efe114385a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36c6ba72-4438-4393-8420-de5d56162628",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e107a976-d972-4b85-a08e-2b1caa639785",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c3b10a1-91c5-4d91-adc9-878379dc2e23",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "199d2695-1a4e-4d43-adde-2cc0b5b86dd2",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reaction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"signer_uuid\": \"19d0c5fd-9b33-4a48-a0e2-bc7b0555baec\",\n  \"reaction_type\": \"<string>\",\n  \"target\": \"0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/\",\n  \"idem\": \"<string>\",\n  \"target_author_fid\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0c63ce6-fc02-48d7-9bfe-fa0d5cfe9695",
+          "name": "Reactions for cast",
+          "request": {
+            "name": "Reactions for cast",
+            "description": {
+              "content": "Fetches reactions for a given cast",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "reactions",
+                "cast",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hash",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "(Required) Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values."
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "(Required) Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values."
+                },
+                {
+                  "disabled": false,
+                  "key": "viewer_fid",
+                  "value": "<integer>",
+                  "description": "Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of results to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cbde848b-79de-4600-b460-7b74934051ce",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reactions",
+                    "cast",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hash",
+                      "value": "0x71d5225f77e0164388b1d4c120825f3a2c1f131c"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reactions\": [\n    {\n      \"reaction_type\": \"<string>\",\n      \"reaction_timestamp\": \"1953-04-24T17:51:30.557Z\",\n      \"object\": \"recasts\",\n      \"user\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"1987-12-26T15:40:27.317Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"http://C.vfqm8k\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"1989-01-29T03:56:50.870Z\",\n            \"is_live\": false\n          },\n          \"location\": {\n            \"latitude\": 29.304265762968498,\n            \"longitude\": 4.509680186367149,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 490.4028654470716\n          }\n        },\n        \"follower_count\": 6011,\n        \"following_count\": 8340,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"PnqVAgm88WkjvaPZvkKTJR79XP4XKFhmNj2zXcfyzJ\",\n            \"Ftn8PHuSn7WFR174yb5NfWmrtxyusDgxb\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 8063.891830279226,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"subscribed\",\n          \"subscribed_at\": \"1947-02-08T04:22:08.955Z\",\n          \"expires_at\": \"2003-10-14T17:17:44.171Z\"\n        },\n        \"score\": 8253.153758625607,\n        \"viewer_context\": {\n          \"following\": true,\n          \"followed_by\": true,\n          \"blocking\": false,\n          \"blocked_by\": false\n        }\n      },\n      \"app\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 5106.507593219409,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"reaction_type\": \"<string>\",\n      \"reaction_timestamp\": \"1978-03-23T09:31:26.696Z\",\n      \"object\": \"recasts\",\n      \"user\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"1952-10-01T11:23:35.508Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"http://olJMvZiGCPnQFeztsIRf.hol.9cVLfMLD+2PcKkC7Q5wygmrqK\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"1948-08-26T05:54:18.756Z\",\n            \"is_live\": true\n          },\n          \"location\": {\n            \"latitude\": 18.26606994850397,\n            \"longitude\": -171.0809792272866,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 5034.149033022393\n          }\n        },\n        \"follower_count\": 2996,\n        \"following_count\": 2163,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"2Gb1PTvSBYg218wFhwcgra6qUyV141K2h\",\n            \"CEdhqJRJUU7HumZc5ePqfA4KxENpXbGE9gUozBSCBFX\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"x\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 3897.7622582671734,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"subscribed\",\n          \"subscribed_at\": \"1951-06-22T18:52:35.862Z\",\n          \"expires_at\": \"1983-11-15T04:57:45.890Z\"\n        },\n        \"score\": 3429.028717190057,\n        \"viewer_context\": {\n          \"following\": true,\n          \"followed_by\": true,\n          \"blocking\": true,\n          \"blocked_by\": true\n        }\n      },\n      \"app\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 1479.7373374486667,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"next\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92145ca5-1e6d-4f89-9a88-f7ba2873e3d3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reactions",
+                    "cast",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hash",
+                      "value": "0x71d5225f77e0164388b1d4c120825f3a2c1f131c"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5ea4b86-7f20-41a5-8e85-916785093082",
+          "name": "Reactions for user",
+          "request": {
+            "name": "Reactions for user",
+            "description": {
+              "content": "Fetches reactions for a given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "reactions",
+                "user",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewer_fid",
+                  "value": "<integer>",
+                  "description": "Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Type of reaction to fetch (likes or recasts or all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Number of results to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0ab759c-9ef7-4116-99da-7fbc016481b0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reactions",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reactions\": [\n    {\n      \"reaction_type\": \"like\",\n      \"cast\": {\n        \"object\": \"cast\",\n        \"hash\": \"string\",\n        \"parent_hash\": \"string\",\n        \"parent_url\": \"string\",\n        \"root_parent_url\": \"string\",\n        \"parent_author\": {\n          \"fid\": 3\n        },\n        \"author\": {\n          \"object\": \"user\",\n          \"fid\": 3,\n          \"username\": \"string\",\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"registered_at\": \"2008-09-29T07:22:54.201Z\",\n          \"profile\": {\n            \"bio\": {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_channels\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_channels_ranges\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_profiles\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_profiles_ranges\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"banner\": {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"live_at\": {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_live\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follower_count\": 7328,\n          \"following_count\": 9832,\n          \"verifications\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"auth_addresses\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"app\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"app\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"verified_addresses\": {\n            \"eth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"sol_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"primary\": {\n              \"eth_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"verified_accounts\": [\n            {\n              \"platform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"platform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"display_name\": \"string\",\n          \"experimental\": {\n            \"neynar_user_score\": 4978.756026809607,\n            \"deprecation_notice\": \"string\"\n          },\n          \"pfp_url\": \"string\",\n          \"pro\": {\n            \"status\": \"unsubscribed\",\n            \"subscribed_at\": \"2017-06-19T17:43:34.721Z\",\n            \"expires_at\": \"2006-02-07T08:31:27.473Z\"\n          },\n          \"score\": 3745.196843720233,\n          \"viewer_context\": {\n            \"following\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"followed_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"blocking\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"blocked_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"text\": \"string\",\n        \"timestamp\": \"1959-06-23T08:34:13.827Z\",\n        \"embeds\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"reactions\": {\n          \"likes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"recasts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"likes_count\": 1183,\n          \"recasts_count\": 9284\n        },\n        \"replies\": {\n          \"count\": 1164\n        },\n        \"thread_hash\": \"string\",\n        \"mentioned_profiles\": [\n          {\n            \"object\": \"user\",\n            \"fid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"custody_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"registered_at\": \"1964-07-23T21:43:22.593Z\",\n            \"profile\": {\n              \"bio\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"banner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"live_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"location\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"follower_count\": 7495,\n            \"following_count\": 5086,\n            \"verifications\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"auth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"verified_addresses\": {\n              \"eth_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"primary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"verified_accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"display_name\": \"string\",\n            \"experimental\": {\n              \"neynar_user_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"deprecation_notice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"pfp_url\": \"string\",\n            \"pro\": {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subscribed_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"expires_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"score\": 9977.937070922877,\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"object\": \"user\",\n            \"fid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"custody_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"registered_at\": \"1998-05-26T12:27:51.258Z\",\n            \"profile\": {\n              \"bio\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"banner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"live_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"location\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"follower_count\": 9606,\n            \"following_count\": 2475,\n            \"verifications\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"auth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"verified_addresses\": {\n              \"eth_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"primary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"verified_accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"display_name\": \"string\",\n            \"experimental\": {\n              \"neynar_user_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"deprecation_notice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"pfp_url\": \"string\",\n            \"pro\": {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subscribed_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"expires_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"score\": 1120.760776080939,\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"mentioned_profiles_ranges\": [\n          {\n            \"start\": 7286.670504596955,\n            \"end\": 858.573024971504\n          },\n          {\n            \"start\": 1128.7030680347975,\n            \"end\": 4159.250111965511\n          }\n        ],\n        \"mentioned_channels\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"object\": \"channel_dehydrated\",\n            \"image_url\": \"string\",\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"object\": \"channel_dehydrated\",\n            \"image_url\": \"string\",\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"mentioned_channels_ranges\": [\n          {\n            \"start\": 6908.700800954244,\n            \"end\": 9789.96696838888\n          },\n          {\n            \"start\": 5731.688601570339,\n            \"end\": 8027.190228045777\n          }\n        ],\n        \"channel\": {\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"app\": {\n          \"object\": \"user_dehydrated\",\n          \"fid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custody_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 6504.806726253653,\n          \"username\": \"string\"\n        },\n        \"author_channel_context\": {\n          \"following\": true,\n          \"role\": \"owner\"\n        },\n        \"type\": \"cast-reply\",\n        \"viewer_context\": {\n          \"liked\": false,\n          \"recasted\": false\n        }\n      },\n      \"reaction_timestamp\": \"1998-01-20T00:38:53.535Z\",\n      \"object\": \"likes\",\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 6730.154662744039,\n        \"username\": \"string\"\n      },\n      \"app\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 7331.509534799255,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"reaction_type\": \"like\",\n      \"cast\": {\n        \"object\": \"cast\",\n        \"hash\": \"string\",\n        \"parent_hash\": \"string\",\n        \"parent_url\": \"string\",\n        \"root_parent_url\": \"string\",\n        \"parent_author\": {\n          \"fid\": 3\n        },\n        \"author\": {\n          \"object\": \"user\",\n          \"fid\": 3,\n          \"username\": \"string\",\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"registered_at\": \"1963-08-10T06:21:16.835Z\",\n          \"profile\": {\n            \"bio\": {\n              \"text\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_channels\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_channels_ranges\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_profiles\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"mentioned_profiles_ranges\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"banner\": {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"live_at\": {\n              \"url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updated_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"is_live\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follower_count\": 1413,\n          \"following_count\": 975,\n          \"verifications\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"auth_addresses\": [\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"app\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"app\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"verified_addresses\": {\n            \"eth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"sol_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"primary\": {\n              \"eth_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"verified_accounts\": [\n            {\n              \"platform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"platform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"display_name\": \"string\",\n          \"experimental\": {\n            \"neynar_user_score\": 397.7480140811274,\n            \"deprecation_notice\": \"string\"\n          },\n          \"pfp_url\": \"string\",\n          \"pro\": {\n            \"status\": \"unsubscribed\",\n            \"subscribed_at\": \"1994-04-25T05:53:43.872Z\",\n            \"expires_at\": \"2022-02-09T23:18:09.852Z\"\n          },\n          \"score\": 8618.878837061422,\n          \"viewer_context\": {\n            \"following\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"followed_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"blocking\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"blocked_by\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"text\": \"string\",\n        \"timestamp\": \"2010-10-05T11:06:08.572Z\",\n        \"embeds\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"reactions\": {\n          \"likes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"recasts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"likes_count\": 1853,\n          \"recasts_count\": 8709\n        },\n        \"replies\": {\n          \"count\": 7805\n        },\n        \"thread_hash\": \"string\",\n        \"mentioned_profiles\": [\n          {\n            \"object\": \"user\",\n            \"fid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"custody_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"registered_at\": \"2010-11-28T19:37:46.240Z\",\n            \"profile\": {\n              \"bio\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"banner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"live_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"location\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"follower_count\": 4383,\n            \"following_count\": 764,\n            \"verifications\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"auth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"verified_addresses\": {\n              \"eth_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"primary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"verified_accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"display_name\": \"string\",\n            \"experimental\": {\n              \"neynar_user_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"deprecation_notice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"pfp_url\": \"string\",\n            \"pro\": {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subscribed_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"expires_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"score\": 4236.773393746576,\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"object\": \"user\",\n            \"fid\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"username\": \"string\",\n            \"custody_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"registered_at\": \"1998-02-09T20:14:50.426Z\",\n            \"profile\": {\n              \"bio\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"banner\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"live_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"location\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"follower_count\": 2988,\n            \"following_count\": 8543,\n            \"verifications\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"auth_addresses\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"verified_addresses\": {\n              \"eth_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sol_addresses\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"primary\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"verified_accounts\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"display_name\": \"string\",\n            \"experimental\": {\n              \"neynar_user_score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"deprecation_notice\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"pfp_url\": \"string\",\n            \"pro\": {\n              \"status\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subscribed_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"expires_at\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"score\": 4387.958799891017,\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"mentioned_profiles_ranges\": [\n          {\n            \"start\": 3069.620738041945,\n            \"end\": 6679.229479648065\n          },\n          {\n            \"start\": 761.6444049556615,\n            \"end\": 8463.827712123944\n          }\n        ],\n        \"mentioned_channels\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"object\": \"channel_dehydrated\",\n            \"image_url\": \"string\",\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"object\": \"channel_dehydrated\",\n            \"image_url\": \"string\",\n            \"viewer_context\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"mentioned_channels_ranges\": [\n          {\n            \"start\": 780.4349593420745,\n            \"end\": 9596.324674275565\n          },\n          {\n            \"start\": 7701.7452492638195,\n            \"end\": 990.3013731032528\n          }\n        ],\n        \"channel\": {\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"app\": {\n          \"object\": \"user_dehydrated\",\n          \"fid\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"custody_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 365.8301978367262,\n          \"username\": \"string\"\n        },\n        \"author_channel_context\": {\n          \"following\": true,\n          \"role\": \"owner\"\n        },\n        \"type\": \"cast-reply\",\n        \"viewer_context\": {\n          \"liked\": false,\n          \"recasted\": false\n        }\n      },\n      \"reaction_timestamp\": \"1996-01-10T17:32:09.562Z\",\n      \"object\": \"likes\",\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 9714.365397468286,\n        \"username\": \"string\"\n      },\n      \"app\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 905.6637348513874,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"next\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ecfcadb-ca19-46cc-aa1e-9d18a338ec81",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "reactions",
+                    "user",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "30"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 9149\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1705818-eb65-40bb-a451-5a769ead58b5",
+    "name": "Neynar Action Reaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

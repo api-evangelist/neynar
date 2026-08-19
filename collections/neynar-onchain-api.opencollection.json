@@ -1,0 +1,513 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Onchain API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Onchain",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Relevant owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fungible/owner/relevant/",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "query",
+                "description": "Contract address of the fungible asset (Ethereum or Solana)"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network of the fungible asset."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired."
+              }
+            ]
+          },
+          "docs": "Fetch a list of relevant owners for a on chain asset. If a viewer is provided, only relevant holders will be shown. This usually shows on a fungible asset page as \"X, Y, Z and N others you know own this asset\"."
+        },
+        {
+          "info": {
+            "name": "Bulk relevant owners",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fungible/owner/relevant/bulk",
+            "params": [
+              {
+                "name": "contract_addresses",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of contract addresses, up to 10 at a time"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network of the fungible assets."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context."
+              }
+            ]
+          },
+          "docs": "Fetch relevant owners for multiple on chain assets in a single request, up to 10 contract addresses at a time."
+        },
+        {
+          "info": {
+            "name": "Send fungibles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/fungible/send/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send fungibles in bulk to several farcaster users. A funded wallet is to required use this API. React out to us on the Neynar channel on farcaster to get your wallet address."
+        },
+        {
+          "info": {
+            "name": "Get fungible trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fungible/trades/",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Contract address"
+              },
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query",
+                "description": "Time window for trades e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\""
+              },
+              {
+                "name": "min_amount_usd",
+                "value": "",
+                "type": "query",
+                "description": "Minimum USD amount to filter trades"
+              }
+            ]
+          },
+          "docs": "Get recent trades for a specific fungible within a timeframe. Returns trades ordered by timestamp (most recent first)."
+        },
+        {
+          "info": {
+            "name": "Trending fungibles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fungible/trending/",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query",
+                "description": "Time window for trending calculations e.g. \"1h\", \"6h\", \"12h\", \"24h\", \"7d\""
+              }
+            ]
+          },
+          "docs": "Fetch trending fungibles based on buy activity from watched addresses. Returns fungibles ranked by USD buy volume and buy count within the specified time window."
+        },
+        {
+          "info": {
+            "name": "Fetch fungibles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/fungibles/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fungibles",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fungible identifiers"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Optional FID of the viewer to personalize cast count filtering"
+              }
+            ]
+          },
+          "docs": "Fetch details for fungible assets identified by fungible identifiers."
+        },
+        {
+          "info": {
+            "name": "Deploy ERC-721 collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/nft/deploy/erc721/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy a new ERC-721A (series) NFT collection."
+        },
+        {
+          "info": {
+            "name": "Generate an NFT image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/nft/image/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new image or edit existing images using AI. Returns a publicly accessible URL to the generated image."
+        },
+        {
+          "info": {
+            "name": "Upload NFT token metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/nft/metadata/token",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads metadata JSON to S3 for one or more tokens on a deployed contract. Requires contract ownership via the wallet header."
+        },
+        {
+          "info": {
+            "name": "Simulate NFT mint calldata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/nft/mint/",
+            "params": [
+              {
+                "name": "recipients",
+                "value": "",
+                "type": "query",
+                "description": "JSON array of recipients (same structure as POST)."
+              },
+              {
+                "name": "nft_contract_address",
+                "value": "",
+                "type": "query",
+                "description": "Ethereum address"
+              },
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "Network to mint on."
+              }
+            ]
+          },
+          "docs": "Simulates mint calldata for the given recipients, contract, and network. Useful for previewing calldata and ABI before minting."
+        },
+        {
+          "info": {
+            "name": "Mint NFT(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/nft/mint/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mints an NFT to one or more recipients on a specified network and contract, using a configured server wallet. Contact us to set up your wallet configuration if you don't have one."
+        },
+        {
+          "info": {
+            "name": "Token balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/balance/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user to fetch"
+              },
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of networks to fetch balances for"
+              }
+            ]
+          },
+          "docs": "Fetches the token balances of a user given their FID"
+        },
+        {
+          "info": {
+            "name": "Register Farcaster account onchain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/user/register/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction. Requires x-wallet-id header."
+        },
+        {
+          "info": {
+            "name": "Deploy fungible",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/fungible/",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates a new token.\nThis is an allowlisted API, reach out if you want access."
+        },
+        {
+          "info": {
+            "name": "Get wallet token balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/onchain/token/balances",
+            "params": [
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of networks to query. Each value must be a valid network (ethereum, optimism, base, arbitrum)."
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Wallet address"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (max 100)"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch all token balances for a wallet address across multiple networks. Results are paginated."
+        },
+        {
+          "info": {
+            "name": "Get token metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/onchain/token/metadata",
+            "params": [
+              {
+                "name": "network",
+                "value": "",
+                "type": "query",
+                "description": "A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\""
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "Token contract address"
+              }
+            ]
+          },
+          "docs": "Fetch metadata for a specific token including price, market data, and basic information. Data is fetched from onchain-indexer with fallback to third-party providers."
+        },
+        {
+          "info": {
+            "name": "Batch get token metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/onchain/token/metadata/batch",
+            "params": [
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of blockchain networks. Each value must be a valid network (ethereum, optimism, base, arbitrum)."
+              },
+              {
+                "name": "addresses",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of token contract addresses corresponding to each network"
+              }
+            ]
+          },
+          "docs": "Fetch metadata for multiple tokens in a single request. Provide comma-separated networks and addresses in the same order. Maximum 100 tokens per request."
+        },
+        {
+          "info": {
+            "name": "Create x402 signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/signature/x402/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              },
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a signature for a given x402 resource using the specified wallet."
+        },
+        {
+          "info": {
+            "name": "Create x402 Sign-In-With-X payload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/signature/x402/siwx",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              },
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Sign-In-With-X payload for a wallet-backed x402 resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

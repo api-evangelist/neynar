@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Casts API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Casts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "By FID and Hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/castById",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the cast's creator"
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "The unique hash identifier of the cast. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies a specific cast in the Farcaster network."
+              }
+            ]
+          },
+          "docs": "Lookup a cast by its FID and hash."
+        },
+        {
+          "info": {
+            "name": "By FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/castsByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the casts' creator"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Fetch user's casts."
+        },
+        {
+          "info": {
+            "name": "Mentioning an FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/castsByMention",
+            "params": [
+              {
+                "name": "fid",
+                "value": "3",
+                "type": "query",
+                "description": "The FID that is mentioned in a cast"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Fetch casts mentioning a user."
+        },
+        {
+          "info": {
+            "name": "By parent cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/castsByParent",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The Farcaster ID (FID) of the parent cast's creator. This parameter must be used together with the 'hash' parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "query",
+                "description": "The unique hash identifier of the parent cast. Must be used together with the 'fid' parameter when doing hash-based lookup. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Not required if using URL-based lookup."
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Cast URL starting with 'chain://'"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

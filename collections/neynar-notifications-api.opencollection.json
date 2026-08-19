@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Notifications API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "For user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/notifications/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of notifications for a specific FID."
+        },
+        {
+          "info": {
+            "name": "For user by channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/notifications/channel/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks."
+              },
+              {
+                "name": "channel_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of notifications for a user in specific channels"
+        },
+        {
+          "info": {
+            "name": "For user by parent_urls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/notifications/parent_url/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks."
+              },
+              {
+                "name": "parent_urls",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated parent_urls"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of notifications for a user in specific parent_urls"
+        },
+        {
+          "info": {
+            "name": "Mark as seen",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/notifications/seen/",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark notifications as seen.\nYou can choose one of two authorization methods, either:\n  1. Provide a valid signer_uuid in the request body (Most common)\n  2. Provide a valid, signed \"Bearer\" token in the request's `Authorization` header similar to the\n     approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

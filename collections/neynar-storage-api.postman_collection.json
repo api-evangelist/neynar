@@ -1,0 +1,792 @@
+{
+  "item": [
+    {
+      "id": "1270c5b5-301c-4ed9-a233-e71849735a3a",
+      "name": "Storage",
+      "description": {
+        "content": "Operations related to storage",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4dcd9bc8-a79a-445e-a330-599c1e3250ad",
+          "name": "Allocation of user",
+          "request": {
+            "name": "Allocation of user",
+            "description": {
+              "content": "Fetches storage allocations for a given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "storage",
+                "allocations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3342a938-58b1-4326-babd-005fa676bef7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "allocations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allocations\": [\n    {\n      \"expiry\": \"2024-10-08T22:03:49.000Z\",\n      \"object\": \"storage_allocation\",\n      \"timestamp\": \"2023-10-09T22:03:49.000Z\",\n      \"units\": 10,\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 2372.84965496246,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"expiry\": \"2024-10-08T22:03:49.000Z\",\n      \"object\": \"storage_allocation\",\n      \"timestamp\": \"2023-10-09T22:03:49.000Z\",\n      \"units\": 10,\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 9586.051313863869,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"total_active_units\": 13\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "319b1942-4cfe-4e98-b118-b677b41cbfdd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "allocations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8293\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef92c858-79b4-4597-8d6d-c8512f75bf73",
+          "name": "Buy storage",
+          "request": {
+            "name": "Buy storage",
+            "description": {
+              "content": "This api will help you rent units of storage for an year for a specific FID.\nA storage unit lets you store 5000 casts, 2500 reactions and 2500 links. Requires x-wallet-id header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "storage",
+                "buy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Wallet ID to use for transactions",
+                "key": "x-wallet-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fid\": \"<integer>\",\n  \"idem\": \"<string>\",\n  \"units\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "284a2c38-39b7-48e0-8975-52f2e8fb18c0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "buy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Wallet ID to use for transactions",
+                    "key": "x-wallet-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fid\": 1,\n  \"idem\": \"<string>\",\n  \"units\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allocations\": [\n    {\n      \"expiry\": \"2024-10-08T22:03:49.000Z\",\n      \"object\": \"storage_allocation\",\n      \"timestamp\": \"2023-10-09T22:03:49.000Z\",\n      \"units\": 10,\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 1933.0167352538963,\n        \"username\": \"string\"\n      }\n    },\n    {\n      \"expiry\": \"2024-10-08T22:03:49.000Z\",\n      \"object\": \"storage_allocation\",\n      \"timestamp\": \"2023-10-09T22:03:49.000Z\",\n      \"units\": 10,\n      \"user\": {\n        \"object\": \"user_dehydrated\",\n        \"fid\": 3,\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"display_name\": \"string\",\n        \"pfp_url\": \"string\",\n        \"score\": 3003.9934933779177,\n        \"username\": \"string\"\n      }\n    }\n  ],\n  \"total_active_units\": 13\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddb3e561-70b7-43da-8d93-0d90c03da123",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "buy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Wallet ID to use for transactions",
+                    "key": "x-wallet-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fid\": 1,\n  \"idem\": \"<string>\",\n  \"units\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid query parameters\",\n  \"code\": \"InvalidField\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"expected\": \"string\",\n      \"received\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"message\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"expected\": \"string\",\n      \"received\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88fc9b0d-9df6-4c65-a80b-510fba136c59",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "buy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Wallet ID to use for transactions",
+                    "key": "x-wallet-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fid\": 1,\n  \"idem\": \"<string>\",\n  \"units\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"key\": \"string\",\n  \"property\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22ba04aa-78f8-49a1-9dc7-aecf64a36344",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "buy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Wallet ID to use for transactions",
+                    "key": "x-wallet-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fid\": 1,\n  \"idem\": \"<string>\",\n  \"units\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8293\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0c790ef-c5cf-4499-afea-b758d5b544f2",
+          "name": "Usage of user",
+          "request": {
+            "name": "Usage of user",
+            "description": {
+              "content": "Fetches storage usage for a given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "storage",
+                "usage",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7bc0ed8-9055-4096-8aa6-5ad9300eace5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "usage",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"casts\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  },\n  \"links\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  },\n  \"object\": \"storage_usage\",\n  \"reactions\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  },\n  \"signers\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  },\n  \"total_active_units\": 2,\n  \"user\": {\n    \"object\": \"user_dehydrated\",\n    \"fid\": 3,\n    \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n    \"display_name\": \"string\",\n    \"pfp_url\": \"string\",\n    \"score\": 9008.670851544473,\n    \"username\": \"string\"\n  },\n  \"username_proofs\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  },\n  \"verified_addresses\": {\n    \"capacity\": 10000,\n    \"object\": \"storage\",\n    \"used\": 3659\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f616a75c-58d8-44e1-bacb-7ac8b454e255",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "storage",
+                    "usage",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8293\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d968e0c4-191d-4fd5-b332-7bd230de5d20",
+          "name": "FID's limits",
+          "request": {
+            "name": "FID's limits",
+            "description": {
+              "content": "Fetch a user's storage limits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "storageLimitsByFid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75c598a9-9ca8-49a8-b91e-fbfeaa334b49",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "storageLimitsByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limits\": [\n    {\n      \"storeType\": \"STORE_TYPE_CASTS\",\n      \"limit\": 8201\n    },\n    {\n      \"storeType\": \"STORE_TYPE_CASTS\",\n      \"limit\": 1411\n    }\n  ],\n  \"units\": 1,\n  \"unitDetails\": {\n    \"unitType\": \"UnitType2024\",\n    \"unitSize\": 1\n  },\n  \"tier_subscriptions\": [\n    {\n      \"tier_type\": \"Pro\",\n      \"expires_at\": 1749611663\n    },\n    {\n      \"tier_type\": \"Pro\",\n      \"expires_at\": 1749611663\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4478078b-dbcc-44de-9909-195773b47102",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "storageLimitsByFid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2979,\n  \"details\": \"string\",\n  \"errCode\": \"string\",\n  \"metadata\": {\n    \"errcode\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"name\": \"string\",\n  \"presentable\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a647c24-f390-40c5-803a-9b09d3a60f1f",
+    "name": "Neynar Action Storage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

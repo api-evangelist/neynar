@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Metrics API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Metrics for casts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/metrics/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query string to search for casts"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval of time for which to fetch metrics. Default is 30d."
+              },
+              {
+                "name": "author_fid",
+                "value": "",
+                "type": "query",
+                "description": "Fid of the user whose casts you want to search"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID of the casts you want to search"
+              }
+            ]
+          },
+          "docs": "Fetches metrics casts matching a query"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

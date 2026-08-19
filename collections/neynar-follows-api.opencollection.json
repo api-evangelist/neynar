@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Follows API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Follows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/followers/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "User who's profile you are looking at"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query",
+                "description": "Sort type for fetch followers. Default is `desc_chron`"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Returns a list of followers for a specific FID."
+        },
+        {
+          "info": {
+            "name": "Reciprocal Followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/followers/reciprocal/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns users who the given FID follows and they follow the FID back (reciprocal following relationship)"
+        },
+        {
+          "info": {
+            "name": "Relevant followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/followers/relevant/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "target_fid",
+                "value": "",
+                "type": "query",
+                "description": "User who's profile you are looking at"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`."
+              }
+            ]
+          },
+          "docs": "Returns a list of relevant followers for a specific FID. This usually shows on a profile as \"X, Y and Z follow this user\"."
+        },
+        {
+          "info": {
+            "name": "Following",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/following/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user whose following you want to fetch."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter to sort the users based on different criteria."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type."
+        },
+        {
+          "info": {
+            "name": "Suggest Follows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/following/suggested/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user whose following you want to fetch."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              }
+            ]
+          },
+          "docs": "Fetch a list of suggested users to follow. Used to help users discover new users to follow"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

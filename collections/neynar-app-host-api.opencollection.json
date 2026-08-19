@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action App Host API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Host",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/app_host/user/event/",
+            "params": [
+              {
+                "name": "app_domain",
+                "value": "",
+                "type": "query",
+                "description": "The domain of the mini app"
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user who initiated the event"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query",
+                "description": "The type of event"
+              }
+            ]
+          },
+          "docs": "Returns event object for app host events. Used if the app host intends to sign the event message instead of using Neynar-hosted signers."
+        },
+        {
+          "info": {
+            "name": "Send event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/app_host/user/event/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post an app_host event to the domain's webhook. Events such as enabling or disabling notifications for a user. Provide either a signed message or the signer UUID of an authorized neynar-hosted signers."
+        },
+        {
+          "info": {
+            "name": "Enabled notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/app_host/user/state/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user"
+              }
+            ]
+          },
+          "docs": "Returns the current notification state for a specific user across all mini app domains in this app host. Shows which domains have notifications enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

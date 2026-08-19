@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Subscribers API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscribers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Subscribed to",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/subscribed_to/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subscription_provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider of the subscription."
+              }
+            ]
+          },
+          "docs": "Fetch what FIDs and contracts a FID is subscribed to."
+        },
+        {
+          "info": {
+            "name": "Subscribers of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/subscribers/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subscription_provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider of the subscription."
+              }
+            ]
+          },
+          "docs": "Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID."
+        },
+        {
+          "info": {
+            "name": "Subscriptions created by FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/subscriptions_created/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of a farcaster user or app (unsigned integer)"
+              },
+              {
+                "name": "subscription_provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider of the subscription."
+              }
+            ]
+          },
+          "docs": "Fetch created subscriptions for a given FID's."
+        },
+        {
+          "info": {
+            "name": "Hypersub subscription check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/stp/subscription_check/",
+            "params": [
+              {
+                "name": "addresses",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of Ethereum addresses, up to 350 at a time"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "query",
+                "description": "Ethereum address of the STP contract"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "Chain ID of the STP contract"
+              }
+            ]
+          },
+          "docs": "Check if a wallet address is subscribed to a given STP (Hypersub) contract."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

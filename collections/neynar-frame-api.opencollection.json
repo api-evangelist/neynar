@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Frame API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Frame",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mini apps catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/catalog/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query",
+                "description": "Time window used to calculate the change in trending score for each mini app, used to sort mini app results"
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of categories to include in the results. Includes all if left blank. Example: categories=games,social OR categories=games&categories=social"
+              },
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array."
+              }
+            ]
+          },
+          "docs": "A curated list of featured mini apps"
+        },
+        {
+          "info": {
+            "name": "List of mini app notification tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/notification_tokens/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don't pass in FIDs, you will get back all the notification tokens for the mini app."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Returns a list of notifications tokens related to a mini app"
+        },
+        {
+          "info": {
+            "name": "Get notification campaign stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/notifications/",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "query",
+                "description": "An ID of a specific notification campaign to query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Retrieve notification delivery and opened stats for notification campaigns"
+        },
+        {
+          "info": {
+            "name": "Send notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/frame/notifications/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send notifications to interactors of a mini app. By default every broadcast is delivered synchronously and returns 200 with aggregate counts. When the `ASYNC_NOTIFICATIONS_ENABLED` server flag is on, broadcasts with more than 100 notification tokens are queued and return 202 with a campaign_id instead; poll the campaign stats endpoint for progress. Small broadcasts always stay synchronous."
+        },
+        {
+          "info": {
+            "name": "Relevant mini apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/relevant/",
+            "params": [
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user to fetch relevant mini apps for"
+              },
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query",
+                "description": "Time window used to limit statistics used to calculate mini app relevance"
+              },
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array."
+              }
+            ]
+          },
+          "docs": "Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user"
+        },
+        {
+          "info": {
+            "name": "Search mini apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/search/",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query string to search for mini apps"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "networks",
+                "value": "",
+                "type": "query",
+                "description": "List of blockchain networks by which to filter results.  Mini apps included in the results will specify at least one of the supplied networks or specify none. The list can be provided as comma-separated string or array."
+              }
+            ]
+          },
+          "docs": "Search for mini apps based on a query string"
+        },
+        {
+          "info": {
+            "name": "Get transaction pay mini app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/frame/transaction/pay/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the transaction mini app to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves details about a transaction pay mini app by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

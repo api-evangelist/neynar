@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action UserData API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserData",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch UserData for a FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/userDataByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "3",
+                "type": "query",
+                "description": "The FID that's being requested"
+              },
+              {
+                "name": "user_data_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of user data, either as a numerical value or type string. If this is omitted, all user data for the FID is returned"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return in a single response"
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Reverse the sort order, returning latest messages first"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page"
+              }
+            ]
+          },
+          "docs": "**Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

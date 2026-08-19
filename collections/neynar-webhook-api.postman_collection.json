@@ -1,0 +1,972 @@
+{
+  "item": [
+    {
+      "id": "47f5eb0f-5324-4b48-b381-4c0e5e98b359",
+      "name": "Webhook",
+      "description": {
+        "content": "Operations related to a webhook",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18fd6a42-c22c-405b-acd1-d1ca3aba8a67",
+          "name": "Delete a webhook",
+          "request": {
+            "name": "Delete a webhook",
+            "description": {
+              "content": "Delete a webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eea825e6-bac3-4c59-a84a-5d491a6591a1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": false,\n  \"webhook\": {\n    \"object\": \"webhook\",\n    \"webhook_id\": \"string\",\n    \"developer_uuid\": \"string\",\n    \"target_url\": \"string\",\n    \"title\": \"string\",\n    \"secrets\": [\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      },\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      }\n    ],\n    \"description\": \"string\",\n    \"http_timeout\": \"string\",\n    \"rate_limit\": 2958,\n    \"active\": true,\n    \"rate_limit_duration\": \"string\",\n    \"created_at\": \"2001-06-13T14:38:23.118Z\",\n    \"updated_at\": \"1961-12-23T15:16:24.781Z\",\n    \"deleted_at\": \"2013-06-07T10:02:24.608Z\",\n    \"subscription\": {\n      \"object\": \"webhook_subscription\",\n      \"subscription_id\": \"string\",\n      \"filters\": {\n        \"cast.created\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"cast.deleted\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"follow.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"follow.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"trade.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_token_amount_usdc\": 1598.770509865839,\n          \"minimum_trader_neynar_score\": 0.8297242799424883\n        },\n        \"user.created\": {},\n        \"user.updated\": {\n          \"fids\": [\n            4264,\n            4377\n          ]\n        }\n      },\n      \"created_at\": \"1951-01-27T01:34:44.883Z\",\n      \"updated_at\": \"1992-02-06T17:58:06.751Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39f3b395-a661-466f-930d-41abd2e7e83c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a759bd81-6f5b-4525-98cc-aaacfa64ab8f",
+          "name": "Fetch a webhook",
+          "request": {
+            "name": "Fetch a webhook",
+            "description": {
+              "content": "Fetch a webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "webhook_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6bbec9e-ac43-4cb9-b90e-a046b26461e8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "webhook_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": false,\n  \"webhook\": {\n    \"object\": \"webhook\",\n    \"webhook_id\": \"string\",\n    \"developer_uuid\": \"string\",\n    \"target_url\": \"string\",\n    \"title\": \"string\",\n    \"secrets\": [\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      },\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      }\n    ],\n    \"description\": \"string\",\n    \"http_timeout\": \"string\",\n    \"rate_limit\": 5897,\n    \"active\": false,\n    \"rate_limit_duration\": \"string\",\n    \"created_at\": \"1979-05-22T22:24:33.340Z\",\n    \"updated_at\": \"1978-09-18T14:46:36.287Z\",\n    \"deleted_at\": \"1966-02-08T13:47:21.462Z\",\n    \"subscription\": {\n      \"object\": \"webhook_subscription\",\n      \"subscription_id\": \"string\",\n      \"filters\": {\n        \"cast.created\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"cast.deleted\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"follow.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"follow.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"trade.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_token_amount_usdc\": 5022.720457039111,\n          \"minimum_trader_neynar_score\": 0.7345641138248551\n        },\n        \"user.created\": {},\n        \"user.updated\": {\n          \"fids\": [\n            1439,\n            6882\n          ]\n        }\n      },\n      \"created_at\": \"1979-05-13T18:56:36.227Z\",\n      \"updated_at\": \"1980-02-09T10:41:45.313Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f7b386a-4870-46e2-80c2-76929a72cc44",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "webhook_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "513ce859-d051-4980-b658-ce310a769964",
+          "name": "Update webhook status",
+          "request": {
+            "name": "Update webhook status",
+            "description": {
+              "content": "Update webhook active status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_id\": \"<string>\",\n  \"active\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00eadf34-e392-45a7-9862-00d05d0af71b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_id\": \"<string>\",\n  \"active\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": false,\n  \"webhook\": {\n    \"object\": \"webhook\",\n    \"webhook_id\": \"string\",\n    \"developer_uuid\": \"string\",\n    \"target_url\": \"string\",\n    \"title\": \"string\",\n    \"secrets\": [\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      },\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      }\n    ],\n    \"description\": \"string\",\n    \"http_timeout\": \"string\",\n    \"rate_limit\": 5897,\n    \"active\": false,\n    \"rate_limit_duration\": \"string\",\n    \"created_at\": \"1979-05-22T22:24:33.340Z\",\n    \"updated_at\": \"1978-09-18T14:46:36.287Z\",\n    \"deleted_at\": \"1966-02-08T13:47:21.462Z\",\n    \"subscription\": {\n      \"object\": \"webhook_subscription\",\n      \"subscription_id\": \"string\",\n      \"filters\": {\n        \"cast.created\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"cast.deleted\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"follow.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"follow.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"trade.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_token_amount_usdc\": 5022.720457039111,\n          \"minimum_trader_neynar_score\": 0.7345641138248551\n        },\n        \"user.created\": {},\n        \"user.updated\": {\n          \"fids\": [\n            1439,\n            6882\n          ]\n        }\n      },\n      \"created_at\": \"1979-05-13T18:56:36.227Z\",\n      \"updated_at\": \"1980-02-09T10:41:45.313Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00d2d5ed-f36a-4b59-a719-d5c9a69b3846",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_id\": \"<string>\",\n  \"active\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54ff96f3-9be3-4413-a8b1-ced7a5a06913",
+          "name": "Create a webhook",
+          "request": {
+            "name": "Create a webhook",
+            "description": {
+              "content": "Create a webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"<string>\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"<string>\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"<string>\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"<string>\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ab023aa-fa83-43f4-86fc-c689c5e659ce",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true,\n  \"webhook\": {\n    \"object\": \"webhook\",\n    \"webhook_id\": \"string\",\n    \"developer_uuid\": \"string\",\n    \"target_url\": \"string\",\n    \"title\": \"string\",\n    \"secrets\": [\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      },\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      }\n    ],\n    \"description\": \"string\",\n    \"http_timeout\": \"string\",\n    \"rate_limit\": 2856,\n    \"active\": true,\n    \"rate_limit_duration\": \"string\",\n    \"created_at\": \"1989-10-02T13:39:12.718Z\",\n    \"updated_at\": \"1975-05-15T16:56:16.230Z\",\n    \"deleted_at\": \"1990-06-28T09:54:10.611Z\",\n    \"subscription\": {\n      \"object\": \"webhook_subscription\",\n      \"subscription_id\": \"string\",\n      \"filters\": {\n        \"cast.created\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"cast.deleted\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"follow.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"follow.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"trade.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_token_amount_usdc\": \"<number>\",\n          \"minimum_trader_neynar_score\": \"<number>\"\n        },\n        \"user.created\": {},\n        \"user.updated\": {\n          \"fids\": [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        }\n      },\n      \"created_at\": \"1948-11-01T18:55:41.636Z\",\n      \"updated_at\": \"2007-06-03T15:40:59.393Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "329c6163-560c-4f05-8a06-64fecf146142",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "defd59f6-82cd-4f6f-bd13-3fc5168a3a81",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88adbff4-981a-43ae-a842-2d20f329e743",
+          "name": "Update a webhook",
+          "request": {
+            "name": "Update a webhook",
+            "description": {
+              "content": "Update a webhook",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"webhook_id\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"<string>\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"<string>\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"<string>\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"<string>\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36241d2e-c8a5-4da0-8901-b7d3c176ca42",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"webhook_id\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"success\": true,\n  \"webhook\": {\n    \"object\": \"webhook\",\n    \"webhook_id\": \"string\",\n    \"developer_uuid\": \"string\",\n    \"target_url\": \"string\",\n    \"title\": \"string\",\n    \"secrets\": [\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      },\n      {\n        \"uid\": \"string\",\n        \"value\": \"string\",\n        \"expires_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"deleted_at\": \"string\"\n      }\n    ],\n    \"description\": \"string\",\n    \"http_timeout\": \"string\",\n    \"rate_limit\": 2856,\n    \"active\": true,\n    \"rate_limit_duration\": \"string\",\n    \"created_at\": \"1989-10-02T13:39:12.718Z\",\n    \"updated_at\": \"1975-05-15T16:56:16.230Z\",\n    \"deleted_at\": \"1990-06-28T09:54:10.611Z\",\n    \"subscription\": {\n      \"object\": \"webhook_subscription\",\n      \"subscription_id\": \"string\",\n      \"filters\": {\n        \"cast.created\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"cast.deleted\": {\n          \"author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embedded_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"embeds\": \"\\b(farcaster|neynar)\\b\",\n          \"exclude_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"mentioned_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_author_score\": 0,\n          \"parent_author_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"root_parent_urls\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"text\": \"(?i)\\\\$degen\"\n        },\n        \"follow.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"follow.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"reaction.deleted\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_cast_hashes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"target_fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"trade.created\": {\n          \"fids\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"minimum_token_amount_usdc\": \"<number>\",\n          \"minimum_trader_neynar_score\": \"<number>\"\n        },\n        \"user.created\": {},\n        \"user.updated\": {\n          \"fids\": [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        }\n      },\n      \"created_at\": \"1948-11-01T18:55:41.636Z\",\n      \"updated_at\": \"2007-06-03T15:40:59.393Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b4f38d5-3284-43c1-8b7e-834d7e8d25d3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"webhook_id\": \"<string>\",\n  \"subscription\": {\n    \"cast.created\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"cast.deleted\": {\n      \"author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"embedded_cast_author_fids\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"embedded_cast_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"embeds\": \"\\b(farcaster|neynar)\\b\",\n      \"exclude_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"mentioned_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_author_score\": 0,\n      \"parent_author_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"parent_hashes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"root_parent_urls\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"text\": \"(?i)\\\\$degen\"\n    },\n    \"follow.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"follow.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"reaction.deleted\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"target_cast_hashes\": [\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\",\n        \"0x71d5225f77e0164388b1d4c120825f3a2c1f131c\"\n      ],\n      \"target_fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"trade.created\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"minimum_token_amount_usdc\": \"<number>\",\n      \"minimum_trader_neynar_score\": \"<number>\"\n    },\n    \"user.created\": {},\n    \"user.updated\": {\n      \"fids\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 1367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e27835e2-4fdf-421b-83f0-4cd6a50b3284",
+          "name": "Associated webhooks of user",
+          "request": {
+            "name": "Associated webhooks of user",
+            "description": {
+              "content": "Fetch a list of webhooks associated to a user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "webhook",
+                "list",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ae55342-9c40-494f-9405-7312dd5408f1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "webhook",
+                    "list",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhooks\": [\n    {\n      \"object\": \"webhook\",\n      \"webhook_id\": \"string\",\n      \"developer_uuid\": \"string\",\n      \"target_url\": \"string\",\n      \"title\": \"string\",\n      \"secrets\": [\n        {\n          \"uid\": \"string\",\n          \"value\": \"string\",\n          \"expires_at\": \"string\",\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"deleted_at\": \"string\"\n        },\n        {\n          \"uid\": \"string\",\n          \"value\": \"string\",\n          \"expires_at\": \"string\",\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"deleted_at\": \"string\"\n        }\n      ],\n      \"description\": \"string\",\n      \"http_timeout\": \"string\",\n      \"rate_limit\": 7838,\n      \"active\": false,\n      \"rate_limit_duration\": \"string\",\n      \"created_at\": \"1950-11-10T07:08:25.377Z\",\n      \"updated_at\": \"1993-06-01T19:18:55.801Z\",\n      \"deleted_at\": \"1983-06-21T16:39:39.997Z\",\n      \"subscription\": {\n        \"object\": \"webhook_subscription\",\n        \"subscription_id\": \"string\",\n        \"filters\": {\n          \"cast.created\": {\n            \"author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embeds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mentioned_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_author_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cast.deleted\": {\n            \"author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embeds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mentioned_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_author_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follow.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follow.deleted\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reaction.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reaction.deleted\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"trade.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_token_amount_usdc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_trader_neynar_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user.created\": {},\n          \"user.updated\": {\n            \"fids\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"created_at\": \"1966-05-29T19:28:45.960Z\",\n        \"updated_at\": \"1979-02-08T15:10:32.408Z\"\n      }\n    },\n    {\n      \"object\": \"webhook\",\n      \"webhook_id\": \"string\",\n      \"developer_uuid\": \"string\",\n      \"target_url\": \"string\",\n      \"title\": \"string\",\n      \"secrets\": [\n        {\n          \"uid\": \"string\",\n          \"value\": \"string\",\n          \"expires_at\": \"string\",\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"deleted_at\": \"string\"\n        },\n        {\n          \"uid\": \"string\",\n          \"value\": \"string\",\n          \"expires_at\": \"string\",\n          \"created_at\": \"string\",\n          \"updated_at\": \"string\",\n          \"deleted_at\": \"string\"\n        }\n      ],\n      \"description\": \"string\",\n      \"http_timeout\": \"string\",\n      \"rate_limit\": 5938,\n      \"active\": false,\n      \"rate_limit_duration\": \"string\",\n      \"created_at\": \"2008-08-15T14:53:50.400Z\",\n      \"updated_at\": \"1965-10-03T08:49:40.972Z\",\n      \"deleted_at\": \"1985-01-24T05:07:29.646Z\",\n      \"subscription\": {\n        \"object\": \"webhook_subscription\",\n        \"subscription_id\": \"string\",\n        \"filters\": {\n          \"cast.created\": {\n            \"author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embeds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mentioned_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_author_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"cast.deleted\": {\n            \"author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embedded_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"embeds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"exclude_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mentioned_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_author_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_author_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_parent_urls\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follow.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"follow.deleted\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reaction.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reaction.deleted\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_cast_hashes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"target_fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"trade.created\": {\n            \"fids\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_token_amount_usdc\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"minimum_trader_neynar_score\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"user.created\": {},\n          \"user.updated\": {\n            \"fids\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        \"created_at\": \"2022-03-20T21:03:59.214Z\",\n        \"updated_at\": \"1971-05-29T09:38:37.154Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "37701b78-f96f-4a3b-8cd2-565b7629bac0",
+    "name": "Neynar Action Webhook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

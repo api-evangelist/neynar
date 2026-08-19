@@ -1,0 +1,593 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Feed API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "By filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "feed_type",
+                "value": "",
+                "type": "query",
+                "description": "Defaults to following (requires FID or address). If set to filter (requires filter_type)"
+              },
+              {
+                "name": "filter_type",
+                "value": "",
+                "type": "query",
+                "description": "Used when feed_type=filter. Options include fids (requires fids), parent_url (requires parent_url), channel_id (requires channel_id), embed_url (requires embed_url), embed_types (requires embed_types), or global_trending."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "(Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type"
+              },
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type."
+              },
+              {
+                "name": "parent_url",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type."
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type."
+              },
+              {
+                "name": "members_only",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=channel_id. Only include casts from members of the channel. True by default."
+              },
+              {
+                "name": "embed_url",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend 'https://' if no protocol is included. Requires feed_type and filter_type."
+              },
+              {
+                "name": "embed_types",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type."
+              },
+              {
+                "name": "with_recasts",
+                "value": "",
+                "type": "query",
+                "description": "Include recasts in the response, true by default"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              }
+            ]
+          },
+          "docs": "Fetch casts based on filters. Ensure setting the correct parameters based on the feed_type and filter_type."
+        },
+        {
+          "info": {
+            "name": "By channel IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/channels/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "channel_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of up to 10 channel IDs e.g. neynar,farcaster"
+              },
+              {
+                "name": "with_recasts",
+                "value": "",
+                "type": "query",
+                "description": "Include recasts in the response, true by default"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "with_replies",
+                "value": "",
+                "type": "query",
+                "description": "Include replies in the response, false by default"
+              },
+              {
+                "name": "members_only",
+                "value": "",
+                "type": "query",
+                "description": "Used when filter_type=channel_id. Only include casts from members of the channel. True by default."
+              },
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of FIDs to filter the feed by, up to 10 at a time"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "should_moderate",
+                "value": "",
+                "type": "query",
+                "description": "If true, only casts that have been liked by the moderator (if one exists) will be returned."
+              }
+            ]
+          },
+          "docs": "Fetch feed based on channel IDs"
+        },
+        {
+          "info": {
+            "name": "Following",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/following/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of user whose feed you want to create"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "with_recasts",
+                "value": "",
+                "type": "query",
+                "description": "Include recasts in the response, true by default"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch feed based on who a user is following"
+        },
+        {
+          "info": {
+            "name": "For you",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/for_you/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of user whose feed you want to create"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider of the For You feed."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch a personalized For You feed for a user"
+        },
+        {
+          "info": {
+            "name": "By parent URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/parent_urls/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "parent_urls",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of parent_urls"
+              },
+              {
+                "name": "with_recasts",
+                "value": "",
+                "type": "query",
+                "description": "Include recasts in the response, true by default"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "with_replies",
+                "value": "",
+                "type": "query",
+                "description": "Include replies in the response, false by default"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch feed based on parent URLs"
+        },
+        {
+          "info": {
+            "name": "By topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/topic/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Topic slug to filter casts by. Must be lowercase and contain only alphanumeric characters and underscores."
+              },
+              {
+                "name": "with_recasts",
+                "value": "",
+                "type": "query",
+                "description": "Include recasts in the response, true by default."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch feed based on a topic slug."
+        },
+        {
+          "info": {
+            "name": "Trending feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/trending/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "time_window",
+                "value": "",
+                "type": "query",
+                "description": "Time window for trending casts (7d window for channel feeds only)"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both."
+              },
+              {
+                "name": "parent_url",
+                "value": "",
+                "type": "query",
+                "description": "Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The provider of the trending casts feed."
+              }
+            ]
+          },
+          "docs": "Fetch trending casts or on the global feed or channels feeds. 7d time window available for channel feeds only."
+        },
+        {
+          "info": {
+            "name": "Chronologically",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/user/casts/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of user whose recent casts you want to fetch"
+              },
+              {
+                "name": "app_fid",
+                "value": "",
+                "type": "query",
+                "description": "Optionally filter to casts created via a specific app FID, e.g. 9152 for Warpcast"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user viewing the feed"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              },
+              {
+                "name": "include_replies",
+                "value": "",
+                "type": "query",
+                "description": "Include reply casts by the author in the response, true by default"
+              },
+              {
+                "name": "parent_url",
+                "value": "",
+                "type": "query",
+                "description": "Parent URL to filter the feed; mutually exclusive with channel_id"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID to filter the feed; mutually exclusive with parent_url"
+              }
+            ]
+          },
+          "docs": "Fetch casts for a given user FID in reverse chronological order. Also allows filtering by parent_url and channel"
+        },
+        {
+          "info": {
+            "name": "10 most popular casts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/user/popular/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of user whose feed you want to create"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch 10 most popular casts for a given user FID; popularity based on replies, likes and recasts; sorted by most popular first"
+        },
+        {
+          "info": {
+            "name": "Replies and recasts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/feed/user/replies_and_recasts/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of user whose replies and recasts you want to fetch"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter to fetch only replies or recasts"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`."
+              }
+            ]
+          },
+          "docs": "Fetch recent replies and recasts for a given user FID; sorted by most recent first"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

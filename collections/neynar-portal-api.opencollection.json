@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action portal API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "portal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get billing information for the current organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/portal/organization/billing"
+          },
+          "docs": "Retrieves billing and subscription details for the current organization, including plan status, product category, billing email, and effective plan."
+        },
+        {
+          "info": {
+            "name": "Process subscription upgrade with credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/portal/subscription/upgrade",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately."
+        },
+        {
+          "info": {
+            "name": "Get upgrade preview with credit calculation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/portal/subscription/upgrade/preview",
+            "params": [
+              {
+                "name": "newPlan",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productCategory",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,430 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action User API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register new account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/user/",
+            "headers": [
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register account on farcaster. Optionally provide x-wallet-id header to use your own wallet. \n\n**Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user."
+        },
+        {
+          "info": {
+            "name": "Update user profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neynar.com/v2/farcaster/user/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update user profile \n(In order to update user's profile `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Best friends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/best_friends/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "The FID of the user"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Returns the best friends of a user ranked by mutual affinity score based on interactions with each other."
+        },
+        {
+          "info": {
+            "name": "By Eth or Sol addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/bulk-by-address/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "addresses",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of Ethereum or Solana addresses, up to 350 at a time"
+              },
+              {
+                "name": "address_types",
+                "value": "",
+                "type": "query",
+                "description": "Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values."
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches all users based on multiple Ethereum or Solana addresses.\n\nEach farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.\n\nA custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.\nYou can pass in Ethereum and Solana addresses, comma separated, "
+        },
+        {
+          "info": {
+            "name": "By FIDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/bulk/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "fids",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of FIDs, up to 100 at a time"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches information about multiple users based on FIDs"
+        },
+        {
+          "info": {
+            "name": "By location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/by_location/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the location"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the location"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user viewing the feed. Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Fetches a list of users given a location"
+        },
+        {
+          "info": {
+            "name": "By username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/by_username/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "Username of the user to fetch"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches a single hydrated user object given a username"
+        },
+        {
+          "info": {
+            "name": "By X username",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/by_x_username/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "x_username",
+                "value": "",
+                "type": "query",
+                "description": "X (Twitter) username to search for, without the @ symbol"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the viewer for contextual information like follows and blocks"
+              }
+            ]
+          },
+          "docs": "Fetches the users who have verified the specified X (Twitter) username"
+        },
+        {
+          "info": {
+            "name": "By custody-address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/custody-address/",
+            "params": [
+              {
+                "name": "custody_address",
+                "value": "",
+                "type": "query",
+                "description": "Custody Address associated with mnemonic"
+              }
+            ]
+          },
+          "docs": "Lookup a user by custody-address"
+        },
+        {
+          "info": {
+            "name": "Fetch fresh FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/fid/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              },
+              {
+                "name": "x-wallet-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Fetches FID to [assign it to new user](https://docs.neynar.com/reference/register-account)."
+        },
+        {
+          "info": {
+            "name": "Follow user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/user/follow/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Follow a user \n(In order to follow a user `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Unfollow user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/user/follow/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unfollow a user \n(In order to unfollow a user `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Search for Usernames",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/search/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of users to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Search for Usernames"
+        },
+        {
+          "info": {
+            "name": "Add verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/user/verification/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds verification for an eth address or contract for the user \n(In order to add verification `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Delete verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/user/verification/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes verification for an eth address for the user \n(In order to delete verification `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Fetch verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/user/verifications/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "FID of the user whose verifications to fetch"
+              }
+            ]
+          },
+          "docs": "Fetch all Ethereum and Solana verified addresses for a Farcaster user. Use this endpoint to identify which wallets are associated with which Farcaster applications for the specified user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

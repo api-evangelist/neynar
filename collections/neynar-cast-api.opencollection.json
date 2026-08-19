@@ -1,0 +1,343 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Cast API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "By hash or URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Cast identifier (It's either a URL or a hash)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The query param accepted by the API. Sent along with identifier param.\nurl - Cast identifier is a url\nhash - Cast identifier is a hash"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "adds viewer_context to cast object to show whether viewer has liked or recasted the cast."
+              }
+            ]
+          },
+          "docs": "Gets information about an individual cast by passing in a Farcaster web URL or cast hash"
+        },
+        {
+          "info": {
+            "name": "Post a cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/farcaster/cast/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts a cast or cast reply. Works with mentions and embeds.  \n(In order to post a cast `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Delete a cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/farcaster/cast/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an existing cast. \n(In order to delete a cast `signer_uuid` must be approved)"
+        },
+        {
+          "info": {
+            "name": "Conversation for a cast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/conversation/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Cast identifier (It's either a URL or a hash)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The query param accepted by the API. Sent along with identifier param.\nurl - Cast identifier is a url\nhash - Cast identifier is a hash"
+              },
+              {
+                "name": "reply_depth",
+                "value": "",
+                "type": "query",
+                "description": "The depth of replies in the conversation that will be returned (default 2)"
+              },
+              {
+                "name": "include_chronological_parent_casts",
+                "value": "",
+                "type": "query",
+                "description": "Include all parent casts in chronological order"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query",
+                "description": "Sort type for the ordering of descendants. Default is `chron`"
+              },
+              {
+                "name": "fold",
+                "value": "",
+                "type": "query",
+                "description": "Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter."
+        },
+        {
+          "info": {
+            "name": "Embedded URL metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/embed/crawl/",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "URL to crawl metadata of"
+              }
+            ]
+          },
+          "docs": "Crawls the given URL and returns metadata useful when embedding the URL in a cast."
+        },
+        {
+          "info": {
+            "name": "Cast Quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/quotes/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Cast identifier (It's either a URL or a hash)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The query param accepted by the API. Sent along with identifier param.\nurl - Cast identifier is a url\nhash - Cast identifier is a hash"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Fetch casts that quote a given cast"
+        },
+        {
+          "info": {
+            "name": "Search for casts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/cast/search/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Query string to search for casts. Supported operators:\n\n| Operator  | Description                                                                                              |\n| --------- | -------------------------------------------------------------------------------------------------------- |\n| `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         |\n| `\\|`      | Acts as the OR operator.                                                                                 |\n| `*`       | When used at the end of a term, signifies a prefix query.                                                  |\n| `\"`       | Wraps several terms into a phrase (for example, `\"star wars\"`).                                          |\n| `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars \\| trek)`).                                     |\n| `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. |\n| `-`       | Negates the term.                                                                                        |\n| `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20` or `before:2025-04-20T23:59:59`)      |\n| `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20` or `after:2025-04-20T00:00:00`)         |"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Choices are:\n- `literal` - Searches for the words in the query string (default)\n- `semantic` - Searches for the meaning of the query string\n- `hybrid` - Combines both literal and semantic results"
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query",
+                "description": "Choices are:\n- `desc_chron` - All casts sorted by time in a descending order (default)\n- `chron` - All casts sorted by time in ascending order\n- `algorithmic` - Casts sorted by engagement and time"
+              },
+              {
+                "name": "author_fid",
+                "value": "",
+                "type": "query",
+                "description": "Fid of the user whose casts you want to search"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`."
+              },
+              {
+                "name": "parent_url",
+                "value": "",
+                "type": "query",
+                "description": "Parent URL of the casts you want to search"
+              },
+              {
+                "name": "channel_id",
+                "value": "",
+                "type": "query",
+                "description": "Channel ID of the casts you want to search"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to fetch"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor"
+              }
+            ]
+          },
+          "docs": "Search for casts based on a query string, with optional AND filters"
+        },
+        {
+          "info": {
+            "name": "Bulk fetch casts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/farcaster/casts/",
+            "headers": [
+              {
+                "name": "x-neynar-experimental",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "casts",
+                "value": "",
+                "type": "query",
+                "description": "Hashes of the cast to be retrived (Comma separated, no spaces)"
+              },
+              {
+                "name": "viewer_fid",
+                "value": "",
+                "type": "query",
+                "description": "adds viewer_context to cast object to show whether viewer has liked or recasted the cast."
+              },
+              {
+                "name": "sort_type",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter to sort the casts based on different criteria"
+              }
+            ]
+          },
+          "docs": "Fetch multiple casts using their respective hashes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

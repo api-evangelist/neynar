@@ -1,0 +1,742 @@
+{
+  "item": [
+    {
+      "id": "2cbee7a5-06c1-4ea7-a44b-cfbf3e668242",
+      "name": "Subscribers",
+      "description": {
+        "content": "Operations related to a subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dad7f667-36af-43ee-8a52-373b1d28b2dc",
+          "name": "Subscribed to",
+          "request": {
+            "name": "Subscribed to",
+            "description": {
+              "content": "Fetch what FIDs and contracts a FID is subscribed to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "user",
+                "subscribed_to",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewer_fid",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscription_provider",
+                  "value": "<string>",
+                  "description": "(Required) The provider of the subscription."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dcd2ad7-ae2d-4d6d-9568-08bc1a6e0fb3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscribed_to",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscribed_to\": [\n    {\n      \"object\": \"subscription\",\n      \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n      \"chain\": 8453,\n      \"metadata\": {\n        \"title\": \"/memes channel sub\",\n        \"symbol\": \"MMS\",\n        \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n      },\n      \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n      \"price\": {\n        \"period_duration_seconds\": 2592000,\n        \"tokens_per_period\": \"350574998400000\",\n        \"initial_mint_price\": \"0\"\n      },\n      \"protocol_version\": 1,\n      \"token\": {\n        \"symbol\": \"ETH\",\n        \"address\": null,\n        \"decimals\": 18,\n        \"erc20\": false\n      },\n      \"expires_at\": \"2023-09-13T22:10:22.000Z\",\n      \"subscribed_at\": \"2023-09-13T22:10:22.000Z\",\n      \"tier\": {\n        \"id\": 1,\n        \"price\": {\n          \"initial_mint_price\": \"0\",\n          \"period_duration_seconds\": 2592000,\n          \"tokens_per_period\": \"3000000000000000\"\n        }\n      },\n      \"creator\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"1976-12-12T16:32:28.157Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"http://dbManFxdb.ssTk-sQbz7vvO.+8SNur0JPgT3O1ODN,JpeZbeo-No+D4,DA7uwlYeac0TysFL+h\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"2014-03-23T00:46:02.334Z\",\n            \"is_live\": true\n          },\n          \"location\": {\n            \"latitude\": 51.848756663203346,\n            \"longitude\": 80.0790200348809,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 4361.909003851285\n          }\n        },\n        \"follower_count\": 4227,\n        \"following_count\": 3518,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"YHDGBds2R8Cbz3nJiuzC9JDefe68vsm9nhx\",\n            \"9QzQpc2UJFPjDj6uD7BEJ4FKsbKU2WV9KG3\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 1471.100928705208,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"subscribed\",\n          \"subscribed_at\": \"1973-04-05T15:17:11.030Z\",\n          \"expires_at\": \"1960-08-14T12:37:33.911Z\"\n        },\n        \"score\": 4505.29532938843,\n        \"viewer_context\": {\n          \"following\": true,\n          \"followed_by\": true,\n          \"blocking\": true,\n          \"blocked_by\": false\n        }\n      },\n      \"provider_name\": \"fabric_stp\",\n      \"tiers\": [\n        {\n          \"id\": 1,\n          \"price\": {\n            \"initial_mint_price\": \"0\",\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"3000000000000000\"\n          }\n        },\n        {\n          \"id\": 1,\n          \"price\": {\n            \"initial_mint_price\": \"0\",\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"3000000000000000\"\n          }\n        }\n      ]\n    },\n    {\n      \"object\": \"subscription\",\n      \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n      \"chain\": 8453,\n      \"metadata\": {\n        \"title\": \"/memes channel sub\",\n        \"symbol\": \"MMS\",\n        \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n      },\n      \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n      \"price\": {\n        \"period_duration_seconds\": 2592000,\n        \"tokens_per_period\": \"350574998400000\",\n        \"initial_mint_price\": \"0\"\n      },\n      \"protocol_version\": 1,\n      \"token\": {\n        \"symbol\": \"ETH\",\n        \"address\": null,\n        \"decimals\": 18,\n        \"erc20\": false\n      },\n      \"expires_at\": \"2023-09-13T22:10:22.000Z\",\n      \"subscribed_at\": \"2023-09-13T22:10:22.000Z\",\n      \"tier\": {\n        \"id\": 1,\n        \"price\": {\n          \"initial_mint_price\": \"0\",\n          \"period_duration_seconds\": 2592000,\n          \"tokens_per_period\": \"3000000000000000\"\n        }\n      },\n      \"creator\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"2007-07-07T05:54:06.256Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"http://O.ojLKpPF7XM4BLiueNcIQpZ+ve\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"1951-05-15T19:54:24.513Z\",\n            \"is_live\": true\n          },\n          \"location\": {\n            \"latitude\": -10.44858837792384,\n            \"longitude\": 173.84824418023396,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 5626.743561729844\n          }\n        },\n        \"follower_count\": 5251,\n        \"following_count\": 5182,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"vsWAdNkKUp7oppsA1spbAy4nnaYssxBPPp\",\n            \"17giaD1DpKN2Sju9hLjbaf3XXs7QVjzBNLwXzUW\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"x\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 6924.654124912863,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"unsubscribed\",\n          \"subscribed_at\": \"1953-12-12T02:55:46.233Z\",\n          \"expires_at\": \"2003-10-17T15:45:15.402Z\"\n        },\n        \"score\": 2144.5708296870125,\n        \"viewer_context\": {\n          \"following\": false,\n          \"followed_by\": false,\n          \"blocking\": false,\n          \"blocked_by\": false\n        }\n      },\n      \"provider_name\": \"fabric_stp\",\n      \"tiers\": [\n        {\n          \"id\": 1,\n          \"price\": {\n            \"initial_mint_price\": \"0\",\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"3000000000000000\"\n          }\n        },\n        {\n          \"id\": 1,\n          \"price\": {\n            \"initial_mint_price\": \"0\",\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"3000000000000000\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a933dbf-c575-48f5-b405-bbea2cce326b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscribed_to",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d2dae81-f14e-4ede-bac5-29d8236bc3aa",
+          "name": "Subscribers of a user",
+          "request": {
+            "name": "Subscribers of a user",
+            "description": {
+              "content": "Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "user",
+                "subscribers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewer_fid",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscription_provider",
+                  "value": "<string>",
+                  "description": "(Required) The provider of the subscription."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9f7d6b7-c164-41d4-a62b-68e71f4034d6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscribers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "fabric_stp"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscribers\": [\n    {\n      \"object\": \"subscriber\",\n      \"user\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"1983-04-14T02:29:08.455Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"https://Gr.zkFmb0zywALWkQoXOOtoA8nWUZ0Bc\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"2024-10-19T07:39:12.865Z\",\n            \"is_live\": false\n          },\n          \"location\": {\n            \"latitude\": 48.5021620234902,\n            \"longitude\": 35.145851635812306,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 5280.351059910461\n          }\n        },\n        \"follower_count\": 2798,\n        \"following_count\": 1768,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"RCFsQ4nhB57AZpYgY8QFdyUhTQADsyEkARiDS\",\n            \"RzR1Kj7gkdsokNJzDJfsw6j6Mjon2GRT\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"x\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"x\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 1976.972319611251,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"unsubscribed\",\n          \"subscribed_at\": \"2007-06-13T21:15:22.195Z\",\n          \"expires_at\": \"1989-01-23T13:20:55.857Z\"\n        },\n        \"score\": 2267.54097862477,\n        \"viewer_context\": {\n          \"following\": true,\n          \"followed_by\": true,\n          \"blocking\": false,\n          \"blocked_by\": false\n        }\n      },\n      \"subscribed_to\": {\n        \"object\": \"subscription_dehydrated\",\n        \"provider_name\": \"fabric_stp\",\n        \"chain\": 8453,\n        \"contract_address\": \"0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac\",\n        \"expires_at\": \"2023-09-13T22:10:22.000Z\",\n        \"protocol_version\": 1,\n        \"subscribed_at\": \"2023-09-13T22:10:22.000Z\",\n        \"tier_id\": \"0\"\n      }\n    },\n    {\n      \"object\": \"subscriber\",\n      \"user\": {\n        \"object\": \"user\",\n        \"fid\": 3,\n        \"username\": \"string\",\n        \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n        \"registered_at\": \"2014-10-26T12:59:35.016Z\",\n        \"profile\": {\n          \"bio\": {\n            \"text\": \"string\",\n            \"mentioned_channels\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_channels_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mentioned_profiles_ranges\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"banner\": {\n            \"url\": \"http://qDNGPCVnxYGauAmlSJCU.hyZdZ7GmDW0lXtrnaC\"\n          },\n          \"live_at\": {\n            \"url\": \"string\",\n            \"updated_at\": \"1968-12-27T07:10:09.200Z\",\n            \"is_live\": true\n          },\n          \"location\": {\n            \"latitude\": 26.101896569851476,\n            \"longitude\": -164.508367756502,\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"radius\": 7579.742840863199\n          }\n        },\n        \"follower_count\": 9312,\n        \"following_count\": 3370,\n        \"verifications\": [\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n        ],\n        \"auth_addresses\": [\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"app\": {\n              \"object\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"custody_address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"display_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pfp_url\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"score\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"username\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"verified_addresses\": {\n          \"eth_addresses\": [\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n            \"0x5a927ac639636e534b678e81768ca19e2c6280b7\"\n          ],\n          \"sol_addresses\": [\n            \"9Y82RwG9itQjPXJ5iCeNLzXbCKqMTtoDGT5bn7iSa\",\n            \"uWHGEz64ZzqCqTuKrFALv52CmjhKP6qkBTuZiU26WBML\"\n          ],\n          \"primary\": {\n            \"eth_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sol_address\": {\n              \"nullable\": true,\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"verified_accounts\": [\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          },\n          {\n            \"platform\": \"github\",\n            \"username\": \"string\"\n          }\n        ],\n        \"display_name\": \"string\",\n        \"experimental\": {\n          \"neynar_user_score\": 9578.29574136737,\n          \"deprecation_notice\": \"string\"\n        },\n        \"pfp_url\": \"string\",\n        \"pro\": {\n          \"status\": \"subscribed\",\n          \"subscribed_at\": \"1971-04-08T04:11:11.870Z\",\n          \"expires_at\": \"1995-05-25T07:00:47.856Z\"\n        },\n        \"score\": 7218.77923597069,\n        \"viewer_context\": {\n          \"following\": true,\n          \"followed_by\": true,\n          \"blocking\": false,\n          \"blocked_by\": true\n        }\n      },\n      \"subscribed_to\": {\n        \"object\": \"subscription_dehydrated\",\n        \"provider_name\": \"fabric_stp\",\n        \"chain\": 8453,\n        \"contract_address\": \"0x325b3e2c19f4900f8f4eb5f6872dc2715e77cbac\",\n        \"expires_at\": \"2023-09-13T22:10:22.000Z\",\n        \"protocol_version\": 1,\n        \"subscribed_at\": \"2023-09-13T22:10:22.000Z\",\n        \"tier_id\": \"0\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1dda49c-c7b5-4c2b-9e30-21686fcee8d0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscribers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "viewer_fid",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "fabric_stp"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa29f8c1-1a5a-4d60-a167-75f8b57091e5",
+          "name": "Subscriptions created by FID",
+          "request": {
+            "name": "Subscriptions created by FID",
+            "description": {
+              "content": "Fetch created subscriptions for a given FID's.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "user",
+                "subscriptions_created",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fid",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of a farcaster user or app (unsigned integer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "subscription_provider",
+                  "value": "<string>",
+                  "description": "(Required) The provider of the subscription."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06680c3c-d19c-454f-9847-1930585cd817",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscriptions_created",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscriptions_created\": [\n    {\n      \"subscriptions_created\": [\n        {\n          \"object\": \"subscription\",\n          \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n          \"chain\": 8453,\n          \"metadata\": {\n            \"title\": \"/memes channel sub\",\n            \"symbol\": \"MMS\",\n            \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n          },\n          \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n          \"price\": {\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"350574998400000\",\n            \"initial_mint_price\": \"0\"\n          },\n          \"protocol_version\": 1,\n          \"token\": {\n            \"symbol\": \"ETH\",\n            \"address\": null,\n            \"decimals\": 18,\n            \"erc20\": false\n          },\n          \"provider_name\": \"fabric_stp\",\n          \"tiers\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"object\": \"subscription\",\n          \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n          \"chain\": 8453,\n          \"metadata\": {\n            \"title\": \"/memes channel sub\",\n            \"symbol\": \"MMS\",\n            \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n          },\n          \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n          \"price\": {\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"350574998400000\",\n            \"initial_mint_price\": \"0\"\n          },\n          \"protocol_version\": 1,\n          \"token\": {\n            \"symbol\": \"ETH\",\n            \"address\": null,\n            \"decimals\": 18,\n            \"erc20\": false\n          },\n          \"provider_name\": \"fabric_stp\",\n          \"tiers\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"subscriptions_created\": [\n        {\n          \"object\": \"subscription\",\n          \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n          \"chain\": 8453,\n          \"metadata\": {\n            \"title\": \"/memes channel sub\",\n            \"symbol\": \"MMS\",\n            \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n          },\n          \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n          \"price\": {\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"350574998400000\",\n            \"initial_mint_price\": \"0\"\n          },\n          \"protocol_version\": 1,\n          \"token\": {\n            \"symbol\": \"ETH\",\n            \"address\": null,\n            \"decimals\": 18,\n            \"erc20\": false\n          },\n          \"provider_name\": \"fabric_stp\",\n          \"tiers\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"object\": \"subscription\",\n          \"contract_address\": \"0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58\",\n          \"chain\": 8453,\n          \"metadata\": {\n            \"title\": \"/memes channel sub\",\n            \"symbol\": \"MMS\",\n            \"art_url\": \"https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg\"\n          },\n          \"owner_address\": \"0xb6f6dce6000ca88cc936b450cedb16a5c15f157f\",\n          \"price\": {\n            \"period_duration_seconds\": 2592000,\n            \"tokens_per_period\": \"350574998400000\",\n            \"initial_mint_price\": \"0\"\n          },\n          \"protocol_version\": 1,\n          \"token\": {\n            \"symbol\": \"ETH\",\n            \"address\": null,\n            \"decimals\": 18,\n            \"erc20\": false\n          },\n          \"provider_name\": \"fabric_stp\",\n          \"tiers\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"price\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b7db8ca-729d-46c9-98fd-94b73587cd87",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "user",
+                    "subscriptions_created",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fid",
+                      "value": "3"
+                    },
+                    {
+                      "key": "subscription_provider",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c76a5d1-c81b-4cc6-8987-843c43258155",
+          "name": "Hypersub subscription check",
+          "request": {
+            "name": "Hypersub subscription check",
+            "description": {
+              "content": "Check if a wallet address is subscribed to a given STP (Hypersub) contract.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "stp",
+                "subscription_check",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "addresses",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of Ethereum addresses, up to 350 at a time"
+                },
+                {
+                  "disabled": false,
+                  "key": "contract_address",
+                  "value": "<string>",
+                  "description": "(Required) Ethereum address of the STP contract"
+                },
+                {
+                  "disabled": false,
+                  "key": "chain_id",
+                  "value": "<string>",
+                  "description": "(Required) Chain ID of the STP contract"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5344dd94-1402-40c8-a51f-9ea952dcbe67",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stp",
+                    "subscription_check",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addresses",
+                      "value": "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7"
+                    },
+                    {
+                      "key": "contract_address",
+                      "value": "0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b"
+                    },
+                    {
+                      "key": "chain_id",
+                      "value": "8453"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"object\": \"subscribed_to_dehydrated\",\n    \"status\": false,\n    \"expires_at\": 5386,\n    \"subscribed_at\": 4103,\n    \"tier\": {\n      \"id\": 1,\n      \"price\": {\n        \"initial_mint_price\": \"0\",\n        \"period_duration_seconds\": 2592000,\n        \"tokens_per_period\": \"3000000000000000\"\n      }\n    }\n  },\n  \"key_1\": {\n    \"object\": \"subscribed_to_dehydrated\",\n    \"status\": false,\n    \"expires_at\": 7614,\n    \"subscribed_at\": 2969,\n    \"tier\": {\n      \"id\": 1,\n      \"price\": {\n        \"initial_mint_price\": \"0\",\n        \"period_duration_seconds\": 2592000,\n        \"tokens_per_period\": \"3000000000000000\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6de94f99-1c65-4514-89a4-219abbb8551b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "stp",
+                    "subscription_check",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "addresses",
+                      "value": "0xedd3783e8c7c52b80cfbd026a63c207edc9cbee7,0x5a927ac639636e534b678e81768ca19e2c6280b7"
+                    },
+                    {
+                      "key": "contract_address",
+                      "value": "0x76ad4cb9ac51c09f4d9c2cadcea75c9fa9074e5b"
+                    },
+                    {
+                      "key": "chain_id",
+                      "value": "8453"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 8355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd5a6230-2561-462c-a937-a344b0688663",
+    "name": "Neynar Action Subscribers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}

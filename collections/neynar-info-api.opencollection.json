@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action Info API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sync Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/info",
+            "params": [
+              {
+                "name": "dbstats",
+                "value": "",
+                "type": "query",
+                "description": "Controls whether the response includes database statistics. When true, the response includes information about the hub's database state, storage usage, and performance metrics."
+              }
+            ]
+          },
+          "docs": "Retrieve hub information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

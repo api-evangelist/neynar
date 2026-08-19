@@ -1,0 +1,1203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action studio API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "studio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get most recent credit drop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/credit-drops/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the most recent credit drop for the authenticated user. Returns the drop regardless of claimed/expired status."
+        },
+        {
+          "info": {
+            "name": "Claim credit drop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/credit-drops/claim",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Claims the most recent credit drop for the authenticated user. The drop's allowance is surfaced dynamically until expires_at and does not mutate extra_credits. Only drops created within the past 24 hours can be claimed."
+        },
+        {
+          "info": {
+            "name": "List deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all deployments."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of deployments to return. Defaults to 50, max 1000."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of deployments to skip for pagination. Defaults to 0."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search string to filter deployments by name, display name, or FID."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort deployments by. Defaults to updated_at (most recently updated first)."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "Include deleted deployments in the response. Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all miniapp generator deployments for a user. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Create a miniapp generator deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Delete deployment(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/studio/deployment/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Get account association of a miniapp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/account-association",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes namespace name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the account-association.json file from a miniapp deployment, which contains the JFS-signed domain association. Requires API key authentication."
+        },
+        {
+          "info": {
+            "name": "Set account association",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/account-association",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Build generated app with automatic error fixing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/build",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Runs Next.js build process for the generated app. If build fails, automatically calls a build-fixer agent to resolve errors. Streams build output and agent responses via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Get deployment info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/by-name-and-fid",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. Required if deployment_id not provided."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches info about a miniapp generator deployment by its deployment_id or name and creator's Farcaster ID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "List conversations for a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/conversations",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). If provided, filters conversations to this deployment only."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user. Required for non-admin users. Studio admins can omit to query all conversations."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. If provided, filters conversations to this deployment only."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "Include deleted conversations in the response. Defaults to false."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all conversations for a specific deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Get messages in a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/conversations/messages",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. Required if deployment_id not provided."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID."
+              },
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "query",
+                "description": "Conversation ID"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "Include deleted messages in the response. Defaults to false."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of messages to return per page. Defaults to 50, max 100."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for fetching older messages. Omit to start from most recent."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves messages in a specific conversation with cursor-based pagination (newest first). Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Provision a database for a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/provision",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Provisions a Neon PostgreSQL database for the deployment, or validates and attaches a user-provided (BYO) connection string. Idempotent — returns success if already provisioned."
+        },
+        {
+          "info": {
+            "name": "Query table data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Query data from a table with pagination and sorting."
+        },
+        {
+          "info": {
+            "name": "Execute raw SQL query (admin only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/sql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Executes a raw SQL query against the deployment database. Only SELECT, WITH, and EXPLAIN queries are allowed. Admin access required."
+        },
+        {
+          "info": {
+            "name": "List all tables in deployment database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/tables",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID)"
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user. Required for non-admin users."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all tables and views in the deployment database, excluding system tables."
+        },
+        {
+          "info": {
+            "name": "Insert rows into table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/tables/:table_name/rows",
+            "params": [
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Inserts one or more rows into the specified table. Returns the inserted rows with generated values."
+        },
+        {
+          "info": {
+            "name": "Update rows in table",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/tables/:table_name/rows",
+            "params": [
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk updates."
+        },
+        {
+          "info": {
+            "name": "Delete rows from table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/tables/:table_name/rows",
+            "params": [
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk deletes."
+        },
+        {
+          "info": {
+            "name": "Get table schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/database/tables/:table_name/schema",
+            "params": [
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID)"
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user. Required for non-admin users."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the complete schema for a table including columns, indexes, and foreign keys."
+        },
+        {
+          "info": {
+            "name": "Get dev status of a miniapp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/dev-status",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes namespace name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Export deployment source code as ZIP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/export-zip",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. Required if deployment_id not provided."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). The deployment must be running. The 200 response body is a raw binary stream, not JSON."
+        },
+        {
+          "info": {
+            "name": "Get deployment file contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/file",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. Required if deployment_id not provided."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID."
+              },
+              {
+                "name": "file_path",
+                "value": "",
+                "type": "query",
+                "description": "File path relative to gen/"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the contents of a specific file from the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "List deployment files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/files",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Kubernetes deployment name. Required if deployment_id not provided."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Optional Kubernetes namespace. If not provided, will query for the active namespace for the given FID."
+              },
+              {
+                "name": "directory",
+                "value": "",
+                "type": "query",
+                "description": "Directory path relative to gen/ (defaults to root)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists files in a directory of the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Prompt a deployment with streaming response",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/prompt/stream",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Recover dev server with two-phase strategy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Attempts to recover a broken dev server. Phase 1: reads dev server error logs and sends them to an AI agent for fixing, then waits for HMR to auto-rebuild. Phase 2: if HMR fails, falls back to a full npm build with AI retry loop. Streams progress events via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "List deployment secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/deployment/secrets/",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID to list secrets for"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Optional filter by environment variable name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves all secrets for a deployment."
+        },
+        {
+          "info": {
+            "name": "Upsert deployment secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/secrets/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upsert secrets for a deployment."
+        },
+        {
+          "info": {
+            "name": "Delete deployment secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neynar.com/v2/studio/deployment/secrets/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes environment variables (secrets) from a deployment."
+        },
+        {
+          "info": {
+            "name": "Cancel an active Claude session for a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/session/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels an in-progress Claude Code session for a deployment. Safe to call even if no session is active — returns cancelled: false in that case."
+        },
+        {
+          "info": {
+            "name": "Start generated miniapp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Stop generated miniapp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stops the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Upload image to deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/upload-image",
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Upload image from URL to deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/deployment/upload-image-url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Report studio compute unit usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/usage/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Called by miniapp-generator instances to report Claude SDK usage. Idempotent — duplicate submissions (same idempotency_key) are accepted but not double-counted."
+        },
+        {
+          "info": {
+            "name": "Deploy miniapp to Vercel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neynar.com/v2/studio/vercel/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Assign a custom subdomain to a deployed miniapp",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.neynar.com/v2/studio/vercel/domain",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the requesting user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Assigns a custom *.neynar.app subdomain to the user's deployed miniapp. The new domain is added to the Vercel project alongside the existing auto-assigned domain. The productionDomain in the database is updated to the custom domain. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Check if a custom subdomain is available",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/vercel/domain/check",
+            "params": [
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the requesting user"
+              },
+              {
+                "name": "subdomain",
+                "value": "",
+                "type": "query",
+                "description": "The desired subdomain (without .neynar.app suffix). Must be 3-63 characters, lowercase alphanumeric and hyphens only."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Checks whether a custom *.neynar.app subdomain is available for assignment. Validates format, checks reserved names, and verifies no other active deployment is using it. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Get Vercel deployment build logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/vercel/logs",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "K8s Namespace name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Deployment name used to identify the Vercel project. Required if deployment_id not provided."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of log events to return. Defaults to 100."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the build logs for a Vercel deployment. Useful for debugging failed deployments. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        },
+        {
+          "info": {
+            "name": "Get Vercel deployment status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v2/studio/vercel/status",
+            "params": [
+              {
+                "name": "deployment_id",
+                "value": "",
+                "type": "query",
+                "description": "Deployment ID (UUID). Required if name not provided."
+              },
+              {
+                "name": "fid",
+                "value": "",
+                "type": "query",
+                "description": "Farcaster ID of the user; if not provided, namespace must be provided"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "K8s Namespace name"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Deployment name used to identify the Vercel project. Required if deployment_id not provided."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the status of a Vercel deployment for a miniapp. Looks up the Vercel project ID from the deployment and queries Vercel API for deployment status. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

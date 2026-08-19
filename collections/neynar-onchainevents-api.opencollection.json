@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neynar Action OnChainEvents API",
+    "version": "3.176.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OnChainEvents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch an on-chain ID Registry Event for a given Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/onChainIdRegistryEventByAddress",
+            "params": [
+              {
+                "name": "address",
+                "value": "0x6b0bda3f2ffed5efc83fa8c024acff1dd45793f1",
+                "type": "query",
+                "description": "The ETH address being requested"
+              }
+            ]
+          },
+          "docs": "Fetch an on-chain ID Registry Event for a given Address."
+        },
+        {
+          "info": {
+            "name": "Fetch a list of on-chain events provided by an FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/onChainEventsByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "616",
+                "type": "query",
+                "description": "The FID being requested"
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query",
+                "description": "The numeric or string value of the event type being requested"
+              }
+            ]
+          },
+          "docs": "Fetch on-chain events provided by a user."
+        },
+        {
+          "info": {
+            "name": "Fetch a list of signers provided by an FID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neynar.com/v1/onChainSignersByFid",
+            "params": [
+              {
+                "name": "fid",
+                "value": "616",
+                "type": "query",
+                "description": "The FID being requested"
+              },
+              {
+                "name": "signer",
+                "value": "0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd",
+                "type": "query",
+                "description": "The optional key of signer"
+              }
+            ]
+          },
+          "docs": "**Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

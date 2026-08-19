@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "d8bf63df-caa7-46a2-906c-1a14becc4c70",
+      "name": "Topic",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e30608c-6f27-4af0-ae60-9f34606296e7",
+          "name": "Fetch trending topics",
+          "request": {
+            "name": "Fetch trending topics",
+            "description": {
+              "content": "Returns a list of trending topics for casts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "farcaster",
+                "topic",
+                "trending",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of topics to fetch."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be98715d-580f-444e-a159-44f63e26c7a9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "topic",
+                    "trending",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"topics\": [\n    {\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"top_level_topic\": \"relationships\",\n      \"summary\": \"string\",\n      \"authors\": [\n        {\n          \"object\": \"user_dehydrated\",\n          \"fid\": 3,\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 4792.600748807324,\n          \"username\": \"string\"\n        },\n        {\n          \"object\": \"user_dehydrated\",\n          \"fid\": 3,\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 1892.890330468493,\n          \"username\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"top_level_topic\": \"family\",\n      \"summary\": \"string\",\n      \"authors\": [\n        {\n          \"object\": \"user_dehydrated\",\n          \"fid\": 3,\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 3195.4525169869576,\n          \"username\": \"string\"\n        },\n        {\n          \"object\": \"user_dehydrated\",\n          \"fid\": 3,\n          \"custody_address\": \"0x5a927ac639636e534b678e81768ca19e2c6280b7\",\n          \"display_name\": \"string\",\n          \"pfp_url\": \"string\",\n          \"score\": 1545.8106636353552,\n          \"username\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"next\": {\n    \"cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc6dac59-13f4-4653-ab4b-a5812f6381c7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "topic",
+                    "trending",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 7762\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07aa7c04-b410-40dd-a638-dafb33fffaab",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "farcaster",
+                    "topic",
+                    "trending",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"property\": \"string\",\n  \"status\": 7762\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neynar.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d5625904-1c5e-47a6-86f1-d866db93568b",
+    "name": "Neynar Action Topic API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.\n\nContact Support:\n Name: Neynar\n Email: team@neynar.com",
+      "type": "text/plain"
+    }
+  }
+}
