@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action App Host API
+  title: Neynar App Host API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -168,19 +168,22 @@ paths:
       - App Host
 components:
   schemas:
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    AppHostPostEventReqBody:
-      anyOf:
-      - $ref: '#/components/schemas/SignedMessageBody'
-      - $ref: '#/components/schemas/SignerUuidBody'
-      description: Request body for app host events. Can either provide a signed_message or a signer_uuid with event details.
-      title: AppHostPostEventReqBody
+    SignedMessageBody:
+      properties:
+        app_domain:
+          description: Domain of the mini app
+          example: demo.neynar.com
+          type: string
+        signed_message:
+          anyOf:
+          - type: string
+          - $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
+          description: JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.
+      required:
+      - signed_message
+      - app_domain
+      title: SignedMessageBody
+      type: object
     AppHostUserStateResponse:
       properties:
         notifications_enabled:
@@ -207,22 +210,6 @@ components:
       - notifications_enabled
       title: AppHostUserStateResponse
       type: object
-    SignedMessageBody:
-      properties:
-        app_domain:
-          description: Domain of the mini app
-          example: demo.neynar.com
-          type: string
-        signed_message:
-          anyOf:
-          - type: string
-          - $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
-          description: JFS-signed message containing the event payload. The message must be properly signed and contain valid event information.  Can be provided as a single string or json object.
-      required:
-      - signed_message
-      - app_domain
-      title: SignedMessageBody
-      type: object
     ErrorRes:
       description: Details for the error response
       properties:
@@ -238,6 +225,38 @@ components:
       required:
       - message
       title: ErrorRes
+      type: object
+    SignerUuidBody:
+      properties:
+        app_domain:
+          description: Domain of the mini app
+          type: string
+        event:
+          description: 'Types of events that can occur between a user and an app host:
+
+            - frame_added: User adds a mini app to their account
+
+            - frame_removed: User removes a mini app from their account
+
+            - notifications_enabled: User enables notifications for a mini app
+
+            - notifications_disabled: User disables notifications for a mini app'
+          enum:
+          - frame_added
+          - frame_removed
+          - notifications_enabled
+          - notifications_disabled
+          type: string
+        fid:
+          $ref: '#/components/schemas/Fid'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - app_domain
+      - fid
+      - event
+      title: SignerUuidBody
       type: object
     AppHostGetEventResponse:
       properties:
@@ -269,6 +288,19 @@ components:
       - event
       title: AppHostGetEventResponse
       type: object
+    AppHostPostEventReqBody:
+      anyOf:
+      - $ref: '#/components/schemas/SignedMessageBody'
+      - $ref: '#/components/schemas/SignerUuidBody'
+      description: Request body for app host events. Can either provide a signed_message or a signer_uuid with event details.
+      title: AppHostPostEventReqBody
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
     EncodedJsonFarcasterSignature:
       description: Encoded JSON Farcaster signature
       properties:
@@ -302,38 +334,6 @@ components:
       required:
       - success
       title: AppHostPostEventResponse
-      type: object
-    SignerUuidBody:
-      properties:
-        app_domain:
-          description: Domain of the mini app
-          type: string
-        event:
-          description: 'Types of events that can occur between a user and an app host:
-
-            - frame_added: User adds a mini app to their account
-
-            - frame_removed: User removes a mini app from their account
-
-            - notifications_enabled: User enables notifications for a mini app
-
-            - notifications_disabled: User disables notifications for a mini app'
-          enum:
-          - frame_added
-          - frame_removed
-          - notifications_enabled
-          - notifications_disabled
-          type: string
-        fid:
-          $ref: '#/components/schemas/Fid'
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-      required:
-      - signer_uuid
-      - app_domain
-      - fid
-      - event
-      title: SignerUuidBody
       type: object
   securitySchemes:
     ApiKeyAuth:

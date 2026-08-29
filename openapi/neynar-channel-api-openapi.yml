@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Channel API
+  title: Neynar Channel API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -806,32 +806,304 @@ paths:
       - Channel
 components:
   schemas:
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
+    InviteChannelMemberReqBody:
       properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        fid:
+          $ref: '#/components/schemas/Fid'
         role:
           $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
       required:
-      - following
-      title: ChannelUserContext
+      - signer_uuid
+      - channel_id
+      - fid
+      - role
+      title: InviteChannelMemberReqBody
       type: object
-    Follower:
+    ChannelMemberListResponse:
       properties:
-        app:
-          $ref: '#/components/schemas/UserDehydrated'
+        members:
+          items:
+            $ref: '#/components/schemas/ChannelMember'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - members
+      - next
+      title: ChannelMemberListResponse
+      type: object
+    ChannelActivity:
+      properties:
+        cast_count_1d:
+          type: string
+        cast_count_30d:
+          type: string
+        cast_count_7d:
+          type: string
+        channel:
+          $ref: '#/components/schemas/Channel'
         object:
           enum:
-          - follower
+          - channel_activity
           type: string
-        user:
-          $ref: '#/components/schemas/User'
       required:
       - object
-      - user
-      title: Follower
+      - cast_count_1d
+      - cast_count_7d
+      - cast_count_30d
+      - channel
+      title: ChannelActivity
+      type: object
+    Channel:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        description:
+          type: string
+        description_mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          type: array
+        description_mentioned_profiles_ranges:
+          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        external_link:
+          description: Channel's external link.
+          properties:
+            title:
+              type: string
+            url:
+              type: string
+          type: object
+        follower_count:
+          description: Number of followers the channel has.
+          type: number
+        hosts:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        id:
+          type: string
+        image_url:
+          type: string
+        lead:
+          $ref: '#/components/schemas/User'
+        member_count:
+          format: int32
+          type: integer
+        moderator:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          deprecated: true
+          description: Use `lead` instead.
+        moderator_fids:
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        name:
+          type: string
+        object:
+          enum:
+          - channel
+          type: string
+        parent_url:
+          format: uri
+          type: string
+        pinned_cast_hash:
+          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+          pattern: ^(0x)?[a-fA-F0-9]{40}$
+          type: string
+        url:
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - url
+      - object
+      - created_at
+      title: Channel
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    ChannelSearchResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      - next
+      title: ChannelSearchResponse
+      type: object
+    UsersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      - next
+      title: UsersResponse
+      type: object
+    ChannelFollowReqBody:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      title: ChannelFollowReqBody
+      type: object
+    TrendingChannelResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/ChannelActivity'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      - next
+      title: TrendingChannelResponse
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    RelevantFollowersResponse:
+      properties:
+        all_relevant_followers_dehydrated:
+          items:
+            $ref: '#/components/schemas/FollowerDehydrated'
+          type: array
+        top_relevant_followers_hydrated:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      required:
+      - top_relevant_followers_hydrated
+      - all_relevant_followers_dehydrated
+      title: RelevantFollowersResponse
+      type: object
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    RemoveChannelMemberReqBody:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      - fid
+      - role
+      title: RemoveChannelMemberReqBody
+      type: object
+    ChannelListResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - channels
+      title: ChannelListResponse
+      type: object
+    RespondChannelInviteReqBody:
+      properties:
+        accept:
+          description: Accept or reject the invite
+          type: boolean
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - channel_id
+      - role
+      - accept
+      title: RespondChannelInviteReqBody
       type: object
     ChannelMember:
       properties:
@@ -868,23 +1140,6 @@ components:
       - channel
       title: ChannelMember
       type: object
-    RemoveChannelMemberReqBody:
-      properties:
-        channel_id:
-          $ref: '#/components/schemas/ChannelId'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-      required:
-      - signer_uuid
-      - channel_id
-      - fid
-      - role
-      title: RemoveChannelMemberReqBody
-      type: object
     OperationResponse:
       properties:
         message:
@@ -893,35 +1148,129 @@ components:
           type: boolean
       title: OperationResponse
       type: object
-    ChannelListResponse:
+    ChannelResponseBulk:
       properties:
         channels:
           items:
             $ref: '#/components/schemas/Channel'
           type: array
+      required:
+      - channels
+      title: ChannelResponseBulk
+      type: object
+    ChannelId:
+      description: The unique identifier of a farcaster channel
+      example: neynar
+      title: ChannelId
+      type: string
+    Follower:
+      properties:
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
+        object:
+          enum:
+          - follower
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      title: Follower
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    ChannelMemberInviteListResponse:
+      properties:
+        invites:
+          items:
+            $ref: '#/components/schemas/ChannelMemberInvite'
+          type: array
         next:
           $ref: '#/components/schemas/NextCursor'
       required:
-      - channels
-      title: ChannelListResponse
+      - invites
+      title: ChannelMemberInviteListResponse
       type: object
-    InviteChannelMemberReqBody:
+    ChannelResponse:
       properties:
-        channel_id:
-          $ref: '#/components/schemas/ChannelId'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
+        channel:
+          $ref: '#/components/schemas/Channel'
       required:
-      - signer_uuid
-      - channel_id
-      - fid
-      - role
-      title: InviteChannelMemberReqBody
+      - channel
+      title: ChannelResponse
       type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
     SignerUUID:
       description: 'UUID of the signer.
 
@@ -929,11 +1278,40 @@ components:
       example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
       title: SignerUUID
       type: string
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
       type: string
+    ChannelMemberInvite:
+      properties:
+        channel_id:
+          $ref: '#/components/schemas/ChannelId'
+        invited:
+          $ref: '#/components/schemas/User'
+        inviter:
+          $ref: '#/components/schemas/User'
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - channel_id
+      - role
+      - inviter
+      - invited
+      title: ChannelMemberInvite
+      type: object
     User:
       properties:
         auth_addresses:
@@ -951,8 +1329,9 @@ components:
         custody_address:
           $ref: '#/components/schemas/EthAddress'
         display_name:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         experimental:
           properties:
             deprecation_notice:
@@ -980,8 +1359,9 @@ components:
           type: string
         pfp_url:
           description: The URL of the user's profile picture
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         pro:
           properties:
             expires_at:
@@ -1097,11 +1477,9 @@ components:
                 eth_address:
                   allOf:
                   - $ref: '#/components/schemas/EthAddress'
-                  nullable: true
                 sol_address:
                   allOf:
                   - $ref: '#/components/schemas/SolAddress'
-                  nullable: true
               required:
               - eth_address
               - sol_address
@@ -1133,209 +1511,6 @@ components:
       - verified_accounts
       title: User
       type: object
-    ChannelMemberInvite:
-      properties:
-        channel_id:
-          $ref: '#/components/schemas/ChannelId'
-        invited:
-          $ref: '#/components/schemas/User'
-        inviter:
-          $ref: '#/components/schemas/User'
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - channel_id
-      - role
-      - inviter
-      - invited
-      title: ChannelMemberInvite
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
-      properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
-      required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    Location:
-      description: Coordinates and place names for a location
-      properties:
-        address:
-          $ref: '#/components/schemas/LocationAddress'
-        latitude:
-          format: double
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          format: double
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          description: The radius in meters for the location search. Any location within this radius will be returned.
-          minimum: 0
-          type: number
-      required:
-      - latitude
-      - longitude
-      title: Location
-      type: object
-    UsersResponse:
-      properties:
-        next:
-          $ref: '#/components/schemas/NextCursor'
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
-      - next
-      title: UsersResponse
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          nullable: true
-          type: string
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          nullable: true
-          type: string
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    ChannelResponse:
-      properties:
-        channel:
-          $ref: '#/components/schemas/Channel'
-      required:
-      - channel
-      title: ChannelResponse
-      type: object
-    TrendingChannelResponse:
-      properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/ChannelActivity'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - channels
-      - next
-      title: TrendingChannelResponse
-      type: object
-    ChannelMemberInviteListResponse:
-      properties:
-        invites:
-          items:
-            $ref: '#/components/schemas/ChannelMemberInvite'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - invites
-      title: ChannelMemberInviteListResponse
-      type: object
-    ChannelActivity:
-      properties:
-        cast_count_1d:
-          type: string
-        cast_count_30d:
-          type: string
-        cast_count_7d:
-          type: string
-        channel:
-          $ref: '#/components/schemas/Channel'
-        object:
-          enum:
-          - channel_activity
-          type: string
-      required:
-      - object
-      - cast_count_1d
-      - cast_count_7d
-      - cast_count_30d
-      - channel
-      title: ChannelActivity
-      type: object
-    ChannelSearchResponse:
-      properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/Channel'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - channels
-      - next
-      title: ChannelSearchResponse
-      type: object
     LocationAddress:
       properties:
         city:
@@ -1366,103 +1541,25 @@ components:
       - user
       title: FollowerDehydrated
       type: object
-    RelevantFollowersResponse:
+    ChannelDehydrated:
       properties:
-        all_relevant_followers_dehydrated:
-          items:
-            $ref: '#/components/schemas/FollowerDehydrated'
-          type: array
-        top_relevant_followers_hydrated:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
-      required:
-      - top_relevant_followers_hydrated
-      - all_relevant_followers_dehydrated
-      title: RelevantFollowersResponse
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
+        id:
           type: string
-        message:
+        image_url:
           type: string
-        property:
+        name:
           type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          nullable: true
+        object:
+          enum:
+          - channel_dehydrated
           type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
       required:
-      - cursor
-      title: NextCursor
-      type: object
-    ChannelFollowReqBody:
-      properties:
-        channel_id:
-          $ref: '#/components/schemas/ChannelId'
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-      required:
-      - signer_uuid
-      - channel_id
-      title: ChannelFollowReqBody
-      type: object
-    ChannelId:
-      description: The unique identifier of a farcaster channel
-      example: neynar
-      title: ChannelId
-      type: string
-    RespondChannelInviteReqBody:
-      properties:
-        accept:
-          description: Accept or reject the invite
-          type: boolean
-        channel_id:
-          $ref: '#/components/schemas/ChannelId'
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-      required:
-      - signer_uuid
-      - channel_id
-      - role
-      - accept
-      title: RespondChannelInviteReqBody
-      type: object
-    ChannelResponseBulk:
-      properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/Channel'
-          type: array
-      required:
-      - channels
-      title: ChannelResponseBulk
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
       type: object
     UsersActiveChannelsResponse:
       properties:
@@ -1474,100 +1571,6 @@ components:
           $ref: '#/components/schemas/NextCursor'
       title: UsersActiveChannelsResponse
       type: object
-    Channel:
-      properties:
-        created_at:
-          format: date-time
-          type: string
-        description:
-          type: string
-        description_mentioned_profiles:
-          items:
-            $ref: '#/components/schemas/UserDehydrated'
-          type: array
-        description_mentioned_profiles_ranges:
-          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
-          items:
-            $ref: '#/components/schemas/TextRange'
-          type: array
-        external_link:
-          description: Channel's external link.
-          properties:
-            title:
-              type: string
-            url:
-              type: string
-          type: object
-        follower_count:
-          description: Number of followers the channel has.
-          type: number
-        hosts:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-        id:
-          type: string
-        image_url:
-          type: string
-        lead:
-          $ref: '#/components/schemas/User'
-        member_count:
-          format: int32
-          type: integer
-        moderator:
-          allOf:
-          - $ref: '#/components/schemas/User'
-          deprecated: true
-          description: Use `lead` instead.
-        moderator_fids:
-          items:
-            $ref: '#/components/schemas/Fid'
-          type: array
-        name:
-          type: string
-        object:
-          enum:
-          - channel
-          type: string
-        parent_url:
-          format: uri
-          type: string
-        pinned_cast_hash:
-          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
-          pattern: ^(0x)?[a-fA-F0-9]{40}$
-          type: string
-        url:
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - url
-      - object
-      - created_at
-      title: Channel
-      type: object
-    ChannelMemberListResponse:
-      properties:
-        members:
-          items:
-            $ref: '#/components/schemas/ChannelMember'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - members
-      - next
-      title: ChannelMemberListResponse
-      type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
   parameters:
     NeynarExperimentalHeader:
       description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.

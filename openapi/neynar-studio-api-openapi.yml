@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action studio API
+  title: Neynar Studio API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -49,8 +49,9 @@ paths:
                     type: string
                   credits_remaining:
                     description: reward_amount - credits_used, clamped at 0. Spendable only until allowance_expires_at.
-                    nullable: true
-                    type: number
+                    type:
+                    - number
+                    - 'null'
                   credits_used:
                     description: Portion of this drop already consumed against STUDIO CU usage (incremented by the CU sync). Forfeited at allowance_expires_at if unused.
                     type: number
@@ -61,18 +62,21 @@ paths:
                     description: Percentile rank within 7-day global distribution
                     maximum: 1
                     minimum: 0
-                    nullable: true
-                    type: number
+                    type:
+                    - number
+                    - 'null'
                   raw_score:
                     description: Raw quality score from 0 to 1
                     maximum: 1
                     minimum: 0
-                    nullable: true
-                    type: number
+                    type:
+                    - number
+                    - 'null'
                   reward_amount:
                     description: Credit reward amount
-                    nullable: true
-                    type: number
+                    type:
+                    - number
+                    - 'null'
                 required:
                 - created_at
                 - raw_score
@@ -357,8 +361,9 @@ paths:
                     deleted_at:
                       description: Deletion timestamp
                       format: date-time
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     dev_server_state:
                       description: 'Dev server process state: stopped, starting, running, crashed, or hung'
                       enum:
@@ -422,8 +427,9 @@ paths:
                     updated_at:
                       description: Last update timestamp
                       format: date-time
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     url:
                       description: Public URL for the deployment
                       format: uri
@@ -520,8 +526,9 @@ paths:
                   deleted_at:
                     description: Deletion timestamp
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   dev_server_state:
                     description: 'Dev server process state: stopped, starting, running, crashed, or hung'
                     enum:
@@ -585,8 +592,9 @@ paths:
                   updated_at:
                     description: Last update timestamp
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   url:
                     description: Public URL for the deployment
                     format: uri
@@ -939,8 +947,9 @@ paths:
                   deleted_at:
                     description: Deletion timestamp
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   dev_server_state:
                     description: 'Dev server process state: stopped, starting, running, crashed, or hung'
                     enum:
@@ -1004,8 +1013,9 @@ paths:
                   updated_at:
                     description: Last update timestamp
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   url:
                     description: Public URL for the deployment
                     format: uri
@@ -1119,12 +1129,14 @@ paths:
                           type: string
                         last_message_preview:
                           description: Preview of the last user message (truncated to ~80 chars)
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         title:
                           description: AI-generated title summarizing the conversation topic
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         updated_at:
                           description: Last update timestamp
                           format: date-time
@@ -1779,8 +1791,9 @@ paths:
                           type: string
                         rowCountEstimate:
                           description: Estimated row count from statistics
-                          nullable: true
-                          type: number
+                          type:
+                          - number
+                          - 'null'
                         schema:
                           description: Schema name
                           type: string
@@ -2239,8 +2252,9 @@ paths:
                       properties:
                         defaultValue:
                           description: Default value expression
-                          nullable: true
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                         isPrimaryKey:
                           description: Whether the column is part of primary key
                           type: boolean
@@ -2429,13 +2443,15 @@ paths:
                 - additionalProperties: {}
                   properties:
                     completed_at:
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     current_phase:
                       type: number
                     last_updated_at:
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                     metadata:
                       additionalProperties: {}
                       type: object
@@ -2452,8 +2468,9 @@ paths:
                       - 1
                       type: number
                     started_at:
-                      nullable: true
-                      type: string
+                      type:
+                      - string
+                      - 'null'
                   required:
                   - schema_version
                   - ready_to_publish
@@ -3706,9 +3723,8 @@ paths:
               properties:
                 compute_units:
                   description: Compute units to add (must be positive)
-                  exclusiveMinimum: true
-                  minimum: 0
                   type: integer
+                  exclusiveMinimum: 0
                 deployment_id:
                   type: string
                 developer_uuid:
@@ -4400,8 +4416,9 @@ components:
       description: Returns next cursor
       properties:
         cursor:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - cursor
       title: NextCursor

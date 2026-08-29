@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Topic API
+  title: Neynar Topic API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -61,6 +61,91 @@ paths:
       - Topic
 components:
   schemas:
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    TrendingTopicsResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        topics:
+          items:
+            $ref: '#/components/schemas/TrendingTopic'
+          type: array
+      required:
+      - topics
+      - next
+      title: TrendingTopicsResponse
+      type: object
+    TrendingTopic:
+      properties:
+        authors:
+          description: Up to five recent Farcaster users who posted about the topic
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          maxItems: 5
+          type: array
+        name:
+          description: The display name of the topic
+          type: string
+        slug:
+          description: A URL-friendly unique identifier for the topic
+          type: string
+        summary:
+          description: Short summary of the topic if available
+          type:
+          - string
+          - 'null'
+        top_level_topic:
+          $ref: '#/components/schemas/TopLevelTopic'
+      required:
+      - name
+      - slug
+      - top_level_topic
+      - summary
+      - authors
+      title: TrendingTopic
+      type: object
     TopLevelTopic:
       description: The top-level category the topic belongs to
       enum:
@@ -85,104 +170,6 @@ components:
       - youth_student_life
       title: TopLevelTopic
       type: string
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          nullable: true
-          type: string
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          nullable: true
-          type: string
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    TrendingTopic:
-      properties:
-        authors:
-          description: Up to five recent Farcaster users who posted about the topic
-          items:
-            $ref: '#/components/schemas/UserDehydrated'
-          maxItems: 5
-          type: array
-        name:
-          description: The display name of the topic
-          type: string
-        slug:
-          description: A URL-friendly unique identifier for the topic
-          type: string
-        summary:
-          description: Short summary of the topic if available
-          nullable: true
-          type: string
-        top_level_topic:
-          $ref: '#/components/schemas/TopLevelTopic'
-      required:
-      - name
-      - slug
-      - top_level_topic
-      - summary
-      - authors
-      title: TrendingTopic
-      type: object
-    TrendingTopicsResponse:
-      properties:
-        next:
-          $ref: '#/components/schemas/NextCursor'
-        topics:
-          items:
-            $ref: '#/components/schemas/TrendingTopic'
-          type: array
-      required:
-      - topics
-      - next
-      title: TrendingTopicsResponse
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          nullable: true
-          type: string
-      required:
-      - cursor
-      title: NextCursor
-      type: object
     Fid:
       description: The unique identifier of a farcaster user or app (unsigned integer)
       example: 3
@@ -190,6 +177,23 @@ components:
       minimum: 0
       title: Fid
       type: integer
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
   securitySchemes:
     ApiKeyAuth:
       description: API key to authorize requests

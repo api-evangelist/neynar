@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Webhook API
+  title: Neynar Webhook API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -185,6 +185,50 @@ components:
           $ref: '#/components/schemas/Webhook'
       title: WebhookResponse
       type: object
+    WebhookSubscriptionFilters:
+      properties:
+        cast.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        cast.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        follow.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        follow.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        reaction.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        reaction.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        trade.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersTrade'
+        user.created:
+          properties: {}
+          type: object
+        user.updated:
+          properties:
+            fids:
+              items:
+                type: integer
+              type: array
+          type: object
+      title: WebhookSubscriptionFilters
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
     WebhookSubscriptionFiltersReaction:
       properties:
         fids:
@@ -203,6 +247,26 @@ components:
           type: array
       title: WebhookSubscriptionFiltersReaction
       type: object
+    WebhookSubscriptionFiltersFollow:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersFollow
+      type: object
+    WebhookDeleteReqBody:
+      properties:
+        webhook_id:
+          type: string
+      required:
+      - webhook_id
+      title: WebhookDeleteReqBody
+      type: object
     Webhook:
       properties:
         active:
@@ -212,8 +276,9 @@ components:
           type: string
         deleted_at:
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         description:
           type: string
         developer_uuid:
@@ -260,45 +325,79 @@ components:
       - deleted_at
       title: Webhook
       type: object
-    WebhookSubscriptionFiltersFollow:
+    WebhookSubscriptionFiltersTrade:
       properties:
         fids:
           items:
             type: integer
           type: array
-        target_fids:
-          items:
-            type: integer
-          type: array
-      title: WebhookSubscriptionFiltersFollow
+        minimum_token_amount_usdc:
+          minimum: 0
+          type: number
+        minimum_trader_neynar_score:
+          maximum: 1
+          minimum: 0
+          type: number
+      title: WebhookSubscriptionFiltersTrade
       type: object
-    WebhookSubscriptionFilters:
+    WebhookSecret:
       properties:
-        cast.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
-        cast.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
-        follow.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
-        follow.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
-        reaction.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
-        reaction.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
-        trade.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersTrade'
-        user.created:
-          properties: {}
-          type: object
-        user.updated:
-          properties:
-            fids:
-              items:
-                type: integer
-              type: array
-          type: object
-      title: WebhookSubscriptionFilters
+        created_at:
+          type: string
+        deleted_at:
+          type:
+          - string
+          - 'null'
+        expires_at:
+          type: string
+        uid:
+          type: string
+        updated_at:
+          type: string
+        value:
+          type: string
+      required:
+      - uid
+      - value
+      - expires_at
+      - created_at
+      - updated_at
+      - deleted_at
+      title: WebhookSecret
+      type: object
+    WebhookListResponse:
+      properties:
+        webhooks:
+          items:
+            $ref: '#/components/schemas/Webhook'
+          type: array
+      required:
+      - webhooks
+      title: WebhookListResponse
+      type: object
+    WebhookSubscription:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        filters:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        object:
+          enum:
+          - webhook_subscription
+          type: string
+        subscription_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - object
+      - subscription_id
+      - filters
+      - created_at
+      - updated_at
+      title: WebhookSubscription
       type: object
     WebhookSubscriptionFiltersCast:
       properties:
@@ -318,7 +417,7 @@ components:
           type: array
         embeds:
           description: "Regex pattern to match the embeded_url (key embeds) of the cast.\n**Note:** \n1) Regex must be parsed by Go's RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex)\n2) Use backslashes to escape special characters.\nFor example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b"
-          example: "\b(farcaster|neynar)\b"
+          example: (farcaster|neynar)
           type: string
         exclude_author_fids:
           description: 'Exclude casts that matches these authors.
@@ -362,54 +461,6 @@ components:
           type: string
       title: WebhookSubscriptionFiltersCast
       type: object
-    WebhookSubscription:
-      properties:
-        created_at:
-          format: date-time
-          type: string
-        filters:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        object:
-          enum:
-          - webhook_subscription
-          type: string
-        subscription_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - object
-      - subscription_id
-      - filters
-      - created_at
-      - updated_at
-      title: WebhookSubscription
-      type: object
-    WebhookSecret:
-      properties:
-        created_at:
-          type: string
-        deleted_at:
-          nullable: true
-          type: string
-        expires_at:
-          type: string
-        uid:
-          type: string
-        updated_at:
-          type: string
-        value:
-          type: string
-      required:
-      - uid
-      - value
-      - expires_at
-      - created_at
-      - updated_at
-      - deleted_at
-      title: WebhookSecret
-      type: object
     WebhookPatchReqBody:
       properties:
         active:
@@ -424,22 +475,6 @@ components:
       - active
       title: WebhookPatchReqBody
       type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
     WebhookPostReqBody:
       properties:
         name:
@@ -452,14 +487,6 @@ components:
       - name
       - url
       title: WebhookPostReqBody
-      type: object
-    WebhookDeleteReqBody:
-      properties:
-        webhook_id:
-          type: string
-      required:
-      - webhook_id
-      title: WebhookDeleteReqBody
       type: object
     WebhookPutReqBody:
       properties:
@@ -476,31 +503,6 @@ components:
       - url
       - webhook_id
       title: WebhookPutReqBody
-      type: object
-    WebhookListResponse:
-      properties:
-        webhooks:
-          items:
-            $ref: '#/components/schemas/Webhook'
-          type: array
-      required:
-      - webhooks
-      title: WebhookListResponse
-      type: object
-    WebhookSubscriptionFiltersTrade:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        minimum_token_amount_usdc:
-          minimum: 0
-          type: number
-        minimum_trader_neynar_score:
-          maximum: 1
-          minimum: 0
-          type: number
-      title: WebhookSubscriptionFiltersTrade
       type: object
   securitySchemes:
     ApiKeyAuth:

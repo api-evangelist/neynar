@@ -1,14 +1,16 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
+  title: Farcaster Hub Fids API
+  version: 2.35.0
+  description: 'Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+
+    '
   contact:
-    email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Fids API
-  version: 3.176.0
+    email: team@neynar.com
 servers:
-- url: https://api.neynar.com
+- url: https://snapchain-api.neynar.com
 security:
 - ApiKeyAuth: []
 tags:
@@ -54,28 +56,14 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    PaginationResponse:
-      type: object
-      required:
-      - nextPageToken
-      properties:
-        nextPageToken:
-          type: string
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
-    FidsResponse:
-      allOf:
-      - type: object
-        properties:
-          fids:
-            type: array
-            items:
-              $ref: '#/components/schemas/FidSchema'
-        required:
-        - fids
-      - $ref: '#/components/schemas/PaginationResponse'
+    FidSchema:
+      type: integer
+      format: uint64
+      minimum: 1
+      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+
+        '
+      example: 1
     ErrorResponse:
       required:
       - code
@@ -105,27 +93,41 @@ components:
               type: array
               items:
                 type: string
-    FidSchema:
-      type: integer
-      format: uint64
-      minimum: 1
-      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
-
-        '
-      example: 1
+    FidsResponse:
+      allOf:
+      - type: object
+        properties:
+          fids:
+            type: array
+            items:
+              $ref: '#/components/schemas/FidSchema'
+        required:
+        - fids
+      - $ref: '#/components/schemas/PaginationResponse'
+    PaginationResponse:
+      type: object
+      required:
+      - nextPageToken
+      properties:
+        nextPageToken:
+          type: string
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
+          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
   parameters:
-    paginationReverse:
-      name: reverse
-      in: query
-      description: Reverse the sort order, returning latest messages first
-      schema:
-        type: boolean
     pageToken:
       name: pageToken
       in: query
       description: The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
       schema:
         type: string
+    paginationReverse:
+      name: reverse
+      in: query
+      description: Reverse the sort order, returning latest messages first
+      schema:
+        type: boolean
     pageSize:
       name: pageSize
       in: query
@@ -134,8 +136,8 @@ components:
         type: integer
   securitySchemes:
     ApiKeyAuth:
-      description: API key to authorize requests
+      type: apiKey
       in: header
       name: x-api-key
-      type: apiKey
+      description: API key to authorize requests
       x-default: NEYNAR_API_DOCS

@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action AuthAddress API
+  title: Neynar Auth Address API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -122,12 +122,6 @@ paths:
       - AuthAddress
 components:
   schemas:
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
     ErrorRes:
       description: Details for the error response
       properties:
@@ -144,6 +138,13 @@ components:
       - message
       title: ErrorRes
       type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
     RegisterAuthAddressDeveloperManagedSignedKeyReqBody:
       properties:
         address:
@@ -172,6 +173,12 @@ components:
       - signature
       title: RegisterAuthAddressDeveloperManagedSignedKeyReqBody
       type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
     SignedKeyRequestSponsor:
       properties:
         fid:
@@ -190,13 +197,6 @@ components:
           type: boolean
       title: SignedKeyRequestSponsor
       type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
   securitySchemes:
     ApiKeyAuth:
       description: API key to authorize requests

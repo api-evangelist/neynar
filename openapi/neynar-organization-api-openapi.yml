@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action organization API
+  title: Neynar Organization API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -27,8 +27,9 @@ paths:
               schema:
                 properties:
                   billing_email:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   effective_plan:
                     type: string
                   has_active_subscription:
@@ -38,37 +39,47 @@ paths:
                   organization_name:
                     type: string
                   organization_status:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   plan_tier:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   product_category:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   product_name:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   stripe_customer_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   stripe_product_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   stripe_subscription_id:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   subscription_end:
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   subscription_start:
                     format: date-time
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   subscription_status:
-                    nullable: true
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                   workos_organization_id:
                     type: string
                 required:

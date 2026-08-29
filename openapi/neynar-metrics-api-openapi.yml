@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Metrics API
+  title: Neynar Metrics API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -69,6 +69,15 @@ paths:
       tags:
       - Metrics
 components:
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
   schemas:
     CastsMetricsResponse:
       properties:
@@ -113,15 +122,6 @@ components:
       - cast_count
       title: CastsMetrics
       type: object
-  parameters:
-    NeynarExperimentalHeader:
-      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-      in: header
-      name: x-neynar-experimental
-      schema:
-        default: false
-        type: boolean
-      x-is-global-header: true
   securitySchemes:
     ApiKeyAuth:
       description: API key to authorize requests

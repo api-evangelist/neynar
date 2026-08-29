@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Agents API
+  title: Neynar Agents API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -156,582 +156,6 @@ paths:
       - Agents
 components:
   schemas:
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
-      properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - following
-      title: ChannelUserContext
-      type: object
-    TransactionFramePay:
-      properties:
-        config:
-          $ref: '#/components/schemas/TransactionFrameConfig'
-        id:
-          description: Unique identifier for the transaction mini app
-          type: string
-        status:
-          $ref: '#/components/schemas/TransactionFrameStatus'
-        transaction:
-          properties:
-            to:
-              $ref: '#/components/schemas/TransactionFrameDestination'
-          required:
-          - to
-          type: object
-        type:
-          $ref: '#/components/schemas/TransactionFrameType'
-        url:
-          description: URL that can be used to access the transaction mini app
-          format: uri
-          type: string
-      required:
-      - id
-      - url
-      - type
-      - config
-      - status
-      - transaction
-      title: TransactionFramePay
-      type: object
-    Follower:
-      properties:
-        app:
-          $ref: '#/components/schemas/UserDehydrated'
-        object:
-          enum:
-          - follower
-          type: string
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - object
-      - user
-      title: Follower
-      type: object
-    CastEmbedded:
-      properties:
-        app:
-          allOf:
-          - $ref: '#/components/schemas/UserDehydrated'
-          nullable: true
-        author:
-          $ref: '#/components/schemas/UserDehydrated'
-        channel:
-          allOf:
-          - $ref: '#/components/schemas/ChannelDehydrated'
-          nullable: true
-        embeds:
-          items:
-            $ref: '#/components/schemas/EmbedDeep'
-          type: array
-        hash:
-          type: string
-        parent_author:
-          properties:
-            fid:
-              allOf:
-              - $ref: '#/components/schemas/Fid'
-              nullable: true
-          required:
-          - fid
-          type: object
-        parent_hash:
-          nullable: true
-          type: string
-        parent_url:
-          nullable: true
-          type: string
-        root_parent_url:
-          nullable: true
-          type: string
-        text:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-      required:
-      - hash
-      - parent_hash
-      - parent_url
-      - root_parent_url
-      - parent_author
-      - author
-      - text
-      - timestamp
-      - embeds
-      - channel
-      title: CastEmbedded
-      type: object
-    TransactionFrameAction:
-      description: Action button for primary CTA on the transaction mini app
-      properties:
-        button_color:
-          description: Custom button color for action button
-          example: '#000000'
-          type: string
-        text:
-          description: Custom text for action button
-          example: Pay
-          type: string
-        text_color:
-          description: Custom text color for action button
-          example: '#FFFFFF'
-          type: string
-      title: TransactionFrameAction
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    FrameV1:
-      description: Mini app v1 object
-      properties:
-        buttons:
-          items:
-            $ref: '#/components/schemas/FrameActionButton'
-          type: array
-        frames_url:
-          description: Launch URL of the mini app
-          type: string
-        image:
-          description: URL of the image
-          type: string
-        image_aspect_ratio:
-          type: string
-        input:
-          properties:
-            text:
-              description: Input text for the mini app
-              type: string
-          type: object
-        post_url:
-          description: Post URL to take an action on this mini app
-          type: string
-        state:
-          properties:
-            serialized:
-              description: State for the mini app in a serialized format
-              type: string
-          type: object
-        title:
-          type: string
-        version:
-          description: Version of the mini app, 'next' for v2, 'vNext' for v1
-          type: string
-      required:
-      - version
-      - image
-      - frames_url
-      title: FrameV1
-      type: object
-    Notification:
-      properties:
-        cast:
-          $ref: '#/components/schemas/Cast'
-        count:
-          description: The number of notifications of this(follows, likes, recast) type bundled in a single notification.
-          format: int32
-          type: integer
-        follows:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
-        most_recent_timestamp:
-          format: date-time
-          type: string
-        object:
-          enum:
-          - notification
-          type: string
-        reactions:
-          items:
-            $ref: '#/components/schemas/ReactionWithUserInfo'
-          type: array
-        seen:
-          type: boolean
-        type:
-          enum:
-          - follows
-          - recasts
-          - likes
-          - mention
-          - reply
-          - quote
-          type: string
-      required:
-      - object
-      - most_recent_timestamp
-      - type
-      - seen
-      title: Notification
-      type: object
-    FrameButtonActionType:
-      description: The action type of a mini app button. Action types "mint" & "link" are to be handled on the client side only and so they will produce a no/op for POST /farcaster/frame/action.
-      enum:
-      - post
-      - post_redirect
-      - tx
-      - link
-      - mint
-      title: FrameButtonActionType
-      type: string
-    User:
-      properties:
-        auth_addresses:
-          items:
-            properties:
-              address:
-                $ref: '#/components/schemas/EthAddress'
-              app:
-                $ref: '#/components/schemas/UserDehydrated'
-            required:
-            - address
-            - app
-            type: object
-          type: array
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          nullable: true
-          type: string
-        experimental:
-          properties:
-            deprecation_notice:
-              type: string
-            neynar_user_score:
-              description: Score that represents the probability that the account is not spam.
-              format: double
-              type: number
-          required:
-          - neynar_user_score
-          type: object
-        fid:
-          $ref: '#/components/schemas/Fid'
-        follower_count:
-          description: The number of followers the user has.
-          format: int32
-          type: integer
-        following_count:
-          description: The number of users the user is following.
-          format: int32
-          type: integer
-        object:
-          enum:
-          - user
-          type: string
-        pfp_url:
-          description: The URL of the user's profile picture
-          nullable: true
-          type: string
-        pro:
-          properties:
-            expires_at:
-              format: date-time
-              type: string
-            status:
-              description: The subscription status of the user
-              enum:
-              - subscribed
-              - unsubscribed
-              type: string
-            subscribed_at:
-              format: date-time
-              type: string
-          required:
-          - status
-          - subscribed_at
-          - expires_at
-          type: object
-        profile:
-          properties:
-            banner:
-              properties:
-                url:
-                  description: The URL of the user's banner image
-                  format: uri
-                  type: string
-              type: object
-            bio:
-              properties:
-                mentioned_channels:
-                  items:
-                    $ref: '#/components/schemas/ChannelDehydrated'
-                  type: array
-                mentioned_channels_ranges:
-                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
-
-                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
-                  items:
-                    $ref: '#/components/schemas/TextRange'
-                  type: array
-                mentioned_profiles:
-                  items:
-                    $ref: '#/components/schemas/UserDehydrated'
-                  type: array
-                mentioned_profiles_ranges:
-                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
-
-                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
-                  items:
-                    $ref: '#/components/schemas/TextRange'
-                  type: array
-                text:
-                  type: string
-              required:
-              - text
-              type: object
-            live_at:
-              properties:
-                is_live:
-                  type: boolean
-                updated_at:
-                  format: date-time
-                  type: string
-                url:
-                  description: The URL of the user's current live activity
-                  type: string
-              required:
-              - url
-              - updated_at
-              - is_live
-              type: object
-            location:
-              $ref: '#/components/schemas/Location'
-          required:
-          - bio
-          type: object
-        registered_at:
-          format: date-time
-          type: string
-        score:
-          description: Score that represents the probability that the account is not spam.
-          format: double
-          type: number
-        username:
-          type: string
-        verifications:
-          items:
-            $ref: '#/components/schemas/EthAddress'
-          type: array
-        verified_accounts:
-          items:
-            description: Verified accounts of the user on other platforms, currently only X is supported.
-            properties:
-              platform:
-                enum:
-                - x
-                - github
-                type: string
-              username:
-                type: string
-            type: object
-          type: array
-        verified_addresses:
-          properties:
-            eth_addresses:
-              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
-              items:
-                $ref: '#/components/schemas/EthAddress'
-              type: array
-            primary:
-              properties:
-                eth_address:
-                  allOf:
-                  - $ref: '#/components/schemas/EthAddress'
-                  nullable: true
-                sol_address:
-                  allOf:
-                  - $ref: '#/components/schemas/SolAddress'
-                  nullable: true
-              required:
-              - eth_address
-              - sol_address
-              type: object
-            sol_addresses:
-              description: List of verified Solana addresses of the user sorted by oldest to most recent.
-              items:
-                $ref: '#/components/schemas/SolAddress'
-              type: array
-          required:
-          - eth_addresses
-          - sol_addresses
-          - primary
-          type: object
-        viewer_context:
-          $ref: '#/components/schemas/UserViewerContext'
-      required:
-      - object
-      - fid
-      - username
-      - custody_address
-      - registered_at
-      - profile
-      - follower_count
-      - following_count
-      - verifications
-      - auth_addresses
-      - verified_addresses
-      - verified_accounts
-      title: User
-      type: object
-    Embed:
-      anyOf:
-      - $ref: '#/components/schemas/EmbedCast'
-      - $ref: '#/components/schemas/EmbedUrl'
-      title: Embed
-    TransactionFrameResponse:
-      properties:
-        transaction_frame:
-          $ref: '#/components/schemas/TransactionFrame'
-      required:
-      - transaction_frame
-      title: TransactionFrameResponse
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    OembedVideoData:
-      description: Video OEmbed data
-      properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          nullable: true
-          type: string
-        author_url:
-          description: A URL for the author/owner of the resource.
-          nullable: true
-          type: string
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          nullable: true
-          type: string
-        height:
-          description: The height in pixels required to display the HTML.
-          nullable: true
-          type: number
-        html:
-          description: The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
-          nullable: true
-          type: string
-        provider_name:
-          description: The name of the resource provider.
-          nullable: true
-          type: string
-        provider_url:
-          description: The url of the resource provider.
-          nullable: true
-          type: string
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          nullable: true
-          type: number
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          nullable: true
-          type: string
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          nullable: true
-          type: number
-        title:
-          description: A text title, describing the resource.
-          nullable: true
-          type: string
-        type:
-          enum:
-          - video
-          type: string
-        version:
-          nullable: true
-          type: string
-        width:
-          description: The width in pixels required to display the HTML.
-          nullable: true
-          type: number
-      required:
-      - type
-      - version
-      - html
-      title: OembedVideoData
-      type: object
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
-      properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
-      required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
-      type: object
-    TransactionFrame:
-      discriminator:
-        mapping:
-          pay: '#/components/schemas/TransactionFramePay'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/TransactionFramePay'
-      title: TransactionFrame
-      type: object
-    EmbedUrl:
-      properties:
-        metadata:
-          $ref: '#/components/schemas/EmbedUrlMetadata'
-        url:
-          type: string
-      required:
-      - url
-      title: EmbedUrl
-      type: object
-    CastDehydrated:
-      properties:
-        app:
-          allOf:
-          - $ref: '#/components/schemas/UserDehydrated'
-          nullable: true
-        author:
-          $ref: '#/components/schemas/UserDehydrated'
-        hash:
-          type: string
-        object:
-          enum:
-          - cast_dehydrated
-          type: string
-      required:
-      - object
-      - hash
-      title: CastDehydrated
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
     FarcasterManifest:
       properties:
         account_association:
@@ -882,69 +306,468 @@ components:
       - account_association
       title: FarcasterManifest
       type: object
-    OembedRichData:
-      description: Rich OEmbed data
+    TextRange:
       properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          nullable: true
-          type: string
-        author_url:
-          description: A URL for the author/owner of the resource.
-          nullable: true
-          type: string
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          nullable: true
-          type: string
-        height:
-          description: The height in pixels required to display the HTML.
-          nullable: true
+        end:
+          minimum: 0
           type: number
-        html:
-          description: The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
-          nullable: true
-          type: string
-        provider_name:
-          description: The name of the resource provider.
-          nullable: true
-          type: string
-        provider_url:
-          description: The url of the resource provider.
-          nullable: true
-          type: string
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          nullable: true
-          type: number
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          nullable: true
-          type: string
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          nullable: true
-          type: number
-        title:
-          description: A text title, describing the resource.
-          nullable: true
-          type: string
-        type:
-          enum:
-          - rich
-          type: string
-        version:
-          nullable: true
-          type: string
-        width:
-          description: The width in pixels required to display the HTML.
-          nullable: true
+        start:
+          minimum: 0
           type: number
       required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    Channel:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        description:
+          type: string
+        description_mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          type: array
+        description_mentioned_profiles_ranges:
+          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        external_link:
+          description: Channel's external link.
+          properties:
+            title:
+              type: string
+            url:
+              type: string
+          type: object
+        follower_count:
+          description: Number of followers the channel has.
+          type: number
+        hosts:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        id:
+          type: string
+        image_url:
+          type: string
+        lead:
+          $ref: '#/components/schemas/User'
+        member_count:
+          format: int32
+          type: integer
+        moderator:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          deprecated: true
+          description: Use `lead` instead.
+        moderator_fids:
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        name:
+          type: string
+        object:
+          enum:
+          - channel
+          type: string
+        parent_url:
+          format: uri
+          type: string
+        pinned_cast_hash:
+          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+          pattern: ^(0x)?[a-fA-F0-9]{40}$
+          type: string
+        url:
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - url
+      - object
+      - created_at
+      title: Channel
+      type: object
+    ReactionWithUserInfo:
+      properties:
+        cast:
+          $ref: '#/components/schemas/CastDehydrated'
+        object:
+          enum:
+          - likes
+          - recasts
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - cast
+      - user
+      title: ReactionWithUserInfo
+      type: object
+    Cast:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+        author:
+          $ref: '#/components/schemas/User'
+        author_channel_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+        embeds:
+          items:
+            $ref: '#/components/schemas/Embed'
+          type: array
+        hash:
+          type: string
+        mentioned_channels:
+          items:
+            $ref: '#/components/schemas/ChannelDehydrated'
+          type: array
+        mentioned_channels_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        mentioned_profiles:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        mentioned_profiles_ranges:
+          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+            Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+          items:
+            $ref: '#/components/schemas/TextRange'
+          type: array
+        object:
+          enum:
+          - cast
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+          required:
+          - fid
+          type: object
+        parent_hash:
+          type:
+          - string
+          - 'null'
+        parent_url:
+          type:
+          - string
+          - 'null'
+        reactions:
+          $ref: '#/components/schemas/CastReactions'
+        replies:
+          $ref: '#/components/schemas/CastReplies'
+        root_parent_url:
+          type:
+          - string
+          - 'null'
+        text:
+          type: string
+        thread_hash:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/CastNotificationType'
+        viewer_context:
+          $ref: '#/components/schemas/CastViewerContext'
+      required:
+      - object
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - reactions
+      - replies
+      - thread_hash
+      - mentioned_profiles
+      - mentioned_profiles_ranges
+      - mentioned_channels
+      - mentioned_channels_ranges
+      - channel
+      title: Cast
+      type: object
+    TransactionFrameLineItem:
+      properties:
+        description:
+          description: Description of the line item in transaction
+          example: Payment for goods
+          type: string
+        image:
+          description: Optional image URL for the line item in transaction
+          example: https://i.imgur.com/ovGo3sz.png
+          type: string
+        name:
+          description: Name of the line item in transaction
+          example: Payment
+          type: string
+      required:
+      - name
+      - description
+      title: TransactionFrameLineItem
+      type: object
+    TransactionFrame:
+      discriminator:
+        mapping:
+          pay: '#/components/schemas/TransactionFramePay'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/TransactionFramePay'
+      title: TransactionFrame
+      type: object
+    CastId:
+      deprecated: true
+      description: '[DEPRECATED: Use "cast" key instead]'
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        hash:
+          type: string
+      required:
+      - fid
+      - hash
+      title: CastId
+      type: object
+    ReactionLike:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        fname:
+          type: string
+      required:
+      - fid
+      - fname
+      title: ReactionLike
+      type: object
+    EmbedUrl:
+      properties:
+        metadata:
+          $ref: '#/components/schemas/EmbedUrlMetadata'
+        url:
+          type: string
+      required:
+      - url
+      title: EmbedUrl
+      type: object
+    TransactionFramePay:
+      properties:
+        config:
+          $ref: '#/components/schemas/TransactionFrameConfig'
+        id:
+          description: Unique identifier for the transaction mini app
+          type: string
+        status:
+          $ref: '#/components/schemas/TransactionFrameStatus'
+        transaction:
+          properties:
+            to:
+              $ref: '#/components/schemas/TransactionFrameDestination'
+          required:
+          - to
+          type: object
+        type:
+          $ref: '#/components/schemas/TransactionFrameType'
+        url:
+          description: URL that can be used to access the transaction mini app
+          format: uri
+          type: string
+      required:
+      - id
+      - url
       - type
+      - config
+      - status
+      - transaction
+      title: TransactionFramePay
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    FrameActionButton:
+      properties:
+        action_type:
+          $ref: '#/components/schemas/FrameButtonActionType'
+        index:
+          description: Index of the button
+          type: integer
+        post_url:
+          description: Used specifically for the tx action type to post a successful transaction hash
+          type: string
+        target:
+          description: Target of the button
+          type: string
+        title:
+          description: Title of the button
+          type: string
+      required:
+      - index
+      - action_type
+      title: FrameActionButton
+      type: object
+    VideoObject:
+      properties:
+        height:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+        width:
+          type: string
+      required:
+      - url
+      title: VideoObject
+      type: object
+    FrameV1:
+      description: Mini app v1 object
+      properties:
+        buttons:
+          items:
+            $ref: '#/components/schemas/FrameActionButton'
+          type: array
+        frames_url:
+          description: Launch URL of the mini app
+          type: string
+        image:
+          description: URL of the image
+          type: string
+        image_aspect_ratio:
+          type: string
+        input:
+          properties:
+            text:
+              description: Input text for the mini app
+              type: string
+          type: object
+        post_url:
+          description: Post URL to take an action on this mini app
+          type: string
+        state:
+          properties:
+            serialized:
+              description: State for the mini app in a serialized format
+              type: string
+          type: object
+        title:
+          type: string
+        version:
+          description: Version of the mini app, 'next' for v2, 'vNext' for v1
+          type: string
+      required:
       - version
-      - html
-      title: OembedRichData
+      - image
+      - frames_url
+      title: FrameV1
+      type: object
+    CastEmbedded:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+        author:
+          $ref: '#/components/schemas/UserDehydrated'
+        channel:
+          allOf:
+          - $ref: '#/components/schemas/ChannelDehydrated'
+        embeds:
+          items:
+            $ref: '#/components/schemas/EmbedDeep'
+          type: array
+        hash:
+          type: string
+        parent_author:
+          properties:
+            fid:
+              allOf:
+              - $ref: '#/components/schemas/Fid'
+          required:
+          - fid
+          type: object
+        parent_hash:
+          type:
+          - string
+          - 'null'
+        parent_url:
+          type:
+          - string
+          - 'null'
+        root_parent_url:
+          type:
+          - string
+          - 'null'
+        text:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - hash
+      - parent_hash
+      - parent_url
+      - root_parent_url
+      - parent_author
+      - author
+      - text
+      - timestamp
+      - embeds
+      - channel
+      title: CastEmbedded
+      type: object
+    EmbedCastDeep:
+      properties:
+        cast:
+          $ref: '#/components/schemas/CastDehydrated'
+        cast_id:
+          $ref: '#/components/schemas/CastId'
+      required:
+      - cast
+      title: EmbedCastDeep
       type: object
     Location:
       description: Coordinates and place names for a location
@@ -970,39 +793,24 @@ components:
       - longitude
       title: Location
       type: object
-    FramePayTransactionReqBody:
+    TransactionFrameConfig:
       properties:
-        config:
-          $ref: '#/components/schemas/TransactionFrameConfig'
-        idem:
-          $ref: '#/components/schemas/Idem'
-        transaction:
-          properties:
-            to:
-              $ref: '#/components/schemas/TransactionFrameDestination'
-          required:
-          - to
-          type: object
+        action:
+          $ref: '#/components/schemas/TransactionFrameAction'
+        allowlist_fids:
+          description: Optional list of FIDs that are allowed to use this transaction mini app
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        line_items:
+          description: List of items included in the transaction
+          items:
+            $ref: '#/components/schemas/TransactionFrameLineItem'
+          minItems: 1
+          type: array
       required:
-      - transaction
-      - config
-      title: FramePayTransactionReqBody
-      type: object
-    ImageObject:
-      properties:
-        alt:
-          type: string
-        height:
-          type: string
-        type:
-          type: string
-        url:
-          type: string
-        width:
-          type: string
-      required:
-      - url
-      title: ImageObject
+      - line_items
+      title: TransactionFrameConfig
       type: object
     ChannelOrChannelDehydrated:
       discriminator:
@@ -1015,30 +823,119 @@ components:
       - $ref: '#/components/schemas/ChannelDehydrated'
       title: ChannelOrChannelDehydrated
       type: object
-    UserDehydrated:
+    Frame:
+      anyOf:
+      - $ref: '#/components/schemas/FrameV1'
+      - $ref: '#/components/schemas/FrameV2'
+      discriminator:
+        mapping:
+          '1': '#/components/schemas/FrameV2'
+          0.0.0: '#/components/schemas/FrameV2'
+          0.0.1: '#/components/schemas/FrameV2'
+          next: '#/components/schemas/FrameV2'
+          vNext: '#/components/schemas/FrameV1'
+        propertyName: version
+      title: Frame
+    CastViewerContext:
+      description: Adds context on interactions the viewer has made with the cast.
       properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          nullable: true
-          type: string
-        fid:
-          $ref: '#/components/schemas/Fid'
+        liked:
+          description: Indicates if the viewer liked the cast.
+          type: boolean
+        recasted:
+          description: Indicates if the viewer recasted the cast.
+          type: boolean
+      required:
+      - liked
+      - recasted
+      title: CastViewerContext
+      type: object
+    CastNotificationType:
+      description: The notification type of a cast.
+      enum:
+      - cast-mention
+      - cast-reply
+      title: CastNotificationType
+      type: string
+    ConversationSummary:
+      properties:
+        summary:
+          properties:
+            mentioned_profiles:
+              description: Users who were mentioned in a conversation thread
+              items:
+                $ref: '#/components/schemas/User'
+              type: array
+            participants:
+              description: Users who casted in a conversation thread
+              items:
+                $ref: '#/components/schemas/User'
+              type: array
+            text:
+              description: Summary generated by an LLM
+              type: string
+          required:
+          - text
+          - participants
+          - mentioned_profiles
+          type: object
+      required:
+      - summary
+      title: ConversationSummary
+      type: object
+    Follower:
+      properties:
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
         object:
           enum:
-          - user_dehydrated
+          - follower
           type: string
-        pfp_url:
-          nullable: true
-          type: string
-        score:
-          type: number
-        username:
-          type: string
+        user:
+          $ref: '#/components/schemas/User'
       required:
       - object
-      - fid
-      title: UserDehydrated
+      - user
+      title: Follower
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
       type: object
     FrameV2:
       description: Mini app v2 object
@@ -1072,124 +969,10 @@ components:
       - frames_url
       title: FrameV2
       type: object
-    ChannelDehydrated:
+    ImageObject:
       properties:
-        id:
+        alt:
           type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    OembedLinkData:
-      description: Link OEmbed data
-      properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          nullable: true
-          type: string
-        author_url:
-          description: A URL for the author/owner of the resource.
-          nullable: true
-          type: string
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          nullable: true
-          type: string
-        provider_name:
-          description: The name of the resource provider.
-          nullable: true
-          type: string
-        provider_url:
-          description: The url of the resource provider.
-          nullable: true
-          type: string
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          nullable: true
-          type: number
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          nullable: true
-          type: string
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          nullable: true
-          type: number
-        title:
-          description: A text title, describing the resource.
-          nullable: true
-          type: string
-        type:
-          enum:
-          - link
-          type: string
-        version:
-          nullable: true
-          type: string
-      required:
-      - type
-      - version
-      title: OembedLinkData
-      type: object
-    EmbedCastDeep:
-      properties:
-        cast:
-          $ref: '#/components/schemas/CastDehydrated'
-        cast_id:
-          $ref: '#/components/schemas/CastId'
-      required:
-      - cast
-      title: EmbedCastDeep
-      type: object
-    CastReplies:
-      properties:
-        count:
-          format: int32
-          type: integer
-      required:
-      - count
-      title: CastReplies
-      type: object
-    Network:
-      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
-      enum:
-      - ethereum
-      - optimism
-      - base
-      - arbitrum
-      title: Network
-      type: string
-    LocationAddress:
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    VideoObject:
-      properties:
         height:
           type: string
         type:
@@ -1200,7 +983,82 @@ components:
           type: string
       required:
       - url
-      title: VideoObject
+      title: ImageObject
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    EmbedDeep:
+      anyOf:
+      - $ref: '#/components/schemas/EmbedCastDeep'
+      - $ref: '#/components/schemas/EmbedUrl'
+      title: EmbedDeep
+    EmbedUrlMetadata:
+      properties:
+        _status:
+          type: string
+        content_length:
+          type:
+          - integer
+          - 'null'
+        content_type:
+          type:
+          - string
+          - 'null'
+        frame:
+          $ref: '#/components/schemas/Frame'
+        html:
+          $ref: '#/components/schemas/HtmlMetadata'
+        image:
+          properties:
+            height_px:
+              type: integer
+            width_px:
+              type: integer
+          type: object
+        video:
+          properties:
+            duration_s:
+              type: number
+            stream:
+              items:
+                properties:
+                  codec_name:
+                    type: string
+                  height_px:
+                    type: integer
+                  width_px:
+                    type: integer
+                type: object
+              type: array
+          type: object
+      required:
+      - _status
+      title: EmbedUrlMetadata
       type: object
     TransactionFrameDestination:
       properties:
@@ -1225,6 +1083,556 @@ components:
       - amount
       title: TransactionFrameDestination
       type: object
+    OembedRichData:
+      description: Rich OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        height:
+          description: The height in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
+        html:
+          description: The HTML required to display the resource. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities. The markup should be valid XHTML 1.0 Basic.
+          type:
+          - string
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - rich
+          type: string
+        version:
+          type:
+          - string
+          - 'null'
+        width:
+          description: The width in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
+      required:
+      - type
+      - version
+      - html
+      title: OembedRichData
+      type: object
+    OembedPhotoData:
+      description: Photo OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        height:
+          description: The height in pixels of the image specified in the url parameter.
+          type:
+          - number
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - photo
+          type: string
+        url:
+          description: The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        width:
+          description: The width in pixels of the image specified in the url parameter.
+          type:
+          - number
+          - 'null'
+      required:
+      - type
+      - version
+      - url
+      title: OembedPhotoData
+      type: object
+    FramePayTransactionReqBody:
+      properties:
+        config:
+          $ref: '#/components/schemas/TransactionFrameConfig'
+        idem:
+          $ref: '#/components/schemas/Idem'
+        transaction:
+          properties:
+            to:
+              $ref: '#/components/schemas/TransactionFrameDestination'
+          required:
+          - to
+          type: object
+      required:
+      - transaction
+      - config
+      title: FramePayTransactionReqBody
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    EncodedJsonFarcasterSignature:
+      description: Encoded JSON Farcaster signature
+      properties:
+        header:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string
+      required:
+      - header
+      - payload
+      - signature
+      title: EncodedJsonFarcasterSignature
+      type: object
+    TransactionFrameResponse:
+      properties:
+        transaction_frame:
+          $ref: '#/components/schemas/TransactionFrame'
+      required:
+      - transaction_frame
+      title: TransactionFrameResponse
+      type: object
+    EmbedCast:
+      properties:
+        cast:
+          $ref: '#/components/schemas/CastEmbedded'
+        cast_id:
+          $ref: '#/components/schemas/CastId'
+      required:
+      - cast
+      title: EmbedCast
+      type: object
+    Notification:
+      properties:
+        cast:
+          $ref: '#/components/schemas/Cast'
+        count:
+          description: The number of notifications of this(follows, likes, recast) type bundled in a single notification.
+          format: int32
+          type: integer
+        follows:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+        most_recent_timestamp:
+          format: date-time
+          type: string
+        object:
+          enum:
+          - notification
+          type: string
+        reactions:
+          items:
+            $ref: '#/components/schemas/ReactionWithUserInfo'
+          type: array
+        seen:
+          type: boolean
+        type:
+          enum:
+          - follows
+          - recasts
+          - likes
+          - mention
+          - reply
+          - quote
+          type: string
+      required:
+      - object
+      - most_recent_timestamp
+      - type
+      - seen
+      title: Notification
+      type: object
+    ReactionRecast:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        fname:
+          type: string
+      required:
+      - fid
+      - fname
+      title: ReactionRecast
+      type: object
+    CastReactions:
+      properties:
+        likes:
+          deprecated: true
+          description: This has been deprecated and will always be an empty array. The property will be removed in the future
+          items:
+            $ref: '#/components/schemas/ReactionLike'
+          type: array
+        likes_count:
+          format: int32
+          type: integer
+        recasts:
+          deprecated: true
+          description: This has been deprecated and will always be an empty array. The property will be removed in the future
+          items:
+            $ref: '#/components/schemas/ReactionRecast'
+          type: array
+        recasts_count:
+          format: int32
+          type: integer
+      required:
+      - likes
+      - recasts
+      - likes_count
+      - recasts_count
+      title: CastReactions
+      type: object
+    CastDehydrated:
+      properties:
+        app:
+          allOf:
+          - $ref: '#/components/schemas/UserDehydrated'
+        author:
+          $ref: '#/components/schemas/UserDehydrated'
+        hash:
+          type: string
+        object:
+          enum:
+          - cast_dehydrated
+          type: string
+      required:
+      - object
+      - hash
+      title: CastDehydrated
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    TransactionFrameStatus:
+      enum:
+      - created
+      - completed
+      title: TransactionFrameStatus
+      type: string
+    CastReplies:
+      properties:
+        count:
+          format: int32
+          type: integer
+      required:
+      - count
+      title: CastReplies
+      type: object
+    User:
+      properties:
+        auth_addresses:
+          items:
+            properties:
+              address:
+                $ref: '#/components/schemas/EthAddress'
+              app:
+                $ref: '#/components/schemas/UserDehydrated'
+            required:
+            - address
+            - app
+            type: object
+          type: array
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        experimental:
+          properties:
+            deprecation_notice:
+              type: string
+            neynar_user_score:
+              description: Score that represents the probability that the account is not spam.
+              format: double
+              type: number
+          required:
+          - neynar_user_score
+          type: object
+        fid:
+          $ref: '#/components/schemas/Fid'
+        follower_count:
+          description: The number of followers the user has.
+          format: int32
+          type: integer
+        following_count:
+          description: The number of users the user is following.
+          format: int32
+          type: integer
+        object:
+          enum:
+          - user
+          type: string
+        pfp_url:
+          description: The URL of the user's profile picture
+          type:
+          - string
+          - 'null'
+        pro:
+          properties:
+            expires_at:
+              format: date-time
+              type: string
+            status:
+              description: The subscription status of the user
+              enum:
+              - subscribed
+              - unsubscribed
+              type: string
+            subscribed_at:
+              format: date-time
+              type: string
+          required:
+          - status
+          - subscribed_at
+          - expires_at
+          type: object
+        profile:
+          properties:
+            banner:
+              properties:
+                url:
+                  description: The URL of the user's banner image
+                  format: uri
+                  type: string
+              type: object
+            bio:
+              properties:
+                mentioned_channels:
+                  items:
+                    $ref: '#/components/schemas/ChannelDehydrated'
+                  type: array
+                mentioned_channels_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                mentioned_profiles:
+                  items:
+                    $ref: '#/components/schemas/UserDehydrated'
+                  type: array
+                mentioned_profiles_ranges:
+                  description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
+
+                    Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
+                  items:
+                    $ref: '#/components/schemas/TextRange'
+                  type: array
+                text:
+                  type: string
+              required:
+              - text
+              type: object
+            live_at:
+              properties:
+                is_live:
+                  type: boolean
+                updated_at:
+                  format: date-time
+                  type: string
+                url:
+                  description: The URL of the user's current live activity
+                  type: string
+              required:
+              - url
+              - updated_at
+              - is_live
+              type: object
+            location:
+              $ref: '#/components/schemas/Location'
+          required:
+          - bio
+          type: object
+        registered_at:
+          format: date-time
+          type: string
+        score:
+          description: Score that represents the probability that the account is not spam.
+          format: double
+          type: number
+        username:
+          type: string
+        verifications:
+          items:
+            $ref: '#/components/schemas/EthAddress'
+          type: array
+        verified_accounts:
+          items:
+            description: Verified accounts of the user on other platforms, currently only X is supported.
+            properties:
+              platform:
+                enum:
+                - x
+                - github
+                type: string
+              username:
+                type: string
+            type: object
+          type: array
+        verified_addresses:
+          properties:
+            eth_addresses:
+              description: List of verified Ethereum addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/EthAddress'
+              type: array
+            primary:
+              properties:
+                eth_address:
+                  allOf:
+                  - $ref: '#/components/schemas/EthAddress'
+                sol_address:
+                  allOf:
+                  - $ref: '#/components/schemas/SolAddress'
+              required:
+              - eth_address
+              - sol_address
+              type: object
+            sol_addresses:
+              description: List of verified Solana addresses of the user sorted by oldest to most recent.
+              items:
+                $ref: '#/components/schemas/SolAddress'
+              type: array
+          required:
+          - eth_addresses
+          - sol_addresses
+          - primary
+          type: object
+        viewer_context:
+          $ref: '#/components/schemas/UserViewerContext'
+      required:
+      - object
+      - fid
+      - username
+      - custody_address
+      - registered_at
+      - profile
+      - follower_count
+      - following_count
+      - verifications
+      - auth_addresses
+      - verified_addresses
+      - verified_accounts
+      title: User
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    Idem:
+      description: "An Idempotency key is a unique identifier for the request.\n**Note:** \n1) This is used to prevent duplicate requests. Use the same idem key on retry attempts.\n2) This should be a unique identifier for each request.\n3) Recommended format is a 16-character string generated by the developer at the time of making this request."
+      title: Idem
+      type: string
     HtmlMetadata:
       properties:
         favicon:
@@ -1345,566 +1753,211 @@ components:
           type: string
       title: HtmlMetadata
       type: object
-    EmbedCast:
-      properties:
-        cast:
-          $ref: '#/components/schemas/CastEmbedded'
-        cast_id:
-          $ref: '#/components/schemas/CastId'
-      required:
-      - cast
-      title: EmbedCast
-      type: object
-    Frame:
-      anyOf:
-      - $ref: '#/components/schemas/FrameV1'
-      - $ref: '#/components/schemas/FrameV2'
-      discriminator:
-        mapping:
-          '1': '#/components/schemas/FrameV2'
-          0.0.0: '#/components/schemas/FrameV2'
-          0.0.1: '#/components/schemas/FrameV2'
-          next: '#/components/schemas/FrameV2'
-          vNext: '#/components/schemas/FrameV1'
-        propertyName: version
-      title: Frame
-    EmbedUrlMetadata:
-      properties:
-        _status:
-          type: string
-        content_length:
-          nullable: true
-          type: integer
-        content_type:
-          nullable: true
-          type: string
-        frame:
-          $ref: '#/components/schemas/Frame'
-        html:
-          $ref: '#/components/schemas/HtmlMetadata'
-        image:
-          properties:
-            height_px:
-              type: integer
-            width_px:
-              type: integer
-          type: object
-        video:
-          properties:
-            duration_s:
-              type: number
-            stream:
-              items:
-                properties:
-                  codec_name:
-                    type: string
-                  height_px:
-                    type: integer
-                  width_px:
-                    type: integer
-                type: object
-              type: array
-          type: object
-      required:
-      - _status
-      title: EmbedUrlMetadata
-      type: object
-    ReactionRecast:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        fname:
-          type: string
-      required:
-      - fid
-      - fname
-      title: ReactionRecast
-      type: object
-    Idem:
-      description: "An Idempotency key is a unique identifier for the request.\n**Note:** \n1) This is used to prevent duplicate requests. Use the same idem key on retry attempts.\n2) This should be a unique identifier for each request.\n3) Recommended format is a 16-character string generated by the developer at the time of making this request."
-      title: Idem
-      type: string
-    ConversationSummary:
-      properties:
-        summary:
-          properties:
-            mentioned_profiles:
-              description: Users who were mentioned in a conversation thread
-              items:
-                $ref: '#/components/schemas/User'
-              type: array
-            participants:
-              description: Users who casted in a conversation thread
-              items:
-                $ref: '#/components/schemas/User'
-              type: array
-            text:
-              description: Summary generated by an LLM
-              type: string
-          required:
-          - text
-          - participants
-          - mentioned_profiles
-          type: object
-      required:
-      - summary
-      title: ConversationSummary
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    OembedPhotoData:
-      description: Photo OEmbed data
-      properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          nullable: true
-          type: string
-        author_url:
-          description: A URL for the author/owner of the resource.
-          nullable: true
-          type: string
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          nullable: true
-          type: string
-        height:
-          description: The height in pixels of the image specified in the url parameter.
-          nullable: true
-          type: number
-        provider_name:
-          description: The name of the resource provider.
-          nullable: true
-          type: string
-        provider_url:
-          description: The url of the resource provider.
-          nullable: true
-          type: string
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          nullable: true
-          type: number
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          nullable: true
-          type: string
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          nullable: true
-          type: number
-        title:
-          description: A text title, describing the resource.
-          nullable: true
-          type: string
-        type:
-          enum:
-          - photo
-          type: string
-        url:
-          description: The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
-          nullable: true
-          type: string
-        version:
-          nullable: true
-          type: string
-        width:
-          description: The width in pixels of the image specified in the url parameter.
-          nullable: true
-          type: number
-      required:
-      - type
-      - version
-      - url
-      title: OembedPhotoData
-      type: object
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
-    TransactionFrameLineItem:
-      properties:
-        description:
-          description: Description of the line item in transaction
-          example: Payment for goods
-          type: string
-        image:
-          description: Optional image URL for the line item in transaction
-          example: https://i.imgur.com/ovGo3sz.png
-          type: string
-        name:
-          description: Name of the line item in transaction
-          example: Payment
-          type: string
-      required:
-      - name
-      - description
-      title: TransactionFrameLineItem
-      type: object
-    EmbedDeep:
-      anyOf:
-      - $ref: '#/components/schemas/EmbedCastDeep'
-      - $ref: '#/components/schemas/EmbedUrl'
-      title: EmbedDeep
-    CastViewerContext:
-      description: Adds context on interactions the viewer has made with the cast.
-      properties:
-        liked:
-          description: Indicates if the viewer liked the cast.
-          type: boolean
-        recasted:
-          description: Indicates if the viewer recasted the cast.
-          type: boolean
-      required:
-      - liked
-      - recasted
-      title: CastViewerContext
-      type: object
-    CastReactions:
-      properties:
-        likes:
-          deprecated: true
-          description: This has been deprecated and will always be an empty array. The property will be removed in the future
-          items:
-            $ref: '#/components/schemas/ReactionLike'
-          type: array
-        likes_count:
-          format: int32
-          type: integer
-        recasts:
-          deprecated: true
-          description: This has been deprecated and will always be an empty array. The property will be removed in the future
-          items:
-            $ref: '#/components/schemas/ReactionRecast'
-          type: array
-        recasts_count:
-          format: int32
-          type: integer
-      required:
-      - likes
-      - recasts
-      - likes_count
-      - recasts_count
-      title: CastReactions
-      type: object
     TransactionFrameType:
       description: Type of transaction mini app
       enum:
       - pay
       title: TransactionFrameType
       type: string
-    TransactionFrameStatus:
+    Embed:
+      anyOf:
+      - $ref: '#/components/schemas/EmbedCast'
+      - $ref: '#/components/schemas/EmbedUrl'
+      title: Embed
+    FrameButtonActionType:
+      description: The action type of a mini app button. Action types "mint" & "link" are to be handled on the client side only and so they will produce a no/op for POST /farcaster/frame/action.
       enum:
-      - created
-      - completed
-      title: TransactionFrameStatus
+      - post
+      - post_redirect
+      - tx
+      - link
+      - mint
+      title: FrameButtonActionType
       type: string
-    Cast:
+    TransactionFrameAction:
+      description: Action button for primary CTA on the transaction mini app
       properties:
-        app:
-          allOf:
-          - $ref: '#/components/schemas/UserDehydrated'
-          nullable: true
-        author:
-          $ref: '#/components/schemas/User'
-        author_channel_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-        channel:
-          allOf:
-          - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
-          nullable: true
-        embeds:
-          items:
-            $ref: '#/components/schemas/Embed'
-          type: array
-        hash:
-          type: string
-        mentioned_channels:
-          items:
-            $ref: '#/components/schemas/ChannelDehydrated'
-          type: array
-        mentioned_channels_ranges:
-          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
-
-            Each index within this list corresponds to the same-numbered index in the mentioned_channels list.'
-          items:
-            $ref: '#/components/schemas/TextRange'
-          type: array
-        mentioned_profiles:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-        mentioned_profiles_ranges:
-          description: 'Positions within the text (inclusive start, exclusive end) where each mention occurs.
-
-            Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.'
-          items:
-            $ref: '#/components/schemas/TextRange'
-          type: array
-        object:
-          enum:
-          - cast
-          type: string
-        parent_author:
-          properties:
-            fid:
-              allOf:
-              - $ref: '#/components/schemas/Fid'
-              nullable: true
-          required:
-          - fid
-          type: object
-        parent_hash:
-          nullable: true
-          type: string
-        parent_url:
-          nullable: true
-          type: string
-        reactions:
-          $ref: '#/components/schemas/CastReactions'
-        replies:
-          $ref: '#/components/schemas/CastReplies'
-        root_parent_url:
-          nullable: true
+        button_color:
+          description: Custom button color for action button
+          example: '#000000'
           type: string
         text:
+          description: Custom text for action button
+          example: Pay
           type: string
-        thread_hash:
-          nullable: true
+        text_color:
+          description: Custom text color for action button
+          example: '#FFFFFF'
           type: string
-        timestamp:
-          format: date-time
-          type: string
-        type:
-          $ref: '#/components/schemas/CastNotificationType'
-        viewer_context:
-          $ref: '#/components/schemas/CastViewerContext'
-      required:
-      - object
-      - hash
-      - parent_hash
-      - parent_url
-      - root_parent_url
-      - parent_author
-      - author
-      - text
-      - timestamp
-      - embeds
-      - reactions
-      - replies
-      - thread_hash
-      - mentioned_profiles
-      - mentioned_profiles_ranges
-      - mentioned_channels
-      - mentioned_channels_ranges
-      - channel
-      title: Cast
+      title: TransactionFrameAction
       type: object
-    FrameActionButton:
+    ChannelDehydrated:
       properties:
-        action_type:
-          $ref: '#/components/schemas/FrameButtonActionType'
-        index:
-          description: Index of the button
-          type: integer
-        post_url:
-          description: Used specifically for the tx action type to post a successful transaction hash
-          type: string
-        target:
-          description: Target of the button
-          type: string
-        title:
-          description: Title of the button
-          type: string
-      required:
-      - index
-      - action_type
-      title: FrameActionButton
-      type: object
-    ReactionLike:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        fname:
-          type: string
-      required:
-      - fid
-      - fname
-      title: ReactionLike
-      type: object
-    TransactionFrameConfig:
-      properties:
-        action:
-          $ref: '#/components/schemas/TransactionFrameAction'
-        allowlist_fids:
-          description: Optional list of FIDs that are allowed to use this transaction mini app
-          items:
-            $ref: '#/components/schemas/Fid'
-          type: array
-        line_items:
-          description: List of items included in the transaction
-          items:
-            $ref: '#/components/schemas/TransactionFrameLineItem'
-          minItems: 1
-          type: array
-      required:
-      - line_items
-      title: TransactionFrameConfig
-      type: object
-    EncodedJsonFarcasterSignature:
-      description: Encoded JSON Farcaster signature
-      properties:
-        header:
-          type: string
-        payload:
-          type: string
-        signature:
-          type: string
-      required:
-      - header
-      - payload
-      - signature
-      title: EncodedJsonFarcasterSignature
-      type: object
-    CastNotificationType:
-      description: The notification type of a cast.
-      enum:
-      - cast-mention
-      - cast-reply
-      title: CastNotificationType
-      type: string
-    Channel:
-      properties:
-        created_at:
-          format: date-time
-          type: string
-        description:
-          type: string
-        description_mentioned_profiles:
-          items:
-            $ref: '#/components/schemas/UserDehydrated'
-          type: array
-        description_mentioned_profiles_ranges:
-          description: Positions within the text (inclusive start, exclusive end) where each mention occurs.
-          items:
-            $ref: '#/components/schemas/TextRange'
-          type: array
-        external_link:
-          description: Channel's external link.
-          properties:
-            title:
-              type: string
-            url:
-              type: string
-          type: object
-        follower_count:
-          description: Number of followers the channel has.
-          type: number
-        hosts:
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
         id:
           type: string
         image_url:
           type: string
-        lead:
-          $ref: '#/components/schemas/User'
-        member_count:
-          format: int32
-          type: integer
-        moderator:
-          allOf:
-          - $ref: '#/components/schemas/User'
-          deprecated: true
-          description: Use `lead` instead.
-        moderator_fids:
-          items:
-            $ref: '#/components/schemas/Fid'
-          type: array
         name:
           type: string
         object:
           enum:
-          - channel
-          type: string
-        parent_url:
-          format: uri
-          type: string
-        pinned_cast_hash:
-          example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
-          pattern: ^(0x)?[a-fA-F0-9]{40}$
-          type: string
-        url:
+          - channel_dehydrated
           type: string
         viewer_context:
           $ref: '#/components/schemas/ChannelUserContext'
       required:
       - id
-      - url
+      - name
       - object
-      - created_at
-      title: Channel
+      title: ChannelDehydrated
       type: object
-    CastId:
-      deprecated: true
-      description: '[DEPRECATED: Use "cast" key instead]'
+    OembedVideoData:
+      description: Video OEmbed data
       properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        hash:
-          type: string
-      required:
-      - fid
-      - hash
-      title: CastId
-      type: object
-    ReactionWithUserInfo:
-      properties:
-        cast:
-          $ref: '#/components/schemas/CastDehydrated'
-        object:
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        height:
+          description: The height in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
+        html:
+          description: The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
+          type:
+          - string
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
           enum:
-          - likes
-          - recasts
+          - video
           type: string
-        user:
-          $ref: '#/components/schemas/User'
+        version:
+          type:
+          - string
+          - 'null'
+        width:
+          description: The width in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
       required:
-      - object
-      - cast
-      - user
-      title: ReactionWithUserInfo
+      - type
+      - version
+      - html
+      title: OembedVideoData
       type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
+    OembedLinkData:
+      description: Link OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - link
+          type: string
+        version:
+          type:
+          - string
+          - 'null'
+      required:
+      - type
+      - version
+      title: OembedLinkData
+      type: object
+    Network:
+      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
+      enum:
+      - ethereum
+      - optimism
+      - base
+      - arbitrum
+      title: Network
+      type: string
   securitySchemes:
     ApiKeyAuth:
       description: API key to authorize requests

@@ -1,11 +1,11 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   contact:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
   description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action Mute API
+  title: Neynar Mute API
   version: 3.176.0
 servers:
 - url: https://api.neynar.com
@@ -155,30 +155,53 @@ paths:
       - Mute
 components:
   schemas:
-    MuteListResponse:
+    TextRange:
       properties:
-        mutes:
-          items:
-            $ref: '#/components/schemas/MuteRecord'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
       required:
-      - mutes
-      - next
-      title: MuteListResponse
+      - start
+      - end
+      title: TextRange
       type: object
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
+    MuteResponse:
       properties:
-        following:
-          description: Indicates if the user is following the channel.
+        message:
+          type: string
+        success:
+          example: true
           type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
       required:
-      - following
-      title: ChannelUserContext
+      - success
+      title: MuteResponse
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
       type: object
     MuteRecord:
       properties:
@@ -197,10 +220,132 @@ components:
       - muted_at
       title: MuteRecord
       type: object
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    MuteListResponse:
+      properties:
+        mutes:
+          items:
+            $ref: '#/components/schemas/MuteRecord'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - mutes
+      - next
+      title: MuteListResponse
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
     SolAddress:
       description: Solana address
       pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
       title: SolAddress
+      type: string
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
       type: string
     User:
       properties:
@@ -219,8 +364,9 @@ components:
         custody_address:
           $ref: '#/components/schemas/EthAddress'
         display_name:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         experimental:
           properties:
             deprecation_notice:
@@ -248,8 +394,9 @@ components:
           type: string
         pfp_url:
           description: The URL of the user's profile picture
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         pro:
           properties:
             expires_at:
@@ -365,11 +512,9 @@ components:
                 eth_address:
                   allOf:
                   - $ref: '#/components/schemas/EthAddress'
-                  nullable: true
                 sol_address:
                   allOf:
                   - $ref: '#/components/schemas/SolAddress'
-                  nullable: true
               required:
               - eth_address
               - sol_address
@@ -401,90 +546,22 @@ components:
       - verified_accounts
       title: User
       type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
+    LocationAddress:
       properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
-      required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    Location:
-      description: Coordinates and place names for a location
-      properties:
-        address:
-          $ref: '#/components/schemas/LocationAddress'
-        latitude:
-          format: double
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          format: double
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          description: The radius in meters for the location search. Any location within this radius will be returned.
-          minimum: 0
-          type: number
-      required:
-      - latitude
-      - longitude
-      title: Location
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          nullable: true
+        city:
           type: string
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
+        country:
           type: string
-        pfp_url:
-          nullable: true
+        country_code:
           type: string
-        score:
-          type: number
-        username:
+        state:
+          type: string
+        state_code:
           type: string
       required:
-      - object
-      - fid
-      title: UserDehydrated
+      - city
+      - country
+      title: LocationAddress
       type: object
     ChannelDehydrated:
       properties:
@@ -506,73 +583,6 @@ components:
       - object
       title: ChannelDehydrated
       type: object
-    LocationAddress:
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    MuteResponse:
-      properties:
-        message:
-          type: string
-        success:
-          example: true
-          type: boolean
-      required:
-      - success
-      title: MuteResponse
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          nullable: true
-          type: string
-      required:
-      - cursor
-      title: NextCursor
-      type: object
     MuteReqBody:
       properties:
         fid:
@@ -584,13 +594,6 @@ components:
       - muted_fid
       title: MuteReqBody
       type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
   parameters:
     NeynarExperimentalHeader:
       description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.

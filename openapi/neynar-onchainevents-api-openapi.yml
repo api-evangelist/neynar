@@ -1,14 +1,16 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
+  title: Farcaster Hub On Chain Events API
+  version: 2.35.0
+  description: 'Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+
+    '
   contact:
-    email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-  title: Neynar Action OnChainEvents API
-  version: 3.176.0
+    email: team@neynar.com
 servers:
-- url: https://api.neynar.com
+- url: https://snapchain-api.neynar.com
 security:
 - ApiKeyAuth: []
 tags:
@@ -127,70 +129,14 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    SignerEventBody:
-      type: object
-      properties:
-        key:
-          pattern: ^0x[a-fA-F0-9]{64}$
-          type: string
-        keyType:
-          type: integer
-          format: int64
-        eventType:
-          $ref: '#/components/schemas/SignerEventType'
-        metadata:
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-          format: byte
-        metadataType:
-          type: integer
-          format: int64
-      required:
-      - key
-      - keyType
-      - eventType
-      - metadata
-      - metadataType
-    OnChainEvent:
-      oneOf:
-      - $ref: '#/components/schemas/OnChainEventSigner'
-      - $ref: '#/components/schemas/OnChainEventSignerMigrated'
-      - $ref: '#/components/schemas/OnChainEventIdRegister'
-      - $ref: '#/components/schemas/OnChainEventStorageRent'
-      discriminator:
-        propertyName: type
-        mapping:
-          EVENT_TYPE_SIGNER: '#/components/schemas/OnChainEventSigner'
-          EVENT_TYPE_SIGNER_MIGRATED: '#/components/schemas/OnChainEventSignerMigrated'
-          EVENT_TYPE_ID_REGISTER: '#/components/schemas/OnChainEventIdRegister'
-          EVENT_TYPE_STORAGE_RENT: '#/components/schemas/OnChainEventStorageRent'
-    OnChainEventSigner:
-      allOf:
-      - $ref: '#/components/schemas/OnChainEventCommon'
-      - type: object
-        properties:
-          signerEventBody:
-            $ref: '#/components/schemas/SignerEventBody'
-        required:
-        - signerEventBody
-    SignerMigratedEventBody:
-      type: object
-      properties:
-        migratedAt:
-          type: integer
-          format: int64
-      required:
-      - migratedAt
-    OnChainEventStorageRent:
-      allOf:
-      - $ref: '#/components/schemas/OnChainEventCommon'
-      - type: object
-        properties:
-          storageRentEventBody:
-            $ref: '#/components/schemas/StorageRentEventBody'
-        required:
-        - storageRentEventBody
     OnChainEventIdRegister:
       allOf:
       - $ref: '#/components/schemas/OnChainEventCommon'
@@ -200,64 +146,6 @@ components:
             $ref: '#/components/schemas/IdRegisterEventBody'
         required:
         - idRegisterEventBody
-    IdRegisterEventType:
-      type: string
-      default: ID_REGISTER_EVENT_TYPE_REGISTER
-      enum:
-      - ID_REGISTER_EVENT_TYPE_REGISTER
-      - ID_REGISTER_EVENT_TYPE_TRANSFER
-      - ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY
-    OnChainEventType:
-      type: string
-      default: EVENT_TYPE_SIGNER
-      enum:
-      - EVENT_TYPE_SIGNER
-      - EVENT_TYPE_SIGNER_MIGRATED
-      - EVENT_TYPE_ID_REGISTER
-      - EVENT_TYPE_STORAGE_RENT
-    OnChainEventSignerMigrated:
-      allOf:
-      - $ref: '#/components/schemas/OnChainEventCommon'
-      - type: object
-        properties:
-          signerMigratedEventBody:
-            $ref: '#/components/schemas/SignerMigratedEventBody'
-        required:
-        - signerMigratedEventBody
-    OnChainEventCommon:
-      type: object
-      properties:
-        type:
-          type: string
-          example: EVENT_TYPE_SIGNER
-        chainId:
-          type: integer
-        blockNumber:
-          type: integer
-        blockHash:
-          type: string
-          example: '0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28'
-        blockTimestamp:
-          type: integer
-        transactionHash:
-          type: string
-          example: '0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952'
-        logIndex:
-          type: integer
-        txIndex:
-          type: integer
-        fid:
-          type: integer
-      required:
-      - type
-      - chainId
-      - blockNumber
-      - blockHash
-      - blockTimestamp
-      - transactionHash
-      - logIndex
-      - txIndex
-      - fid
     ErrorResponse:
       required:
       - code
@@ -309,13 +197,13 @@ components:
       - from
       - eventType
       - recoveryAddress
-    SignerEventType:
+    IdRegisterEventType:
       type: string
-      default: SIGNER_EVENT_TYPE_ADD
+      default: ID_REGISTER_EVENT_TYPE_REGISTER
       enum:
-      - SIGNER_EVENT_TYPE_ADD
-      - SIGNER_EVENT_TYPE_REMOVE
-      - SIGNER_EVENT_TYPE_ADMIN_RESET
+      - ID_REGISTER_EVENT_TYPE_REGISTER
+      - ID_REGISTER_EVENT_TYPE_TRANSFER
+      - ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY
     StorageRentEventBody:
       type: object
       properties:
@@ -333,17 +221,131 @@ components:
       - payer
       - units
       - expiry
-  responses:
-    ErrorResponse:
-      description: An unexpected error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    OnChainEvent:
+      oneOf:
+      - $ref: '#/components/schemas/OnChainEventSigner'
+      - $ref: '#/components/schemas/OnChainEventSignerMigrated'
+      - $ref: '#/components/schemas/OnChainEventIdRegister'
+      - $ref: '#/components/schemas/OnChainEventStorageRent'
+      discriminator:
+        propertyName: type
+        mapping:
+          EVENT_TYPE_SIGNER: '#/components/schemas/OnChainEventSigner'
+          EVENT_TYPE_SIGNER_MIGRATED: '#/components/schemas/OnChainEventSignerMigrated'
+          EVENT_TYPE_ID_REGISTER: '#/components/schemas/OnChainEventIdRegister'
+          EVENT_TYPE_STORAGE_RENT: '#/components/schemas/OnChainEventStorageRent'
+    OnChainEventStorageRent:
+      allOf:
+      - $ref: '#/components/schemas/OnChainEventCommon'
+      - type: object
+        properties:
+          storageRentEventBody:
+            $ref: '#/components/schemas/StorageRentEventBody'
+        required:
+        - storageRentEventBody
+    SignerMigratedEventBody:
+      type: object
+      properties:
+        migratedAt:
+          type: integer
+          format: int64
+      required:
+      - migratedAt
+    SignerEventType:
+      type: string
+      default: SIGNER_EVENT_TYPE_ADD
+      enum:
+      - SIGNER_EVENT_TYPE_ADD
+      - SIGNER_EVENT_TYPE_REMOVE
+      - SIGNER_EVENT_TYPE_ADMIN_RESET
+    OnChainEventCommon:
+      type: object
+      properties:
+        type:
+          type: string
+          example: EVENT_TYPE_SIGNER
+        chainId:
+          type: integer
+        blockNumber:
+          type: integer
+        blockHash:
+          type: string
+          example: '0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28'
+        blockTimestamp:
+          type: integer
+        transactionHash:
+          type: string
+          example: '0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952'
+        logIndex:
+          type: integer
+        txIndex:
+          type: integer
+        fid:
+          type: integer
+      required:
+      - type
+      - chainId
+      - blockNumber
+      - blockHash
+      - blockTimestamp
+      - transactionHash
+      - logIndex
+      - txIndex
+      - fid
+    OnChainEventType:
+      type: string
+      default: EVENT_TYPE_SIGNER
+      enum:
+      - EVENT_TYPE_SIGNER
+      - EVENT_TYPE_SIGNER_MIGRATED
+      - EVENT_TYPE_ID_REGISTER
+      - EVENT_TYPE_STORAGE_RENT
+    OnChainEventSignerMigrated:
+      allOf:
+      - $ref: '#/components/schemas/OnChainEventCommon'
+      - type: object
+        properties:
+          signerMigratedEventBody:
+            $ref: '#/components/schemas/SignerMigratedEventBody'
+        required:
+        - signerMigratedEventBody
+    OnChainEventSigner:
+      allOf:
+      - $ref: '#/components/schemas/OnChainEventCommon'
+      - type: object
+        properties:
+          signerEventBody:
+            $ref: '#/components/schemas/SignerEventBody'
+        required:
+        - signerEventBody
+    SignerEventBody:
+      type: object
+      properties:
+        key:
+          pattern: ^0x[a-fA-F0-9]{64}$
+          type: string
+        keyType:
+          type: integer
+          format: int64
+        eventType:
+          $ref: '#/components/schemas/SignerEventType'
+        metadata:
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+          format: byte
+        metadataType:
+          type: integer
+          format: int64
+      required:
+      - key
+      - keyType
+      - eventType
+      - metadata
+      - metadataType
   securitySchemes:
     ApiKeyAuth:
-      description: API key to authorize requests
+      type: apiKey
       in: header
       name: x-api-key
-      type: apiKey
+      description: API key to authorize requests
       x-default: NEYNAR_API_DOCS
