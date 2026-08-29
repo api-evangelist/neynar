@@ -4,6 +4,18 @@ description: Neynar is the complete Farcaster developer platform providing infra
   applications on the Farcaster decentralized social protocol. As of January 2026,
   Neynar acquired Farcaster from Merkle Manufactures, taking operational responsibility
   for the protocol, client, and related infrastructure.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -1331,6 +1343,9 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/neynar-capability-edges.yml
+    name: Neynar Business Capability Map
   - type: AgenticAccess
     url: agentic-access/neynar-agentic-access.yml
   - type: DomainSecurity
