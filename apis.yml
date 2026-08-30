@@ -386,7 +386,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - FIDs
+  - Fids
   tags_raw:
   - Fids
   properties:
@@ -872,7 +872,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - Portal
+  - portal
   tags_raw:
   - portal
   properties:
@@ -1034,7 +1034,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - Studio
+  - studio
   tags_raw:
   - studio
   properties:
@@ -1198,7 +1198,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - User Data
+  - UserData
   tags_raw:
   - UserData
   properties:
@@ -1232,7 +1232,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - User Names
+  - Usernames
   tags_raw:
   - Usernames
   properties:
@@ -1266,7 +1266,7 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - Verification
+  - Verifications
   tags_raw:
   - Verifications
   properties:
