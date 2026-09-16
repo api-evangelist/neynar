@@ -1,9 +1,8 @@
 name: Neynar
-description: Neynar is the complete Farcaster developer platform providing infrastructure
-  REST APIs for querying casts, channels, user profiles, feeds, reactions, and building
-  applications on the Farcaster decentralized social protocol. As of January 2026,
-  Neynar acquired Farcaster from Merkle Manufactures, taking operational responsibility
-  for the protocol, client, and related infrastructure.
+description: Neynar is the complete Farcaster developer platform providing infrastructure REST APIs for
+  querying casts, channels, user profiles, feeds, reactions, and building applications on the Farcaster
+  decentralized social protocol. As of January 2026, Neynar acquired Farcaster from Merkle Manufactures,
+  taking operational responsibility for the protocol, client, and related infrastructure.
 deliveryModel:
   model: saas
   open_source: false
@@ -1341,17 +1340,19 @@ sdks:
   url: https://github.com/neynarxyz/rust-sdk
 aid: neynar
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 common:
-  - type: CapabilityMap
-    url: capabilities/neynar-capability-edges.yml
-    name: Neynar Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/neynar-agentic-access.yml
-  - type: DomainSecurity
-    url: security/neynar-domain-security.yml
-  - type: Authentication
-    url: authentication/neynar-authentication.yml
-  - url: https://neynar.com/blog
-    type: Blog
+- type: Website
+  url: https://neynar.com
+- type: CapabilityMap
+  url: capabilities/neynar-capability-edges.yml
+  name: Neynar Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/neynar-agentic-access.yml
+- type: DomainSecurity
+  url: security/neynar-domain-security.yml
+- type: Authentication
+  url: authentication/neynar-authentication.yml
+- url: https://neynar.com/blog
+  type: Blog
