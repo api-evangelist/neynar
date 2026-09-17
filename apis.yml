@@ -380,40 +380,6 @@ apis:
     url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
-- aid: neynar:neynar-fids-api
-  name: Neynar Fids API
-  description: Operations related to FIDs.
-  humanURL: https://docs.neynar.com
-  baseURL: https://api.neynar.com
-  tags:
-  - FIDs
-  tags_raw:
-  - Fids
-  properties:
-  - type: OpenAPI
-    url: openapi/neynar-fids-api-openapi.yml
-  - type: Documentation
-    url: https://docs.neynar.com
-  - type: GettingStarted
-    url: https://docs.neynar.com/reference/quickstart
-  - type: RateLimits
-    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
-  - type: ComputeUnits
-    url: https://docs.neynar.com/reference/compute-units
-  - type: Plans
-    url: https://dev.neynar.com/pricing
-  - type: Webhooks
-    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
-  - type: x-plans
-    url: plans/plans.yml
-  - type: x-rate-limits
-    url: rate-limits/rate-limits.yml
-  - type: x-finops
-    url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
-  - type: Documentation
-    url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-fname-api
   name: Neynar fname API
   description: Operations related to fname
@@ -746,38 +712,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/neynar-notifications-api-openapi.yml
-  - type: Documentation
-    url: https://docs.neynar.com
-  - type: GettingStarted
-    url: https://docs.neynar.com/reference/quickstart
-  - type: RateLimits
-    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
-  - type: ComputeUnits
-    url: https://docs.neynar.com/reference/compute-units
-  - type: Plans
-    url: https://dev.neynar.com/pricing
-  - type: Webhooks
-    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
-  - type: x-plans
-    url: plans/plans.yml
-  - type: x-rate-limits
-    url: rate-limits/rate-limits.yml
-  - type: x-finops
-    url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
-  - type: Documentation
-    url: https://docs.neynar.com/reference/hub-api-overview
-- aid: neynar:neynar-onchain-api
-  name: Neynar Onchain API
-  description: Operations related to onchain data
-  humanURL: https://docs.neynar.com
-  baseURL: https://api.neynar.com
-  tags:
-  - Onchain
-  properties:
-  - type: OpenAPI
-    url: openapi/neynar-onchain-api-openapi.yml
   - type: Documentation
     url: https://docs.neynar.com
   - type: GettingStarted
@@ -1192,40 +1126,6 @@ apis:
     url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
-- aid: neynar:neynar-userdata-api
-  name: Neynar UserData API
-  description: Operations related to user data.
-  humanURL: https://docs.neynar.com
-  baseURL: https://api.neynar.com
-  tags:
-  - User Data
-  tags_raw:
-  - UserData
-  properties:
-  - type: OpenAPI
-    url: openapi/neynar-userdata-api-openapi.yml
-  - type: Documentation
-    url: https://docs.neynar.com
-  - type: GettingStarted
-    url: https://docs.neynar.com/reference/quickstart
-  - type: RateLimits
-    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
-  - type: ComputeUnits
-    url: https://docs.neynar.com/reference/compute-units
-  - type: Plans
-    url: https://dev.neynar.com/pricing
-  - type: Webhooks
-    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
-  - type: x-plans
-    url: plans/plans.yml
-  - type: x-rate-limits
-    url: rate-limits/rate-limits.yml
-  - type: x-finops
-    url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
-  - type: Documentation
-    url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-usernames-api
   name: Neynar Usernames API
   description: Operations related to usernames.
@@ -1304,6 +1204,102 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/neynar-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neynar.com
+  - type: GettingStarted
+    url: https://docs.neynar.com/reference/quickstart
+  - type: RateLimits
+    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
+  - type: ComputeUnits
+    url: https://docs.neynar.com/reference/compute-units
+  - type: Plans
+    url: https://dev.neynar.com/pricing
+  - type: Webhooks
+    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
+  - type: x-plans
+    url: plans/plans.yml
+  - type: x-rate-limits
+    url: rate-limits/rate-limits.yml
+  - type: x-finops
+    url: finops/finops.yml
+  - type: GraphQL
+    url: graphql/neynar-graphql.md
+  - type: Documentation
+    url: https://docs.neynar.com/reference/hub-api-overview
+- aid: neynar:neynar-fids-api
+  name: Neynar Fids API
+  description: Operations related to FIDs.
+  humanURL: https://docs.neynar.com
+  baseURL: https://api.neynar.com
+  tags:
+  - Fids
+  properties:
+  - type: OpenAPI
+    url: openapi/neynar-fids-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neynar.com
+  - type: GettingStarted
+    url: https://docs.neynar.com/reference/quickstart
+  - type: RateLimits
+    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
+  - type: ComputeUnits
+    url: https://docs.neynar.com/reference/compute-units
+  - type: Plans
+    url: https://dev.neynar.com/pricing
+  - type: Webhooks
+    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
+  - type: x-plans
+    url: plans/plans.yml
+  - type: x-rate-limits
+    url: rate-limits/rate-limits.yml
+  - type: x-finops
+    url: finops/finops.yml
+  - type: GraphQL
+    url: graphql/neynar-graphql.md
+  - type: Documentation
+    url: https://docs.neynar.com/reference/hub-api-overview
+- aid: neynar:neynar-on-chain-api
+  name: Neynar On Chain API
+  description: Operations related to onchain data
+  humanURL: https://docs.neynar.com
+  baseURL: https://api.neynar.com
+  tags:
+  - On Chain
+  properties:
+  - type: OpenAPI
+    url: openapi/neynar-on-chain-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neynar.com
+  - type: GettingStarted
+    url: https://docs.neynar.com/reference/quickstart
+  - type: RateLimits
+    url: https://docs.neynar.com/reference/what-are-the-rate-limits-on-neynar-apis
+  - type: ComputeUnits
+    url: https://docs.neynar.com/reference/compute-units
+  - type: Plans
+    url: https://dev.neynar.com/pricing
+  - type: Webhooks
+    url: https://docs.neynar.com/docs/how-to-setup-webhooks-from-the-dashboard
+  - type: x-plans
+    url: plans/plans.yml
+  - type: x-rate-limits
+    url: rate-limits/rate-limits.yml
+  - type: x-finops
+    url: finops/finops.yml
+  - type: GraphQL
+    url: graphql/neynar-graphql.md
+  - type: Documentation
+    url: https://docs.neynar.com/reference/hub-api-overview
+- aid: neynar:neynar-user-data-api
+  name: Neynar User Data API
+  description: Operations related to user data.
+  humanURL: https://docs.neynar.com
+  baseURL: https://api.neynar.com
+  tags:
+  - User Data
+  properties:
+  - type: OpenAPI
+    url: openapi/neynar-user-data-api-openapi.yml
   - type: Documentation
     url: https://docs.neynar.com
   - type: GettingStarted
