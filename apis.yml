@@ -39,7 +39,7 @@ tags:
 - Social Graph
 - Casts
 - Channels
-- Feeds
+- Feed
 - Reactions
 - Notification
 - Webhook
@@ -322,6 +322,8 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
+  - Channels
+  tags_raw:
   - Channel
   properties:
   - type: OpenAPI
@@ -1232,6 +1234,8 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
+  - FIDs
+  tags_raw:
   - Fids
   properties:
   - type: OpenAPI
@@ -1264,6 +1268,8 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
+  - Onchain
+  tags_raw:
   - On Chain
   properties:
   - type: OpenAPI
