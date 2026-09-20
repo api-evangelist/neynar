@@ -1345,6 +1345,8 @@ created: '2026-06-13'
 modified: '2026-09-16'
 specificationVersion: '0.23'
 common:
+- type: Pricing
+  url: https://dev.neynar.com/pricing
 - type: Website
   url: https://neynar.com
 - type: CapabilityMap
