@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: per-call
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
 published: false
 note: 'No numeric price is published on the pricing page; Page is a credit-cost schedule: it lists ''Credits
   per object'' for each API endpoint (e.g. GET /v2/farcaster/cast = 4, POST /v2/fungible = 50000) plus
