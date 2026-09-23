@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Farcaster Hub Fids API
   version: 2.35.0
-  description: 'Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-
-    '
+  description: Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the Neynar docs for more details.
   contact:
     name: Neynar
     url: https://neynar.com/
@@ -14,13 +12,13 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: Fids
+- name: FIDs
   description: Operations related to FIDs.
 paths:
   /v1/fids:
     get:
       tags:
-      - Fids
+      - FIDs
       summary: Fetch a list of all the FIDs
       description: Fetch a list of all the FIDs.
       externalDocs:
@@ -48,22 +46,18 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: An unexpected error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    FidSchema:
-      type: integer
-      format: uint64
-      minimum: 1
-      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
-
-        '
-      example: 1
+    FidsResponse:
+      allOf:
+      - type: object
+        properties:
+          fids:
+            type: array
+            items:
+              $ref: '#/components/schemas/FidSchema'
+        required:
+        - fids
+      - $ref: '#/components/schemas/PaginationResponse'
     ErrorResponse:
       required:
       - code
@@ -93,17 +87,14 @@ components:
               type: array
               items:
                 type: string
-    FidsResponse:
-      allOf:
-      - type: object
-        properties:
-          fids:
-            type: array
-            items:
-              $ref: '#/components/schemas/FidSchema'
-        required:
-        - fids
-      - $ref: '#/components/schemas/PaginationResponse'
+    FidSchema:
+      type: integer
+      format: uint64
+      minimum: 1
+      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+
+        '
+      example: 1
     PaginationResponse:
       type: object
       required:
@@ -115,7 +106,20 @@ components:
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
           example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    pageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of messages to return in a single response
+      schema:
+        type: integer
     pageToken:
       name: pageToken
       in: query
@@ -128,12 +132,6 @@ components:
       description: Reverse the sort order, returning latest messages first
       schema:
         type: boolean
-    pageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of messages to return in a single response
-      schema:
-        type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -4,7 +4,7 @@ info:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the Neynar docs for more details.
   title: Neynar Studio API
   version: 3.176.0
 servers:
@@ -12,7 +12,7 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: studio
+- name: Studio
 paths:
   /v2/studio/credit-drops/:
     get:
@@ -118,7 +118,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get most recent credit drop
       tags:
-      - studio
+      - Studio
   /v2/studio/credit-drops/claim:
     post:
       description: Claims the most recent credit drop for the authenticated user. The drop's allowance is surfaced dynamically until expires_at and does not mutate extra_credits. Only drops created within the past 24 hours can be claimed.
@@ -213,7 +213,7 @@ paths:
       - ApiKeyAuth: []
       summary: Claim credit drop
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/:
     delete:
       description: 'Deletes a specific miniapp generator deployment or all deployments for a FID. If deployment_id or name is provided, deletes single deployment. If only FID is provided, deletes all deployments for that FID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -296,7 +296,7 @@ paths:
       - ApiKeyAuth: []
       summary: Delete deployment(s)
       tags:
-      - studio
+      - Studio
     get:
       description: 'Lists all miniapp generator deployments for a user. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
       externalDocs:
@@ -484,7 +484,7 @@ paths:
       - ApiKeyAuth: []
       summary: List deployments
       tags:
-      - studio
+      - Studio
     post:
       description: 'Creates and deploys an instance of the miniapp generator for a user. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.'
       externalDocs:
@@ -637,7 +637,7 @@ paths:
       - ApiKeyAuth: []
       summary: Create a miniapp generator deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/account-association:
     get:
       description: Retrieves the account-association.json file from a miniapp deployment, which contains the JFS-signed domain association. Requires API key authentication.
@@ -719,7 +719,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get account association of a miniapp
       tags:
-      - studio
+      - Studio
     post:
       description: 'Associates a generated miniapp with a Farcaster account using a JFS-signed domain association. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
       externalDocs:
@@ -820,7 +820,7 @@ paths:
       - ApiKeyAuth: []
       summary: Set account association
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/build:
     post:
       description: 'Runs Next.js build process for the generated app. If build fails, automatically calls a build-fixer agent to resolve errors. Streams build output and agent responses via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -902,7 +902,7 @@ paths:
       - ApiKeyAuth: []
       summary: Build generated app with automatic error fixing
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/by-name-and-fid:
     get:
       description: 'Fetches info about a miniapp generator deployment by its deployment_id or name and creator''s Farcaster ID. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -1069,7 +1069,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get deployment info
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/conversations:
     get:
       description: 'Lists all conversations for a specific deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -1203,7 +1203,7 @@ paths:
       - ApiKeyAuth: []
       summary: List conversations for a deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/conversations/messages:
     get:
       description: 'Retrieves messages in a specific conversation with cursor-based pagination (newest first). Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -1363,7 +1363,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get messages in a conversation
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/provision:
     post:
       description: Provisions a Neon PostgreSQL database for the deployment, or validates and attaches a user-provided (BYO) connection string. Idempotent — returns success if already provisioned.
@@ -1467,7 +1467,7 @@ paths:
       - ApiKeyAuth: []
       summary: Provision a database for a deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/query:
     post:
       description: Query data from a table with pagination and sorting.
@@ -1625,7 +1625,7 @@ paths:
       - ApiKeyAuth: []
       summary: Query table data
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/sql:
     post:
       description: Executes a raw SQL query against the deployment database. Only SELECT, WITH, and EXPLAIN queries are allowed. Admin access required.
@@ -1753,7 +1753,7 @@ paths:
       - ApiKeyAuth: []
       summary: Execute raw SQL query (admin only)
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/tables:
     get:
       description: Lists all tables and views in the deployment database, excluding system tables.
@@ -1870,7 +1870,7 @@ paths:
       - ApiKeyAuth: []
       summary: List all tables in deployment database
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/tables/{table_name}/rows:
     delete:
       description: Deletes rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk deletes.
@@ -1981,7 +1981,7 @@ paths:
       - ApiKeyAuth: []
       summary: Delete rows from table
       tags:
-      - studio
+      - Studio
     patch:
       description: Updates rows matching the WHERE conditions. WHERE clause is required to prevent accidental bulk updates.
       externalDocs:
@@ -2096,7 +2096,7 @@ paths:
       - ApiKeyAuth: []
       summary: Update rows in table
       tags:
-      - studio
+      - Studio
     post:
       description: Inserts one or more rows into the specified table. Returns the inserted rows with generated values.
       externalDocs:
@@ -2212,7 +2212,7 @@ paths:
       - ApiKeyAuth: []
       summary: Insert rows into table
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/database/tables/{table_name}/schema:
     get:
       description: Retrieves the complete schema for a table including columns, indexes, and foreign keys.
@@ -2399,7 +2399,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get table schema
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/dev-status:
     get:
       description: 'Retrieves the dev-status.json file from a miniapp deployment, which tracks the progress of app development phases. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -2520,7 +2520,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get dev status of a miniapp
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/export-zip:
     get:
       description: 'Downloads the generated miniapp source code as a binary ZIP archive (Content-Type: application/zip). Requires a paid Studio subscription (GROWTH, STUDIO_PLUS, STUDIO_MAX, or INTERNAL). The deployment must be running. The 200 response body is a raw binary stream, not JSON.'
@@ -2617,7 +2617,7 @@ paths:
       - ApiKeyAuth: []
       summary: Export deployment source code as ZIP
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/file:
     get:
       description: 'Retrieves the contents of a specific file from the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -2720,7 +2720,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get deployment file contents
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/files:
     get:
       description: 'Lists files in a directory of the generated app. Requires Studio admin authentication or FID ownership validation. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -2834,7 +2834,7 @@ paths:
       - ApiKeyAuth: []
       summary: List deployment files
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/prompt/stream:
     post:
       description: 'Sends a prompt to a specific miniapp generator deployment and returns a streaming response using Server-Sent Events. The response is a continuous stream of Server-Sent Events, not a single JSON payload. Each event contains a JSON object with type, message, and other fields specific to the message type. Requires authentication via API key in the request header. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -2977,7 +2977,7 @@ paths:
       - ApiKeyAuth: []
       summary: Prompt a deployment with streaming response
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/recover:
     post:
       description: 'Attempts to recover a broken dev server. Phase 1: reads dev server error logs and sends them to an AI agent for fixing, then waits for HMR to auto-rebuild. Phase 2: if HMR fails, falls back to a full npm build with AI retry loop. Streams progress events via Server-Sent Events. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3052,7 +3052,7 @@ paths:
       - ApiKeyAuth: []
       summary: Recover dev server with two-phase strategy
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/secrets/:
     delete:
       description: Deletes environment variables (secrets) from a deployment.
@@ -3115,7 +3115,7 @@ paths:
       - ApiKeyAuth: []
       summary: Delete deployment secrets
       tags:
-      - studio
+      - Studio
     get:
       description: Retrieves all secrets for a deployment.
       externalDocs:
@@ -3189,7 +3189,7 @@ paths:
       - ApiKeyAuth: []
       summary: List deployment secrets
       tags:
-      - studio
+      - Studio
     post:
       description: Upsert secrets for a deployment.
       externalDocs:
@@ -3261,7 +3261,7 @@ paths:
       - ApiKeyAuth: []
       summary: Upsert deployment secrets
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/session/cancel:
     post:
       description: 'Cancels an in-progress Claude Code session for a deployment. Safe to call even if no session is active — returns cancelled: false in that case.'
@@ -3347,7 +3347,7 @@ paths:
       - ApiKeyAuth: []
       summary: Cancel an active Claude session for a deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/start:
     post:
       description: 'Starts the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3452,7 +3452,7 @@ paths:
       - ApiKeyAuth: []
       summary: Start generated miniapp
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/stop:
     post:
       description: 'Stops the Next.js development server for the generated miniapp. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3546,7 +3546,7 @@ paths:
       - ApiKeyAuth: []
       summary: Stop generated miniapp
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/upload-image:
     post:
       description: 'Uploads an image file to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3613,7 +3613,7 @@ paths:
       - ApiKeyAuth: []
       summary: Upload image to deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/deployment/upload-image-url:
     post:
       description: 'Downloads an image from the provided URL and saves it to the generated miniapp public folder. The image will be accessible as a static asset on the deployed miniapp. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3709,7 +3709,7 @@ paths:
       - ApiKeyAuth: []
       summary: Upload image from URL to deployment
       tags:
-      - studio
+      - Studio
   /v2/studio/usage/report:
     post:
       description: Called by miniapp-generator instances to report Claude SDK usage. Idempotent — duplicate submissions (same idempotency_key) are accepted but not double-counted.
@@ -3809,7 +3809,7 @@ paths:
       - ApiKeyAuth: []
       summary: Report studio compute unit usage
       tags:
-      - studio
+      - Studio
   /v2/studio/vercel/:
     post:
       description: 'Publishes the generated miniapp to Vercel via GitHub. Creates a GitHub repository, pushes code, creates a Vercel project linked to GitHub, and triggers deployment. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -3934,7 +3934,7 @@ paths:
       - ApiKeyAuth: []
       summary: Deploy miniapp to Vercel
       tags:
-      - studio
+      - Studio
   /v2/studio/vercel/domain:
     put:
       description: 'Assigns a custom *.neynar.app subdomain to the user''s deployed miniapp. The new domain is added to the Vercel project alongside the existing auto-assigned domain. The productionDomain in the database is updated to the custom domain. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -4076,7 +4076,7 @@ paths:
       - ApiKeyAuth: []
       summary: Assign a custom subdomain to a deployed miniapp
       tags:
-      - studio
+      - Studio
   /v2/studio/vercel/domain/check:
     get:
       description: 'Checks whether a custom *.neynar.app subdomain is available for assignment. Validates format, checks reserved names, and verifies no other active deployment is using it. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -4158,7 +4158,7 @@ paths:
       - ApiKeyAuth: []
       summary: Check if a custom subdomain is available
       tags:
-      - studio
+      - Studio
   /v2/studio/vercel/logs:
     get:
       description: 'Retrieves the build logs for a Vercel deployment. Useful for debugging failed deployments. Requires Studio admin authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -4299,7 +4299,7 @@ paths:
       - ApiKeyAuth: []
       summary: Get Vercel deployment build logs
       tags:
-      - studio
+      - Studio
   /v2/studio/vercel/status:
     get:
       description: 'Retrieves the status of a Vercel deployment for a miniapp. Looks up the Vercel project ID from the deployment and queries Vercel API for deployment status. Requires API key authentication. Note: Studio CU is tracked based on LLM token usage, not per API call.'
@@ -4409,20 +4409,9 @@ paths:
       - ApiKeyAuth: []
       summary: Get Vercel deployment status
       tags:
-      - studio
+      - Studio
 components:
   schemas:
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
     ErrorRes:
       description: Details for the error response
       properties:
@@ -4438,6 +4427,17 @@ components:
       required:
       - message
       title: ErrorRes
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
       type: object
   securitySchemes:
     ApiKeyAuth:

@@ -2,9 +2,7 @@ openapi: 3.2.0
 info:
   title: Farcaster Hub User Data API
   version: 2.35.0
-  description: 'Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
-
-    '
+  description: Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the Neynar docs for more details.
   contact:
     name: Neynar
     url: https://neynar.com/
@@ -14,13 +12,13 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: UserData
+- name: User Data
   description: Operations related to user data.
 paths:
   /v1/userDataByFid:
     get:
       tags:
-      - UserData
+      - User Data
       summary: Fetch UserData for a FID
       description: '**Note:** one of two different response schemas is returned based on whether the caller provides the `user_data_type` parameter. If included, a single `UserDataAdd` message is returned (or a `not_found` error). If omitted, a paginated list of `UserDataAdd` messages is returned instead.'
       externalDocs:
@@ -66,42 +64,17 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    UserDataBody:
-      description: Contains the data for updating a specific field of a user's profile metadata. Each update operation modifies one profile field at a time, allowing granular control over profile information.
-      type: object
-      properties:
-        type:
-          description: Specifies which profile field is being updated (e.g., profile picture, display name, bio).
-          allOf:
-          - $ref: '#/components/schemas/UserDataType'
-        value:
-          title: Profile Field Value
-          description: 'The new value for the specified profile field. The format depends on the type: URLs for profile pictures, plain text for display names and bios, etc.'
-          type: string
-          example: https://i.imgur.com/123abc.jpg
-      required:
-      - type
-      - value
-    UserDataType:
+    SignatureScheme:
       type: string
-      description: 'Specifies which field of a user''s profile is being updated.
+      description: 'Type of signature scheme used to sign the Message hash
 
-        - USER_DATA_TYPE_PFP: Profile Picture URL for the user''s avatar
+        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
 
-        - USER_DATA_TYPE_DISPLAY: Display Name shown on the user''s profile
-
-        - USER_DATA_TYPE_BIO: Biography or description of the user
-
-        - USER_DATA_TYPE_URL: Website or social media link for the user
-
-        - USER_DATA_TYPE_USERNAME: Preferred username for the user'
-      default: USER_DATA_TYPE_PFP
+        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
+      default: SIGNATURE_SCHEME_ED25519
       enum:
-      - USER_DATA_TYPE_PFP
-      - USER_DATA_TYPE_DISPLAY
-      - USER_DATA_TYPE_BIO
-      - USER_DATA_TYPE_URL
-      - USER_DATA_TYPE_USERNAME
+      - SIGNATURE_SCHEME_ED25519
+      - SIGNATURE_SCHEME_EIP712
     ErrorResponse:
       required:
       - code
@@ -131,6 +104,22 @@ components:
               type: array
               items:
                 type: string
+    UserDataBody:
+      description: Contains the data for updating a specific field of a user's profile metadata. Each update operation modifies one profile field at a time, allowing granular control over profile information.
+      type: object
+      properties:
+        type:
+          description: Specifies which profile field is being updated (e.g., profile picture, display name, bio).
+          allOf:
+          - $ref: '#/components/schemas/UserDataType'
+        value:
+          title: Profile Field Value
+          description: 'The new value for the specified profile field. The format depends on the type: URLs for profile pictures, plain text for display names and bios, etc.'
+          type: string
+          example: https://i.imgur.com/123abc.jpg
+      required:
+      - type
+      - value
     UserDataAdd:
       allOf:
       - $ref: '#/components/schemas/MessageCommon'
@@ -147,74 +136,20 @@ components:
               - type
         required:
         - data
-    MessageType:
+    FarcasterNetwork:
       type: string
-      description: 'Type of the MessageBody.
+      description: 'Farcaster network the message is intended for.
 
-        - MESSAGE_TYPE_CAST_ADD: Add a new Cast
+        - FARCASTER_NETWORK_MAINNET: Public primary network
 
-        - MESSAGE_TYPE_CAST_REMOVE: Remove an existing Cast
+        - FARCASTER_NETWORK_TESTNET: Public test network
 
-        - MESSAGE_TYPE_REACTION_ADD: Add a Reaction to a Cast
-
-        - MESSAGE_TYPE_REACTION_REMOVE: Remove a Reaction from a Cast
-
-        - MESSAGE_TYPE_LINK_ADD: Add a new Link
-
-        - MESSAGE_TYPE_LINK_REMOVE: Remove an existing Link
-
-        - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS: Add a Verification of an Ethereum Address
-
-        - MESSAGE_TYPE_VERIFICATION_REMOVE: Remove a Verification
-
-        - MESSAGE_TYPE_USER_DATA_ADD: Add metadata about a user
-
-        - MESSAGE_TYPE_USERNAME_PROOF: Add or replace a username proof
-
-        - MESSAGE_TYPE_FRAME_ACTION: A Farcaster Frame action'
-      default: MESSAGE_TYPE_CAST_ADD
+        - FARCASTER_NETWORK_DEVNET: Private test network'
+      default: FARCASTER_NETWORK_MAINNET
       enum:
-      - MESSAGE_TYPE_CAST_ADD
-      - MESSAGE_TYPE_CAST_REMOVE
-      - MESSAGE_TYPE_REACTION_ADD
-      - MESSAGE_TYPE_REACTION_REMOVE
-      - MESSAGE_TYPE_LINK_ADD
-      - MESSAGE_TYPE_LINK_REMOVE
-      - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS
-      - MESSAGE_TYPE_VERIFICATION_REMOVE
-      - MESSAGE_TYPE_USER_DATA_ADD
-      - MESSAGE_TYPE_USERNAME_PROOF
-      - MESSAGE_TYPE_FRAME_ACTION
-    PaginationResponse:
-      type: object
-      required:
-      - nextPageToken
-      properties:
-        nextPageToken:
-          type: string
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
-    HashScheme:
-      type: string
-      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
-
-        '
-      default: HASH_SCHEME_BLAKE3
-      enum:
-      - HASH_SCHEME_BLAKE3
-    SignatureScheme:
-      type: string
-      description: 'Type of signature scheme used to sign the Message hash
-
-        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
-
-        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
-      default: SIGNATURE_SCHEME_ED25519
-      enum:
-      - SIGNATURE_SCHEME_ED25519
-      - SIGNATURE_SCHEME_EIP712
+      - FARCASTER_NETWORK_MAINNET
+      - FARCASTER_NETWORK_TESTNET
+      - FARCASTER_NETWORK_DEVNET
     MessageCommon:
       type: object
       properties:
@@ -265,6 +200,52 @@ components:
           example: 48994466
         network:
           $ref: '#/components/schemas/FarcasterNetwork'
+    HashScheme:
+      type: string
+      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
+
+        '
+      default: HASH_SCHEME_BLAKE3
+      enum:
+      - HASH_SCHEME_BLAKE3
+    MessageType:
+      type: string
+      description: 'Type of the MessageBody.
+
+        - MESSAGE_TYPE_CAST_ADD: Add a new Cast
+
+        - MESSAGE_TYPE_CAST_REMOVE: Remove an existing Cast
+
+        - MESSAGE_TYPE_REACTION_ADD: Add a Reaction to a Cast
+
+        - MESSAGE_TYPE_REACTION_REMOVE: Remove a Reaction from a Cast
+
+        - MESSAGE_TYPE_LINK_ADD: Add a new Link
+
+        - MESSAGE_TYPE_LINK_REMOVE: Remove an existing Link
+
+        - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS: Add a Verification of an Ethereum Address
+
+        - MESSAGE_TYPE_VERIFICATION_REMOVE: Remove a Verification
+
+        - MESSAGE_TYPE_USER_DATA_ADD: Add metadata about a user
+
+        - MESSAGE_TYPE_USERNAME_PROOF: Add or replace a username proof
+
+        - MESSAGE_TYPE_FRAME_ACTION: A Farcaster Frame action'
+      default: MESSAGE_TYPE_CAST_ADD
+      enum:
+      - MESSAGE_TYPE_CAST_ADD
+      - MESSAGE_TYPE_CAST_REMOVE
+      - MESSAGE_TYPE_REACTION_ADD
+      - MESSAGE_TYPE_REACTION_REMOVE
+      - MESSAGE_TYPE_LINK_ADD
+      - MESSAGE_TYPE_LINK_REMOVE
+      - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS
+      - MESSAGE_TYPE_VERIFICATION_REMOVE
+      - MESSAGE_TYPE_USER_DATA_ADD
+      - MESSAGE_TYPE_USERNAME_PROOF
+      - MESSAGE_TYPE_FRAME_ACTION
     MessageDataUserDataAdd:
       description: Represents a message that updates a user's profile metadata. This can include changes to profile picture, display name, bio, URL, or preferred username. Each update modifies a single profile field.
       allOf:
@@ -277,20 +258,37 @@ components:
             description: Contains the type of profile metadata being updated and its new value.
             allOf:
             - $ref: '#/components/schemas/UserDataBody'
-    FarcasterNetwork:
+    UserDataType:
       type: string
-      description: 'Farcaster network the message is intended for.
+      description: 'Specifies which field of a user''s profile is being updated.
 
-        - FARCASTER_NETWORK_MAINNET: Public primary network
+        - USER_DATA_TYPE_PFP: Profile Picture URL for the user''s avatar
 
-        - FARCASTER_NETWORK_TESTNET: Public test network
+        - USER_DATA_TYPE_DISPLAY: Display Name shown on the user''s profile
 
-        - FARCASTER_NETWORK_DEVNET: Private test network'
-      default: FARCASTER_NETWORK_MAINNET
+        - USER_DATA_TYPE_BIO: Biography or description of the user
+
+        - USER_DATA_TYPE_URL: Website or social media link for the user
+
+        - USER_DATA_TYPE_USERNAME: Preferred username for the user'
+      default: USER_DATA_TYPE_PFP
       enum:
-      - FARCASTER_NETWORK_MAINNET
-      - FARCASTER_NETWORK_TESTNET
-      - FARCASTER_NETWORK_DEVNET
+      - USER_DATA_TYPE_PFP
+      - USER_DATA_TYPE_DISPLAY
+      - USER_DATA_TYPE_BIO
+      - USER_DATA_TYPE_URL
+      - USER_DATA_TYPE_USERNAME
+    PaginationResponse:
+      type: object
+      required:
+      - nextPageToken
+      properties:
+        nextPageToken:
+          type: string
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
+          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
   responses:
     ErrorResponse:
       description: An unexpected error response.
@@ -299,6 +297,12 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    pageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of messages to return in a single response
+      schema:
+        type: integer
     pageToken:
       name: pageToken
       in: query
@@ -311,12 +315,6 @@ components:
       description: Reverse the sort order, returning latest messages first
       schema:
         type: boolean
-    pageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of messages to return in a single response
-      schema:
-        type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -4,7 +4,7 @@ info:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the Neynar docs for more details.
   title: Neynar Follows API
   version: 3.176.0
 servers:
@@ -317,19 +317,12 @@ paths:
       - Follows
 components:
   schemas:
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
     UsersResponse:
       properties:
         next:
@@ -343,14 +336,6 @@ components:
       - next
       title: UsersResponse
       type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
     ErrorRes:
       description: Details for the error response
       properties:
@@ -366,21 +351,6 @@ components:
       required:
       - message
       title: ErrorRes
-      type: object
-    RelevantFollowersResponse:
-      properties:
-        all_relevant_followers_dehydrated:
-          items:
-            $ref: '#/components/schemas/FollowerDehydrated'
-          type: array
-        top_relevant_followers_hydrated:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
-      required:
-      - top_relevant_followers_hydrated
-      - all_relevant_followers_dehydrated
-      title: RelevantFollowersResponse
       type: object
     Location:
       description: Coordinates and place names for a location
@@ -406,33 +376,33 @@ components:
       - longitude
       title: Location
       type: object
-    FollowersResponse:
+    NextCursor:
+      description: Returns next cursor
       properties:
-        next:
-          $ref: '#/components/schemas/NextCursor'
-        users:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
+        cursor:
+          type:
+          - string
+          - 'null'
       required:
-      - users
-      - next
-      title: FollowersResponse
+      - cursor
+      title: NextCursor
       type: object
-    Follower:
+    LocationAddress:
       properties:
-        app:
-          $ref: '#/components/schemas/UserDehydrated'
-        object:
-          enum:
-          - follower
+        city:
           type: string
-        user:
-          $ref: '#/components/schemas/User'
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
       required:
-      - object
-      - user
-      title: Follower
+      - city
+      - country
+      title: LocationAddress
       type: object
     UserViewerContext:
       description: Adds context on the viewer's follow relationship with the user.
@@ -456,11 +426,19 @@ components:
       - blocked_by
       title: UserViewerContext
       type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
     ChannelUserContext:
       description: Adds context on the viewer's or author's role in the channel.
       properties:
@@ -473,6 +451,65 @@ components:
       - following
       title: ChannelUserContext
       type: object
+    FollowerDehydrated:
+      properties:
+        object:
+          enum:
+          - follower_dehydrated
+          type: string
+        user:
+          $ref: '#/components/schemas/UserDehydrated'
+      required:
+      - object
+      - user
+      title: FollowerDehydrated
+      type: object
+    FollowersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      required:
+      - users
+      - next
+      title: FollowersResponse
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
     UserDehydrated:
       properties:
         custody_address:
@@ -500,30 +537,6 @@ components:
       - fid
       title: UserDehydrated
       type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
     User:
       properties:
         auth_addresses:
@@ -723,55 +736,42 @@ components:
       - verified_accounts
       title: User
       type: object
-    LocationAddress:
+    Follower:
       properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    FollowerDehydrated:
-      properties:
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
         object:
           enum:
-          - follower_dehydrated
+          - follower
           type: string
         user:
-          $ref: '#/components/schemas/UserDehydrated'
+          $ref: '#/components/schemas/User'
       required:
       - object
       - user
-      title: FollowerDehydrated
+      title: Follower
       type: object
-    ChannelDehydrated:
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    RelevantFollowersResponse:
       properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
+        all_relevant_followers_dehydrated:
+          items:
+            $ref: '#/components/schemas/FollowerDehydrated'
+          type: array
+        top_relevant_followers_hydrated:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
       required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
+      - top_relevant_followers_hydrated
+      - all_relevant_followers_dehydrated
+      title: RelevantFollowersResponse
       type: object
     ReciprocalFollower:
       properties:

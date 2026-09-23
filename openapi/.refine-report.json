@@ -45,7 +45,9 @@
     "neynar-usernames-api-openapi.yml",
     "neynar-verifications-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 3 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -58,7 +60,9 @@
     "neynar-farcaster-api.yaml: declared missing tag: studio",
     "neynar-farcaster-api.yaml: declared missing tag: subscription",
     "neynar-hub-api.yaml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
-    "tag 'Storage' spans 2 source specs (neynar-farcaster-api.yaml, neynar-hub-api.yaml): per-path servers applied"
+    "tag 'Storage' spans 2 source specs (neynar-farcaster-api.yaml, neynar-hub-api.yaml): per-path servers applied",
+    "superseded outputs removed: neynar-fi-ds-api-openapi.yml, neynar-on-chain-api-openapi.yml, neynar-user-data-api-openapi.yml",
+    "apis.yml register: written (+3 apis, 39 total)"
   ],
   "skipped": [
     "neynar-action-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -71,7 +75,7 @@
     "neynar-casts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-channel-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-feed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "neynar-fids-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neynar-fi-ds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-fname-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-follows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-frame-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -83,7 +87,7 @@
     "neynar-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-mute-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "neynar-onchain-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neynar-on-chain-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-onchainevents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-portal-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -96,7 +100,7 @@
     "neynar-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-topic-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "neynar-userdata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neynar-user-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-usernames-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-verifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "neynar-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/"

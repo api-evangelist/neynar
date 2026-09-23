@@ -4,7 +4,7 @@ info:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the Neynar docs for more details.
   title: Neynar Mute API
   version: 3.176.0
 servers:
@@ -155,37 +155,11 @@ paths:
       - Mute
 components:
   schemas:
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
-    MuteResponse:
-      properties:
-        message:
-          type: string
-        success:
-          example: true
-          type: boolean
-      required:
-      - success
-      title: MuteResponse
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
       type: string
     ErrorRes:
       description: Details for the error response
@@ -203,22 +177,16 @@ components:
       - message
       title: ErrorRes
       type: object
-    MuteRecord:
+    NextCursor:
+      description: Returns next cursor
       properties:
-        muted:
-          $ref: '#/components/schemas/User'
-        muted_at:
-          format: date-time
-          type: string
-        object:
-          enum:
-          - mute
-          type: string
+        cursor:
+          type:
+          - string
+          - 'null'
       required:
-      - object
-      - muted
-      - muted_at
-      title: MuteRecord
+      - cursor
+      title: NextCursor
       type: object
     Location:
       description: Coordinates and place names for a location
@@ -244,18 +212,33 @@ components:
       - longitude
       title: Location
       type: object
-    MuteListResponse:
+    MuteReqBody:
       properties:
-        mutes:
-          items:
-            $ref: '#/components/schemas/MuteRecord'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        muted_fid:
+          $ref: '#/components/schemas/Fid'
       required:
-      - mutes
-      - next
-      title: MuteListResponse
+      - fid
+      - muted_fid
+      title: MuteReqBody
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
       type: object
     UserViewerContext:
       description: Adds context on the viewer's follow relationship with the user.
@@ -279,11 +262,19 @@ components:
       - blocked_by
       title: UserViewerContext
       type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
     ChannelUserContext:
       description: Adds context on the viewer's or author's role in the channel.
       properties:
@@ -296,6 +287,52 @@ components:
       - following
       title: ChannelUserContext
       type: object
+    MuteListResponse:
+      properties:
+        mutes:
+          items:
+            $ref: '#/components/schemas/MuteRecord'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - mutes
+      - next
+      title: MuteListResponse
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
     UserDehydrated:
       properties:
         custody_address:
@@ -323,30 +360,6 @@ components:
       - fid
       title: UserDehydrated
       type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
     User:
       properties:
         auth_addresses:
@@ -546,53 +559,40 @@ components:
       - verified_accounts
       title: User
       type: object
-    LocationAddress:
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    MuteResponse:
       properties:
-        city:
+        message:
           type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
+        success:
+          example: true
+          type: boolean
       required:
-      - city
-      - country
-      title: LocationAddress
+      - success
+      title: MuteResponse
       type: object
-    ChannelDehydrated:
+    MuteRecord:
       properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
+        muted:
+          $ref: '#/components/schemas/User'
+        muted_at:
+          format: date-time
           type: string
         object:
           enum:
-          - channel_dehydrated
+          - mute
           type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
       required:
-      - id
-      - name
       - object
-      title: ChannelDehydrated
-      type: object
-    MuteReqBody:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        muted_fid:
-          $ref: '#/components/schemas/Fid'
-      required:
-      - fid
-      - muted_fid
-      title: MuteReqBody
+      - muted
+      - muted_at
+      title: MuteRecord
       type: object
   parameters:
     NeynarExperimentalHeader:

@@ -4,7 +4,7 @@ info:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the Neynar docs for more details.
   title: Neynar Portal API
   version: 3.176.0
 servers:
@@ -12,7 +12,7 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: portal
+- name: Portal
 paths:
   /portal/organization/billing:
     get:
@@ -173,7 +173,7 @@ paths:
           description: Server Error
       summary: Get billing information for the current organization
       tags:
-      - portal
+      - Portal
   /portal/subscription/upgrade:
     post:
       description: Applies a subscription plan change for the current organization and returns the applied credit, charge amount, and whether the change takes effect immediately.
@@ -342,7 +342,7 @@ paths:
           description: Server Error
       summary: Process subscription upgrade with credit
       tags:
-      - portal
+      - Portal
   /portal/subscription/upgrade/preview:
     get:
       description: Calculates the billing impact of changing to a new subscription plan, including available credit, charge amount, and whether the billing date or usage carryover changes.
@@ -547,7 +547,7 @@ paths:
           description: Server Error
       summary: Get upgrade preview with credit calculation
       tags:
-      - portal
+      - Portal
 components:
   securitySchemes:
     ApiKeyAuth:

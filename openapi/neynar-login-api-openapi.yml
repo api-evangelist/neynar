@@ -4,7 +4,7 @@ info:
     email: team@neynar.com
     name: Neynar
     url: https://neynar.com/
-  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+  description: The Neynar API allows you to interact with the Farcaster protocol among other things. See the Neynar docs for more details.
   title: Neynar Login API
   version: 3.176.0
 servers:
@@ -45,16 +45,6 @@ paths:
       - Login
 components:
   schemas:
-    NonceResponse:
-      properties:
-        nonce:
-          description: The nonce value to sign the message
-          example: neynarbMi9zSDuOC1GFqixR
-          type: string
-      required:
-      - nonce
-      title: NonceResponse
-      type: object
     ErrorRes:
       description: Details for the error response
       properties:
@@ -70,6 +60,16 @@ components:
       required:
       - message
       title: ErrorRes
+      type: object
+    NonceResponse:
+      properties:
+        nonce:
+          description: The nonce value to sign the message
+          example: neynarbMi9zSDuOC1GFqixR
+          type: string
+      required:
+      - nonce
+      title: NonceResponse
       type: object
   securitySchemes:
     ApiKeyAuth:
