@@ -88,8 +88,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-agents-api
@@ -120,8 +118,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-app-host-api
@@ -152,8 +148,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-authaddress-api
@@ -184,8 +178,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-ban-api
@@ -216,8 +208,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-block-api
@@ -248,8 +238,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-cast-api
@@ -280,8 +268,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-casts-api
@@ -312,8 +298,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-channel-api
@@ -346,8 +330,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-feed-api
@@ -378,12 +360,10 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-fname-api
-  name: Neynar fname API
+  name: Neynar Fname API
   description: Operations related to fname
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
@@ -410,8 +390,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-follows-api
@@ -442,8 +420,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-frame-api
@@ -474,8 +450,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-hubevents-api
@@ -506,8 +480,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-info-api
@@ -538,8 +510,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-links-api
@@ -570,8 +540,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-login-api
@@ -602,8 +570,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-message-api
@@ -634,8 +600,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-metrics-api
@@ -666,8 +630,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-mute-api
@@ -698,8 +660,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-notifications-api
@@ -732,8 +692,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-onchainevents-api
@@ -764,12 +722,10 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-organization-api
-  name: Neynar organization API
+  name: Neynar Organization API
   description: The organization API from Neynar — 1 operation(s) for organization.
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
@@ -798,12 +754,10 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-portal-api
-  name: Neynar portal API
+  name: Neynar Portal API
   description: The portal API from Neynar — 3 operation(s) for portal.
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
@@ -832,8 +786,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-reaction-api
@@ -864,8 +816,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-reactions-api
@@ -896,8 +846,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-signer-api
@@ -928,8 +876,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-storage-api
@@ -960,12 +906,10 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-studio-api
-  name: Neynar studio API
+  name: Neynar Studio API
   description: The studio API from Neynar — 32 operation(s) for studio.
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
@@ -994,8 +938,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-subscribers-api
@@ -1026,12 +968,10 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-subscription-api
-  name: Neynar subscription API
+  name: Neynar Subscription API
   description: The subscription API from Neynar — 2 operation(s) for subscription.
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
@@ -1060,8 +1000,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-topic-api
@@ -1092,8 +1030,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-user-api
@@ -1124,8 +1060,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-usernames-api
@@ -1158,8 +1092,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-verifications-api
@@ -1192,8 +1124,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-webhook-api
@@ -1224,8 +1154,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-fids-api
@@ -1258,8 +1186,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-on-chain-api
@@ -1292,8 +1218,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 - aid: neynar:neynar-user-data-api
@@ -1324,8 +1248,6 @@ apis:
     url: rate-limits/rate-limits.yml
   - type: x-finops
     url: finops/finops.yml
-  - type: GraphQL
-    url: graphql/neynar-graphql.md
   - type: Documentation
     url: https://docs.neynar.com/reference/hub-api-overview
 maintainers:
