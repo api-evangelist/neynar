@@ -137,53 +137,20 @@ components:
             $ref: '#/components/schemas/StorageRentEventBody'
         required:
         - storageRentEventBody
-    ErrorResponse:
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
-      type: object
-      properties:
-        errCode:
-          type: string
-        presentable:
-          type: boolean
-        name:
-          type: string
-        code:
-          type: integer
-        details:
-          type: string
-        metadata:
-          required:
-          - errcode
-          type: object
-          properties:
-            errcode:
-              type: array
-              items:
-                type: string
-    OnChainEventIdRegister:
-      allOf:
-      - $ref: '#/components/schemas/OnChainEventCommon'
-      - type: object
-        properties:
-          idRegisterEventBody:
-            $ref: '#/components/schemas/IdRegisterEventBody'
-        required:
-        - idRegisterEventBody
-    OnChainEventSigner:
-      allOf:
-      - $ref: '#/components/schemas/OnChainEventCommon'
-      - type: object
-        properties:
-          signerEventBody:
-            $ref: '#/components/schemas/SignerEventBody'
-        required:
-        - signerEventBody
+    SignerEventType:
+      type: string
+      default: SIGNER_EVENT_TYPE_ADD
+      enum:
+      - SIGNER_EVENT_TYPE_ADD
+      - SIGNER_EVENT_TYPE_REMOVE
+      - SIGNER_EVENT_TYPE_ADMIN_RESET
+    IdRegisterEventType:
+      type: string
+      default: ID_REGISTER_EVENT_TYPE_REGISTER
+      enum:
+      - ID_REGISTER_EVENT_TYPE_REGISTER
+      - ID_REGISTER_EVENT_TYPE_TRANSFER
+      - ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY
     StorageRentEventBody:
       type: object
       properties:
@@ -201,15 +168,37 @@ components:
       - payer
       - units
       - expiry
-    OnChainEventSignerMigrated:
+    OnChainEventSigner:
       allOf:
       - $ref: '#/components/schemas/OnChainEventCommon'
       - type: object
         properties:
-          signerMigratedEventBody:
-            $ref: '#/components/schemas/SignerMigratedEventBody'
+          signerEventBody:
+            $ref: '#/components/schemas/SignerEventBody'
         required:
-        - signerMigratedEventBody
+        - signerEventBody
+    IdRegisterEventBody:
+      type: object
+      properties:
+        to:
+          pattern: ^0x[a-fA-F0-9]*$
+          type: string
+          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
+        eventType:
+          $ref: '#/components/schemas/IdRegisterEventType'
+        from:
+          pattern: ^0x[a-fA-F0-9]*$|^$
+          type: string
+          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
+        recoveryAddress:
+          pattern: ^0x[a-fA-F0-9]*$
+          type: string
+          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
+      required:
+      - to
+      - from
+      - eventType
+      - recoveryAddress
     SignerEventBody:
       type: object
       properties:
@@ -234,26 +223,15 @@ components:
       - eventType
       - metadata
       - metadataType
-    IdRegisterEventType:
-      type: string
-      default: ID_REGISTER_EVENT_TYPE_REGISTER
-      enum:
-      - ID_REGISTER_EVENT_TYPE_REGISTER
-      - ID_REGISTER_EVENT_TYPE_TRANSFER
-      - ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY
-    OnChainEvent:
-      oneOf:
-      - $ref: '#/components/schemas/OnChainEventSigner'
-      - $ref: '#/components/schemas/OnChainEventSignerMigrated'
-      - $ref: '#/components/schemas/OnChainEventIdRegister'
-      - $ref: '#/components/schemas/OnChainEventStorageRent'
-      discriminator:
-        propertyName: type
-        mapping:
-          EVENT_TYPE_SIGNER: '#/components/schemas/OnChainEventSigner'
-          EVENT_TYPE_SIGNER_MIGRATED: '#/components/schemas/OnChainEventSignerMigrated'
-          EVENT_TYPE_ID_REGISTER: '#/components/schemas/OnChainEventIdRegister'
-          EVENT_TYPE_STORAGE_RENT: '#/components/schemas/OnChainEventStorageRent'
+    OnChainEventSignerMigrated:
+      allOf:
+      - $ref: '#/components/schemas/OnChainEventCommon'
+      - type: object
+        properties:
+          signerMigratedEventBody:
+            $ref: '#/components/schemas/SignerMigratedEventBody'
+        required:
+        - signerMigratedEventBody
     OnChainEventCommon:
       type: object
       properties:
@@ -288,35 +266,15 @@ components:
       - logIndex
       - txIndex
       - fid
-    IdRegisterEventBody:
-      type: object
-      properties:
-        to:
-          pattern: ^0x[a-fA-F0-9]*$
-          type: string
-          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
-        eventType:
-          $ref: '#/components/schemas/IdRegisterEventType'
-        from:
-          pattern: ^0x[a-fA-F0-9]*$|^$
-          type: string
-          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
-        recoveryAddress:
-          pattern: ^0x[a-fA-F0-9]*$
-          type: string
-          example: '0x00000000fcd5a8e45785c8a4b9a718c9348e4f18'
-      required:
-      - to
-      - from
-      - eventType
-      - recoveryAddress
-    SignerEventType:
-      type: string
-      default: SIGNER_EVENT_TYPE_ADD
-      enum:
-      - SIGNER_EVENT_TYPE_ADD
-      - SIGNER_EVENT_TYPE_REMOVE
-      - SIGNER_EVENT_TYPE_ADMIN_RESET
+    OnChainEventIdRegister:
+      allOf:
+      - $ref: '#/components/schemas/OnChainEventCommon'
+      - type: object
+        properties:
+          idRegisterEventBody:
+            $ref: '#/components/schemas/IdRegisterEventBody'
+        required:
+        - idRegisterEventBody
     OnChainEventType:
       type: string
       default: EVENT_TYPE_SIGNER
@@ -325,6 +283,19 @@ components:
       - EVENT_TYPE_SIGNER_MIGRATED
       - EVENT_TYPE_ID_REGISTER
       - EVENT_TYPE_STORAGE_RENT
+    OnChainEvent:
+      oneOf:
+      - $ref: '#/components/schemas/OnChainEventSigner'
+      - $ref: '#/components/schemas/OnChainEventSignerMigrated'
+      - $ref: '#/components/schemas/OnChainEventIdRegister'
+      - $ref: '#/components/schemas/OnChainEventStorageRent'
+      discriminator:
+        propertyName: type
+        mapping:
+          EVENT_TYPE_SIGNER: '#/components/schemas/OnChainEventSigner'
+          EVENT_TYPE_SIGNER_MIGRATED: '#/components/schemas/OnChainEventSignerMigrated'
+          EVENT_TYPE_ID_REGISTER: '#/components/schemas/OnChainEventIdRegister'
+          EVENT_TYPE_STORAGE_RENT: '#/components/schemas/OnChainEventStorageRent'
     SignerMigratedEventBody:
       type: object
       properties:
@@ -333,6 +304,35 @@ components:
           format: int64
       required:
       - migratedAt
+    ErrorResponse:
+      required:
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
+      properties:
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
   responses:
     ErrorResponse:
       description: An unexpected error response.

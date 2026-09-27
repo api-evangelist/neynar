@@ -4412,6 +4412,17 @@ paths:
       - Studio
 components:
   schemas:
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
     ErrorRes:
       description: Details for the error response
       properties:
@@ -4427,17 +4438,6 @@ components:
       required:
       - message
       title: ErrorRes
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
       type: object
   securitySchemes:
     ApiKeyAuth:

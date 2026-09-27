@@ -1194,8 +1194,6 @@ apis:
   humanURL: https://docs.neynar.com
   baseURL: https://api.neynar.com
   tags:
-  - Onchain
-  tags_raw:
   - On Chain
   properties:
   - type: OpenAPI

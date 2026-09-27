@@ -171,64 +171,6 @@ paths:
       - Webhook
 components:
   schemas:
-    Webhook:
-      properties:
-        active:
-          type: boolean
-        created_at:
-          format: date-time
-          type: string
-        deleted_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        description:
-          type: string
-        developer_uuid:
-          type: string
-        http_timeout:
-          type: string
-        object:
-          enum:
-          - webhook
-          type: string
-        rate_limit:
-          type: integer
-        rate_limit_duration:
-          type: string
-        secrets:
-          items:
-            $ref: '#/components/schemas/WebhookSecret'
-          type: array
-        subscription:
-          $ref: '#/components/schemas/WebhookSubscription'
-        target_url:
-          type: string
-        title:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        webhook_id:
-          type: string
-      required:
-      - object
-      - webhook_id
-      - developer_uuid
-      - target_url
-      - title
-      - secrets
-      - description
-      - http_timeout
-      - rate_limit
-      - active
-      - rate_limit_duration
-      - created_at
-      - updated_at
-      - deleted_at
-      title: Webhook
-      type: object
     WebhookSecret:
       properties:
         created_at:
@@ -254,13 +196,66 @@ components:
       - deleted_at
       title: WebhookSecret
       type: object
-    WebhookDeleteReqBody:
+    WebhookPutReqBody:
       properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
         webhook_id:
           type: string
       required:
+      - name
+      - url
       - webhook_id
-      title: WebhookDeleteReqBody
+      title: WebhookPutReqBody
+      type: object
+    WebhookResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      title: WebhookResponse
+      type: object
+    WebhookListResponse:
+      properties:
+        webhooks:
+          items:
+            $ref: '#/components/schemas/Webhook'
+          type: array
+      required:
+      - webhooks
+      title: WebhookListResponse
+      type: object
+    WebhookSubscriptionFiltersFollow:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersFollow
+      type: object
+    WebhookPostReqBody:
+      properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
+      required:
+      - name
+      - url
+      title: WebhookPostReqBody
       type: object
     WebhookSubscriptionFiltersCast:
       properties:
@@ -340,113 +335,6 @@ components:
       - message
       title: ErrorRes
       type: object
-    WebhookPatchReqBody:
-      properties:
-        active:
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-        webhook_id:
-          type: string
-      required:
-      - webhook_id
-      - active
-      title: WebhookPatchReqBody
-      type: object
-    WebhookResponse:
-      properties:
-        message:
-          type: string
-        success:
-          type: boolean
-        webhook:
-          $ref: '#/components/schemas/Webhook'
-      title: WebhookResponse
-      type: object
-    WebhookPutReqBody:
-      properties:
-        name:
-          type: string
-        subscription:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        url:
-          type: string
-        webhook_id:
-          type: string
-      required:
-      - name
-      - url
-      - webhook_id
-      title: WebhookPutReqBody
-      type: object
-    WebhookSubscriptionFiltersReaction:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        target_cast_hashes:
-          items:
-            example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
-            pattern: ^(0x)?[a-fA-F0-9]{40}$
-            type: string
-          type: array
-        target_fids:
-          items:
-            type: integer
-          type: array
-      title: WebhookSubscriptionFiltersReaction
-      type: object
-    WebhookSubscription:
-      properties:
-        created_at:
-          format: date-time
-          type: string
-        filters:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        object:
-          enum:
-          - webhook_subscription
-          type: string
-        subscription_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - object
-      - subscription_id
-      - filters
-      - created_at
-      - updated_at
-      title: WebhookSubscription
-      type: object
-    WebhookListResponse:
-      properties:
-        webhooks:
-          items:
-            $ref: '#/components/schemas/Webhook'
-          type: array
-      required:
-      - webhooks
-      title: WebhookListResponse
-      type: object
-    WebhookSubscriptionFiltersTrade:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        minimum_token_amount_usdc:
-          minimum: 0
-          type: number
-        minimum_trader_neynar_score:
-          maximum: 1
-          minimum: 0
-          type: number
-      title: WebhookSubscriptionFiltersTrade
-      type: object
     WebhookSubscriptionFilters:
       properties:
         cast.created:
@@ -475,30 +363,142 @@ components:
           type: object
       title: WebhookSubscriptionFilters
       type: object
-    WebhookSubscriptionFiltersFollow:
+    WebhookSubscriptionFiltersReaction:
       properties:
         fids:
           items:
             type: integer
           type: array
+        target_cast_hashes:
+          items:
+            example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+            pattern: ^(0x)?[a-fA-F0-9]{40}$
+            type: string
+          type: array
         target_fids:
           items:
             type: integer
           type: array
-      title: WebhookSubscriptionFiltersFollow
+      title: WebhookSubscriptionFiltersReaction
       type: object
-    WebhookPostReqBody:
+    WebhookPatchReqBody:
       properties:
-        name:
+        active:
+          enum:
+          - 'true'
+          - 'false'
           type: string
-        subscription:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        url:
+        webhook_id:
           type: string
       required:
-      - name
-      - url
-      title: WebhookPostReqBody
+      - webhook_id
+      - active
+      title: WebhookPatchReqBody
+      type: object
+    Webhook:
+      properties:
+        active:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+        deleted_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        description:
+          type: string
+        developer_uuid:
+          type: string
+        http_timeout:
+          type: string
+        object:
+          enum:
+          - webhook
+          type: string
+        rate_limit:
+          type: integer
+        rate_limit_duration:
+          type: string
+        secrets:
+          items:
+            $ref: '#/components/schemas/WebhookSecret'
+          type: array
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscription'
+        target_url:
+          type: string
+        title:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - object
+      - webhook_id
+      - developer_uuid
+      - target_url
+      - title
+      - secrets
+      - description
+      - http_timeout
+      - rate_limit
+      - active
+      - rate_limit_duration
+      - created_at
+      - updated_at
+      - deleted_at
+      title: Webhook
+      type: object
+    WebhookDeleteReqBody:
+      properties:
+        webhook_id:
+          type: string
+      required:
+      - webhook_id
+      title: WebhookDeleteReqBody
+      type: object
+    WebhookSubscription:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        filters:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        object:
+          enum:
+          - webhook_subscription
+          type: string
+        subscription_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - object
+      - subscription_id
+      - filters
+      - created_at
+      - updated_at
+      title: WebhookSubscription
+      type: object
+    WebhookSubscriptionFiltersTrade:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        minimum_token_amount_usdc:
+          minimum: 0
+          type: number
+        minimum_trader_neynar_score:
+          maximum: 1
+          minimum: 0
+          type: number
+      title: WebhookSubscriptionFiltersTrade
       type: object
   securitySchemes:
     ApiKeyAuth:

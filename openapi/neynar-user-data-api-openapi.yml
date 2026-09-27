@@ -64,46 +64,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    SignatureScheme:
-      type: string
-      description: 'Type of signature scheme used to sign the Message hash
-
-        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
-
-        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
-      default: SIGNATURE_SCHEME_ED25519
-      enum:
-      - SIGNATURE_SCHEME_ED25519
-      - SIGNATURE_SCHEME_EIP712
-    ErrorResponse:
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
-      type: object
-      properties:
-        errCode:
-          type: string
-        presentable:
-          type: boolean
-        name:
-          type: string
-        code:
-          type: integer
-        details:
-          type: string
-        metadata:
-          required:
-          - errcode
-          type: object
-          properties:
-            errcode:
-              type: array
-              items:
-                type: string
     UserDataBody:
       description: Contains the data for updating a specific field of a user's profile metadata. Each update operation modifies one profile field at a time, allowing granular control over profile information.
       type: object
@@ -120,22 +80,29 @@ components:
       required:
       - type
       - value
-    UserDataAdd:
-      allOf:
-      - $ref: '#/components/schemas/MessageCommon'
-      - type: object
-        properties:
-          data:
-            allOf:
-            - $ref: '#/components/schemas/MessageDataUserDataAdd'
-            - type: object
-              properties:
-                type:
-                  $ref: '#/components/schemas/MessageType'
-              required:
-              - type
-        required:
-        - data
+    MessageDataCommon:
+      description: Common properties shared by all Farcaster message types. These properties provide essential metadata about the message's origin, timing, and network context.
+      required:
+      - fid
+      - network
+      - timestamp
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/MessageType'
+        fid:
+          title: Farcaster ID of the user producing the message
+          description: The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
+          type: integer
+          format: uint64
+          example: 2
+        timestamp:
+          description: Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
+          type: integer
+          format: int64
+          example: 48994466
+        network:
+          $ref: '#/components/schemas/FarcasterNetwork'
     FarcasterNetwork:
       type: string
       description: 'Farcaster network the message is intended for.
@@ -150,6 +117,26 @@ components:
       - FARCASTER_NETWORK_MAINNET
       - FARCASTER_NETWORK_TESTNET
       - FARCASTER_NETWORK_DEVNET
+    UserDataType:
+      type: string
+      description: 'Specifies which field of a user''s profile is being updated.
+
+        - USER_DATA_TYPE_PFP: Profile Picture URL for the user''s avatar
+
+        - USER_DATA_TYPE_DISPLAY: Display Name shown on the user''s profile
+
+        - USER_DATA_TYPE_BIO: Biography or description of the user
+
+        - USER_DATA_TYPE_URL: Website or social media link for the user
+
+        - USER_DATA_TYPE_USERNAME: Preferred username for the user'
+      default: USER_DATA_TYPE_PFP
+      enum:
+      - USER_DATA_TYPE_PFP
+      - USER_DATA_TYPE_DISPLAY
+      - USER_DATA_TYPE_BIO
+      - USER_DATA_TYPE_URL
+      - USER_DATA_TYPE_USERNAME
     MessageCommon:
       type: object
       properties:
@@ -177,29 +164,29 @@ components:
       - signature
       - signatureScheme
       - signer
-    MessageDataCommon:
-      description: Common properties shared by all Farcaster message types. These properties provide essential metadata about the message's origin, timing, and network context.
-      required:
-      - fid
-      - network
-      - timestamp
+    PaginationResponse:
       type: object
+      required:
+      - nextPageToken
       properties:
-        type:
-          $ref: '#/components/schemas/MessageType'
-        fid:
-          title: Farcaster ID of the user producing the message
-          description: The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
-          type: integer
-          format: uint64
-          example: 2
-        timestamp:
-          description: Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
-          type: integer
-          format: int64
-          example: 48994466
-        network:
-          $ref: '#/components/schemas/FarcasterNetwork'
+        nextPageToken:
+          type: string
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
+          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
+    MessageDataUserDataAdd:
+      description: Represents a message that updates a user's profile metadata. This can include changes to profile picture, display name, bio, URL, or preferred username. Each update modifies a single profile field.
+      allOf:
+      - $ref: '#/components/schemas/MessageDataCommon'
+      - type: object
+        required:
+        - userDataBody
+        properties:
+          userDataBody:
+            description: Contains the type of profile metadata being updated and its new value.
+            allOf:
+            - $ref: '#/components/schemas/UserDataBody'
     HashScheme:
       type: string
       description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
@@ -208,6 +195,33 @@ components:
       default: HASH_SCHEME_BLAKE3
       enum:
       - HASH_SCHEME_BLAKE3
+    SignatureScheme:
+      type: string
+      description: 'Type of signature scheme used to sign the Message hash
+
+        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
+
+        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
+      default: SIGNATURE_SCHEME_ED25519
+      enum:
+      - SIGNATURE_SCHEME_ED25519
+      - SIGNATURE_SCHEME_EIP712
+    UserDataAdd:
+      allOf:
+      - $ref: '#/components/schemas/MessageCommon'
+      - type: object
+        properties:
+          data:
+            allOf:
+            - $ref: '#/components/schemas/MessageDataUserDataAdd'
+            - type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/MessageType'
+              required:
+              - type
+        required:
+        - data
     MessageType:
       type: string
       description: 'Type of the MessageBody.
@@ -246,49 +260,54 @@ components:
       - MESSAGE_TYPE_USER_DATA_ADD
       - MESSAGE_TYPE_USERNAME_PROOF
       - MESSAGE_TYPE_FRAME_ACTION
-    MessageDataUserDataAdd:
-      description: Represents a message that updates a user's profile metadata. This can include changes to profile picture, display name, bio, URL, or preferred username. Each update modifies a single profile field.
-      allOf:
-      - $ref: '#/components/schemas/MessageDataCommon'
-      - type: object
-        required:
-        - userDataBody
-        properties:
-          userDataBody:
-            description: Contains the type of profile metadata being updated and its new value.
-            allOf:
-            - $ref: '#/components/schemas/UserDataBody'
-    UserDataType:
-      type: string
-      description: 'Specifies which field of a user''s profile is being updated.
-
-        - USER_DATA_TYPE_PFP: Profile Picture URL for the user''s avatar
-
-        - USER_DATA_TYPE_DISPLAY: Display Name shown on the user''s profile
-
-        - USER_DATA_TYPE_BIO: Biography or description of the user
-
-        - USER_DATA_TYPE_URL: Website or social media link for the user
-
-        - USER_DATA_TYPE_USERNAME: Preferred username for the user'
-      default: USER_DATA_TYPE_PFP
-      enum:
-      - USER_DATA_TYPE_PFP
-      - USER_DATA_TYPE_DISPLAY
-      - USER_DATA_TYPE_BIO
-      - USER_DATA_TYPE_URL
-      - USER_DATA_TYPE_USERNAME
-    PaginationResponse:
-      type: object
+    ErrorResponse:
       required:
-      - nextPageToken
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
       properties:
-        nextPageToken:
+        errCode:
           type: string
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
+  parameters:
+    pageToken:
+      name: pageToken
+      in: query
+      description: The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+      schema:
+        type: string
+    pageSize:
+      name: pageSize
+      in: query
+      description: Maximum number of messages to return in a single response
+      schema:
+        type: integer
+    paginationReverse:
+      name: reverse
+      in: query
+      description: Reverse the sort order, returning latest messages first
+      schema:
+        type: boolean
   responses:
     ErrorResponse:
       description: An unexpected error response.
@@ -296,25 +315,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    pageSize:
-      name: pageSize
-      in: query
-      description: Maximum number of messages to return in a single response
-      schema:
-        type: integer
-    pageToken:
-      name: pageToken
-      in: query
-      description: The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
-      schema:
-        type: string
-    paginationReverse:
-      name: reverse
-      in: query
-      description: Reverse the sort order, returning latest messages first
-      schema:
-        type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

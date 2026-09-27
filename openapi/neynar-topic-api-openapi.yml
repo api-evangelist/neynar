@@ -61,30 +61,6 @@ paths:
       - Topic
 components:
   schemas:
-    TopLevelTopic:
-      description: The top-level category the topic belongs to
-      enum:
-      - arts_culture
-      - business_entrepreneurs
-      - celebrity_pop_culture
-      - diaries_daily_life
-      - family
-      - fashion_style
-      - film_tv_video
-      - fitness_health
-      - food_dining
-      - gaming
-      - learning_educational
-      - music
-      - news_social_concern
-      - other_hobbies
-      - relationships
-      - science_technology
-      - sports
-      - travel_adventure
-      - youth_student_life
-      title: TopLevelTopic
-      type: string
     NextCursor:
       description: Returns next cursor
       properties:
@@ -96,46 +72,6 @@ components:
       - cursor
       title: NextCursor
       type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
     TrendingTopic:
       properties:
         authors:
@@ -193,6 +129,70 @@ components:
       - topics
       - next
       title: TrendingTopicsResponse
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    TopLevelTopic:
+      description: The top-level category the topic belongs to
+      enum:
+      - arts_culture
+      - business_entrepreneurs
+      - celebrity_pop_culture
+      - diaries_daily_life
+      - family
+      - fashion_style
+      - film_tv_video
+      - fitness_health
+      - food_dining
+      - gaming
+      - learning_educational
+      - music
+      - news_social_concern
+      - other_hobbies
+      - relationships
+      - science_technology
+      - sports
+      - travel_adventure
+      - youth_student_life
+      title: TopLevelTopic
+      type: string
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
       type: object
   securitySchemes:
     ApiKeyAuth:

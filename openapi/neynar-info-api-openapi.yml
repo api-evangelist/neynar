@@ -44,6 +44,32 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    HubInfoResponse:
+      title: Response Types for the Sync RPC Methods
+      required:
+      - hubOperatorFid
+      - isSyncing
+      - nickname
+      - peerId
+      - rootHash
+      - version
+      type: object
+      properties:
+        version:
+          type: string
+        isSyncing:
+          type: boolean
+        nickname:
+          type: string
+        rootHash:
+          type: string
+        dbStats:
+          $ref: '#/components/schemas/DbStats'
+        peerId:
+          type: string
+        hubOperatorFid:
+          type: integer
+          format: uint64
     DbStats:
       required:
       - numFidEvents
@@ -89,32 +115,6 @@ components:
               type: array
               items:
                 type: string
-    HubInfoResponse:
-      title: Response Types for the Sync RPC Methods
-      required:
-      - hubOperatorFid
-      - isSyncing
-      - nickname
-      - peerId
-      - rootHash
-      - version
-      type: object
-      properties:
-        version:
-          type: string
-        isSyncing:
-          type: boolean
-        nickname:
-          type: string
-        rootHash:
-          type: string
-        dbStats:
-          $ref: '#/components/schemas/DbStats'
-        peerId:
-          type: string
-        hubOperatorFid:
-          type: integer
-          format: uint64
   responses:
     ErrorResponse:
       description: An unexpected error response.
