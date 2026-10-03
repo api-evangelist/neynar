@@ -44,6 +44,35 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      required:
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
+      properties:
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
     HubInfoResponse:
       title: Response Types for the Sync RPC Methods
       required:
@@ -86,35 +115,6 @@ components:
         numFnameEvents:
           type: integer
           format: uint64
-    ErrorResponse:
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
-      type: object
-      properties:
-        errCode:
-          type: string
-        presentable:
-          type: boolean
-        name:
-          type: string
-        code:
-          type: integer
-        details:
-          type: string
-        metadata:
-          required:
-          - errcode
-          type: object
-          properties:
-            errcode:
-              type: array
-              items:
-                type: string
   responses:
     ErrorResponse:
       description: An unexpected error response.

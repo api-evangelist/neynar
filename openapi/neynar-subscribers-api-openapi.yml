@@ -199,6 +199,251 @@ paths:
       - Subscribers
 components:
   schemas:
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    Subscriber:
+      properties:
+        object:
+          enum:
+          - subscriber
+          type: string
+        subscribed_to:
+          $ref: '#/components/schemas/SubscribedToObject'
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - object
+      - user
+      - subscribed_to
+      title: Subscriber
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    Subscriptions:
+      properties:
+        subscriptions_created:
+          items:
+            $ref: '#/components/schemas/Subscription'
+          type: array
+      required:
+      - subscriptions_created
+      title: Subscriptions
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    SubscriptionsResponse:
+      properties:
+        subscriptions_created:
+          items:
+            $ref: '#/components/schemas/Subscriptions'
+          type: array
+      title: SubscriptionsResponse
+      type: object
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    SubscribedToResponse:
+      properties:
+        subscribed_to:
+          items:
+            $ref: '#/components/schemas/SubscribedTo'
+          type: array
+      title: SubscribedToResponse
+      type: object
+    Subscription:
+      properties:
+        chain:
+          example: 8453
+          type: integer
+        contract_address:
+          example: '0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58'
+          type: string
+        metadata:
+          properties:
+            art_url:
+              example: https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg
+              type: string
+            symbol:
+              example: MMS
+              type: string
+            title:
+              example: /memes channel sub
+              type: string
+          required:
+          - title
+          - symbol
+          - art_url
+          type: object
+        object:
+          enum:
+          - subscription
+          type: string
+        owner_address:
+          example: '0xb6f6dce6000ca88cc936b450cedb16a5c15f157f'
+          type: string
+        price:
+          properties:
+            initial_mint_price:
+              example: '0'
+              type: string
+            period_duration_seconds:
+              example: 2592000
+              type: integer
+            tokens_per_period:
+              example: '350574998400000'
+              type: string
+          required:
+          - period_duration_seconds
+          - tokens_per_period
+          - initial_mint_price
+          type: object
+        protocol_version:
+          example: 1
+          type: integer
+        provider_name:
+          example: fabric_stp
+          type: string
+        tiers:
+          items:
+            $ref: '#/components/schemas/SubscriptionTier'
+          type: array
+        token:
+          properties:
+            address:
+              example: null
+              type:
+              - string
+              - 'null'
+            decimals:
+              example: 18
+              type: integer
+            erc20:
+              example: false
+              type: boolean
+            symbol:
+              example: ETH
+              type: string
+          required:
+          - symbol
+          - address
+          - decimals
+          - erc20
+          type: object
+      required:
+      - object
+      - contract_address
+      - chain
+      - metadata
+      - owner_address
+      - price
+      - protocol_version
+      - token
+      title: Subscription
+      type: object
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
     User:
       properties:
         auth_addresses:
@@ -398,6 +643,27 @@ components:
       - verified_accounts
       title: User
       type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    SubscribersResponse:
+      properties:
+        subscribers:
+          items:
+            $ref: '#/components/schemas/Subscriber'
+          type: array
+      title: SubscribersResponse
+      type: object
     UserViewerContext:
       description: Adds context on the viewer's follow relationship with the user.
       properties:
@@ -420,78 +686,6 @@ components:
       - blocked_by
       title: UserViewerContext
       type: object
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
-      properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - following
-      title: ChannelUserContext
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    Subscriber:
-      properties:
-        object:
-          enum:
-          - subscriber
-          type: string
-        subscribed_to:
-          $ref: '#/components/schemas/SubscribedToObject'
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - object
-      - user
-      - subscribed_to
-      title: Subscriber
-      type: object
     Fid:
       description: The unique identifier of a farcaster user or app (unsigned integer)
       example: 3
@@ -499,14 +693,6 @@ components:
       minimum: 0
       title: Fid
       type: integer
-    SubscribersResponse:
-      properties:
-        subscribers:
-          items:
-            $ref: '#/components/schemas/Subscriber'
-          type: array
-      title: SubscribersResponse
-      type: object
     SubscribedToObject:
       properties:
         chain:
@@ -541,69 +727,31 @@ components:
       - provider_name
       title: SubscribedToObject
       type: object
+    SubscriptionTier:
+      properties:
+        id:
+          example: 1
+          type: integer
+        price:
+          properties:
+            initial_mint_price:
+              example: '0'
+              type: string
+            period_duration_seconds:
+              example: 2592000
+              type: integer
+            tokens_per_period:
+              example: '3000000000000000'
+              type: string
+          type: object
+      title: SubscriptionTier
+      type: object
     EthAddress:
       description: Ethereum address
       example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
       pattern: ^0x[a-fA-F0-9]{40}$
       title: EthAddress
       type: string
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    SubscriptionsResponse:
-      properties:
-        subscriptions_created:
-          items:
-            $ref: '#/components/schemas/Subscriptions'
-          type: array
-      title: SubscriptionsResponse
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    LocationAddress:
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
     SubscriptionCheckResponse:
       anyOf:
       - additionalProperties:
@@ -634,157 +782,6 @@ components:
           - subscribed_at
           - tier
       title: SubscriptionCheckResponse
-      type: object
-    SubscriptionTier:
-      properties:
-        id:
-          example: 1
-          type: integer
-        price:
-          properties:
-            initial_mint_price:
-              example: '0'
-              type: string
-            period_duration_seconds:
-              example: 2592000
-              type: integer
-            tokens_per_period:
-              example: '3000000000000000'
-              type: string
-          type: object
-      title: SubscriptionTier
-      type: object
-    Location:
-      description: Coordinates and place names for a location
-      properties:
-        address:
-          $ref: '#/components/schemas/LocationAddress'
-        latitude:
-          format: double
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          format: double
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          description: The radius in meters for the location search. Any location within this radius will be returned.
-          minimum: 0
-          type: number
-      required:
-      - latitude
-      - longitude
-      title: Location
-      type: object
-    Subscription:
-      properties:
-        chain:
-          example: 8453
-          type: integer
-        contract_address:
-          example: '0xff63fc310d47ef80961056ac8df0b3f1a9e3ef58'
-          type: string
-        metadata:
-          properties:
-            art_url:
-              example: https://storage.withfabric.xyz/loom/403fdc10-95f3-4b25-9d77-5aac7ccb9fd1.jpg
-              type: string
-            symbol:
-              example: MMS
-              type: string
-            title:
-              example: /memes channel sub
-              type: string
-          required:
-          - title
-          - symbol
-          - art_url
-          type: object
-        object:
-          enum:
-          - subscription
-          type: string
-        owner_address:
-          example: '0xb6f6dce6000ca88cc936b450cedb16a5c15f157f'
-          type: string
-        price:
-          properties:
-            initial_mint_price:
-              example: '0'
-              type: string
-            period_duration_seconds:
-              example: 2592000
-              type: integer
-            tokens_per_period:
-              example: '350574998400000'
-              type: string
-          required:
-          - period_duration_seconds
-          - tokens_per_period
-          - initial_mint_price
-          type: object
-        protocol_version:
-          example: 1
-          type: integer
-        provider_name:
-          example: fabric_stp
-          type: string
-        tiers:
-          items:
-            $ref: '#/components/schemas/SubscriptionTier'
-          type: array
-        token:
-          properties:
-            address:
-              example: null
-              type:
-              - string
-              - 'null'
-            decimals:
-              example: 18
-              type: integer
-            erc20:
-              example: false
-              type: boolean
-            symbol:
-              example: ETH
-              type: string
-          required:
-          - symbol
-          - address
-          - decimals
-          - erc20
-          type: object
-      required:
-      - object
-      - contract_address
-      - chain
-      - metadata
-      - owner_address
-      - price
-      - protocol_version
-      - token
-      title: Subscription
-      type: object
-    SubscribedToResponse:
-      properties:
-        subscribed_to:
-          items:
-            $ref: '#/components/schemas/SubscribedTo'
-          type: array
-      title: SubscribedToResponse
-      type: object
-    Subscriptions:
-      properties:
-        subscriptions_created:
-          items:
-            $ref: '#/components/schemas/Subscription'
-          type: array
-      required:
-      - subscriptions_created
-      title: Subscriptions
       type: object
     SubscribedTo:
       properties:
@@ -892,18 +889,21 @@ components:
       - creator
       title: SubscribedTo
       type: object
-    TextRange:
+    ErrorRes:
+      description: Details for the error response
       properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
       required:
-      - start
-      - end
-      title: TextRange
+      - message
+      title: ErrorRes
       type: object
   securitySchemes:
     ApiKeyAuth:

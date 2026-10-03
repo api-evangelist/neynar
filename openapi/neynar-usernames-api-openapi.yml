@@ -75,6 +75,50 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      required:
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
+      type: object
+      properties:
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
+          type: integer
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
+    UserNameType:
+      type: string
+      default: USERNAME_TYPE_FNAME
+      enum:
+      - USERNAME_TYPE_FNAME
+      - USERNAME_TYPE_ENS_L1
+    UsernameProofsResponse:
+      type: object
+      properties:
+        proofs:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserNameProof'
+      required:
+      - proofs
     UserNameProof:
       type: object
       properties:
@@ -105,12 +149,6 @@ components:
       - signature
       - fid
       - type
-    UserNameType:
-      type: string
-      default: USERNAME_TYPE_FNAME
-      enum:
-      - USERNAME_TYPE_FNAME
-      - USERNAME_TYPE_ENS_L1
     FidSchema:
       type: integer
       format: uint64
@@ -119,44 +157,6 @@ components:
 
         '
       example: 1
-    UsernameProofsResponse:
-      type: object
-      properties:
-        proofs:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserNameProof'
-      required:
-      - proofs
-    ErrorResponse:
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
-      type: object
-      properties:
-        errCode:
-          type: string
-        presentable:
-          type: boolean
-        name:
-          type: string
-        code:
-          type: integer
-        details:
-          type: string
-        metadata:
-          required:
-          - errcode
-          type: object
-          properties:
-            errcode:
-              type: array
-              items:
-                type: string
   responses:
     ErrorResponse:
       description: An unexpected error response.

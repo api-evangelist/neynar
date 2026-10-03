@@ -45,16 +45,6 @@ paths:
       - Login
 components:
   schemas:
-    NonceResponse:
-      properties:
-        nonce:
-          description: The nonce value to sign the message
-          example: neynarbMi9zSDuOC1GFqixR
-          type: string
-      required:
-      - nonce
-      title: NonceResponse
-      type: object
     ErrorRes:
       description: Details for the error response
       properties:
@@ -70,6 +60,16 @@ components:
       required:
       - message
       title: ErrorRes
+      type: object
+    NonceResponse:
+      properties:
+        nonce:
+          description: The nonce value to sign the message
+          example: neynarbMi9zSDuOC1GFqixR
+          type: string
+      required:
+      - nonce
+      title: NonceResponse
       type: object
   securitySchemes:
     ApiKeyAuth:

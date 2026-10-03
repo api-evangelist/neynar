@@ -765,6 +765,215 @@ paths:
       - User
 components:
   schemas:
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    SignerUUID:
+      description: 'UUID of the signer.
+
+        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
+      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
+      title: SignerUUID
+      type: string
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    UserSearchResponse:
+      properties:
+        result:
+          properties:
+            next:
+              $ref: '#/components/schemas/NextCursor'
+            users:
+              items:
+                $ref: '#/components/schemas/User'
+              type: array
+          required:
+          - users
+          type: object
+      required:
+      - result
+      title: UserSearchResponse
+      type: object
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    UsersResponse:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      - next
+      title: UsersResponse
+      type: object
+    BulkFollowResponse:
+      properties:
+        details:
+          items:
+            $ref: '#/components/schemas/FollowResponse'
+          type: array
+        success:
+          type: boolean
+      required:
+      - success
+      - details
+      title: BulkFollowResponse
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
+    VerificationChainId:
+      anyOf:
+      - enum:
+        - 0
+        type: number
+      - enum:
+        - 1
+        type: number
+      - enum:
+        - 10
+        type: number
+      default: 0
+      description: Chain ID for farcaster verifications. 0 for EOA verifications, 1 or 10 for contract verifications
+      format: int32
+      title: VerificationChainId
+      type: integer
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    RemoveVerificationReqBody:
+      properties:
+        address:
+          $ref: '#/components/schemas/EthAddress'
+        block_hash:
+          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
+          type: string
+        eth_signature:
+          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+      required:
+      - signer_uuid
+      - address
+      - block_hash
+      - eth_signature
+      title: RemoveVerificationReqBody
+      type: object
     User:
       properties:
         auth_addresses:
@@ -964,6 +1173,42 @@ components:
       - verified_accounts
       title: User
       type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    AddVerificationReqBody:
+      properties:
+        address:
+          $ref: '#/components/schemas/EthAddress'
+        block_hash:
+          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
+          type: string
+        chain_id:
+          $ref: '#/components/schemas/VerificationChainId'
+        eth_signature:
+          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        verification_type:
+          $ref: '#/components/schemas/VerificationType'
+      required:
+      - signer_uuid
+      - address
+      - block_hash
+      - eth_signature
+      title: AddVerificationReqBody
+      type: object
     UserViewerContext:
       description: Adds context on the viewer's follow relationship with the user.
       properties:
@@ -985,6 +1230,77 @@ components:
       - blocking
       - blocked_by
       title: UserViewerContext
+      type: object
+    ConflictErrorRes:
+      description: Details for the conflict error response
+      properties:
+        code:
+          type: string
+        key:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+      required:
+      - message
+      title: ConflictErrorRes
+      type: object
+    VerificationType:
+      anyOf:
+      - enum:
+        - 0
+        type: number
+      - enum:
+        - 1
+        type: number
+      default: 0
+      description: Type of verification. 0 = EOA, 1 = contract
+      format: int32
+      title: VerificationType
+      type: integer
+    Ed25519PublicKey:
+      description: Ed25519 public key
+      example: '0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22'
+      pattern: ^0x[a-fA-F0-9]{64}$
+      title: Ed25519PublicKey
+      type: string
+    ZodError:
+      properties:
+        code:
+          example: InvalidField
+          type: string
+        errors:
+          items:
+            properties:
+              code:
+                type: string
+              expected:
+                type: string
+              message:
+                type: string
+              path:
+                items:
+                  type: string
+                type: array
+              received:
+                type: string
+            required:
+            - code
+            - expected
+            - received
+            - path
+            - message
+            type: object
+          type: array
+        message:
+          example: Invalid query parameters
+          type: string
+      required:
+      - message
+      - code
+      - errors
+      title: ZodError
       type: object
     BestFriendsResponse:
       properties:
@@ -1009,48 +1325,204 @@ components:
       - users
       title: BestFriendsResponse
       type: object
-    SignerUUID:
-      description: 'UUID of the signer.
-
-        `signer_uuid` is paired with API key, can''t use a `uuid` made with a different API key.'
-      example: 19d0c5fd-9b33-4a48-a0e2-bc7b0555baec
-      title: SignerUUID
-      type: string
-    SharedSignerPermission:
-      enum:
-      - WRITE_ALL
-      - READ_ONLY
-      - NONE
-      - PUBLISH_CAST
-      - DELETE_CAST
-      - PUBLISH_REACTION
-      - DELETE_REACTION
-      - UPDATE_PROFILE
-      - FOLLOW_USER
-      - UNFOLLOW_USER
-      - FOLLOW_CHANNEL
-      - UNFOLLOW_CHANNEL
-      - ADD_VERIFICATION
-      - REMOVE_VERIFICATION
-      - WRITE_FRAME_ACTION
-      title: SharedSignerPermission
-      type: string
-    VerificationChainId:
-      anyOf:
-      - enum:
-        - 0
-        type: number
-      - enum:
-        - 1
-        type: number
-      - enum:
-        - 10
-        type: number
-      default: 0
-      description: Chain ID for farcaster verifications. 0 for EOA verifications, 1 or 10 for contract verifications
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
       format: int32
-      title: VerificationChainId
+      minimum: 0
+      title: Fid
       type: integer
+    BulkUsersResponse:
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - users
+      title: BulkUsersResponse
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Protocol:
+      description: 'Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana'
+      enum:
+      - evm
+      - solana
+      example: evm
+      title: Protocol
+      type: string
+    RegisterUserResponse:
+      properties:
+        message:
+          type: string
+        signer:
+          $ref: '#/components/schemas/Signer'
+        signers:
+          items:
+            properties:
+              fid:
+                $ref: '#/components/schemas/Fid'
+              object:
+                enum:
+                - signer
+                type: string
+              permissions:
+                items:
+                  $ref: '#/components/schemas/SharedSignerPermission'
+                type: array
+              public_key:
+                $ref: '#/components/schemas/Ed25519PublicKey'
+              signer_approval_url:
+                type: string
+              status:
+                enum:
+                - generated
+                - pending_approval
+                - approved
+                - revoked
+                type: string
+              uuid:
+                $ref: '#/components/schemas/SignerUUID'
+            required:
+            - public_key
+            - status
+            - uuid
+            type: object
+          type: array
+        success:
+          enum:
+          - true
+          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - success
+      - message
+      - signers
+      title: RegisterUserResponse
+      type: object
+    UpdateUserReqBody:
+      properties:
+        banner:
+          description: Requires pro subscription.
+          type: string
+        bio:
+          type: string
+        display_name:
+          type: string
+        location:
+          properties:
+            latitude:
+              format: double
+              maximum: 90
+              minimum: -90
+              type: number
+            longitude:
+              format: double
+              maximum: 180
+              minimum: -180
+              type: number
+          required:
+          - latitude
+          - longitude
+          type: object
+        pfp_url:
+          type: string
+        primary_eth_address:
+          description: Must be one of the verified addresses.
+          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+          pattern: ^0x[a-fA-F0-9]{40}$
+          type: string
+        primary_sol_address:
+          description: Must be one of the verified addresses.
+          pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+          type: string
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        url:
+          type: string
+        username:
+          type: string
+        verified_accounts:
+          properties:
+            github:
+              type: string
+            x:
+              type: string
+          type: object
+      required:
+      - signer_uuid
+      title: UpdateUserReqBody
+      type: object
+    UserFIDResponse:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - fid
+      title: UserFIDResponse
+      type: object
+    UserResponse:
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - user
+      title: UserResponse
+      type: object
+    FollowResponse:
+      properties:
+        hash:
+          type: string
+        success:
+          type: boolean
+        target_fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - success
+      - target_fid
+      - hash
+      title: FollowResponse
+      type: object
+    Verification:
+      description: Verification details of an address
+      properties:
+        address:
+          description: Address string (hex for ethereum, base58 for solana)
+          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+          type: string
+        app:
+          $ref: '#/components/schemas/UserDehydrated'
+        object:
+          enum:
+          - verification
+          type: string
+        protocol:
+          $ref: '#/components/schemas/Protocol'
+        verified_at:
+          description: ISO timestamp when the verification was created
+          example: '2024-01-01T00:00:00.000Z'
+          type: string
+      required:
+      - object
+      - address
+      - protocol
+      - verified_at
+      title: Verification
+      type: object
+    OperationResponse:
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+      title: OperationResponse
+      type: object
     RegisterUserReqBody:
       properties:
         deadline:
@@ -1123,481 +1595,25 @@ components:
       - deadline
       title: RegisterUserReqBody
       type: object
-    Protocol:
-      description: 'Blockchain protocol for the linked wallet: evm for Ethereum/EVM-compatible chains (Base, Optimism, etc.) and solana for Solana'
+    SharedSignerPermission:
       enum:
-      - evm
-      - solana
-      example: evm
-      title: Protocol
+      - WRITE_ALL
+      - READ_ONLY
+      - NONE
+      - PUBLISH_CAST
+      - DELETE_CAST
+      - PUBLISH_REACTION
+      - DELETE_REACTION
+      - UPDATE_PROFILE
+      - FOLLOW_USER
+      - UNFOLLOW_USER
+      - FOLLOW_CHANNEL
+      - UNFOLLOW_CHANNEL
+      - ADD_VERIFICATION
+      - REMOVE_VERIFICATION
+      - WRITE_FRAME_ACTION
+      title: SharedSignerPermission
       type: string
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
-      properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - following
-      title: ChannelUserContext
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    BulkUsersByAddressResponse:
-      anyOf:
-      - additionalProperties:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      title: BulkUsersByAddressResponse
-      type: object
-    Ed25519PublicKey:
-      description: Ed25519 public key
-      example: '0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22'
-      pattern: ^0x[a-fA-F0-9]{64}$
-      title: Ed25519PublicKey
-      type: string
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
-    UpdateUserReqBody:
-      properties:
-        banner:
-          description: Requires pro subscription.
-          type: string
-        bio:
-          type: string
-        display_name:
-          type: string
-        location:
-          properties:
-            latitude:
-              format: double
-              maximum: 90
-              minimum: -90
-              type: number
-            longitude:
-              format: double
-              maximum: 180
-              minimum: -180
-              type: number
-          required:
-          - latitude
-          - longitude
-          type: object
-        pfp_url:
-          type: string
-        primary_eth_address:
-          description: Must be one of the verified addresses.
-          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-          pattern: ^0x[a-fA-F0-9]{40}$
-          type: string
-        primary_sol_address:
-          description: Must be one of the verified addresses.
-          pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-          type: string
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-        url:
-          type: string
-        username:
-          type: string
-        verified_accounts:
-          properties:
-            github:
-              type: string
-            x:
-              type: string
-          type: object
-      required:
-      - signer_uuid
-      title: UpdateUserReqBody
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    AddVerificationReqBody:
-      properties:
-        address:
-          $ref: '#/components/schemas/EthAddress'
-        block_hash:
-          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
-          type: string
-        chain_id:
-          $ref: '#/components/schemas/VerificationChainId'
-        eth_signature:
-          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
-          type: string
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-        verification_type:
-          $ref: '#/components/schemas/VerificationType'
-      required:
-      - signer_uuid
-      - address
-      - block_hash
-      - eth_signature
-      title: AddVerificationReqBody
-      type: object
-    UsersResponse:
-      properties:
-        next:
-          $ref: '#/components/schemas/NextCursor'
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
-      - next
-      title: UsersResponse
-      type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    FollowReqBody:
-      properties:
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-        target_fids:
-          example:
-          - 194
-          - 3
-          items:
-            minimum: 1
-            type: integer
-          maxItems: 100
-          type: array
-      required:
-      - signer_uuid
-      - target_fids
-      title: FollowReqBody
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    FollowResponse:
-      properties:
-        hash:
-          type: string
-        success:
-          type: boolean
-        target_fid:
-          $ref: '#/components/schemas/Fid'
-      required:
-      - success
-      - target_fid
-      - hash
-      title: FollowResponse
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    UserFIDResponse:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-      required:
-      - fid
-      title: UserFIDResponse
-      type: object
-    ConflictErrorRes:
-      description: Details for the conflict error response
-      properties:
-        code:
-          type: string
-        key:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-      required:
-      - message
-      title: ConflictErrorRes
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    RemoveVerificationReqBody:
-      properties:
-        address:
-          $ref: '#/components/schemas/EthAddress'
-        block_hash:
-          example: '0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29'
-          type: string
-        eth_signature:
-          example: '0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b'
-          type: string
-        signer_uuid:
-          $ref: '#/components/schemas/SignerUUID'
-      required:
-      - signer_uuid
-      - address
-      - block_hash
-      - eth_signature
-      title: RemoveVerificationReqBody
-      type: object
-    UserSearchResponse:
-      properties:
-        result:
-          properties:
-            next:
-              $ref: '#/components/schemas/NextCursor'
-            users:
-              items:
-                $ref: '#/components/schemas/User'
-              type: array
-          required:
-          - users
-          type: object
-      required:
-      - result
-      title: UserSearchResponse
-      type: object
-    ZodError:
-      properties:
-        code:
-          example: InvalidField
-          type: string
-        errors:
-          items:
-            properties:
-              code:
-                type: string
-              expected:
-                type: string
-              message:
-                type: string
-              path:
-                items:
-                  type: string
-                type: array
-              received:
-                type: string
-            required:
-            - code
-            - expected
-            - received
-            - path
-            - message
-            type: object
-          type: array
-        message:
-          example: Invalid query parameters
-          type: string
-      required:
-      - message
-      - code
-      - errors
-      title: ZodError
-      type: object
-    BulkUsersResponse:
-      properties:
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
-      required:
-      - users
-      title: BulkUsersResponse
-      type: object
-    LocationAddress:
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    RegisterUserResponse:
-      properties:
-        message:
-          type: string
-        signer:
-          $ref: '#/components/schemas/Signer'
-        signers:
-          items:
-            properties:
-              fid:
-                $ref: '#/components/schemas/Fid'
-              object:
-                enum:
-                - signer
-                type: string
-              permissions:
-                items:
-                  $ref: '#/components/schemas/SharedSignerPermission'
-                type: array
-              public_key:
-                $ref: '#/components/schemas/Ed25519PublicKey'
-              signer_approval_url:
-                type: string
-              status:
-                enum:
-                - generated
-                - pending_approval
-                - approved
-                - revoked
-                type: string
-              uuid:
-                $ref: '#/components/schemas/SignerUUID'
-            required:
-            - public_key
-            - status
-            - uuid
-            type: object
-          type: array
-        success:
-          enum:
-          - true
-          type: boolean
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - success
-      - message
-      - signers
-      title: RegisterUserResponse
-      type: object
-    Verification:
-      description: Verification details of an address
-      properties:
-        address:
-          description: Address string (hex for ethereum, base58 for solana)
-          example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-          type: string
-        app:
-          $ref: '#/components/schemas/UserDehydrated'
-        object:
-          enum:
-          - verification
-          type: string
-        protocol:
-          $ref: '#/components/schemas/Protocol'
-        verified_at:
-          description: ISO timestamp when the verification was created
-          example: '2024-01-01T00:00:00.000Z'
-          type: string
-      required:
-      - object
-      - address
-      - protocol
-      - verified_at
-      title: Verification
-      type: object
-    VerificationType:
-      anyOf:
-      - enum:
-        - 0
-        type: number
-      - enum:
-        - 1
-        type: number
-      default: 0
-      description: Type of verification. 0 = EOA, 1 = contract
-      format: int32
-      title: VerificationType
-      type: integer
-    OperationResponse:
-      properties:
-        message:
-          type: string
-        success:
-          type: boolean
-      title: OperationResponse
-      type: object
     Signer:
       properties:
         fid:
@@ -1629,73 +1645,49 @@ components:
       - status
       title: Signer
       type: object
-    Location:
-      description: Coordinates and place names for a location
+    FollowReqBody:
       properties:
-        address:
-          $ref: '#/components/schemas/LocationAddress'
-        latitude:
-          format: double
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          format: double
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          description: The radius in meters for the location search. Any location within this radius will be returned.
-          minimum: 0
-          type: number
-      required:
-      - latitude
-      - longitude
-      title: Location
-      type: object
-    BulkFollowResponse:
-      properties:
-        details:
+        signer_uuid:
+          $ref: '#/components/schemas/SignerUUID'
+        target_fids:
+          example:
+          - 194
+          - 3
           items:
-            $ref: '#/components/schemas/FollowResponse'
+            minimum: 1
+            type: integer
+          maxItems: 100
           type: array
-        success:
-          type: boolean
       required:
-      - success
-      - details
-      title: BulkFollowResponse
+      - signer_uuid
+      - target_fids
+      title: FollowReqBody
       type: object
-    UserResponse:
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - user
-      title: UserResponse
+    BulkUsersByAddressResponse:
+      anyOf:
+      - additionalProperties:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      title: BulkUsersByAddressResponse
       type: object
-    TextRange:
+    ErrorRes:
+      description: Details for the error response
       properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
       required:
-      - start
-      - end
-      title: TextRange
+      - message
+      title: ErrorRes
       type: object
   parameters:
-    WalletIdHeader:
-      description: Wallet ID to use for transactions
-      in: header
-      name: x-wallet-id
-      required: true
-      schema:
-        type: string
-      x-is-global-header: true
     NeynarExperimentalHeader:
       description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
       in: header
@@ -1703,6 +1695,14 @@ components:
       schema:
         default: false
         type: boolean
+      x-is-global-header: true
+    WalletIdHeader:
+      description: Wallet ID to use for transactions
+      in: header
+      name: x-wallet-id
+      required: true
+      schema:
+        type: string
       x-is-global-header: true
   securitySchemes:
     ApiKeyAuth:

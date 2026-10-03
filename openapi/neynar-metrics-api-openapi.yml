@@ -79,15 +79,22 @@ components:
         type: boolean
       x-is-global-header: true
   schemas:
-    CastsMetricsResponse:
+    CastsMetrics:
       properties:
-        metrics:
-          items:
-            $ref: '#/components/schemas/CastsMetrics'
-          type: array
+        cast_count:
+          format: int32
+          type: integer
+        resolution_in_seconds:
+          format: int32
+          type: integer
+        start:
+          format: date-time
+          type: string
       required:
-      - metrics
-      title: CastsMetricsResponse
+      - start
+      - resolution_in_seconds
+      - cast_count
+      title: CastsMetrics
       type: object
     ErrorRes:
       description: Details for the error response
@@ -105,22 +112,15 @@ components:
       - message
       title: ErrorRes
       type: object
-    CastsMetrics:
+    CastsMetricsResponse:
       properties:
-        cast_count:
-          format: int32
-          type: integer
-        resolution_in_seconds:
-          format: int32
-          type: integer
-        start:
-          format: date-time
-          type: string
+        metrics:
+          items:
+            $ref: '#/components/schemas/CastsMetrics'
+          type: array
       required:
-      - start
-      - resolution_in_seconds
-      - cast_count
-      title: CastsMetrics
+      - metrics
+      title: CastsMetricsResponse
       type: object
   securitySchemes:
     ApiKeyAuth:
