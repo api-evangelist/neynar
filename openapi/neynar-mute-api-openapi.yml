@@ -155,107 +155,27 @@ paths:
       - Mute
 components:
   schemas:
-    LocationAddress:
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
       properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
       required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    MuteListResponse:
-      properties:
-        mutes:
-          items:
-            $ref: '#/components/schemas/MuteRecord'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - mutes
-      - next
-      title: MuteListResponse
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    MuteRecord:
-      properties:
-        muted:
-          $ref: '#/components/schemas/User'
-        muted_at:
-          format: date-time
-          type: string
-        object:
-          enum:
-          - mute
-          type: string
-      required:
-      - object
-      - muted
-      - muted_at
-      title: MuteRecord
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
       type: object
     ChannelUserContext:
       description: Adds context on the viewer's or author's role in the channel.
@@ -268,17 +188,6 @@ components:
       required:
       - following
       title: ChannelUserContext
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
       type: object
     Location:
       description: Coordinates and place names for a location
@@ -303,22 +212,6 @@ components:
       - latitude
       - longitude
       title: Location
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    MuteReqBody:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        muted_fid:
-          $ref: '#/components/schemas/Fid'
-      required:
-      - fid
-      - muted_fid
-      title: MuteReqBody
       type: object
     User:
       properties:
@@ -519,6 +412,93 @@ components:
       - verified_accounts
       title: User
       type: object
+    MuteReqBody:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        muted_fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - fid
+      - muted_fid
+      title: MuteReqBody
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    MuteResponse:
+      properties:
+        message:
+          type: string
+        success:
+          example: true
+          type: boolean
+      required:
+      - success
+      title: MuteResponse
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
     TextRange:
       properties:
         end:
@@ -532,51 +512,71 @@ components:
       - end
       title: TextRange
       type: object
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
+    LocationAddress:
       properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
-      required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
-      type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    MuteResponse:
-      properties:
-        message:
+        city:
           type: string
-        success:
-          example: true
-          type: boolean
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
       required:
-      - success
-      title: MuteResponse
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    MuteListResponse:
+      properties:
+        mutes:
+          items:
+            $ref: '#/components/schemas/MuteRecord'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - mutes
+      - next
+      title: MuteListResponse
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    MuteRecord:
+      properties:
+        muted:
+          $ref: '#/components/schemas/User'
+        muted_at:
+          format: date-time
+          type: string
+        object:
+          enum:
+          - mute
+          type: string
+      required:
+      - object
+      - muted
+      - muted_at
+      title: MuteRecord
+      type: object
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
       type: object
     ErrorRes:
       description: Details for the error response

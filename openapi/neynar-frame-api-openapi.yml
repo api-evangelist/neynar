@@ -520,143 +520,164 @@ paths:
       - Frame
 components:
   schemas:
-    LocationAddress:
+    HtmlMetadata:
       properties:
-        city:
+        favicon:
           type: string
-        country:
+        modifiedTime:
           type: string
-        country_code:
+        oembed:
+          discriminator:
+            mapping:
+              link: '#/components/schemas/OembedLinkData'
+              photo: '#/components/schemas/OembedPhotoData'
+              rich: '#/components/schemas/OembedRichData'
+              video: '#/components/schemas/OembedVideoData'
+            propertyName: type
+          oneOf:
+          - $ref: '#/components/schemas/OembedRichData'
+          - $ref: '#/components/schemas/OembedVideoData'
+          - $ref: '#/components/schemas/OembedPhotoData'
+          - $ref: '#/components/schemas/OembedLinkData'
+          type: object
+        ogArticleAuthor:
           type: string
-        state:
+        ogArticleExpirationTime:
           type: string
-        state_code:
+        ogArticleModifiedTime:
           type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
+        ogArticlePublishedTime:
+          type: string
+        ogArticlePublisher:
+          type: string
+        ogArticleSection:
+          type: string
+        ogArticleTag:
+          type: string
+        ogAudio:
+          type: string
+        ogAudioSecureURL:
+          type: string
+        ogAudioType:
+          type: string
+        ogAudioURL:
+          type: string
+        ogAvailability:
+          type: string
+        ogDate:
+          type: string
+        ogDescription:
+          type: string
+        ogDeterminer:
+          type: string
+        ogEpisode:
+          type: string
+        ogImage:
+          items:
+            $ref: '#/components/schemas/ImageObject'
+          type: array
+        ogLocale:
+          type: string
+        ogLocaleAlternate:
+          type: string
+        ogLogo:
+          type: string
+        ogMovie:
+          type: string
+        ogPriceAmount:
+          type: string
+        ogPriceCurrency:
+          type: string
+        ogProductAvailability:
+          type: string
+        ogProductCondition:
+          type: string
+        ogProductPriceAmount:
+          type: string
+        ogProductPriceCurrency:
+          type: string
+        ogProductRetailerItemId:
+          type: string
+        ogSiteName:
+          type: string
+        ogTitle:
+          type: string
+        ogType:
+          type: string
+        ogUrl:
+          type: string
+        ogVideo:
+          items:
+            $ref: '#/components/schemas/VideoObject'
+          type: array
+        ogVideoActor:
+          type: string
+        ogVideoActorId:
+          type: string
+        ogVideoActorRole:
+          type: string
+        ogVideoDirector:
+          type: string
+        ogVideoDuration:
+          type: string
+        ogVideoOther:
+          type: string
+        ogVideoReleaseDate:
+          type: string
+        ogVideoSecureURL:
+          type: string
+        ogVideoSeries:
+          type: string
+        ogVideoTag:
+          type: string
+        ogVideoTvShow:
+          type: string
+        ogVideoWriter:
+          type: string
+        ogWebsite:
+          type: string
+        updatedTime:
+          type: string
+      title: HtmlMetadata
       type: object
-    ChannelDehydrated:
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
       properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
       required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
       type: object
-    OembedPhotoData:
-      description: Photo OEmbed data
+    ImageObject:
       properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        author_url:
-          description: A URL for the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          type:
-          - string
-          - 'null'
+        alt:
+          type: string
         height:
-          description: The height in pixels of the image specified in the url parameter.
-          type:
-          - number
-          - 'null'
-        provider_name:
-          description: The name of the resource provider.
-          type:
-          - string
-          - 'null'
-        provider_url:
-          description: The url of the resource provider.
-          type:
-          - string
-          - 'null'
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          type:
-          - number
-          - 'null'
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          type:
-          - string
-          - 'null'
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          type:
-          - number
-          - 'null'
-        title:
-          description: A text title, describing the resource.
-          type:
-          - string
-          - 'null'
+          type: string
         type:
-          enum:
-          - photo
           type: string
         url:
-          description: The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
-          type:
-          - string
-          - 'null'
-        version:
-          type:
-          - string
-          - 'null'
+          type: string
         width:
-          description: The width in pixels of the image specified in the url parameter.
-          type:
-          - number
-          - 'null'
+          type: string
       required:
-      - type
-      - version
       - url
-      title: OembedPhotoData
+      title: ImageObject
       type: object
-    FrameCatalogResponse:
-      properties:
-        frames:
-          items:
-            $ref: '#/components/schemas/FrameV2WithFullAuthor'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - frames
-      - next
-      title: FrameCatalogResponse
-      type: object
-    NotificationCampaignStatus:
-      description: Always "queued" for a successful async enqueue.
-      enum:
-      - queued
-      - running
-      - completed
-      - failed
-      - canceled
-      title: NotificationCampaignStatus
-      type: string
     NotificationCampaignStats:
       properties:
         error_breakdown:
@@ -727,201 +748,26 @@ components:
       - error_breakdown
       title: NotificationCampaignStats
       type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    Network:
-      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
-      enum:
-      - ethereum
-      - optimism
-      - base
-      - arbitrum
-      title: Network
-      type: string
-    UserDehydrated:
+    VideoObject:
       properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    TransactionFrameAction:
-      description: Action button for primary CTA on the transaction mini app
-      properties:
-        button_color:
-          description: Custom button color for action button
-          example: '#000000'
-          type: string
-        text:
-          description: Custom text for action button
-          example: Pay
-          type: string
-        text_color:
-          description: Custom text color for action button
-          example: '#FFFFFF'
-          type: string
-      title: TransactionFrameAction
-      type: object
-    OembedVideoData:
-      description: Video OEmbed data
-      properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        author_url:
-          description: A URL for the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          type:
-          - string
-          - 'null'
         height:
-          description: The height in pixels required to display the HTML.
-          type:
-          - number
-          - 'null'
-        html:
-          description: The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
-          type:
-          - string
-          - 'null'
-        provider_name:
-          description: The name of the resource provider.
-          type:
-          - string
-          - 'null'
-        provider_url:
-          description: The url of the resource provider.
-          type:
-          - string
-          - 'null'
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          type:
-          - number
-          - 'null'
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          type:
-          - string
-          - 'null'
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          type:
-          - number
-          - 'null'
-        title:
-          description: A text title, describing the resource.
-          type:
-          - string
-          - 'null'
+          type: string
         type:
-          enum:
-          - video
           type: string
-        version:
-          type:
-          - string
-          - 'null'
+        url:
+          type: string
         width:
-          description: The width in pixels required to display the HTML.
-          type:
-          - number
-          - 'null'
-      required:
-      - type
-      - version
-      - html
-      title: OembedVideoData
-      type: object
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
-      properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - following
-      title: ChannelUserContext
-      type: object
-    EncodedJsonFarcasterSignature:
-      description: Encoded JSON Farcaster signature
-      properties:
-        header:
-          type: string
-        payload:
-          type: string
-        signature:
           type: string
       required:
-      - header
-      - payload
-      - signature
-      title: EncodedJsonFarcasterSignature
+      - url
+      title: VideoObject
       type: object
-    TransactionFrameConfig:
-      properties:
-        action:
-          $ref: '#/components/schemas/TransactionFrameAction'
-        allowlist_fids:
-          description: Optional list of FIDs that are allowed to use this transaction mini app
-          items:
-            $ref: '#/components/schemas/Fid'
-          type: array
-        line_items:
-          description: List of items included in the transaction
-          items:
-            $ref: '#/components/schemas/TransactionFrameLineItem'
-          minItems: 1
-          type: array
-      required:
-      - line_items
-      title: TransactionFrameConfig
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
+    TransactionFrameType:
+      description: Type of transaction mini app
+      enum:
+      - pay
+      title: TransactionFrameType
+      type: string
     TransactionFrameDestination:
       properties:
         address:
@@ -945,12 +791,26 @@ components:
       - amount
       title: TransactionFrameDestination
       type: object
-    TransactionFrameType:
-      description: Type of transaction mini app
-      enum:
-      - pay
-      title: TransactionFrameType
-      type: string
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    TransactionFrameResponse:
+      properties:
+        transaction_frame:
+          $ref: '#/components/schemas/TransactionFrame'
+      required:
+      - transaction_frame
+      title: TransactionFrameResponse
+      type: object
     Location:
       description: Coordinates and place names for a location
       properties:
@@ -974,258 +834,6 @@ components:
       - latitude
       - longitude
       title: Location
-      type: object
-    FarcasterManifest:
-      properties:
-        account_association:
-          $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
-        frame:
-          properties:
-            button_title:
-              type: string
-            description:
-              description: Detailed description of the configuration
-              type: string
-            hero_image_url:
-              description: URL of the hero image displayed for the configuration
-              format: uri
-              type: string
-            home_url:
-              type: string
-            icon_url:
-              type: string
-            image_url:
-              type: string
-            name:
-              type: string
-            noindex:
-              description: Whether search engines should not index this configuration
-              type: boolean
-            og_description:
-              description: Description used for Open Graph previews
-              type: string
-            og_image_url:
-              description: Image URL used for Open Graph previews
-              format: uri
-              type: string
-            og_title:
-              description: Title used for Open Graph previews
-              type: string
-            primary_category:
-              description: Primary category the configuration belongs to
-              type: string
-            screenshot_urls:
-              description: URLs of screenshots showcasing the configuration
-              items:
-                format: uri
-                type: string
-              type: array
-            splash_background_color:
-              type: string
-            splash_image_url:
-              type: string
-            subtitle:
-              description: Short subtitle for the configuration
-              type: string
-            tagline:
-              description: Short tagline for the configuration
-              type: string
-            tags:
-              description: Tags associated with the configuration
-              items:
-                type: string
-              type: array
-            version:
-              enum:
-              - '1'
-              - 0.0.0
-              - 0.0.1
-              - next
-              type: string
-            webhook_url:
-              type: string
-          required:
-          - version
-          - name
-          - home_url
-          - icon_url
-          type: object
-        miniapp:
-          properties:
-            button_title:
-              type: string
-            description:
-              description: Detailed description of the configuration
-              type: string
-            hero_image_url:
-              description: URL of the hero image displayed for the configuration
-              format: uri
-              type: string
-            home_url:
-              type: string
-            icon_url:
-              type: string
-            image_url:
-              type: string
-            name:
-              type: string
-            noindex:
-              description: Whether search engines should not index this configuration
-              type: boolean
-            og_description:
-              description: Description used for Open Graph previews
-              type: string
-            og_image_url:
-              description: Image URL used for Open Graph previews
-              format: uri
-              type: string
-            og_title:
-              description: Title used for Open Graph previews
-              type: string
-            primary_category:
-              description: Primary category the configuration belongs to
-              type: string
-            screenshot_urls:
-              description: URLs of screenshots showcasing the configuration
-              items:
-                format: uri
-                type: string
-              type: array
-            splash_background_color:
-              type: string
-            splash_image_url:
-              type: string
-            subtitle:
-              description: Short subtitle for the configuration
-              type: string
-            tagline:
-              description: Short tagline for the configuration
-              type: string
-            tags:
-              description: Tags associated with the configuration
-              items:
-                type: string
-              type: array
-            version:
-              enum:
-              - '1'
-              - 0.0.0
-              - 0.0.1
-              - next
-              type: string
-            webhook_url:
-              type: string
-          required:
-          - version
-          - name
-          - home_url
-          - icon_url
-          type: object
-      required:
-      - account_association
-      title: FarcasterManifest
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    OembedLinkData:
-      description: Link OEmbed data
-      properties:
-        author_name:
-          description: The name of the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        author_url:
-          description: A URL for the author/owner of the resource.
-          type:
-          - string
-          - 'null'
-        cache_age:
-          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-          type:
-          - string
-          - 'null'
-        provider_name:
-          description: The name of the resource provider.
-          type:
-          - string
-          - 'null'
-        provider_url:
-          description: The url of the resource provider.
-          type:
-          - string
-          - 'null'
-        thumbnail_height:
-          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-          type:
-          - number
-          - 'null'
-        thumbnail_url:
-          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-          type:
-          - string
-          - 'null'
-        thumbnail_width:
-          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-          type:
-          - number
-          - 'null'
-        title:
-          description: A text title, describing the resource.
-          type:
-          - string
-          - 'null'
-        type:
-          enum:
-          - link
-          type: string
-        version:
-          type:
-          - string
-          - 'null'
-      required:
-      - type
-      - version
-      title: OembedLinkData
-      type: object
-    FrameNotificationTokens:
-      properties:
-        next:
-          $ref: '#/components/schemas/NextCursor'
-        notification_tokens:
-          items:
-            properties:
-              created_at:
-                format: date-time
-                type: string
-              fid:
-                $ref: '#/components/schemas/Fid'
-              object:
-                enum:
-                - notification_token
-                type: string
-              status:
-                enum:
-                - enabled
-                - disabled
-                - invalid
-                type: string
-              token:
-                type: string
-              updated_at:
-                format: date-time
-                type: string
-              url:
-                type: string
-            type: object
-          type: array
-      required:
-      - notification_tokens
-      - next
-      title: FrameNotificationTokens
       type: object
     User:
       properties:
@@ -1426,40 +1034,48 @@ components:
       - verified_accounts
       title: User
       type: object
-    TextRange:
+    FrameCatalogResponse:
       properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
+        frames:
+          items:
+            $ref: '#/components/schemas/FrameV2WithFullAuthor'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
       required:
-      - start
-      - end
-      title: TextRange
+      - frames
+      - next
+      title: FrameCatalogResponse
       type: object
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
+    SendFrameNotificationsResponse:
       properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
+        campaign_id:
+          description: The unique identifier for the notification campaign.
+          format: uuid
+          type: string
+        failure_count:
+          description: The number of notifications that failed to deliver.
+          format: int32
+          type: integer
+        not_attempted_count:
+          description: The number of notifications not attempted (e.g., disabled tokens, invalid tokens).
+          format: int32
+          type: integer
+        retryable_fids:
+          description: List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
+        success_count:
+          description: The number of notifications successfully delivered.
+          format: int32
+          type: integer
       required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
+      - campaign_id
+      - success_count
+      - failure_count
+      - not_attempted_count
+      title: SendFrameNotificationsResponse
       type: object
     TransactionFramePay:
       properties:
@@ -1491,6 +1107,25 @@ components:
       - status
       - transaction
       title: TransactionFramePay
+      type: object
+    TransactionFrameLineItem:
+      properties:
+        description:
+          description: Description of the line item in transaction
+          example: Payment for goods
+          type: string
+        image:
+          description: Optional image URL for the line item in transaction
+          example: https://i.imgur.com/ovGo3sz.png
+          type: string
+        name:
+          description: Name of the line item in transaction
+          example: Payment
+          type: string
+      required:
+      - name
+      - description
+      title: TransactionFrameLineItem
       type: object
     ZodError:
       properties:
@@ -1529,119 +1164,309 @@ components:
       - errors
       title: ZodError
       type: object
+    OembedPhotoData:
+      description: Photo OEmbed data
+      properties:
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        height:
+          description: The height in pixels of the image specified in the url parameter.
+          type:
+          - number
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - photo
+          type: string
+        url:
+          description: The source URL of the image. Consumers should be able to insert this URL into an <img> element. Only HTTP and HTTPS URLs are valid.
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        width:
+          description: The width in pixels of the image specified in the url parameter.
+          type:
+          - number
+          - 'null'
+      required:
+      - type
+      - version
+      - url
+      title: OembedPhotoData
+      type: object
+    FarcasterManifest:
+      properties:
+        account_association:
+          $ref: '#/components/schemas/EncodedJsonFarcasterSignature'
+        frame:
+          properties:
+            button_title:
+              type: string
+            description:
+              description: Detailed description of the configuration
+              type: string
+            hero_image_url:
+              description: URL of the hero image displayed for the configuration
+              format: uri
+              type: string
+            home_url:
+              type: string
+            icon_url:
+              type: string
+            image_url:
+              type: string
+            name:
+              type: string
+            noindex:
+              description: Whether search engines should not index this configuration
+              type: boolean
+            og_description:
+              description: Description used for Open Graph previews
+              type: string
+            og_image_url:
+              description: Image URL used for Open Graph previews
+              format: uri
+              type: string
+            og_title:
+              description: Title used for Open Graph previews
+              type: string
+            primary_category:
+              description: Primary category the configuration belongs to
+              type: string
+            screenshot_urls:
+              description: URLs of screenshots showcasing the configuration
+              items:
+                format: uri
+                type: string
+              type: array
+            splash_background_color:
+              type: string
+            splash_image_url:
+              type: string
+            subtitle:
+              description: Short subtitle for the configuration
+              type: string
+            tagline:
+              description: Short tagline for the configuration
+              type: string
+            tags:
+              description: Tags associated with the configuration
+              items:
+                type: string
+              type: array
+            version:
+              enum:
+              - '1'
+              - 0.0.0
+              - 0.0.1
+              - next
+              type: string
+            webhook_url:
+              type: string
+          required:
+          - version
+          - name
+          - home_url
+          - icon_url
+          type: object
+        miniapp:
+          properties:
+            button_title:
+              type: string
+            description:
+              description: Detailed description of the configuration
+              type: string
+            hero_image_url:
+              description: URL of the hero image displayed for the configuration
+              format: uri
+              type: string
+            home_url:
+              type: string
+            icon_url:
+              type: string
+            image_url:
+              type: string
+            name:
+              type: string
+            noindex:
+              description: Whether search engines should not index this configuration
+              type: boolean
+            og_description:
+              description: Description used for Open Graph previews
+              type: string
+            og_image_url:
+              description: Image URL used for Open Graph previews
+              format: uri
+              type: string
+            og_title:
+              description: Title used for Open Graph previews
+              type: string
+            primary_category:
+              description: Primary category the configuration belongs to
+              type: string
+            screenshot_urls:
+              description: URLs of screenshots showcasing the configuration
+              items:
+                format: uri
+                type: string
+              type: array
+            splash_background_color:
+              type: string
+            splash_image_url:
+              type: string
+            subtitle:
+              description: Short subtitle for the configuration
+              type: string
+            tagline:
+              description: Short tagline for the configuration
+              type: string
+            tags:
+              description: Tags associated with the configuration
+              items:
+                type: string
+              type: array
+            version:
+              enum:
+              - '1'
+              - 0.0.0
+              - 0.0.1
+              - next
+              type: string
+            webhook_url:
+              type: string
+          required:
+          - version
+          - name
+          - home_url
+          - icon_url
+          type: object
+      required:
+      - account_association
+      title: FarcasterManifest
+      type: object
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
+    NotificationCampaign:
+      properties:
+        body:
+          description: The body text of the notification.
+          type: string
+        completed_at:
+          description: When the campaign reached a terminal state (completed/failed/canceled). Null while still queued or running.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        created_at:
+          format: date-time
+          type: string
+        id:
+          description: The unique identifier for the notification campaign.
+          format: uuid
+          type: string
+        queued_at:
+          description: When the campaign was enqueued for async delivery.
+          format: date-time
+          type: string
+        stats:
+          $ref: '#/components/schemas/NotificationCampaignStats'
+        status:
+          description: Lifecycle status of the campaign. Absent on campaigns created before async delivery was introduced.
+          enum:
+          - queued
+          - running
+          - completed
+          - failed
+          - canceled
+          type: string
+        title:
+          description: The title of the notification campaign.
+          type: string
+      required:
+      - id
+      - title
+      - body
+      - created_at
+      - stats
+      title: NotificationCampaign
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
     TransactionFrameStatus:
       enum:
       - created
       - completed
       title: TransactionFrameStatus
       type: string
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    SendFrameNotificationsReqBody:
-      properties:
-        filters:
-          description: Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.
-          example:
-            exclude_fids:
-            - 2
-            - 8988
-            following_fid: 3
-            minimum_user_score: 0.5
-            near_location:
-              latitude: 37.774929
-              longitude: -122.419418
-              radius: 1000
-          properties:
-            exclude_fids:
-              description: Only send notifications to users who are not in the given FIDs.
-              items:
-                $ref: '#/components/schemas/Fid'
-              type: array
-            following_fid:
-              description: Only send notifications to users who follow the given FID.
-              example: 3
-              format: int32
-              minimum: 0
-              type: integer
-            minimum_user_score:
-              description: Only send notifications to users with a score greater than or equal to this value.
-              maximum: 1
-              minimum: 0
-              type: number
-            near_location:
-              description: Only send notifications to users near a given location.
-              properties:
-                address:
-                  $ref: '#/components/schemas/LocationAddress'
-                latitude:
-                  format: double
-                  maximum: 90
-                  minimum: -90
-                  type: number
-                longitude:
-                  format: double
-                  maximum: 180
-                  minimum: -180
-                  type: number
-                radius:
-                  description: The radius in meters for the location search. Any location within this radius will be returned.
-                  minimum: 0
-                  type: number
-              required:
-              - latitude
-              - longitude
-              type: object
-          type: object
-        notification:
-          properties:
-            body:
-              description: The body of the notification. Must be between 1 and 128 characters.
-              example: You have received a new message in your inbox.
-              maxLength: 128
-              minLength: 1
-              type: string
-            target_url:
-              description: The target URL to open when the user clicks the notification. Must be a valid URL.
-              example: https://example.com/notifications
-              format: uri
-              maxLength: 256
-              type: string
-            title:
-              description: The title of the notification. Must be between 1 and 32 characters.
-              example: New Message
-              maxLength: 32
-              minLength: 1
-              type: string
-            uuid:
-              description: An optional UUID for the notification, used as an idempotency key.
-              example: 123e4567-e89b-12d3-a456-426614174000
-              format: uuid
-              type: string
-          required:
-          - title
-          - body
-          - target_url
-          type: object
-        target_fids:
-          description: An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
-          example:
-          - 1
-          - 2
-          - 3
-          items:
-            minimum: 1
-            type: integer
-          maxItems: 100
-          type: array
-      required:
-      - notification
-      title: SendFrameNotificationsReqBody
-      type: object
     OembedRichData:
       description: Rich OEmbed data
       properties:
@@ -1751,213 +1576,179 @@ components:
       - frames_url
       title: FrameV2WithFullAuthor
       type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    NotificationCampaign:
+    OembedVideoData:
+      description: Video OEmbed data
       properties:
-        body:
-          description: The body text of the notification.
-          type: string
-        completed_at:
-          description: When the campaign reached a terminal state (completed/failed/canceled). Null while still queued or running.
-          format: date-time
+        author_name:
+          description: The name of the author/owner of the resource.
           type:
           - string
           - 'null'
-        created_at:
-          format: date-time
-          type: string
-        id:
-          description: The unique identifier for the notification campaign.
-          format: uuid
-          type: string
-        queued_at:
-          description: When the campaign was enqueued for async delivery.
-          format: date-time
-          type: string
-        stats:
-          $ref: '#/components/schemas/NotificationCampaignStats'
-        status:
-          description: Lifecycle status of the campaign. Absent on campaigns created before async delivery was introduced.
-          enum:
-          - queued
-          - running
-          - completed
-          - failed
-          - canceled
-          type: string
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        height:
+          description: The height in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
+        html:
+          description: The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
+          type:
+          - string
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
         title:
-          description: The title of the notification campaign.
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - video
           type: string
+        version:
+          type:
+          - string
+          - 'null'
+        width:
+          description: The width in pixels required to display the HTML.
+          type:
+          - number
+          - 'null'
       required:
-      - id
-      - title
-      - body
-      - created_at
-      - stats
-      title: NotificationCampaign
+      - type
+      - version
+      - html
+      title: OembedVideoData
       type: object
-    HtmlMetadata:
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    Network:
+      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
+      enum:
+      - ethereum
+      - optimism
+      - base
+      - arbitrum
+      title: Network
+      type: string
+    TransactionFrameConfig:
       properties:
-        favicon:
-          type: string
-        modifiedTime:
-          type: string
-        oembed:
-          discriminator:
-            mapping:
-              link: '#/components/schemas/OembedLinkData'
-              photo: '#/components/schemas/OembedPhotoData'
-              rich: '#/components/schemas/OembedRichData'
-              video: '#/components/schemas/OembedVideoData'
-            propertyName: type
-          oneOf:
-          - $ref: '#/components/schemas/OembedRichData'
-          - $ref: '#/components/schemas/OembedVideoData'
-          - $ref: '#/components/schemas/OembedPhotoData'
-          - $ref: '#/components/schemas/OembedLinkData'
-          type: object
-        ogArticleAuthor:
-          type: string
-        ogArticleExpirationTime:
-          type: string
-        ogArticleModifiedTime:
-          type: string
-        ogArticlePublishedTime:
-          type: string
-        ogArticlePublisher:
-          type: string
-        ogArticleSection:
-          type: string
-        ogArticleTag:
-          type: string
-        ogAudio:
-          type: string
-        ogAudioSecureURL:
-          type: string
-        ogAudioType:
-          type: string
-        ogAudioURL:
-          type: string
-        ogAvailability:
-          type: string
-        ogDate:
-          type: string
-        ogDescription:
-          type: string
-        ogDeterminer:
-          type: string
-        ogEpisode:
-          type: string
-        ogImage:
-          items:
-            $ref: '#/components/schemas/ImageObject'
-          type: array
-        ogLocale:
-          type: string
-        ogLocaleAlternate:
-          type: string
-        ogLogo:
-          type: string
-        ogMovie:
-          type: string
-        ogPriceAmount:
-          type: string
-        ogPriceCurrency:
-          type: string
-        ogProductAvailability:
-          type: string
-        ogProductCondition:
-          type: string
-        ogProductPriceAmount:
-          type: string
-        ogProductPriceCurrency:
-          type: string
-        ogProductRetailerItemId:
-          type: string
-        ogSiteName:
-          type: string
-        ogTitle:
-          type: string
-        ogType:
-          type: string
-        ogUrl:
-          type: string
-        ogVideo:
-          items:
-            $ref: '#/components/schemas/VideoObject'
-          type: array
-        ogVideoActor:
-          type: string
-        ogVideoActorId:
-          type: string
-        ogVideoActorRole:
-          type: string
-        ogVideoDirector:
-          type: string
-        ogVideoDuration:
-          type: string
-        ogVideoOther:
-          type: string
-        ogVideoReleaseDate:
-          type: string
-        ogVideoSecureURL:
-          type: string
-        ogVideoSeries:
-          type: string
-        ogVideoTag:
-          type: string
-        ogVideoTvShow:
-          type: string
-        ogVideoWriter:
-          type: string
-        ogWebsite:
-          type: string
-        updatedTime:
-          type: string
-      title: HtmlMetadata
-      type: object
-    SendFrameNotificationsResponse:
-      properties:
-        campaign_id:
-          description: The unique identifier for the notification campaign.
-          format: uuid
-          type: string
-        failure_count:
-          description: The number of notifications that failed to deliver.
-          format: int32
-          type: integer
-        not_attempted_count:
-          description: The number of notifications not attempted (e.g., disabled tokens, invalid tokens).
-          format: int32
-          type: integer
-        retryable_fids:
-          description: List of FIDs that failed due to retryable errors (rate_limited, failed, http_error). Can be used to retry sending notifications to these users.
+        action:
+          $ref: '#/components/schemas/TransactionFrameAction'
+        allowlist_fids:
+          description: Optional list of FIDs that are allowed to use this transaction mini app
           items:
             $ref: '#/components/schemas/Fid'
           type: array
-        success_count:
-          description: The number of notifications successfully delivered.
-          format: int32
-          type: integer
+        line_items:
+          description: List of items included in the transaction
+          items:
+            $ref: '#/components/schemas/TransactionFrameLineItem'
+          minItems: 1
+          type: array
       required:
-      - campaign_id
-      - success_count
-      - failure_count
-      - not_attempted_count
-      title: SendFrameNotificationsResponse
+      - line_items
+      title: TransactionFrameConfig
       type: object
-    TransactionFrameResponse:
+    TransactionFrameAction:
+      description: Action button for primary CTA on the transaction mini app
       properties:
-        transaction_frame:
-          $ref: '#/components/schemas/TransactionFrame'
+        button_color:
+          description: Custom button color for action button
+          example: '#000000'
+          type: string
+        text:
+          description: Custom text for action button
+          example: Pay
+          type: string
+        text_color:
+          description: Custom text color for action button
+          example: '#FFFFFF'
+          type: string
+      title: TransactionFrameAction
+      type: object
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
       required:
-      - transaction_frame
-      title: TransactionFrameResponse
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
       type: object
     TransactionFrame:
       discriminator:
@@ -1968,24 +1759,102 @@ components:
       - $ref: '#/components/schemas/TransactionFramePay'
       title: TransactionFrame
       type: object
-    TransactionFrameLineItem:
+    OembedLinkData:
+      description: Link OEmbed data
       properties:
-        description:
-          description: Description of the line item in transaction
-          example: Payment for goods
+        author_name:
+          description: The name of the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        author_url:
+          description: A URL for the author/owner of the resource.
+          type:
+          - string
+          - 'null'
+        cache_age:
+          description: The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
+          type:
+          - string
+          - 'null'
+        provider_name:
+          description: The name of the resource provider.
+          type:
+          - string
+          - 'null'
+        provider_url:
+          description: The url of the resource provider.
+          type:
+          - string
+          - 'null'
+        thumbnail_height:
+          description: The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
+          type:
+          - number
+          - 'null'
+        thumbnail_url:
+          description: A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
+          type:
+          - string
+          - 'null'
+        thumbnail_width:
+          description: The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
+          type:
+          - number
+          - 'null'
+        title:
+          description: A text title, describing the resource.
+          type:
+          - string
+          - 'null'
+        type:
+          enum:
+          - link
           type: string
-        image:
-          description: Optional image URL for the line item in transaction
-          example: https://i.imgur.com/ovGo3sz.png
-          type: string
-        name:
-          description: Name of the line item in transaction
-          example: Payment
-          type: string
+        version:
+          type:
+          - string
+          - 'null'
       required:
-      - name
-      - description
-      title: TransactionFrameLineItem
+      - type
+      - version
+      title: OembedLinkData
+      type: object
+    FrameNotificationTokens:
+      properties:
+        next:
+          $ref: '#/components/schemas/NextCursor'
+        notification_tokens:
+          items:
+            properties:
+              created_at:
+                format: date-time
+                type: string
+              fid:
+                $ref: '#/components/schemas/Fid'
+              object:
+                enum:
+                - notification_token
+                type: string
+              status:
+                enum:
+                - enabled
+                - disabled
+                - invalid
+                type: string
+              token:
+                type: string
+              updated_at:
+                format: date-time
+                type: string
+              url:
+                type: string
+            type: object
+          type: array
+      required:
+      - notification_tokens
+      - next
+      title: FrameNotificationTokens
       type: object
     QueuedFrameNotificationsResponse:
       properties:
@@ -2000,35 +1869,166 @@ components:
       - status
       title: QueuedFrameNotificationsResponse
       type: object
-    VideoObject:
+    LocationAddress:
       properties:
-        height:
+        city:
           type: string
-        type:
+        country:
           type: string
-        url:
+        country_code:
           type: string
-        width:
+        state:
+          type: string
+        state_code:
           type: string
       required:
-      - url
-      title: VideoObject
+      - city
+      - country
+      title: LocationAddress
       type: object
-    ImageObject:
+    EncodedJsonFarcasterSignature:
+      description: Encoded JSON Farcaster signature
       properties:
-        alt:
+        header:
           type: string
-        height:
+        payload:
           type: string
-        type:
-          type: string
-        url:
-          type: string
-        width:
+        signature:
           type: string
       required:
-      - url
-      title: ImageObject
+      - header
+      - payload
+      - signature
+      title: EncodedJsonFarcasterSignature
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    SendFrameNotificationsReqBody:
+      properties:
+        filters:
+          description: Filters to apply to the target_fids set. All filters are additive, so only users matching all filters will be notified.
+          example:
+            exclude_fids:
+            - 2
+            - 8988
+            following_fid: 3
+            minimum_user_score: 0.5
+            near_location:
+              latitude: 37.774929
+              longitude: -122.419418
+              radius: 1000
+          properties:
+            exclude_fids:
+              description: Only send notifications to users who are not in the given FIDs.
+              items:
+                $ref: '#/components/schemas/Fid'
+              type: array
+            following_fid:
+              description: Only send notifications to users who follow the given FID.
+              example: 3
+              format: int32
+              minimum: 0
+              type: integer
+            minimum_user_score:
+              description: Only send notifications to users with a score greater than or equal to this value.
+              maximum: 1
+              minimum: 0
+              type: number
+            near_location:
+              description: Only send notifications to users near a given location.
+              properties:
+                address:
+                  $ref: '#/components/schemas/LocationAddress'
+                latitude:
+                  format: double
+                  maximum: 90
+                  minimum: -90
+                  type: number
+                longitude:
+                  format: double
+                  maximum: 180
+                  minimum: -180
+                  type: number
+                radius:
+                  description: The radius in meters for the location search. Any location within this radius will be returned.
+                  minimum: 0
+                  type: number
+              required:
+              - latitude
+              - longitude
+              type: object
+          type: object
+        notification:
+          properties:
+            body:
+              description: The body of the notification. Must be between 1 and 128 characters.
+              example: You have received a new message in your inbox.
+              maxLength: 128
+              minLength: 1
+              type: string
+            target_url:
+              description: The target URL to open when the user clicks the notification. Must be a valid URL.
+              example: https://example.com/notifications
+              format: uri
+              maxLength: 256
+              type: string
+            title:
+              description: The title of the notification. Must be between 1 and 32 characters.
+              example: New Message
+              maxLength: 32
+              minLength: 1
+              type: string
+            uuid:
+              description: An optional UUID for the notification, used as an idempotency key.
+              example: 123e4567-e89b-12d3-a456-426614174000
+              format: uuid
+              type: string
+          required:
+          - title
+          - body
+          - target_url
+          type: object
+        target_fids:
+          description: An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
+          example:
+          - 1
+          - 2
+          - 3
+          items:
+            minimum: 1
+            type: integer
+          maxItems: 100
+          type: array
+      required:
+      - notification
+      title: SendFrameNotificationsReqBody
+      type: object
+    NotificationCampaignStatus:
+      description: Always "queued" for a successful async enqueue.
+      enum:
+      - queued
+      - running
+      - completed
+      - failed
+      - canceled
+      title: NotificationCampaignStatus
+      type: string
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
       type: object
     ErrorRes:
       description: Details for the error response

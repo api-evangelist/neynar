@@ -148,90 +148,40 @@ paths:
       - Ban
 components:
   schemas:
-    LocationAddress:
+    BanListResponse:
       properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
+        bans:
+          items:
+            $ref: '#/components/schemas/BanRecord'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
       required:
-      - city
-      - country
-      title: LocationAddress
+      - bans
+      - next
+      title: BanListResponse
       type: object
-    ChannelDehydrated:
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
       properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    BanResponse:
-      properties:
-        message:
-          type:
-          - string
-          - 'null'
-        success:
-          example: true
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
           type: boolean
       required:
-      - success
-      title: BanResponse
-      type: object
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
       type: object
     ChannelUserContext:
       description: Adds context on the viewer's or author's role in the channel.
@@ -245,16 +195,18 @@ components:
       - following
       title: ChannelUserContext
       type: object
-    NextCursor:
-      description: Returns next cursor
+    BanResponse:
       properties:
-        cursor:
+        message:
           type:
           - string
           - 'null'
+        success:
+          example: true
+          type: boolean
       required:
-      - cursor
-      title: NextCursor
+      - success
+      title: BanResponse
       type: object
     Location:
       description: Coordinates and place names for a location
@@ -279,34 +231,6 @@ components:
       - latitude
       - longitude
       title: Location
-      type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    BanListResponse:
-      properties:
-        bans:
-          items:
-            $ref: '#/components/schemas/BanRecord'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
-      required:
-      - bans
-      - next
-      title: BanListResponse
-      type: object
-    BanReqBody:
-      properties:
-        fids:
-          items:
-            $ref: '#/components/schemas/Fid'
-          type: array
-      required:
-      - fids
-      title: BanReqBody
       type: object
     User:
       properties:
@@ -507,41 +431,42 @@ components:
       - verified_accounts
       title: User
       type: object
-    TextRange:
+    ChannelDehydrated:
       properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
       required:
-      - start
-      - end
-      title: TextRange
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
       type: object
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
+    BanReqBody:
       properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
+        fids:
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
       required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
+      - fids
+      title: BanReqBody
       type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
     Fid:
       description: The unique identifier of a farcaster user or app (unsigned integer)
       example: 3
@@ -549,6 +474,11 @@ components:
       minimum: 0
       title: Fid
       type: integer
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
     BanRecord:
       properties:
         banned:
@@ -565,12 +495,82 @@ components:
       - banned_at
       title: BanRecord
       type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
+      type: object
+    TextRange:
+      properties:
+        end:
+          minimum: 0
+          type: number
+        start:
+          minimum: 0
+          type: number
+      required:
+      - start
+      - end
+      title: TextRange
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
       type: string
+    NextCursor:
+      description: Returns next cursor
+      properties:
+        cursor:
+          type:
+          - string
+          - 'null'
+      required:
+      - cursor
+      title: NextCursor
+      type: object
     ErrorRes:
       description: Details for the error response
       properties:

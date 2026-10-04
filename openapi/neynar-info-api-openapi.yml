@@ -44,6 +44,22 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    DbStats:
+      required:
+      - numFidEvents
+      - numFnameEvents
+      - numMessages
+      type: object
+      properties:
+        numMessages:
+          type: integer
+          format: uint64
+        numFidEvents:
+          type: integer
+          format: uint64
+        numFnameEvents:
+          type: integer
+          format: uint64
     ErrorResponse:
       required:
       - code
@@ -97,22 +113,6 @@ components:
         peerId:
           type: string
         hubOperatorFid:
-          type: integer
-          format: uint64
-    DbStats:
-      required:
-      - numFidEvents
-      - numFnameEvents
-      - numMessages
-      type: object
-      properties:
-        numMessages:
-          type: integer
-          format: uint64
-        numFidEvents:
-          type: integer
-          format: uint64
-        numFnameEvents:
           type: integer
           format: uint64
   responses:

@@ -1996,178 +1996,6 @@ paths:
       - On Chain
 components:
   schemas:
-    LocationAddress:
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        country_code:
-          type: string
-        state:
-          type: string
-        state_code:
-          type: string
-      required:
-      - city
-      - country
-      title: LocationAddress
-      type: object
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    TransactionSendFungiblesResponse:
-      properties:
-        send_receipts:
-          items:
-            $ref: '#/components/schemas/TransactionSendFungiblesReceipt'
-          type: array
-        transactions:
-          items:
-            $ref: '#/components/schemas/TransactionSendTxInfo'
-          type: array
-      required:
-      - send_receipts
-      - transactions
-      title: TransactionSendFungiblesResponse
-      type: object
-    TransactionSendTxInfo:
-      properties:
-        approval_hash:
-          description: Hash of the transaction that approved the transfer. This is only present if the fungible token is not native token of the network.
-          type: string
-        gas_used:
-          description: Gas used for the transaction.
-          type: string
-        network:
-          enum:
-          - base
-          - optimism
-          - base-sepolia
-          type: string
-        transaction_hash:
-          type: string
-      required:
-      - network
-      - transaction_hash
-      - gas_used
-      - approval_hash
-      title: TransactionSendTxInfo
-      type: object
-    DeployFungibleReqBody:
-      properties:
-        factory:
-          default: wow
-          description: 'Factory name
-
-            - wow -> [wow.xyz](https://wow.xyz)
-
-            - clanker -> [clanker.world](https://www.clanker.world)'
-          enum:
-          - wow
-          - clanker
-          type: string
-        metadata[description]:
-          description: Description of the token
-          type: string
-        metadata[discord]:
-          description: Discord server link
-          type: string
-        metadata[media]:
-          description: "Media file associated with the token. \nSupported formats are image/jpeg, image/gif and image/png"
-          format: binary
-          type:
-          - string
-          - 'null'
-        metadata[nsfw]:
-          description: Indicates if the token is NSFW (Not Safe For Work).
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-        metadata[telegram]:
-          description: Telegram link
-          type: string
-        metadata[twitter]:
-          description: Twitter profile link
-          type: string
-        metadata[website_link]:
-          description: Website link related to the token
-          type: string
-        name:
-          description: Name of the token
-          type: string
-        network:
-          default: base
-          description: Network/Chain name
-          enum:
-          - base
-          type: string
-        owner:
-          description: Ethereum address of the one who is creating the token
-          type: string
-        symbol:
-          description: Symbol/Ticker for the token
-          type: string
-      required:
-      - owner
-      - symbol
-      - name
-      title: DeployFungibleReqBody
-      type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
-    AddressBalance:
-      description: The token balances associated with a wallet address
-      properties:
-        object:
-          enum:
-          - address_balance
-          type: string
-        token_balances:
-          items:
-            $ref: '#/components/schemas/TokenBalance'
-          type: array
-        verified_address:
-          properties:
-            address:
-              description: The wallet address
-              type: string
-            network:
-              $ref: '#/components/schemas/Network'
-          required:
-          - address
-          - network
-          type: object
-      required:
-      - object
-      - verified_address
-      - token_balances
-      title: AddressBalance
-      type: object
     DeployFungibleResponse:
       properties:
         contract:
@@ -2195,6 +2023,165 @@ components:
               type: object
           type: object
       title: DeployFungibleResponse
+      type: object
+    RegisterUserOnChainResponse:
+      properties:
+        message:
+          example: Account registered successfully
+          type: string
+        transaction_hash:
+          example: '0x2e276b4d014334797d9951ce2d3b7a11a4a58855cb07b3761de36785c618220a'
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      title: RegisterUserOnChainResponse
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
+    Fungible:
+      properties:
+        address:
+          description: The contract address of the token
+          type: string
+        decimals:
+          description: The number of decimals the token uses
+          type: integer
+        logo:
+          description: The logo URL of the token
+          type:
+          - string
+          - 'null'
+        name:
+          description: The token name e.g. "Ethereum"
+          type: string
+        network:
+          $ref: '#/components/schemas/Network'
+        object:
+          enum:
+          - fungible
+          type: string
+        symbol:
+          description: The token symbol e.g. "ETH"
+          type: string
+        total_supply:
+          description: The total supply of the token
+          type:
+          - string
+          - 'null'
+      required:
+      - object
+      - network
+      - name
+      - symbol
+      - address
+      - decimals
+      - total_supply
+      - logo
+      title: Fungible
+      type: object
+    TransactionSendFungiblesResponse:
+      properties:
+        send_receipts:
+          items:
+            $ref: '#/components/schemas/TransactionSendFungiblesReceipt'
+          type: array
+        transactions:
+          items:
+            $ref: '#/components/schemas/TransactionSendTxInfo'
+          type: array
+      required:
+      - send_receipts
+      - transactions
+      title: TransactionSendFungiblesResponse
+      type: object
+    BulkRelevantFungibleOwnersResponse:
+      additionalProperties:
+        properties:
+          all_relevant_fungible_owners_dehydrated:
+            items:
+              $ref: '#/components/schemas/UserDehydrated'
+            type: array
+          top_relevant_fungible_owners_hydrated:
+            items:
+              $ref: '#/components/schemas/User'
+            type: array
+        required:
+        - top_relevant_fungible_owners_hydrated
+        - all_relevant_fungible_owners_dehydrated
+        type: object
+      title: BulkRelevantFungibleOwnersResponse
+      type: object
+    ChannelUserContext:
+      description: Adds context on the viewer's or author's role in the channel.
+      properties:
+        following:
+          description: Indicates if the user is following the channel.
+          type: boolean
+        role:
+          $ref: '#/components/schemas/ChannelMemberRole'
+      required:
+      - following
+      title: ChannelUserContext
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    TransactionSendFungiblesReqBody:
+      properties:
+        fungible_contract_address:
+          description: Contract address of the fungible token to send. If not provided, the default is the native token of the network.
+          example: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913'
+          pattern: ^0x[a-fA-F0-9]{40}$
+          type: string
+        network:
+          enum:
+          - base
+          - optimism
+          - base-sepolia
+          type: string
+        recipients:
+          items:
+            $ref: '#/components/schemas/TransactionSendFungiblesRecipient'
+          maxItems: 200
+          minItems: 1
+          type: array
+      required:
+      - network
+      - recipients
+      title: TransactionSendFungiblesReqBody
       type: object
     TokenBalance:
       description: The token balance associated with a wallet address and a network
@@ -2244,59 +2231,6 @@ components:
       - balance
       title: TokenBalance
       type: object
-    Network:
-      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
-      enum:
-      - ethereum
-      - optimism
-      - base
-      - arbitrum
-      title: Network
-      type: string
-    UserDehydrated:
-      properties:
-        custody_address:
-          $ref: '#/components/schemas/EthAddress'
-        display_name:
-          type:
-          - string
-          - 'null'
-        fid:
-          $ref: '#/components/schemas/Fid'
-        object:
-          enum:
-          - user_dehydrated
-          type: string
-        pfp_url:
-          type:
-          - string
-          - 'null'
-        score:
-          type: number
-        username:
-          type: string
-      required:
-      - object
-      - fid
-      title: UserDehydrated
-      type: object
-    ChannelUserContext:
-      description: Adds context on the viewer's or author's role in the channel.
-      properties:
-        following:
-          description: Indicates if the user is following the channel.
-          type: boolean
-        role:
-          $ref: '#/components/schemas/ChannelMemberRole'
-      required:
-      - following
-      title: ChannelUserContext
-      type: object
-    PrefixedHexString:
-      description: Hexadecimal number expressed as string with '0x' prefix
-      pattern: ^0x[a-fA-F0-9]+$
-      title: PrefixedHexString
-      type: string
     Location:
       description: Coordinates and place names for a location
       properties:
@@ -2321,103 +2255,6 @@ components:
       - longitude
       title: Location
       type: object
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    BulkRelevantFungibleOwnersResponse:
-      additionalProperties:
-        properties:
-          all_relevant_fungible_owners_dehydrated:
-            items:
-              $ref: '#/components/schemas/UserDehydrated'
-            type: array
-          top_relevant_fungible_owners_hydrated:
-            items:
-              $ref: '#/components/schemas/User'
-            type: array
-        required:
-        - top_relevant_fungible_owners_hydrated
-        - all_relevant_fungible_owners_dehydrated
-        type: object
-      title: BulkRelevantFungibleOwnersResponse
-      type: object
-    SimulateNftMintResponse:
-      description: Calldata simulations for NFT minting.
-      items:
-        properties:
-          abi:
-            description: ABI for the mint function.
-          args:
-            items: {}
-            type: array
-          calldata:
-            description: Calldata for the mint transaction.
-            example: '0xabcdef'
-            type: string
-          data:
-            example: '0x1234abcd'
-            type: string
-          estimated_total_cost_wei:
-            description: Estimated total cost in wei (value + gas). Use this for price display.
-            example: '100000000000000'
-            type: string
-          function_name:
-            example: mintTo
-            type: string
-          network:
-            example: base
-            type: string
-          recipient:
-            anyOf:
-            - properties:
-                address:
-                  $ref: '#/components/schemas/EthAddress'
-                fid:
-                  not: {}
-                quantity:
-                  default: 1
-                  description: Quantity to mint (must be at least 1). Defaults to 1.
-                  example: 1
-                  minimum: 1
-                  type: integer
-              required:
-              - address
-              type: object
-            - properties:
-                address:
-                  not: {}
-                fid:
-                  $ref: '#/components/schemas/Fid'
-                quantity:
-                  default: 1
-                  description: Quantity to mint (must be at least 1). Defaults to 1.
-                  example: 1
-                  minimum: 1
-                  type: integer
-              required:
-              - fid
-              type: object
-            description: NFT mint recipient. Exactly one of "address" or "fid" must be set.
-          to:
-            $ref: '#/components/schemas/EthAddress'
-          value:
-            example: '0'
-            type: string
-        required:
-        - recipient
-        - function_name
-        - args
-        - to
-        - data
-        - value
-        - estimated_total_cost_wei
-        - network
-        - calldata
-        type: object
-      title: SimulateNftMintResponse
-      type: array
     User:
       properties:
         auth_addresses:
@@ -2617,58 +2454,6 @@ components:
       - verified_accounts
       title: User
       type: object
-    TextRange:
-      properties:
-        end:
-          minimum: 0
-          type: number
-        start:
-          minimum: 0
-          type: number
-      required:
-      - start
-      - end
-      title: TextRange
-      type: object
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
-      properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
-          type: boolean
-      required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
-      type: object
-    FarcasterFungible:
-      properties:
-        cast_count:
-          description: The total number of comments on the token
-          type: integer
-        fungible:
-          $ref: '#/components/schemas/Fungible'
-        object:
-          enum:
-          - farcaster_fungible
-          type: string
-      required:
-      - object
-      - fungible
-      - cast_count
-      title: FarcasterFungible
-      type: object
     Ed25519PublicKey:
       description: Ed25519 public key
       example: '0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22'
@@ -2712,81 +2497,6 @@ components:
       - errors
       title: ZodError
       type: object
-    Fungible:
-      properties:
-        address:
-          description: The contract address of the token
-          type: string
-        decimals:
-          description: The number of decimals the token uses
-          type: integer
-        logo:
-          description: The logo URL of the token
-          type:
-          - string
-          - 'null'
-        name:
-          description: The token name e.g. "Ethereum"
-          type: string
-        network:
-          $ref: '#/components/schemas/Network'
-        object:
-          enum:
-          - fungible
-          type: string
-        symbol:
-          description: The token symbol e.g. "ETH"
-          type: string
-        total_supply:
-          description: The total supply of the token
-          type:
-          - string
-          - 'null'
-      required:
-      - object
-      - network
-      - name
-      - symbol
-      - address
-      - decimals
-      - total_supply
-      - logo
-      title: Fungible
-      type: object
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    BalanceResponse:
-      properties:
-        user_balance:
-          properties:
-            address_balances:
-              items:
-                $ref: '#/components/schemas/AddressBalance'
-              type: array
-            object:
-              enum:
-              - user_balance
-              type: string
-            user:
-              $ref: '#/components/schemas/UserDehydrated'
-          required:
-          - object
-          - user
-          - address_balances
-          type: object
-      title: BalanceResponse
-      type: object
     TransactionSendFungiblesReceipt:
       properties:
         amount:
@@ -2807,32 +2517,25 @@ components:
       - status
       title: TransactionSendFungiblesReceipt
       type: object
-    RelevantFungibleOwnersResponse:
+    ChannelDehydrated:
       properties:
-        all_relevant_fungible_owners_dehydrated:
-          items:
-            $ref: '#/components/schemas/UserDehydrated'
-          type: array
-        top_relevant_fungible_owners_hydrated:
-          items:
-            $ref: '#/components/schemas/User'
-          type: array
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
       required:
-      - top_relevant_fungible_owners_hydrated
-      - all_relevant_fungible_owners_dehydrated
-      title: RelevantFungibleOwnersResponse
-      type: object
-    RegisterUserOnChainResponse:
-      properties:
-        message:
-          example: Account registered successfully
-          type: string
-        transaction_hash:
-          example: '0x2e276b4d014334797d9951ce2d3b7a11a4a58855cb07b3761de36785c618220a'
-          type: string
-        user:
-          $ref: '#/components/schemas/User'
-      title: RegisterUserOnChainResponse
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
       type: object
     FungibleBalance:
       properties:
@@ -2859,6 +2562,88 @@ components:
       - token
       - balance
       title: FungibleBalance
+      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
+    TransactionSendFungiblesRecipient:
+      properties:
+        amount:
+          description: Amount to send (must be greater than 0)
+          minimum: 1.0e-08
+          type: number
+        fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - fid
+      - amount
+      title: TransactionSendFungiblesRecipient
+      type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    RelevantFungibleOwnersResponse:
+      properties:
+        all_relevant_fungible_owners_dehydrated:
+          items:
+            $ref: '#/components/schemas/UserDehydrated'
+          type: array
+        top_relevant_fungible_owners_hydrated:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - top_relevant_fungible_owners_hydrated
+      - all_relevant_fungible_owners_dehydrated
+      title: RelevantFungibleOwnersResponse
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
+    Network:
+      description: A blockchain network e.g. "ethereum", "optimism", "base", "arbitrum"
+      enum:
+      - ethereum
+      - optimism
+      - base
+      - arbitrum
+      title: Network
+      type: string
+    UserDehydrated:
+      properties:
+        custody_address:
+          $ref: '#/components/schemas/EthAddress'
+        display_name:
+          type:
+          - string
+          - 'null'
+        fid:
+          $ref: '#/components/schemas/Fid'
+        object:
+          enum:
+          - user_dehydrated
+          type: string
+        pfp_url:
+          type:
+          - string
+          - 'null'
+        score:
+          type: number
+        username:
+          type: string
+      required:
+      - object
+      - fid
+      title: UserDehydrated
       type: object
     RegisterUserOnChainReqBody:
       properties:
@@ -2945,18 +2730,183 @@ components:
       - registration
       title: RegisterUserOnChainReqBody
       type: object
-    TransactionSendFungiblesRecipient:
+    TextRange:
       properties:
-        amount:
-          description: Amount to send (must be greater than 0)
-          minimum: 1.0e-08
+        end:
+          minimum: 0
           type: number
-        fid:
-          $ref: '#/components/schemas/Fid'
+        start:
+          minimum: 0
+          type: number
       required:
-      - fid
-      - amount
-      title: TransactionSendFungiblesRecipient
+      - start
+      - end
+      title: TextRange
+      type: object
+    AddressBalance:
+      description: The token balances associated with a wallet address
+      properties:
+        object:
+          enum:
+          - address_balance
+          type: string
+        token_balances:
+          items:
+            $ref: '#/components/schemas/TokenBalance'
+          type: array
+        verified_address:
+          properties:
+            address:
+              description: The wallet address
+              type: string
+            network:
+              $ref: '#/components/schemas/Network'
+          required:
+          - address
+          - network
+          type: object
+      required:
+      - object
+      - verified_address
+      - token_balances
+      title: AddressBalance
+      type: object
+    PrefixedHexString:
+      description: Hexadecimal number expressed as string with '0x' prefix
+      pattern: ^0x[a-fA-F0-9]+$
+      title: PrefixedHexString
+      type: string
+    SimulateNftMintResponse:
+      description: Calldata simulations for NFT minting.
+      items:
+        properties:
+          abi:
+            description: ABI for the mint function.
+          args:
+            items: {}
+            type: array
+          calldata:
+            description: Calldata for the mint transaction.
+            example: '0xabcdef'
+            type: string
+          data:
+            example: '0x1234abcd'
+            type: string
+          estimated_total_cost_wei:
+            description: Estimated total cost in wei (value + gas). Use this for price display.
+            example: '100000000000000'
+            type: string
+          function_name:
+            example: mintTo
+            type: string
+          network:
+            example: base
+            type: string
+          recipient:
+            anyOf:
+            - properties:
+                address:
+                  $ref: '#/components/schemas/EthAddress'
+                fid:
+                  not: {}
+                quantity:
+                  default: 1
+                  description: Quantity to mint (must be at least 1). Defaults to 1.
+                  example: 1
+                  minimum: 1
+                  type: integer
+              required:
+              - address
+              type: object
+            - properties:
+                address:
+                  not: {}
+                fid:
+                  $ref: '#/components/schemas/Fid'
+                quantity:
+                  default: 1
+                  description: Quantity to mint (must be at least 1). Defaults to 1.
+                  example: 1
+                  minimum: 1
+                  type: integer
+              required:
+              - fid
+              type: object
+            description: NFT mint recipient. Exactly one of "address" or "fid" must be set.
+          to:
+            $ref: '#/components/schemas/EthAddress'
+          value:
+            example: '0'
+            type: string
+        required:
+        - recipient
+        - function_name
+        - args
+        - to
+        - data
+        - value
+        - estimated_total_cost_wei
+        - network
+        - calldata
+        type: object
+      title: SimulateNftMintResponse
+      type: array
+    TransactionSendTxInfo:
+      properties:
+        approval_hash:
+          description: Hash of the transaction that approved the transfer. This is only present if the fungible token is not native token of the network.
+          type: string
+        gas_used:
+          description: Gas used for the transaction.
+          type: string
+        network:
+          enum:
+          - base
+          - optimism
+          - base-sepolia
+          type: string
+        transaction_hash:
+          type: string
+      required:
+      - network
+      - transaction_hash
+      - gas_used
+      - approval_hash
+      title: TransactionSendTxInfo
+      type: object
+    FarcasterFungible:
+      properties:
+        cast_count:
+          description: The total number of comments on the token
+          type: integer
+        fungible:
+          $ref: '#/components/schemas/Fungible'
+        object:
+          enum:
+          - farcaster_fungible
+          type: string
+      required:
+      - object
+      - fungible
+      - cast_count
+      title: FarcasterFungible
+      type: object
+    LocationAddress:
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        country_code:
+          type: string
+        state:
+          type: string
+        state_code:
+          type: string
+      required:
+      - city
+      - country
+      title: LocationAddress
       type: object
     FungiblesResponseSchema:
       description: Response containing fungible details
@@ -2969,45 +2919,95 @@ components:
       - fungibles
       title: FungiblesResponseSchema
       type: object
-    ErrorRes:
-      description: Details for the error response
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    BalanceResponse:
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
+        user_balance:
+          properties:
+            address_balances:
+              items:
+                $ref: '#/components/schemas/AddressBalance'
+              type: array
+            object:
+              enum:
+              - user_balance
+              type: string
+            user:
+              $ref: '#/components/schemas/UserDehydrated'
+          required:
+          - object
+          - user
+          - address_balances
+          type: object
+      title: BalanceResponse
       type: object
-    TransactionSendFungiblesReqBody:
+    DeployFungibleReqBody:
       properties:
-        fungible_contract_address:
-          description: Contract address of the fungible token to send. If not provided, the default is the native token of the network.
-          example: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913'
-          pattern: ^0x[a-fA-F0-9]{40}$
+        factory:
+          default: wow
+          description: 'Factory name
+
+            - wow -> [wow.xyz](https://wow.xyz)
+
+            - clanker -> [clanker.world](https://www.clanker.world)'
+          enum:
+          - wow
+          - clanker
+          type: string
+        metadata[description]:
+          description: Description of the token
+          type: string
+        metadata[discord]:
+          description: Discord server link
+          type: string
+        metadata[media]:
+          description: "Media file associated with the token. \nSupported formats are image/jpeg, image/gif and image/png"
+          format: binary
+          type:
+          - string
+          - 'null'
+        metadata[nsfw]:
+          description: Indicates if the token is NSFW (Not Safe For Work).
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        metadata[telegram]:
+          description: Telegram link
+          type: string
+        metadata[twitter]:
+          description: Twitter profile link
+          type: string
+        metadata[website_link]:
+          description: Website link related to the token
+          type: string
+        name:
+          description: Name of the token
           type: string
         network:
+          default: base
+          description: Network/Chain name
           enum:
           - base
-          - optimism
-          - base-sepolia
           type: string
-        recipients:
-          items:
-            $ref: '#/components/schemas/TransactionSendFungiblesRecipient'
-          maxItems: 200
-          minItems: 1
-          type: array
+        owner:
+          description: Ethereum address of the one who is creating the token
+          type: string
+        symbol:
+          description: Symbol/Ticker for the token
+          type: string
       required:
-      - network
-      - recipients
-      title: TransactionSendFungiblesReqBody
+      - owner
+      - symbol
+      - name
+      title: DeployFungibleReqBody
       type: object
   parameters:
     NeynarExperimentalHeader:

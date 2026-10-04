@@ -75,6 +75,29 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    FidSchema:
+      type: integer
+      format: uint64
+      minimum: 1
+      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+
+        '
+      example: 1
+    UserNameType:
+      type: string
+      default: USERNAME_TYPE_FNAME
+      enum:
+      - USERNAME_TYPE_FNAME
+      - USERNAME_TYPE_ENS_L1
+    UsernameProofsResponse:
+      type: object
+      properties:
+        proofs:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserNameProof'
+      required:
+      - proofs
     ErrorResponse:
       required:
       - code
@@ -104,21 +127,6 @@ components:
               type: array
               items:
                 type: string
-    UserNameType:
-      type: string
-      default: USERNAME_TYPE_FNAME
-      enum:
-      - USERNAME_TYPE_FNAME
-      - USERNAME_TYPE_ENS_L1
-    UsernameProofsResponse:
-      type: object
-      properties:
-        proofs:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserNameProof'
-      required:
-      - proofs
     UserNameProof:
       type: object
       properties:
@@ -149,14 +157,6 @@ components:
       - signature
       - fid
       - type
-    FidSchema:
-      type: integer
-      format: uint64
-      minimum: 1
-      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
-
-        '
-      example: 1
   responses:
     ErrorResponse:
       description: An unexpected error response.

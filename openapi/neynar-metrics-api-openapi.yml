@@ -69,16 +69,23 @@ paths:
       tags:
       - Metrics
 components:
-  parameters:
-    NeynarExperimentalHeader:
-      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-      in: header
-      name: x-neynar-experimental
-      schema:
-        default: false
-        type: boolean
-      x-is-global-header: true
   schemas:
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
     CastsMetrics:
       properties:
         cast_count:
@@ -96,22 +103,6 @@ components:
       - cast_count
       title: CastsMetrics
       type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
     CastsMetricsResponse:
       properties:
         metrics:
@@ -122,6 +113,15 @@ components:
       - metrics
       title: CastsMetricsResponse
       type: object
+  parameters:
+    NeynarExperimentalHeader:
+      description: Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+      in: header
+      name: x-neynar-experimental
+      schema:
+        default: false
+        type: boolean
+      x-is-global-header: true
   securitySchemes:
     ApiKeyAuth:
       description: API key to authorize requests

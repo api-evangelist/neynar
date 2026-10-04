@@ -200,21 +200,88 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    CastId:
-      description: A unique identifier for a cast (post) in the Farcaster network, consisting of the creator's FID and a hash of the cast's content. This combination ensures global uniqueness across all casts.
+    FarcasterNetwork:
+      type: string
+      description: 'Farcaster network the message is intended for.
+
+        - FARCASTER_NETWORK_MAINNET: Public primary network
+
+        - FARCASTER_NETWORK_TESTNET: Public test network
+
+        - FARCASTER_NETWORK_DEVNET: Private test network'
+      default: FARCASTER_NETWORK_MAINNET
+      enum:
+      - FARCASTER_NETWORK_MAINNET
+      - FARCASTER_NETWORK_TESTNET
+      - FARCASTER_NETWORK_DEVNET
+    ErrorResponse:
       required:
-      - fid
-      - hash
+      - code
+      - details
+      - errCode
+      - metadata
+      - name
+      - presentable
       type: object
       properties:
-        fid:
-          title: Fid of the user who created the cast
-          description: The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast's author in the network.
+        errCode:
+          type: string
+        presentable:
+          type: boolean
+        name:
+          type: string
+        code:
           type: integer
-          format: uint64
-          example: 2
-        hash:
-          $ref: '#/components/schemas/CastHash'
+        details:
+          type: string
+        metadata:
+          required:
+          - errcode
+          type: object
+          properties:
+            errcode:
+              type: array
+              items:
+                type: string
+    PaginationResponse:
+      type: object
+      required:
+      - nextPageToken
+      properties:
+        nextPageToken:
+          type: string
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
+          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
+    MessageDataReaction:
+      description: Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
+      allOf:
+      - $ref: '#/components/schemas/MessageDataCommon'
+      - type: object
+        required:
+        - reactionBody
+        properties:
+          reactionBody:
+            description: Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.
+            allOf:
+            - $ref: '#/components/schemas/ReactionBody'
+    Reaction:
+      allOf:
+      - $ref: '#/components/schemas/MessageCommon'
+      - type: object
+        properties:
+          data:
+            allOf:
+            - $ref: '#/components/schemas/MessageDataReaction'
+            - type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/MessageType'
+              required:
+              - type
+        required:
+        - data
     MessageType:
       type: string
       description: 'Type of the MessageBody.
@@ -253,66 +320,34 @@ components:
       - MESSAGE_TYPE_USER_DATA_ADD
       - MESSAGE_TYPE_USERNAME_PROOF
       - MESSAGE_TYPE_FRAME_ACTION
-    HashScheme:
+    SignatureScheme:
       type: string
-      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
+      description: 'Type of signature scheme used to sign the Message hash
 
-        '
-      default: HASH_SCHEME_BLAKE3
+        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
+
+        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
+      default: SIGNATURE_SCHEME_ED25519
       enum:
-      - HASH_SCHEME_BLAKE3
-    ErrorResponse:
-      required:
-      - code
-      - details
-      - errCode
-      - metadata
-      - name
-      - presentable
-      type: object
-      properties:
-        errCode:
-          type: string
-        presentable:
-          type: boolean
-        name:
-          type: string
-        code:
-          type: integer
-        details:
-          type: string
-        metadata:
-          required:
-          - errcode
-          type: object
-          properties:
-            errcode:
-              type: array
-              items:
-                type: string
-    MessageDataReaction:
-      description: Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
-      allOf:
-      - $ref: '#/components/schemas/MessageDataCommon'
-      - type: object
-        required:
-        - reactionBody
-        properties:
-          reactionBody:
-            description: Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.
-            allOf:
-            - $ref: '#/components/schemas/ReactionBody'
-    PaginationResponse:
-      type: object
-      required:
-      - nextPageToken
-      properties:
-        nextPageToken:
-          type: string
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
+      - SIGNATURE_SCHEME_ED25519
+      - SIGNATURE_SCHEME_EIP712
+    ReactionType:
+      type: string
+      description: 'Type of interaction a user can have with content on the Farcaster network.
+
+        - Like: Express appreciation for the target content. Similar to "likes" or "favorites" on other platforms.
+
+        - Recast: Share the target content with the user''s followers, similar to a "retweet" or "reblog". Helps increase content visibility.'
+      default: Like
+      enum:
+      - Like
+      - Recast
+      example: Like
+    CastHash:
+      description: A unique hash that identifies a specific cast within the creator's posts. Generated using HASH_SCHEME_BLAKE3 of the cast's content.
+      pattern: ^0x[0-9a-fA-F]{40}$
+      type: string
+      example: '0x03aff391a6eb1772b20b4ead9a89f732be75fe27'
     MessageDataCommon:
       description: Common properties shared by all Farcaster message types. These properties provide essential metadata about the message's origin, timing, and network context.
       required:
@@ -336,6 +371,21 @@ components:
           example: 48994466
         network:
           $ref: '#/components/schemas/FarcasterNetwork'
+    CastId:
+      description: A unique identifier for a cast (post) in the Farcaster network, consisting of the creator's FID and a hash of the cast's content. This combination ensures global uniqueness across all casts.
+      required:
+      - fid
+      - hash
+      type: object
+      properties:
+        fid:
+          title: Fid of the user who created the cast
+          description: The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast's author in the network.
+          type: integer
+          format: uint64
+          example: 2
+        hash:
+          $ref: '#/components/schemas/CastHash'
     FidSchema:
       type: integer
       format: uint64
@@ -344,53 +394,6 @@ components:
 
         '
       example: 1
-    ReactionBody:
-      description: Specifies the details of a reaction to content on Farcaster. A reaction must specify its type (like/recast) and either a target cast ID or URL to react to. Only one target (either castId or URL) should be specified per reaction.
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ReactionType'
-        targetCastId:
-          description: The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator's FID and the cast's hash.
-          allOf:
-          - $ref: '#/components/schemas/CastId'
-        targetUrl:
-          title: URL to react to
-          description: The URL being reacted to. Used when reacting to external content or when the cast ID is not available.
-          type: string
-          example: https://www.example.com/article
-      required:
-      - type
-    FarcasterNetwork:
-      type: string
-      description: 'Farcaster network the message is intended for.
-
-        - FARCASTER_NETWORK_MAINNET: Public primary network
-
-        - FARCASTER_NETWORK_TESTNET: Public test network
-
-        - FARCASTER_NETWORK_DEVNET: Private test network'
-      default: FARCASTER_NETWORK_MAINNET
-      enum:
-      - FARCASTER_NETWORK_MAINNET
-      - FARCASTER_NETWORK_TESTNET
-      - FARCASTER_NETWORK_DEVNET
-    SignatureScheme:
-      type: string
-      description: 'Type of signature scheme used to sign the Message hash
-
-        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
-
-        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
-      default: SIGNATURE_SCHEME_ED25519
-      enum:
-      - SIGNATURE_SCHEME_ED25519
-      - SIGNATURE_SCHEME_EIP712
-    CastHash:
-      description: A unique hash that identifies a specific cast within the creator's posts. Generated using HASH_SCHEME_BLAKE3 of the cast's content.
-      pattern: ^0x[0-9a-fA-F]{40}$
-      type: string
-      example: '0x03aff391a6eb1772b20b4ead9a89f732be75fe27'
     MessageCommon:
       type: object
       properties:
@@ -418,42 +421,38 @@ components:
       - signature
       - signatureScheme
       - signer
-    ReactionType:
+    HashScheme:
       type: string
-      description: 'Type of interaction a user can have with content on the Farcaster network.
+      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
 
-        - Like: Express appreciation for the target content. Similar to "likes" or "favorites" on other platforms.
-
-        - Recast: Share the target content with the user''s followers, similar to a "retweet" or "reblog". Helps increase content visibility.'
-      default: Like
+        '
+      default: HASH_SCHEME_BLAKE3
       enum:
-      - Like
-      - Recast
-      example: Like
-    Reaction:
-      allOf:
-      - $ref: '#/components/schemas/MessageCommon'
-      - type: object
-        properties:
-          data:
-            allOf:
-            - $ref: '#/components/schemas/MessageDataReaction'
-            - type: object
-              properties:
-                type:
-                  $ref: '#/components/schemas/MessageType'
-              required:
-              - type
-        required:
-        - data
-  responses:
-    ErrorResponse:
-      description: An unexpected error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+      - HASH_SCHEME_BLAKE3
+    ReactionBody:
+      description: Specifies the details of a reaction to content on Farcaster. A reaction must specify its type (like/recast) and either a target cast ID or URL to react to. Only one target (either castId or URL) should be specified per reaction.
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ReactionType'
+        targetCastId:
+          description: The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator's FID and the cast's hash.
+          allOf:
+          - $ref: '#/components/schemas/CastId'
+        targetUrl:
+          title: URL to react to
+          description: The URL being reacted to. Used when reacting to external content or when the cast ID is not available.
+          type: string
+          example: https://www.example.com/article
+      required:
+      - type
   parameters:
+    pageToken:
+      name: pageToken
+      in: query
+      description: The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
+      schema:
+        type: string
     pageSize:
       name: pageSize
       in: query
@@ -466,12 +465,13 @@ components:
       description: Reverse the sort order, returning latest messages first
       schema:
         type: boolean
-    pageToken:
-      name: pageToken
-      in: query
-      description: The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page
-      schema:
-        type: string
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
