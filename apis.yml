@@ -1286,3 +1286,6 @@ common:
   url: authentication/neynar-authentication.yml
 - url: https://neynar.com/blog
   type: Blog
+
+- type: SpectralRules
+  url: https://github.com/neynarxyz/OAS/blob/6c6307dbdbc26ee81647588ea0c385ea7a8efc88/.spectral.yaml

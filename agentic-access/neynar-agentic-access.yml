@@ -1,57 +1,33 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/neynar-farcaster-api.yaml, openapi/neynar-hub-api.yaml
+source: openapi/neynar-action-api-openapi.yml, openapi/neynar-agents-api-openapi.yml, openapi/neynar-app-host-api-openapi.yml,
+  openapi/neynar-authaddress-api-openapi.yml, openapi/neynar-ban-api-openapi.yml, openapi/neynar-block-api-openapi.yml,
+  openapi/neynar-cast-api-openapi.yml, openapi/neynar-casts-api-openapi.yml, openapi/neynar-channel-api-openapi.yml,
+  openapi/neynar-feed-api-openapi.yml, openapi/neynar-fids-api-openapi.yml, openapi/neynar-fname-api-openapi.yml,
+  openapi/neynar-follows-api-openapi.yml, openapi/neynar-frame-api-openapi.yml, openapi/neynar-hubevents-api-openapi.yml,
+  openapi/neynar-info-api-openapi.yml, openapi/neynar-links-api-openapi.yml, openapi/neynar-login-api-openapi.yml,
+  openapi/neynar-message-api-openapi.yml, openapi/neynar-metrics-api-openapi.yml, openapi/neynar-mute-api-openapi.yml,
+  openapi/neynar-notifications-api-openapi.yml, openapi/neynar-on-chain-api-openapi.yml, openapi/neynar-onchainevents-api-openapi.yml,
+  openapi/neynar-organization-api-openapi.yml, openapi/neynar-portal-api-openapi.yml, openapi/neynar-reaction-api-openapi.yml,
+  openapi/neynar-reactions-api-openapi.yml, openapi/neynar-signer-api-openapi.yml, openapi/neynar-storage-api-openapi.yml,
+  openapi/neynar-studio-api-openapi.yml, openapi/neynar-subscribers-api-openapi.yml, openapi/neynar-subscription-api-openapi.yml,
+  openapi/neynar-topic-api-openapi.yml, openapi/neynar-user-api-openapi.yml, openapi/neynar-user-data-api-openapi.yml,
+  openapi/neynar-usernames-api-openapi.yml, openapi/neynar-verifications-api-openapi.yml, openapi/neynar-webhook-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 200
+  operations: 203
   by_action_class:
-    connected: 129
     acting: 71
+    connected: 132
   by_consequence:
-    read: 129
-    write: 45
-    physical: 25
+    write: 46
+    read: 132
+    physical: 24
     safety-critical: 1
   human_in_the_loop_required: 1
 operations:
-- path: /portal/organization/billing
-  method: get
-  operationId: billing
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /portal/subscription/upgrade
-  method: post
-  operationId: upgrade
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /portal/subscription/upgrade/preview
-  method: get
-  operationId: upgrade-preview
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/farcaster/action/
   method: post
   operationId: publish-farcaster-action
@@ -68,6 +44,42 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/farcaster/cast/conversation/summary/
+  method: get
+  operationId: lookup-cast-conversation-summary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/frame/transaction/pay/
+  method: post
+  operationId: create-transaction-pay-frame
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/interactions/
+  method: get
+  operationId: fetch-user-interactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v2/farcaster/app_host/user/event/
   method: get
   operationId: app-host-get-event
@@ -268,29 +280,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/farcaster/cast/conversation/summary/
-  method: get
-  operationId: lookup-cast-conversation-summary
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /v2/farcaster/cast/embed/crawl/
   method: get
   operationId: fetch-embedded-url-metadata
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/cast/metrics/
-  method: get
-  operationId: fetch-cast-metrics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -321,6 +313,46 @@ operations:
 - path: /v2/farcaster/casts/
   method: get
   operationId: fetch-bulk-casts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/castById
+  method: get
+  operationId: lookup-cast-by-hash-and-fid
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/castsByFid
+  method: get
+  operationId: fetch-users-casts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/castsByMention
+  method: get
+  operationId: fetch-casts-mentioning-user
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/castsByParent
+  method: get
+  operationId: fetch-casts-by-parent
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -508,6 +540,26 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /v2/farcaster/user/channels/
+  method: get
+  operationId: fetch-user-channels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/user/memberships/list/
+  method: get
+  operationId: fetch-user-channel-memberships
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v2/farcaster/feed/
   method: get
   operationId: fetch-feed
@@ -601,6 +653,16 @@ operations:
 - path: /v2/farcaster/feed/user/replies_and_recasts/
   method: get
   operationId: fetch-replies-and-recasts-for-user
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/fids
+  method: get
+  operationId: fetch-fids
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -746,9 +808,193 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/farcaster/frame/transaction/pay/
+- path: /v1/events
+  method: get
+  operationId: fetch-events
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/eventById
+  method: get
+  operationId: lookup-event
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/info
+  method: get
+  operationId: lookup-hub-info
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/linkById
+  method: get
+  operationId: lookup-user-relation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/linksByFid
+  method: get
+  operationId: fetch-user-following
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/linksByTargetFid
+  method: get
+  operationId: fetch-user-followers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/login/nonce/
+  method: get
+  operationId: fetch-nonce
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/submitMessage
   method: post
-  operationId: create-transaction-pay-frame
+  operationId: publish-message
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/validateMessage
+  method: post
+  operationId: validate-message
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/cast/metrics/
+  method: get
+  operationId: fetch-cast-metrics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/mute/
+  method: delete
+  operationId: delete-mute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/mute/
+  method: post
+  operationId: publish-mute
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/mute/list/
+  method: get
+  operationId: fetch-mute-list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/notifications/
+  method: get
+  operationId: fetch-all-notifications
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/notifications/channel/
+  method: get
+  operationId: fetch-channel-notifications-for-user
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/notifications/parent_url/
+  method: get
+  operationId: fetch-notifications-by-parent-url-for-user
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/notifications/seen/
+  method: post
+  operationId: mark-notifications-as-seen
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -823,84 +1069,6 @@ operations:
 - path: /v2/farcaster/fungibles/
   method: get
   operationId: fetch-fungibles
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/login/authorize/
-  method: get
-  operationId: fetch-authorization-url
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/login/nonce/
-  method: get
-  operationId: fetch-nonce
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/message/
-  method: post
-  operationId: publish-message-to-farcaster
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/mute/
-  method: delete
-  operationId: delete-mute
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/mute/
-  method: post
-  operationId: publish-mute
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/mute/list/
-  method: get
-  operationId: fetch-mute-list
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -984,9 +1152,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v2/farcaster/notifications/
+- path: /v2/farcaster/user/balance/
   method: get
-  operationId: fetch-all-notifications
+  operationId: fetch-user-balance
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -994,29 +1162,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/farcaster/notifications/channel/
-  method: get
-  operationId: fetch-channel-notifications-for-user
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/notifications/parent_url/
-  method: get
-  operationId: fetch-notifications-by-parent-url-for-user
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/notifications/seen/
+- path: /v2/farcaster/user/register/
   method: post
-  operationId: mark-notifications-as-seen
+  operationId: register-account-onchain
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1030,6 +1178,162 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /v2/fungible/
+  method: post
+  operationId: deploy-fungible
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/onchain/token/balances
+  method: get
+  operationId: get-wallet-balances
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/onchain/token/metadata
+  method: get
+  operationId: get-token-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/onchain/token/metadata/batch
+  method: get
+  operationId: batch-get-token-metadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/signature/x402/
+  method: post
+  operationId: create-x402-signature
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/signature/x402/siwx
+  method: post
+  operationId: create-x402-siwx
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/onChainIdRegistryEventByAddress
+  method: get
+  operationId: lookup-on-chain-id-registry-event-by-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/onChainEventsByFid
+  method: get
+  operationId: fetch-user-on-chain-events
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/onChainSignersByFid
+  method: get
+  operationId: fetch-user-on-chain-signers-events
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /portal/organization/billing
+  method: get
+  operationId: billing
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /portal/organization/billing
+  method: get
+  operationId: billing
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /portal/subscription/upgrade
+  method: post
+  operationId: upgrade
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /portal/subscription/upgrade/preview
+  method: get
+  operationId: upgrade-preview
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v2/farcaster/reaction/
   method: delete
   operationId: delete-reaction
@@ -1082,6 +1386,72 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /v1/reactionById
+  method: get
+  operationId: lookup-reaction-by-id
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/reactionsByCast
+  method: get
+  operationId: fetch-cast-reactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/reactionsByFid
+  method: get
+  operationId: fetch-user-reactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/reactionsByTarget
+  method: get
+  operationId: fetch-reactions-by-target
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/login/authorize/
+  method: get
+  operationId: fetch-authorization-url
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/message/
+  method: post
+  operationId: publish-message-to-farcaster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /v2/farcaster/signer/
   method: get
   operationId: lookup-signer
@@ -1196,465 +1566,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/farcaster/topic/trending/
+- path: /v1/storageLimitsByFid
   method: get
-  operationId: list-trending-topics
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/
-  method: patch
-  operationId: update-user
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/
-  method: post
-  operationId: register-account
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/balance/
-  method: get
-  operationId: fetch-user-balance
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/best_friends/
-  method: get
-  operationId: get-user-best-friends
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/bulk-by-address/
-  method: get
-  operationId: fetch-bulk-users-by-eth-or-sol-address
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/bulk/
-  method: get
-  operationId: fetch-bulk-users
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/by_location/
-  method: get
-  operationId: fetch-users-by-location
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/by_username/
-  method: get
-  operationId: lookup-user-by-username
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/by_x_username/
-  method: get
-  operationId: lookup-users-by-x-username
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/channels/
-  method: get
-  operationId: fetch-user-channels
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/custody-address/
-  method: get
-  operationId: lookup-user-by-custody-address
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/fid/
-  method: get
-  operationId: get-fresh-account-FID
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/follow/
-  method: delete
-  operationId: unfollow-user
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/follow/
-  method: post
-  operationId: follow-user
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/interactions/
-  method: get
-  operationId: fetch-user-interactions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/memberships/list/
-  method: get
-  operationId: fetch-user-channel-memberships
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/register/
-  method: post
-  operationId: register-account-onchain
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/search/
-  method: get
-  operationId: search-user
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/subscribed_to/
-  method: get
-  operationId: fetch-subscribed-to-for-fid
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/subscribers/
-  method: get
-  operationId: fetch-subscribers-for-fid
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/subscriptions_created/
-  method: get
-  operationId: fetch-subscriptions-for-fid
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/user/verification/
-  method: delete
-  operationId: delete-verification
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/verification/
-  method: post
-  operationId: publish-verification
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/user/verifications/
-  method: get
-  operationId: fetch-verifications
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/webhook/
-  method: delete
-  operationId: delete-webhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/webhook/
-  method: get
-  operationId: lookup-webhook
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/farcaster/webhook/
-  method: patch
-  operationId: update-webhook-active-status
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/webhook/
-  method: post
-  operationId: publish-webhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/webhook/
-  method: put
-  operationId: update-webhook
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/farcaster/webhook/list/
-  method: get
-  operationId: fetch-webhooks
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/fungible/
-  method: post
-  operationId: deploy-fungible
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/onchain/token/balances
-  method: get
-  operationId: get-wallet-balances
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/onchain/token/metadata
-  method: get
-  operationId: get-token-metadata
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/onchain/token/metadata/batch
-  method: get
-  operationId: batch-get-token-metadata
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/signature/x402/
-  method: post
-  operationId: create-x402-signature
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/signature/x402/siwx
-  method: post
-  operationId: create-x402-siwx
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v2/stp/subscription_check/
-  method: get
-  operationId: fetch-subscription-check
+  operationId: lookup-user-storage-limit
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1832,20 +1746,12 @@ operations:
   method: post
   operationId: query-table
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /v2/studio/deployment/database/sql
   method: post
   operationId: execute-sql
@@ -2230,9 +2136,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/info
+- path: /v2/farcaster/user/subscribed_to/
   method: get
-  operationId: lookup-hub-info
+  operationId: fetch-subscribed-to-for-fid
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2240,9 +2146,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/castById
+- path: /v2/farcaster/user/subscribers/
   method: get
-  operationId: lookup-cast-by-hash-and-fid
+  operationId: fetch-subscribers-for-fid
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2250,9 +2156,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/castsByFid
+- path: /v2/farcaster/user/subscriptions_created/
   method: get
-  operationId: fetch-users-casts
+  operationId: fetch-subscriptions-for-fid
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2260,9 +2166,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/castsByMention
+- path: /v2/stp/subscription_check/
   method: get
-  operationId: fetch-casts-mentioning-user
+  operationId: fetch-subscription-check
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2270,9 +2176,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/castsByParent
+- path: /portal/subscription/upgrade
+  method: post
+  operationId: upgrade
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /portal/subscription/upgrade/preview
   method: get
-  operationId: fetch-casts-by-parent
+  operationId: upgrade-preview
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2280,9 +2202,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/reactionById
+- path: /v2/farcaster/topic/trending/
   method: get
-  operationId: lookup-reaction-by-id
+  operationId: list-trending-topics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2290,9 +2212,41 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/reactionsByCast
+- path: /v2/farcaster/user/
+  method: patch
+  operationId: update-user
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/
+  method: post
+  operationId: register-account
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/best_friends/
   method: get
-  operationId: fetch-cast-reactions
+  operationId: get-user-best-friends
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2300,9 +2254,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/reactionsByFid
+- path: /v2/farcaster/user/bulk-by-address/
   method: get
-  operationId: fetch-user-reactions
+  operationId: fetch-bulk-users-by-eth-or-sol-address
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2310,9 +2264,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/reactionsByTarget
+- path: /v2/farcaster/user/bulk/
   method: get
-  operationId: fetch-reactions-by-target
+  operationId: fetch-bulk-users
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2320,9 +2274,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/linkById
+- path: /v2/farcaster/user/by_location/
   method: get
-  operationId: lookup-user-relation
+  operationId: fetch-users-by-location
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2330,9 +2284,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/linksByFid
+- path: /v2/farcaster/user/by_username/
   method: get
-  operationId: fetch-user-following
+  operationId: lookup-user-by-username
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2340,9 +2294,113 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/linksByTargetFid
+- path: /v2/farcaster/user/by_x_username/
   method: get
-  operationId: fetch-user-followers
+  operationId: lookup-users-by-x-username
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/user/custody-address/
+  method: get
+  operationId: lookup-user-by-custody-address
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/user/fid/
+  method: get
+  operationId: get-fresh-account-FID
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/user/follow/
+  method: delete
+  operationId: unfollow-user
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/follow/
+  method: post
+  operationId: follow-user
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/search/
+  method: get
+  operationId: search-user
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/user/verification/
+  method: delete
+  operationId: delete-verification
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/verification/
+  method: post
+  operationId: publish-verification
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/user/verifications/
+  method: get
+  operationId: fetch-verifications
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2353,26 +2411,6 @@ operations:
 - path: /v1/userDataByFid
   method: get
   operationId: fetch-user-data
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/fids
-  method: get
-  operationId: fetch-fids
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/storageLimitsByFid
-  method: get
-  operationId: lookup-user-storage-limit
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2410,39 +2448,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/onChainIdRegistryEventByAddress
-  method: get
-  operationId: lookup-on-chain-id-registry-event-by-address
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/onChainEventsByFid
-  method: get
-  operationId: fetch-user-on-chain-events
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/onChainSignersByFid
-  method: get
-  operationId: fetch-user-on-chain-signers-events
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/submitMessage
-  method: post
-  operationId: publish-message
+- path: /v2/farcaster/webhook/
+  method: delete
+  operationId: delete-webhook
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2456,9 +2464,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/validateMessage
-  method: post
-  operationId: validate-message
+- path: /v2/farcaster/webhook/
+  method: get
+  operationId: lookup-webhook
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/farcaster/webhook/
+  method: patch
+  operationId: update-webhook-active-status
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2472,19 +2490,41 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/events
-  method: get
-  operationId: fetch-events
+- path: /v2/farcaster/webhook/
+  method: post
+  operationId: publish-webhook
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/eventById
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/webhook/
+  method: put
+  operationId: update-webhook
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/farcaster/webhook/list/
   method: get
-  operationId: lookup-event
+  operationId: fetch-webhooks
   x-agentic-access:
     action-class: connected
     consequence: read
