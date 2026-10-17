@@ -155,28 +155,54 @@ paths:
       - Mute
 components:
   schemas:
-    UserViewerContext:
-      description: Adds context on the viewer's follow relationship with the user.
+    MuteListResponse:
       properties:
-        blocked_by:
-          description: Indicates if the viewer is blocked by the user.
-          type: boolean
-        blocking:
-          description: Indicates if the viewer is blocking the user.
-          type: boolean
-        followed_by:
-          description: Indicates if the viewer is followed by the user.
-          type: boolean
-        following:
-          description: Indicates if the viewer is following the user.
+        mutes:
+          items:
+            $ref: '#/components/schemas/MuteRecord'
+          type: array
+        next:
+          $ref: '#/components/schemas/NextCursor'
+      required:
+      - mutes
+      - next
+      title: MuteListResponse
+      type: object
+    ChannelMemberRole:
+      description: The role of a channel member
+      enum:
+      - member
+      - moderator
+      - owner
+      title: ChannelMemberRole
+      type: string
+    MuteResponse:
+      properties:
+        message:
+          type: string
+        success:
+          example: true
           type: boolean
       required:
-      - following
-      - followed_by
-      - blocking
-      - blocked_by
-      title: UserViewerContext
+      - success
+      title: MuteResponse
       type: object
+    MuteReqBody:
+      properties:
+        fid:
+          $ref: '#/components/schemas/Fid'
+        muted_fid:
+          $ref: '#/components/schemas/Fid'
+      required:
+      - fid
+      - muted_fid
+      title: MuteReqBody
+      type: object
+    SolAddress:
+      description: Solana address
+      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
+      title: SolAddress
+      type: string
     ChannelUserContext:
       description: Adds context on the viewer's or author's role in the channel.
       properties:
@@ -189,30 +215,12 @@ components:
       - following
       title: ChannelUserContext
       type: object
-    Location:
-      description: Coordinates and place names for a location
-      properties:
-        address:
-          $ref: '#/components/schemas/LocationAddress'
-        latitude:
-          format: double
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          format: double
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          description: The radius in meters for the location search. Any location within this radius will be returned.
-          minimum: 0
-          type: number
-      required:
-      - latitude
-      - longitude
-      title: Location
-      type: object
+    EthAddress:
+      description: Ethereum address
+      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
+      pattern: ^0x[a-fA-F0-9]{40}$
+      title: EthAddress
+      type: string
     User:
       properties:
         auth_addresses:
@@ -412,66 +420,6 @@ components:
       - verified_accounts
       title: User
       type: object
-    MuteReqBody:
-      properties:
-        fid:
-          $ref: '#/components/schemas/Fid'
-        muted_fid:
-          $ref: '#/components/schemas/Fid'
-      required:
-      - fid
-      - muted_fid
-      title: MuteReqBody
-      type: object
-    ChannelDehydrated:
-      properties:
-        id:
-          type: string
-        image_url:
-          type: string
-        name:
-          type: string
-        object:
-          enum:
-          - channel_dehydrated
-          type: string
-        viewer_context:
-          $ref: '#/components/schemas/ChannelUserContext'
-      required:
-      - id
-      - name
-      - object
-      title: ChannelDehydrated
-      type: object
-    EthAddress:
-      description: Ethereum address
-      example: '0x5a927ac639636e534b678e81768ca19e2c6280b7'
-      pattern: ^0x[a-fA-F0-9]{40}$
-      title: EthAddress
-      type: string
-    Fid:
-      description: The unique identifier of a farcaster user or app (unsigned integer)
-      example: 3
-      format: int32
-      minimum: 0
-      title: Fid
-      type: integer
-    SolAddress:
-      description: Solana address
-      pattern: ^[1-9A-HJ-NP-Za-km-z]{32,44}$
-      title: SolAddress
-      type: string
-    MuteResponse:
-      properties:
-        message:
-          type: string
-        success:
-          example: true
-          type: boolean
-      required:
-      - success
-      title: MuteResponse
-      type: object
     UserDehydrated:
       properties:
         custody_address:
@@ -512,6 +460,75 @@ components:
       - end
       title: TextRange
       type: object
+    Fid:
+      description: The unique identifier of a farcaster user or app (unsigned integer)
+      example: 3
+      format: int32
+      minimum: 0
+      title: Fid
+      type: integer
+    Location:
+      description: Coordinates and place names for a location
+      properties:
+        address:
+          $ref: '#/components/schemas/LocationAddress'
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          description: The radius in meters for the location search. Any location within this radius will be returned.
+          minimum: 0
+          type: number
+      required:
+      - latitude
+      - longitude
+      title: Location
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
+    UserViewerContext:
+      description: Adds context on the viewer's follow relationship with the user.
+      properties:
+        blocked_by:
+          description: Indicates if the viewer is blocked by the user.
+          type: boolean
+        blocking:
+          description: Indicates if the viewer is blocking the user.
+          type: boolean
+        followed_by:
+          description: Indicates if the viewer is followed by the user.
+          type: boolean
+        following:
+          description: Indicates if the viewer is following the user.
+          type: boolean
+      required:
+      - following
+      - followed_by
+      - blocking
+      - blocked_by
+      title: UserViewerContext
+      type: object
     LocationAddress:
       properties:
         city:
@@ -529,27 +546,37 @@ components:
       - country
       title: LocationAddress
       type: object
-    MuteListResponse:
+    NextCursor:
+      description: Returns next cursor
       properties:
-        mutes:
-          items:
-            $ref: '#/components/schemas/MuteRecord'
-          type: array
-        next:
-          $ref: '#/components/schemas/NextCursor'
+        cursor:
+          type:
+          - string
+          - 'null'
       required:
-      - mutes
-      - next
-      title: MuteListResponse
+      - cursor
+      title: NextCursor
       type: object
-    ChannelMemberRole:
-      description: The role of a channel member
-      enum:
-      - member
-      - moderator
-      - owner
-      title: ChannelMemberRole
-      type: string
+    ChannelDehydrated:
+      properties:
+        id:
+          type: string
+        image_url:
+          type: string
+        name:
+          type: string
+        object:
+          enum:
+          - channel_dehydrated
+          type: string
+        viewer_context:
+          $ref: '#/components/schemas/ChannelUserContext'
+      required:
+      - id
+      - name
+      - object
+      title: ChannelDehydrated
+      type: object
     MuteRecord:
       properties:
         muted:
@@ -566,33 +593,6 @@ components:
       - muted
       - muted_at
       title: MuteRecord
-      type: object
-    NextCursor:
-      description: Returns next cursor
-      properties:
-        cursor:
-          type:
-          - string
-          - 'null'
-      required:
-      - cursor
-      title: NextCursor
-      type: object
-    ErrorRes:
-      description: Details for the error response
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
       type: object
   parameters:
     NeynarExperimentalHeader:

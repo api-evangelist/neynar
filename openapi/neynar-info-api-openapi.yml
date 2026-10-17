@@ -43,23 +43,14 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    DbStats:
-      required:
-      - numFidEvents
-      - numFnameEvents
-      - numMessages
-      type: object
-      properties:
-        numMessages:
-          type: integer
-          format: uint64
-        numFidEvents:
-          type: integer
-          format: uint64
-        numFnameEvents:
-          type: integer
-          format: uint64
     ErrorResponse:
       required:
       - code
@@ -89,6 +80,22 @@ components:
               type: array
               items:
                 type: string
+    DbStats:
+      required:
+      - numFidEvents
+      - numFnameEvents
+      - numMessages
+      type: object
+      properties:
+        numMessages:
+          type: integer
+          format: uint64
+        numFidEvents:
+          type: integer
+          format: uint64
+        numFnameEvents:
+          type: integer
+          format: uint64
     HubInfoResponse:
       title: Response Types for the Sync RPC Methods
       required:
@@ -115,13 +122,6 @@ components:
         hubOperatorFid:
           type: integer
           format: uint64
-  responses:
-    ErrorResponse:
-      description: An unexpected error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

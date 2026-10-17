@@ -86,6 +86,16 @@ components:
       - message
       title: ErrorRes
       type: object
+    CastsMetricsResponse:
+      properties:
+        metrics:
+          items:
+            $ref: '#/components/schemas/CastsMetrics'
+          type: array
+      required:
+      - metrics
+      title: CastsMetricsResponse
+      type: object
     CastsMetrics:
       properties:
         cast_count:
@@ -102,16 +112,6 @@ components:
       - resolution_in_seconds
       - cast_count
       title: CastsMetrics
-      type: object
-    CastsMetricsResponse:
-      properties:
-        metrics:
-          items:
-            $ref: '#/components/schemas/CastsMetrics'
-          type: array
-      required:
-      - metrics
-      title: CastsMetricsResponse
       type: object
   parameters:
     NeynarExperimentalHeader:

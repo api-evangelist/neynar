@@ -171,6 +171,51 @@ paths:
       - Webhook
 components:
   schemas:
+    WebhookSubscriptionFiltersReaction:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_cast_hashes:
+          items:
+            example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
+            pattern: ^(0x)?[a-fA-F0-9]{40}$
+            type: string
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersReaction
+      type: object
+    WebhookPatchReqBody:
+      properties:
+        active:
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - webhook_id
+      - active
+      title: WebhookPatchReqBody
+      type: object
+    WebhookPostReqBody:
+      properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
+      required:
+      - name
+      - url
+      title: WebhookPostReqBody
+      type: object
     WebhookSecret:
       properties:
         created_at:
@@ -196,70 +241,6 @@ components:
       - deleted_at
       title: WebhookSecret
       type: object
-    WebhookSubscriptionFilters:
-      properties:
-        cast.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
-        cast.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
-        follow.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
-        follow.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
-        reaction.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
-        reaction.deleted:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
-        trade.created:
-          $ref: '#/components/schemas/WebhookSubscriptionFiltersTrade'
-        user.created:
-          properties: {}
-          type: object
-        user.updated:
-          properties:
-            fids:
-              items:
-                type: integer
-              type: array
-          type: object
-      title: WebhookSubscriptionFilters
-      type: object
-    WebhookSubscriptionFiltersFollow:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        target_fids:
-          items:
-            type: integer
-          type: array
-      title: WebhookSubscriptionFiltersFollow
-      type: object
-    WebhookResponse:
-      properties:
-        message:
-          type: string
-        success:
-          type: boolean
-        webhook:
-          $ref: '#/components/schemas/Webhook'
-      title: WebhookResponse
-      type: object
-    WebhookPatchReqBody:
-      properties:
-        active:
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-        webhook_id:
-          type: string
-      required:
-      - webhook_id
-      - active
-      title: WebhookPatchReqBody
-      type: object
     WebhookSubscription:
       properties:
         created_at:
@@ -284,6 +265,38 @@ components:
       - updated_at
       title: WebhookSubscription
       type: object
+    WebhookPutReqBody:
+      properties:
+        name:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/WebhookSubscriptionFilters'
+        url:
+          type: string
+        webhook_id:
+          type: string
+      required:
+      - name
+      - url
+      - webhook_id
+      title: WebhookPutReqBody
+      type: object
+    ErrorRes:
+      description: Details for the error response
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        property:
+          type: string
+        status:
+          format: int32
+          type: integer
+      required:
+      - message
+      title: ErrorRes
+      type: object
     WebhookListResponse:
       properties:
         webhooks:
@@ -294,18 +307,27 @@ components:
       - webhooks
       title: WebhookListResponse
       type: object
-    WebhookPostReqBody:
+    WebhookResponse:
       properties:
-        name:
+        message:
           type: string
-        subscription:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        url:
-          type: string
-      required:
-      - name
-      - url
-      title: WebhookPostReqBody
+        success:
+          type: boolean
+        webhook:
+          $ref: '#/components/schemas/Webhook'
+      title: WebhookResponse
+      type: object
+    WebhookSubscriptionFiltersFollow:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        target_fids:
+          items:
+            type: integer
+          type: array
+      title: WebhookSubscriptionFiltersFollow
       type: object
     WebhookSubscriptionFiltersCast:
       properties:
@@ -369,40 +391,6 @@ components:
           type: string
       title: WebhookSubscriptionFiltersCast
       type: object
-    WebhookSubscriptionFiltersReaction:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        target_cast_hashes:
-          items:
-            example: '0x71d5225f77e0164388b1d4c120825f3a2c1f131c'
-            pattern: ^(0x)?[a-fA-F0-9]{40}$
-            type: string
-          type: array
-        target_fids:
-          items:
-            type: integer
-          type: array
-      title: WebhookSubscriptionFiltersReaction
-      type: object
-    WebhookPutReqBody:
-      properties:
-        name:
-          type: string
-        subscription:
-          $ref: '#/components/schemas/WebhookSubscriptionFilters'
-        url:
-          type: string
-        webhook_id:
-          type: string
-      required:
-      - name
-      - url
-      - webhook_id
-      title: WebhookPutReqBody
-      type: object
     WebhookDeleteReqBody:
       properties:
         webhook_id:
@@ -411,36 +399,33 @@ components:
       - webhook_id
       title: WebhookDeleteReqBody
       type: object
-    ErrorRes:
-      description: Details for the error response
+    WebhookSubscriptionFilters:
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        property:
-          type: string
-        status:
-          format: int32
-          type: integer
-      required:
-      - message
-      title: ErrorRes
-      type: object
-    WebhookSubscriptionFiltersTrade:
-      properties:
-        fids:
-          items:
-            type: integer
-          type: array
-        minimum_token_amount_usdc:
-          minimum: 0
-          type: number
-        minimum_trader_neynar_score:
-          maximum: 1
-          minimum: 0
-          type: number
-      title: WebhookSubscriptionFiltersTrade
+        cast.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        cast.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersCast'
+        follow.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        follow.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersFollow'
+        reaction.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        reaction.deleted:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersReaction'
+        trade.created:
+          $ref: '#/components/schemas/WebhookSubscriptionFiltersTrade'
+        user.created:
+          properties: {}
+          type: object
+        user.updated:
+          properties:
+            fids:
+              items:
+                type: integer
+              type: array
+          type: object
+      title: WebhookSubscriptionFilters
       type: object
     Webhook:
       properties:
@@ -499,6 +484,21 @@ components:
       - updated_at
       - deleted_at
       title: Webhook
+      type: object
+    WebhookSubscriptionFiltersTrade:
+      properties:
+        fids:
+          items:
+            type: integer
+          type: array
+        minimum_token_amount_usdc:
+          minimum: 0
+          type: number
+        minimum_trader_neynar_score:
+          maximum: 1
+          minimum: 0
+          type: number
+      title: WebhookSubscriptionFiltersTrade
       type: object
   securitySchemes:
     ApiKeyAuth:

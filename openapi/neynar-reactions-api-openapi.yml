@@ -200,20 +200,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    FarcasterNetwork:
-      type: string
-      description: 'Farcaster network the message is intended for.
-
-        - FARCASTER_NETWORK_MAINNET: Public primary network
-
-        - FARCASTER_NETWORK_TESTNET: Public test network
-
-        - FARCASTER_NETWORK_DEVNET: Private test network'
-      default: FARCASTER_NETWORK_MAINNET
-      enum:
-      - FARCASTER_NETWORK_MAINNET
-      - FARCASTER_NETWORK_TESTNET
-      - FARCASTER_NETWORK_DEVNET
     ErrorResponse:
       required:
       - code
@@ -243,94 +229,6 @@ components:
               type: array
               items:
                 type: string
-    PaginationResponse:
-      type: object
-      required:
-      - nextPageToken
-      properties:
-        nextPageToken:
-          type: string
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
-          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
-    MessageDataReaction:
-      description: Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
-      allOf:
-      - $ref: '#/components/schemas/MessageDataCommon'
-      - type: object
-        required:
-        - reactionBody
-        properties:
-          reactionBody:
-            description: Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.
-            allOf:
-            - $ref: '#/components/schemas/ReactionBody'
-    Reaction:
-      allOf:
-      - $ref: '#/components/schemas/MessageCommon'
-      - type: object
-        properties:
-          data:
-            allOf:
-            - $ref: '#/components/schemas/MessageDataReaction'
-            - type: object
-              properties:
-                type:
-                  $ref: '#/components/schemas/MessageType'
-              required:
-              - type
-        required:
-        - data
-    MessageType:
-      type: string
-      description: 'Type of the MessageBody.
-
-        - MESSAGE_TYPE_CAST_ADD: Add a new Cast
-
-        - MESSAGE_TYPE_CAST_REMOVE: Remove an existing Cast
-
-        - MESSAGE_TYPE_REACTION_ADD: Add a Reaction to a Cast
-
-        - MESSAGE_TYPE_REACTION_REMOVE: Remove a Reaction from a Cast
-
-        - MESSAGE_TYPE_LINK_ADD: Add a new Link
-
-        - MESSAGE_TYPE_LINK_REMOVE: Remove an existing Link
-
-        - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS: Add a Verification of an Ethereum Address
-
-        - MESSAGE_TYPE_VERIFICATION_REMOVE: Remove a Verification
-
-        - MESSAGE_TYPE_USER_DATA_ADD: Add metadata about a user
-
-        - MESSAGE_TYPE_USERNAME_PROOF: Add or replace a username proof
-
-        - MESSAGE_TYPE_FRAME_ACTION: A Farcaster Frame action'
-      default: MESSAGE_TYPE_CAST_ADD
-      enum:
-      - MESSAGE_TYPE_CAST_ADD
-      - MESSAGE_TYPE_CAST_REMOVE
-      - MESSAGE_TYPE_REACTION_ADD
-      - MESSAGE_TYPE_REACTION_REMOVE
-      - MESSAGE_TYPE_LINK_ADD
-      - MESSAGE_TYPE_LINK_REMOVE
-      - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS
-      - MESSAGE_TYPE_VERIFICATION_REMOVE
-      - MESSAGE_TYPE_USER_DATA_ADD
-      - MESSAGE_TYPE_USERNAME_PROOF
-      - MESSAGE_TYPE_FRAME_ACTION
-    SignatureScheme:
-      type: string
-      description: 'Type of signature scheme used to sign the Message hash
-
-        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
-
-        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
-      default: SIGNATURE_SCHEME_ED25519
-      enum:
-      - SIGNATURE_SCHEME_ED25519
-      - SIGNATURE_SCHEME_EIP712
     ReactionType:
       type: string
       description: 'Type of interaction a user can have with content on the Farcaster network.
@@ -371,29 +269,44 @@ components:
           example: 48994466
         network:
           $ref: '#/components/schemas/FarcasterNetwork'
-    CastId:
-      description: A unique identifier for a cast (post) in the Farcaster network, consisting of the creator's FID and a hash of the cast's content. This combination ensures global uniqueness across all casts.
-      required:
-      - fid
-      - hash
-      type: object
-      properties:
-        fid:
-          title: Fid of the user who created the cast
-          description: The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast's author in the network.
-          type: integer
-          format: uint64
-          example: 2
-        hash:
-          $ref: '#/components/schemas/CastHash'
-    FidSchema:
-      type: integer
-      format: uint64
-      minimum: 1
-      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+    MessageType:
+      type: string
+      description: 'Type of the MessageBody.
 
-        '
-      example: 1
+        - MESSAGE_TYPE_CAST_ADD: Add a new Cast
+
+        - MESSAGE_TYPE_CAST_REMOVE: Remove an existing Cast
+
+        - MESSAGE_TYPE_REACTION_ADD: Add a Reaction to a Cast
+
+        - MESSAGE_TYPE_REACTION_REMOVE: Remove a Reaction from a Cast
+
+        - MESSAGE_TYPE_LINK_ADD: Add a new Link
+
+        - MESSAGE_TYPE_LINK_REMOVE: Remove an existing Link
+
+        - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS: Add a Verification of an Ethereum Address
+
+        - MESSAGE_TYPE_VERIFICATION_REMOVE: Remove a Verification
+
+        - MESSAGE_TYPE_USER_DATA_ADD: Add metadata about a user
+
+        - MESSAGE_TYPE_USERNAME_PROOF: Add or replace a username proof
+
+        - MESSAGE_TYPE_FRAME_ACTION: A Farcaster Frame action'
+      default: MESSAGE_TYPE_CAST_ADD
+      enum:
+      - MESSAGE_TYPE_CAST_ADD
+      - MESSAGE_TYPE_CAST_REMOVE
+      - MESSAGE_TYPE_REACTION_ADD
+      - MESSAGE_TYPE_REACTION_REMOVE
+      - MESSAGE_TYPE_LINK_ADD
+      - MESSAGE_TYPE_LINK_REMOVE
+      - MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS
+      - MESSAGE_TYPE_VERIFICATION_REMOVE
+      - MESSAGE_TYPE_USER_DATA_ADD
+      - MESSAGE_TYPE_USERNAME_PROOF
+      - MESSAGE_TYPE_FRAME_ACTION
     MessageCommon:
       type: object
       properties:
@@ -421,14 +334,48 @@ components:
       - signature
       - signatureScheme
       - signer
-    HashScheme:
-      type: string
-      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
-
-        '
-      default: HASH_SCHEME_BLAKE3
-      enum:
-      - HASH_SCHEME_BLAKE3
+    CastId:
+      description: A unique identifier for a cast (post) in the Farcaster network, consisting of the creator's FID and a hash of the cast's content. This combination ensures global uniqueness across all casts.
+      required:
+      - fid
+      - hash
+      type: object
+      properties:
+        fid:
+          title: Fid of the user who created the cast
+          description: The Farcaster ID (FID) of the user who created the cast. Required to uniquely identify the cast's author in the network.
+          type: integer
+          format: uint64
+          example: 2
+        hash:
+          $ref: '#/components/schemas/CastHash'
+    Reaction:
+      allOf:
+      - $ref: '#/components/schemas/MessageCommon'
+      - type: object
+        properties:
+          data:
+            allOf:
+            - $ref: '#/components/schemas/MessageDataReaction'
+            - type: object
+              properties:
+                type:
+                  $ref: '#/components/schemas/MessageType'
+              required:
+              - type
+        required:
+        - data
+    PaginationResponse:
+      type: object
+      required:
+      - nextPageToken
+      properties:
+        nextPageToken:
+          type: string
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          description: Base64-encoded pagination token for fetching the next page of results. An empty value indicates there are no more pages to return. Used in conjunction with the pageSize parameter to implement pagination across large result sets.
+          example: AuzO1V0DtaItCwwa10X6YsfStlynsGWT
     ReactionBody:
       description: Specifies the details of a reaction to content on Farcaster. A reaction must specify its type (like/recast) and either a target cast ID or URL to react to. Only one target (either castId or URL) should be specified per reaction.
       type: object
@@ -446,6 +393,66 @@ components:
           example: https://www.example.com/article
       required:
       - type
+    SignatureScheme:
+      type: string
+      description: 'Type of signature scheme used to sign the Message hash
+
+        - SIGNATURE_SCHEME_ED25519: Ed25519 signature (default)
+
+        - SIGNATURE_SCHEME_EIP712: ECDSA signature using EIP-712 scheme'
+      default: SIGNATURE_SCHEME_ED25519
+      enum:
+      - SIGNATURE_SCHEME_ED25519
+      - SIGNATURE_SCHEME_EIP712
+    MessageDataReaction:
+      description: Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
+      allOf:
+      - $ref: '#/components/schemas/MessageDataCommon'
+      - type: object
+        required:
+        - reactionBody
+        properties:
+          reactionBody:
+            description: Contains the type of reaction (like/recast) and the target content being reacted to. The target can be specified either by castId or URL.
+            allOf:
+            - $ref: '#/components/schemas/ReactionBody'
+    HashScheme:
+      type: string
+      description: 'Type of hashing scheme used to produce a digest of MessageData. - HASH_SCHEME_BLAKE3: Default scheme for hashing MessageData
+
+        '
+      default: HASH_SCHEME_BLAKE3
+      enum:
+      - HASH_SCHEME_BLAKE3
+    FidSchema:
+      type: integer
+      format: uint64
+      minimum: 1
+      description: 'Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+
+        '
+      example: 1
+    FarcasterNetwork:
+      type: string
+      description: 'Farcaster network the message is intended for.
+
+        - FARCASTER_NETWORK_MAINNET: Public primary network
+
+        - FARCASTER_NETWORK_TESTNET: Public test network
+
+        - FARCASTER_NETWORK_DEVNET: Private test network'
+      default: FARCASTER_NETWORK_MAINNET
+      enum:
+      - FARCASTER_NETWORK_MAINNET
+      - FARCASTER_NETWORK_TESTNET
+      - FARCASTER_NETWORK_DEVNET
+  responses:
+    ErrorResponse:
+      description: An unexpected error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     pageToken:
       name: pageToken
@@ -465,13 +472,6 @@ components:
       description: Reverse the sort order, returning latest messages first
       schema:
         type: boolean
-  responses:
-    ErrorResponse:
-      description: An unexpected error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
